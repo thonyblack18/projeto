@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velora — Perfil do Desenvolvedor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="PerfilDev.css" />
+  <link rel="icon" type="image/png" href="logo velora.png">
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+  <div class="grid-background"></div>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="Catalogo.html" class="logo">
+        <div class="logo-img-placeholder"></div>
+        <span class="logo-text">VELORA</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="Catalogo.html">Explorar</a>
+        <a href="Catalogo.html">Catálogo</a>
+        <a href="#">Destaques</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn-ghost" id="edit-dev-btn">Editar perfil</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="dev-hero">
+    <div class="hero-inner">
+      <div class="studio-identity">
+        <div class="studio-logo-wrap">
+          <img id="avatarImg" class="studio-icon" src="" alt="Foto do desenvolvedor" style="display: none; object-fit: cover;">
+          <div class="studio-icon" id="avatarInitial">D</div>
+          <span class="verified-badge" title="Verificado">✓</span>
+        </div>
+
+        <div class="studio-text">
+          <div class="studio-meta">
+            <span class="studio-type" id="studio-type">Desenvolvedor</span>
+            <span class="dot">·</span>
+            <span class="studio-city" id="studio-location">Local não informado</span>
+          </div>
+
+          <h1 class="studio-name" id="studio-name">Carregando...</h1>
+          <p class="studio-tagline" id="studio-tagline">Perfil do desenvolvedor</p>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-follow">+ Seguir</button>
+        <a href="#" class="btn-site" id="studio-site" target="_blank" rel="noopener noreferrer">Site oficial ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-band">
+    <div class="info-band-inner">
+      <div class="about-block">
+        <h2 class="block-title">Sobre o Estúdio</h2>
+        <p class="about-text" id="studio-description">Carregando descrição...</p>
+
+        <div class="tech-tags" id="tech-tags">
+          <span class="tech-tag">Sem tags</span>
+        </div>
+      </div>
+
+      <div class="stats-column">
+        <div class="dev-stat">
+          <span class="dev-stat-value" id="stat-games" data-target="0">0</span>
+          <span class="dev-stat-label">Jogos publicados</span>
+        </div>
+
+        <div class="dev-stat">
+          <span class="dev-stat-value" id="stat-supporters" data-target="0">0</span>
+          <span class="dev-stat-label">Apoiadores totais</span>
+        </div>
+
+        <div class="dev-stat">
+          <span class="dev-stat-value" id="stat-months" data-target="0">0</span>
+          <span class="dev-stat-label">Meses na plataforma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+
+    <section class="section">
+      <h2 class="section-title">Equipe</h2>
+      <div class="team-grid" id="team-grid">
+        <div class="empty-card">
+          <p>Nenhuma equipe cadastrada.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Jogos Publicados</h2>
+        <a href="#" class="section-link">Ver todos →</a>
+      </div>
+
+      <div class="portfolio-grid" id="published-games">
+        <div class="empty-card">
+          <p>Nenhum jogo publicado ainda.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Links</h2>
+      </div>
+
+      <div class="links-grid">
+        <a class="link-card" id="link-website" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-globe"></i>
+          <span>Site oficial</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="PerfilDev.js"></script>
+</body>
+</html>

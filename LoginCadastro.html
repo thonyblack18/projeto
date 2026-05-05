@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="LoginCadastro.css">
+    <link rel="icon" type="image/png" href="Logo Velora.png">
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+    <div class="grid-background"></div>
+
+    <div id="toast" class="toast">
+        <div class="toast-icon"></div>
+        <div class="toast-message"></div>
+        <button class="toast-close">&times;</button>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-wrapper">
+                <img src="logo-velora.png" alt="Velora" class="header-logo" id="header-logo">
+                <span class="logo-text">VELORA</span>
+            </div>
+            <nav class="header-nav">
+                <a href="#" class="nav-link">Explorar</a>
+                <a href="#" class="nav-link">Desenvolvedores</a>
+                <a href="#" class="nav-link">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-wrapper">
+
+            <aside class="info-section">
+                <div class="info-content">
+                    <h1 class="main-title">
+                        Descubra o futuro dos
+                        <span class="highlight">jogos indies</span>
+                        brasileiros
+                    </h1>
+                    <p class="main-description">
+                        Unindo criadores, acelerando a criação. A Velora conecta 
+                        desenvolvedores brasileiros com a comunidade gamer nacional.
+                    </p>
+                </div>
+            </aside>
+
+            <section class="form-section">
+                <div class="form-card">
+
+                    <div class="mode-switch">
+                        <button class="mode-btn active" data-mode="login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Entrar
+                        </button>
+                        <button class="mode-btn" data-mode="register">
+                            <i class="fas fa-user-plus"></i>
+                            Cadastrar
+                        </button>
+                    </div>
+
+                    <!-- LOGIN -->
+                    <form class="auth-form active" id="form-login">
+                        <h2 class="form-title">Bem-vindo de volta!</h2>
+                        <p class="form-subtitle">Entre com suas credenciais</p>
+
+                        <div class="input-group">
+                            <label>Email ou usuário</label>
+                            <div class="input-box">
+                                <i class="fas fa-user"></i>
+                                <input type="text" name="login" placeholder="Digite seu email ou usuário" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Senha</label>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" placeholder="Digite sua senha" required>
+                                <button type="button" class="toggle-pwd">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-footer-options">
+                            <label class="remember-check">
+                                <input type="checkbox">
+                                <span>Lembrar-me</span>
+                        </label>
+                        <a href="#" class="forgot-pwd">Esqueceu a senha?</a>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Entrar na Velora
+                        </button>
+                    </form>
+
+                    <!-- CADASTRO -->
+                    <form class="auth-form" id="form-register">
+
+                        
+                        <h2 class="form-title">Criar conta</h2>
+                        <p class="form-subtitle">Escolha seu tipo de conta</p>    
+
+                        <div class="account-type-selector">
+                            <label class="type-option active" data-type="player">
+                                <input type="radio" name="accountType" value="player" checked>
+                                <div class="type-card">
+                                    <i class="fas fa-gamepad"></i>
+                                    <span>Jogador</span>
+                                    <span class="type-desc">Explorar e apoiar jogos</span>
+                                </div>
+                            </label>
+
+                            <label class="type-option" data-type="developer">
+                                <input type="radio" name="accountType" value="developer">
+                                <div class="type-card">
+                                    <i class="fas fa-code"></i>
+                                    <span>Desenvolvedor</span>
+                                    <span class="type-desc">Publicar seus jogos</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- CAMPOS PLAYER -->
+                        <div class="player-fields" id="player-fields">
+
+                            <div class="input-group">
+                                <label>Nome completo</label>
+                                <div class="input-box">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="name" name="full_name" placeholder="Seu nome completo" required>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Nome de usuário</label>
+                                <div class="input-box">
+                                    <i class="fas fa-at"></i>
+                                    <input type="text" id="username" name="username" placeholder="@seuusuario" required>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Email</label>
+                                <div class="input-box">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="player-email" name="player_email" placeholder="seu@email.com" required>
+                                </div>
+                            </div>
+
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Senha</label>
+                                    <div class="input-box">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="player-password" name="player_password" placeholder="Mínimo 8 caracteres" required>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Confirmar senha</label>
+                                    <div class="input-box">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="player-confirmPassword" name="player_confirm_password" placeholder="Mínimo 8 caracteres" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CAMPOS DEV -->
+                        <div class="developer-fields hidden" id="developer-fields">
+
+                            <div class="dev-type-tabs">
+                                <button type="button" class="dev-tab active" data-devtype="solo">
+                                    <i class="fas fa-user"></i>Solo
+                                </button>
+                                <button type="button" class="dev-tab" data-devtype="studio">
+                                    <i class="fas fa-users"></i>Estúdio
+                                </button>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Nome do desenvolvedor/estúdio</label>
+                                <div class="input-box">
+                                    <i class="fas fa-briefcase"></i>
+                                    <input type="text" name="dev_display_name" placeholder="Nome ou nome do estúdio" required>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Email profissional</label>
+                                <div class="input-box">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" name="dev_email" placeholder="contato@seuestudio.com" required>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Website (opcional)</label>
+                                <div class="input-box">
+                                <i class="fas fa-globe"></i>
+                                    <input type="url" name="website" placeholder="https://seusite.com">
+                                </div>
+                            </div>
+
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Senha</label>
+                                    <div class="input-box">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" name="dev_password" placeholder="Mínimo 8 caracteres" required>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Confirmar senha</label>
+                                    <div class="input-box">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" name="dev_confirm_password" placeholder="Mínimo 8 caracteres" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Criar minha conta
+                        </button>
+                        <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        Contas de desenvolvedor passam por análise em até 48h úteis
+                    </div>
+                    </form>
+
+                   
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+    <div class="footer-logo-box">
+        <img src="logo-velora.png" alt="Velora" class="footer-logo-img">
+        <span class="footer-logo-text">VELORA</span>
+    </div>
+    <div class="footer-links">
+        <a href="#">Termos de Uso</a>
+        <span class="separator">•</span>
+        <a href="#">Privacidade</a>
+        <span class="separator">•</span>
+        <a href="#">Suporte</a>
+    </div>
+</footer>
+
+
+    <script src="LoginCadastro.js"></script>
+</body>
+</html>

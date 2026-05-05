@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Sobre Nós</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="SobreNos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Logo Velora.png"> 
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="Catalogo.html" class="logo">
+                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <div class="logo-img-placeholder" id="logo-placeholder">V</div>
+                    <span class="logo-text">VELORA</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                    <a href="./Minigames/PaginaMinigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Jogos</a>
+                    <a href="Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
+                    <a href="Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                    <a href="ListaDevs.html" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+                    <a href="SobreNos.html" class="nav-item active"><i class="fas fa-crown"></i> Sobre nós</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar...">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-sobre">
+        <div class="hero-label">
+            <i class="fas fa-crown"></i>
+            Sobre a Velora
+        </div>
+        <h1 class="hero-title">Quem <em class="hero-em">Somos?</em></h1>
+        <p class="hero-sub">Conheça a plataforma e a equipe por trás da cena indie brasileira</p>
+    </section>
+
+    <!-- SEÇÃO: QUEM SOMOS -->
+    <section class="quem-somos-section">
+        <div class="qs-container">
+
+            <div class="qs-text-block">
+                <p>A <strong class="gold-text">Velora</strong> é um projeto inovador criado com o propósito de ser o principal portal de divulgação dos jogos independentes brasileiros. Nosso objetivo é dar visibilidade aos desenvolvedores da cena indie nacional, conectando criadores e jogadores apaixonados por games com identidade brasileira.</p>
+                <p>Mais do que um catálogo, a Velora é um espaço de comunidade — onde desenvolvedores podem apresentar seus projetos, jogadores descobrem novos títulos, e entusiastas acompanham as últimas novidades do universo indie do Brasil.</p>
+                <p>Com a <strong class="gold-text">Velora</strong>, o aprendizado e a descoberta são constantes. Nossa plataforma reúne catálogo de jogos, notícias, rankings, minigames e perfis de desenvolvedores, tudo pensado para valorizar e fortalecer o ecossistema indie brasileiro.</p>
+                <p>Nosso compromisso é fazer com que cada jogo indie brasileiro ganhe o reconhecimento que merece, promovendo uma cena criativa, diversa e vibrante, onde a criatividade brasileira seja celebrada e chegue a cada vez mais jogadores.</p>
+            </div>
+
+            <div class="qs-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="stat-num">15+</div>
+                    <div class="stat-label">Jogos Catalogados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-num">15+</div>
+                    <div class="stat-label">Desenvolvedores</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-newspaper"></i></div>
+                    <div class="stat-num">1+</div>
+                    <div class="stat-label">Notícias Publicadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-flag"></i></div>
+                    <div class="stat-num">BR</div>
+                    <div class="stat-label">100% Brasileiro</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO: EQUIPE -->
+    <section class="equipe-section">
+        <div class="equipe-container">
+
+            <div class="section-header-bar">
+                <div class="section-header-left">
+                    <div class="section-accent-line"></div>
+                    <h2 class="section-heading">Nossa <em class="hero-em" style="font-size:inherit">Equipe</em></h2>
+                </div>
+            </div>
+
+            <p class="equipe-sub">Conheça os estudantes por trás da Velora, desenvolvida como Trabalho de Conclusão de Curso.</p>
+
+            <div class="equipe-grid">
+
+                <!-- Alanis Rufino -->
+                <div class="dev-card">
+                    <div class="dev-avatar">AR</div>
+                    <h3 class="dev-name">Alanis Rufino</h3>
+                    <span class="dev-role">Membro</span>
+                    <p class="dev-desc">Criadora do projeto</p>
+                    <div class="dev-links">
+                        <a href="#" class="dev-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="dev-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dev-link" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Anthony Santos -->
+                <div class="dev-card">
+                    <div class="dev-avatar">AS</div>
+                    <h3 class="dev-name">Anthony Santos</h3>
+                    <span class="dev-role">Membro</span>
+                    <p class="dev-desc">Criador do projeto</p>
+                    <div class="dev-links">
+                        <a href="#" class="dev-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="dev-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dev-link" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- João Vitor -->
+                <div class="dev-card">
+                    <div class="dev-avatar">JV</div>
+                    <h3 class="dev-name">João Vitor</h3>
+                    <span class="dev-role">Membro</span>
+                    <p class="dev-desc">Criador do projeto</p>
+                    <div class="dev-links">
+                        <a href="#" class="dev-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="dev-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dev-link" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Jorge Luiz -->
+                <div class="dev-card">
+                    <div class="dev-avatar">JL</div>
+                    <h3 class="dev-name">Jorge Luiz</h3>
+                    <span class="dev-role">Membro</span>
+                    <p class="dev-desc">Criador do projeto</p>
+                    <div class="dev-links">
+                        <a href="#" class="dev-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="dev-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dev-link" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Laís Castro -->
+                <div class="dev-card">
+                    <div class="dev-avatar">LC</div>
+                    <h3 class="dev-name">Laís Castro</h3>
+                    <span class="dev-role">Membro</span>
+                    <p class="dev-desc">Criadora do projeto</p>
+                    <div class="dev-links">
+                        <a href="#" class="dev-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="dev-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dev-link" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Maria Eduarda -->
+                <div class="dev-card">
+                    <div class="dev-avatar">ME</div>
+                    <h3 class="dev-name">Maria Eduarda</h3>
+                    <span class="dev-role">Membro</span>
+                    <p class="dev-desc">Criadora do projeto</p>
+                    <div class="dev-links">
+                        <a href="#" class="dev-link" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="dev-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dev-link" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: MISSÃO -->
+    <section class="missao-section">
+        <div class="missao-container">
+            <div class="missao-card">
+                <div class="missao-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Missão</h3>
+                <p>Ser o principal portal de descoberta e divulgação dos jogos independentes brasileiros, conectando criadores e jogadores de todo o país.</p>
+            </div>
+            <div class="missao-card">
+                <div class="missao-icon"><i class="fas fa-eye"></i></div>
+                <h3>Visão</h3>
+                <p>Um futuro onde a cena indie brasileira seja reconhecida globalmente, e cada desenvolvedor tenha acesso a uma plataforma de visibilidade justa.</p>
+            </div>
+            <div class="missao-card">
+                <div class="missao-icon"><i class="fas fa-heart"></i></div>
+                <h3>Valores</h3>
+                <p>Comunidade, transparência, diversidade criativa e valorização da cultura gamer brasileira em todas as suas formas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <div class="footer-logo-placeholder" id="footer-logo-placeholder">V</div>
+                <span class="footer-logo-text">VELORA</span>
+            </div>
+            <div class="footer-links">
+                <a href="TermosDeUso.html">Termos de Uso</a>
+                <span class="footer-sep">•</span>
+                <a href="TermosPrivacidade.html">Privacidade</a>
+                <span class="footer-sep">•</span>
+                <a href="SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="SobreNos.js"></script>
+</body>
+</html>

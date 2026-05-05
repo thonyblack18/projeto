@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Página Inicial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Catalogo.css">
+    <link rel="icon" href="Velora Logo.png" type="image/png">
+    
+</head>
+<body>
+    <!-- Header/Menu -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <!-- =================== LOGO DO HEADER =================== -->
+                <div class="logo">
+                    <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <span class="logo-text">VELORA</span>
+                </div>
+                <!-- ====================================================== -->
+                
+                 <nav class="main-nav">
+                    <a href="/Catalogo.html" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <a href="./Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i>
+                        Minigames
+                    </a>
+                    <a href="Ranking.html" class="nav-item">
+                        <i class="fas fa-fire"></i>
+                        Ranking
+                    </a>
+                    <a href="Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i>
+                        Noticias
+                    </a>
+                    <a href="ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        Desenvolvedores
+                    </a>
+                    <a href="SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i>
+                        Sobre nós
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
+                <i class="fas fa-heart"></i>
+                </button>
+                
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <div class="user-profile" id="userProfile">
+                    <img id="headerUserAvatar" src="" alt="Usuário" style="display: none;">
+                    <div class="header-avatar-initial" id="headerAvatarInitial">U</div>
+                    <span class="user-name" id="headerUserName">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                
+                <div class="user-dropdown" id="userDropdown">
+    <!-- =================== DROPDOWN — itens e redirecionamentos =================== -->
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i>
+                        <span>Meu Perfil</span>
+                    </div>
+                    <div class="dropdown-item" id="dropSuporte">
+                        <i class="fas fa-headset"></i>
+                        <span>Suporte ao Usuário</span>
+                    </div>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Modal de Filtros -->
+        <div class="filter-modal" id="filterModal">
+            <div class="filter-modal-content">
+                <div class="filter-modal-header">
+                    <h3>Filtrar Jogos</h3>
+                    <button class="close-modal" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-modal-body">
+                    <div class="filter-section">
+                        <h4>Gênero</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="aventura">
+                                <span>Aventura</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="acao">
+                                <span>Ação</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="rpg">
+                                <span>RPG</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="puzzle">
+                                <span>Puzzle</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="plataforma">
+                                <span>Plataforma</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="terror">
+                                <span>Terror</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h4>Avaliação</h4>
+                        <div class="filter-options">
+                            <label class="filter-radio">
+                                <input type="radio" name="rating" value="all" checked>
+                                <span>Todas</span>
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="rating" value="4.5">
+                                <span>4.5+ ⭐</span>
+                            </label>
+                            <label class="filter-radio">
+                                <input type="radio" name="rating" value="4.0">
+                                <span>4.0+ ⭐</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h4>Plataforma</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="windows">
+                                <span>Windows</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="mac">
+                                <span>Mac</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="linux">
+                                <span>Linux</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="mobile">
+                                <span>Mobile</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-modal-footer">
+                    <button class="btn-clear" id="clearFilters">Limpar Filtros</button>
+                    <button class="btn-apply" id="applyFilters">Aplicar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Descubra jogos indies brasileiros</h1>
+                    <p class="hero-subtitle">Explore, apoie e jogue os melhores jogos independentes do Brasil</p>
+                </div>
+            </section>
+
+            <!-- Filtros -->
+            <section class="filters-section">
+                <div class="filters-left">
+                    <h2 class="section-title">Catálogo Completo</h2>
+                    <span class="games-count">20 jogos disponíveis</span>
+                </div>
+                
+                <div class="filters-right">
+                    <button class="filter-btn">
+                        <i class="fas fa-filter"></i>
+                        Filtrar
+                    </button>
+                    <select class="sort-select">
+                        <option>Mais recentes</option>
+                        <option>Mais populares</option>
+                        <option>A-Z</option>
+                        <option>Z-A</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Grade de Jogos -->
+                <!-- =================== JOGO 1 =================== -->
+               <section class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Dandara Logo 1.jpg" alt="Dandara: Trials of Fear Edition" class="game-logo">
+                        <button class="favorite-btn" data-id="static:1"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Dandara: Trials of Fear Edition</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Metroidvania</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Mullet Madjack Logo.jpg" alt="Mullet Madjack" class="game-logo">
+                        <button class="favorite-btn" data-id="static:2"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Mullet Madjack</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Arcade</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Horizon Chase Turbo Logo.jpg" alt="Horizon Chase Turbo" class="game-logo">
+                        <button class="favorite-btn" data-id="static:3"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Horizon Chase Turbo</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Corrida</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/AILA Logo.jpeg" alt="AILA" class="game-logo">
+                        <button class="favorite-btn" data-id="static:4"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">A.I.L.A</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Beat 'em up</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Kambulin Logo.jpeg" alt="Kambulin" class="game-logo">
+                        <button class="favorite-btn" data-id="static:5"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Kambulin</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Aventura</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Momodora Logo 2.jpg" alt="Momodora: Reverie Under the Moonlight" class="game-logo">
+                        <button class="favorite-btn" data-id="static:6"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Momodora: Reverie Under the Moonlight</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Aventura</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Knights Logo.jpeg" alt="Knights of Pen and Paper" class="game-logo">
+                        <button class="favorite-btn" data-id="static:7"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Knights of Pen and Paper II</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">RPG</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Chroma Squad Logo.jpg" alt="Chroma Squad" class="game-logo">
+                        <button class="favorite-btn" data-id="static:8"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Chroma Squad</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Estratégia</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Mark of the Deep Logo.jpg" alt="Mark of the Deep" class="game-logo">
+                        <button class="favorite-btn" data-id="static:9"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Mark of the Deep</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Aventura</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Tupi Logo.jpg" alt="Tupi: The Legend of Arariboia" class="game-logo">
+                        <button class="favorite-btn" data-id="static:10"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Tupi: The Legend of Arariboia</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Ação</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/171 Logo.jpg" alt="171" class="game-logo">
+                        <button class="favorite-btn" data-id="static:11"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">171</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Ação</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Sina Logo.jpeg" alt="Sina" class="game-logo">
+                        <button class="favorite-btn" data-id="static:12"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Sina</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Aventura</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/9kings Logo.jpg" alt="9Kings" class="game-logo">
+                        <button class="favorite-btn" data-id="static:13"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">9Kings</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">RPG</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Gaucho Logo.jpg" alt="Gaúcho and the Grassland" class="game-logo">
+                        <button class="favorite-btn" data-id="static:14"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Gaúcho and the Grassland</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Casual</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Pipi Logo.jpg" alt="Pipistrello and the Cursed Yoyo" class="game-logo">
+                        <button class="favorite-btn" data-id="static:15"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Pipistrello and the Cursed Yoyo</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Plataforma</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/No Heroes Here.jpg" alt="No Heroes Here" class="game-logo">
+                        <button class="favorite-btn" data-id="static:16"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">No Heroes Here</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Plataforma</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Dragon Khan Logo.jpg" alt="Dragon Khan" class="game-logo">
+                        <button class="favorite-btn" data-id="static:17"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Dragon Khan</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">RPG</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/99 Vidas Logo.jpeg" alt="99 Vidas" class="game-logo">
+                        <button class="favorite-btn" data-id="static:18"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">99 Vidas</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Arcade</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Dandy Ace Logo.jpeg" alt="Dandy Ace" class="game-logo">
+                        <button class="favorite-btn" data-id="static:19"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Dandy Ace</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Roguelike</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="game-card">
+                    <div class="game-image">
+                        <img src="Logos/Mombo Logo.jpeg" alt="Mombo Combo Legacy" class="game-logo">
+                        <button class="favorite-btn" data-id="static:20"></button>><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Mombo Combo Legacy</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">Ação</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                    </div>
+                </div>
+        
+    </main>
+
+    <script src="Catalogo.js"></script>
+</body>
+</html>

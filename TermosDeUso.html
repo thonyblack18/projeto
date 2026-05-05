@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Termos de Uso</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="TermosDeUso.css">
+    <link rel="icon" type="image/png" href="Logo Velora.png"> 
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="Catalogo.html" class="logo">
+                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <div class="logo-img-placeholder" id="logo-placeholder">V</div>
+                    <span class="logo-text">VELORA</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item">
+                        <i class="fas fa-home"></i> 
+                        Início
+                    </a>
+                    <a href="./Minigames/PaginaMinigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i>
+                        Minigames
+                    </a>
+                    <a href="#top" class="nav-item active" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                        <i class="fas fa-fire"></i>
+                        Ranking
+                    </a>
+                    <a href="Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i>
+                        Noticias
+                    </a>
+                    <a href="ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        Desenvolvedores
+                    </a>
+                    <a href="SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i>
+                        Sobre nós
+                    </a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+
+            <!--
+                <button class="icon-btn" title="Favoritos">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <img src="https://via.placeholder.com/40" alt="Usuário">
+                    <span class="user-name">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item"><i class="fas fa-user"></i><span>Meu Perfil</span></div>
+                    <div class="dropdown-item"><i class="fas fa-heart"></i><span>Meus Favoritos</span></div>
+                    <div class="dropdown-item"><i class="fas fa-cog"></i><span>Configurações</span></div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+                </div>
+            -->
+
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-termos">
+        <div class="hero-label">
+            <i class="fas fa-file-contract"></i>
+            Documentação Legal
+        </div>
+        <h1 class="hero-title">Termos de <em class="hero-em">Uso</em></h1>
+        <p class="hero-sub">Transparência e respeito com a comunidade Velora</p>
+        <div class="update-badge">
+            <i class="fas fa-clock"></i> Última atualização: março de 2026
+        </div>
+    </section>
+
+    <!-- LAYOUT -->
+    <div class="termos-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="termos-sidebar">
+            <div class="sidebar-label">Sumário</div>
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <button class="sidebar-link active" data-target="sec1"><span class="num">1</span> Introdução</button>
+                <button class="sidebar-link" data-target="sec2"><span class="num">2</span> Uso da Plataforma</button>
+                <button class="sidebar-link" data-target="sec3"><span class="num">3</span> Responsabilidades</button>
+                <button class="sidebar-link" data-target="sec4"><span class="num">4</span> Sua Conta</button>
+                <button class="sidebar-link" data-target="sec5"><span class="num">5</span> Propriedade Intelectual</button>
+                <button class="sidebar-link" data-target="sec6"><span class="num">6</span> Privacidade de Dados</button>
+                <button class="sidebar-link" data-target="sec7"><span class="num">7</span> Alterações nos Termos</button>
+                <button class="sidebar-link" data-target="sec8"><span class="num">8</span> Contato</button>
+            </nav>
+        </aside>
+
+        <!-- CONTEÚDO -->
+        <div class="termos-content">
+
+            <div class="termos-card" id="sec1">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 01</div>
+                        <div class="card-title">Introdução</div>
+                    </div>
+                </div>
+                <p>Bem-vindo à <strong class="gold-text">Velora</strong>, a plataforma dedicada ao universo dos jogos independentes brasileiros. Ao acessar ou utilizar nossos serviços, você concorda com os presentes Termos de Uso.</p>
+                <p>A Velora é um projeto desenvolvido como Trabalho de Conclusão de Curso (TCC) com o objetivo de conectar jogadores, desenvolvedores e entusiastas da cena indie nacional.</p>
+                <div class="highlight-box">
+                    <i class="fas fa-exclamation-triangle hb-icon"></i>
+                    <p>Ao continuar utilizando a plataforma, você confirma que leu, entendeu e concordou com todos os termos descritos neste documento. Caso não concorde, pedimos que não utilize os serviços da Velora.</p>
+                </div>
+            </div>
+
+            <div class="termos-card" id="sec2">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 02</div>
+                        <div class="card-title">Uso da Plataforma</div>
+                    </div>
+                </div>
+                <p>A Velora oferece acesso a catálogos de jogos indie, notícias, rankings, minigames e perfis de desenvolvedores. O uso da plataforma está condicionado às seguintes diretrizes:</p>
+                <ul class="termos-list">
+                    <li><span class="li-dot"></span>Utilizar a plataforma apenas para fins lícitos e de acordo com os termos aqui estabelecidos.</li>
+                    <li><span class="li-dot"></span>Não tentar comprometer a segurança, integridade ou desempenho dos sistemas da Velora.</li>
+                    <li><span class="li-dot"></span>Não reproduzir, distribuir ou modificar o conteúdo da plataforma sem autorização expressa.</li>
+                    <li><span class="li-dot"></span>Manter comportamento respeitoso com outros usuários e desenvolvedores da comunidade.</li>
+                    <li><span class="li-dot"></span>Não utilizar scripts, bots ou automações para acessar a plataforma de forma não autorizada.</li>
+                </ul>
+                <div class="tag-row">
+                    <span class="tag"><i class="fas fa-user-check"></i> Uso Pessoal</span>
+                    <span class="tag"><i class="fas fa-ban"></i> Sem Fins Comerciais</span>
+                    <span class="tag"><i class="fas fa-handshake"></i> Uso Respeitoso</span>
+                </div>
+            </div>
+
+            <div class="termos-card" id="sec3">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 03</div>
+                        <div class="card-title">Responsabilidades</div>
+                    </div>
+                </div>
+                <p>A Velora se compromete a manter a plataforma disponível e funcional, mas não garante acesso ininterrupto ou livre de erros, especialmente por se tratar de um projeto acadêmico em desenvolvimento contínuo.</p>
+                <p>O usuário é inteiramente responsável pelas ações realizadas em sua conta e pelo conteúdo que eventualmente compartilhar na plataforma.</p>
+                <ul class="termos-list">
+                    <li><span class="li-dot"></span>A Velora não se responsabiliza por danos decorrentes do uso indevido da plataforma por terceiros.</li>
+                    <li><span class="li-dot"></span>Links externos presentes na plataforma são de responsabilidade de seus respectivos proprietários.</li>
+                    <li><span class="li-dot"></span>O conteúdo dos jogos catalogados é de responsabilidade de seus desenvolvedores.</li>
+                </ul>
+            </div>
+
+            <div class="termos-card" id="sec4">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 04</div>
+                        <div class="card-title">Sua Conta</div>
+                    </div>
+                </div>
+                <p>Para acessar determinadas funcionalidades da Velora, pode ser necessário criar uma conta. Ao fazê-lo, você concorda em:</p>
+                <ul class="termos-list">
+                    <li><span class="li-dot"></span>Fornecer informações verdadeiras, precisas e atualizadas no momento do cadastro.</li>
+                    <li><span class="li-dot"></span>Manter a confidencialidade de sua senha e não compartilhá-la com terceiros.</li>
+                    <li><span class="li-dot"></span>Notificar imediatamente a equipe Velora em caso de uso não autorizado de sua conta.</li>
+                    <li><span class="li-dot"></span>Ser responsável por todas as atividades realizadas sob seu login.</li>
+                </ul>
+                <div class="highlight-box">
+                    <i class="fas fa-lock hb-icon"></i>
+                    <p>A Velora se reserva o direito de suspender ou encerrar contas que violem estes Termos de Uso, sem aviso prévio, em casos de comportamento que prejudique a comunidade.</p>
+                </div>
+            </div>
+
+            <div class="termos-card" id="sec5">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-copyright"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 05</div>
+                        <div class="card-title">Propriedade Intelectual</div>
+                    </div>
+                </div>
+                <p>Todo o conteúdo original da plataforma Velora — incluindo design, código, textos, logotipos e identidade visual — é protegido por direitos autorais e pertence aos seus criadores.</p>
+                <p>Os jogos e materiais dos desenvolvedores cadastrados na plataforma permanecem como propriedade intelectual de seus respectivos autores. A Velora atua apenas como meio de divulgação.</p>
+                <div class="tag-row">
+                    <span class="tag"><i class="fas fa-paint-brush"></i> Design Velora</span>
+                    <span class="tag"><i class="fas fa-code"></i> Assets dos Devs</span>
+                    <span class="tag"><i class="fas fa-pen"></i> Conteúdo Editorial</span>
+                </div>
+            </div>
+
+            <div class="termos-card" id="sec6">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 06</div>
+                        <div class="card-title">Privacidade de Dados</div>
+                    </div>
+                </div>
+                <p>A Velora se compromete a tratar seus dados pessoais com responsabilidade e em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).</p>
+                <ul class="termos-list">
+                    <li><span class="li-dot"></span>Coletamos apenas os dados necessários para o funcionamento da plataforma.</li>
+                    <li><span class="li-dot"></span>Seus dados não serão vendidos ou compartilhados com terceiros sem sua autorização.</li>
+                    <li><span class="li-dot"></span>Você pode solicitar a exclusão de seus dados a qualquer momento pelo canal de suporte.</li>
+                    <li><span class="li-dot"></span>Utilizamos cookies para melhorar sua experiência de navegação na plataforma.</li>
+                </ul>
+                <p>Para mais detalhes, consulte nossa <a href="TermosPrivacidade.html" class="gold-link">Política de Privacidade</a>.</p>
+            </div>
+
+            <div class="termos-card" id="sec7">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-sync-alt"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 07</div>
+                        <div class="card-title">Alterações nos Termos</div>
+                    </div>
+                </div>
+                <p>A Velora reserva-se o direito de modificar estes Termos de Uso a qualquer momento. Alterações significativas serão comunicadas aos usuários por meio da plataforma.</p>
+                <p>O uso contínuo da plataforma após a publicação de alterações implica na aceitação dos novos termos. Recomendamos que você revise este documento periodicamente.</p>
+                <div class="highlight-box">
+                    <i class="fas fa-calendar-alt hb-icon"></i>
+                    <p>Este documento foi atualizado pela última vez em março de 2026. A versão vigente é sempre a disponível nesta página.</p>
+                </div>
+            </div>
+
+            <div class="termos-card" id="sec8">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="card-heading">
+                        <div class="card-num">✦ Seção 08</div>
+                        <div class="card-title">Contato</div>
+                    </div>
+                </div>
+                <p>Em caso de dúvidas, sugestões ou reclamações relacionadas a estes Termos de Uso, entre em contato com a equipe Velora pelos canais abaixo:</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="ci-label"><i class="fas fa-envelope"></i> E-mail</div>
+                        <div class="ci-val">contato@velora.com.br</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-label"><i class="fas fa-globe"></i> Plataforma</div>
+                        <div class="ci-val">velora.com.br/suporte</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-label"><i class="fas fa-clock"></i> Atendimento</div>
+                        <div class="ci-val">Seg – Sex, 9h às 18h</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-label"><i class="fas fa-map-marker-alt"></i> Localização</div>
+                        <div class="ci-val">Brasil</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARRA ACEITE -->
+            <div class="accept-bar">
+                <p>Ao utilizar a Velora, você confirma que leu e concorda com todos os termos acima. Obrigado por fazer parte da nossa comunidade!</p>
+                <button class="accept-btn" id="accept-btn">
+                    <i class="fas fa-check"></i> Aceitar Termos
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <div class="footer-logo-placeholder" id="footer-logo-placeholder">V</div>
+                <span class="footer-logo-text">VELORA</span>
+            </div>
+            <div class="footer-links">
+                <a href="TermosDeUso.html">Termos de Uso</a>
+                <span class="footer-sep">•</span>
+                <a href="TermosPrivacidade.html">Privacidade</a>
+                <span class="footer-sep">•</span>
+                <a href="SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="TermosDeUso.js"></script>
+</body>
+</html>

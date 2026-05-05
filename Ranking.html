@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Ranking de Jogos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Ranking.css">
+    <style>
+        .hero-title {
+            font-family: 'Orbitron', sans-serif !important;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1.15;
+        }
+        .nav-disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="logo-velora.png" alt="Velora" class="logo-img">
+                    <span class="logo-text">VELORA</span>
+                </div>
+                 <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item">
+                        <i class="fas fa-home"></i> 
+                        Início
+                    </a>
+                    <a href="./Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i>
+                        Minigames
+                    </a>
+                    <a href="#top" class="nav-item active" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+                        <i class="fas fa-fire"></i>
+                        Ranking
+                    </a>
+                    <a href="Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i>
+                        Noticias
+                    </a>
+                    <a href="ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        Desenvolvedores
+                    </a>
+                    <a href="SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i>
+                        Sobre nós
+                    </a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                <button class="icon-btn" title="Favoritos">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <img src="https://via.placeholder.com/40" alt="Usuário">
+                    <span class="user-name">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item"><i class="fas fa-user"></i><span>Meu Perfil</span></div>
+                    <div class="dropdown-item"><i class="fas fa-heart"></i><span>Meus Favoritos</span></div>
+                    <div class="dropdown-item"><i class="fas fa-cog"></i><span>Configurações</span></div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-container">
+
+            <section class="hero-section" id="hero">
+                <h1 class="hero-title"><i class="fas fa-trophy"></i> Ranking de Jogos</h1>
+                <p class="hero-subtitle">Os jogos indies brasileiros mais acessados e mais bem avaliados</p>
+            </section>
+
+            <section class="ranking-controls">
+                <div class="controls-row">
+                    <div class="period-tabs">
+                        <button class="period-tab" data-period="semana">Semana</button>
+                        <button class="period-tab" data-period="mes">Mês</button>
+                        <button class="period-tab" data-period="ano">Ano</button>
+                        <button class="period-tab active" data-period="todos">Todos os tempos</button>
+                    </div>
+                    <div class="metric-tabs">
+                        <button class="metric-tab active" data-metric="acessos">
+                            <i class="fas fa-eye"></i> Mais Acessados
+                        </button>
+                        <button class="metric-tab" data-metric="avaliacao">
+                            <i class="fas fa-star"></i> Mais Avaliados
+                        </button>
+                    </div>
+                </div>
+                <div class="active-filter-badge">
+                    <span id="activeBadge">
+                        <i class="fas fa-eye"></i> Mais Acessados — Todos os tempos
+                    </span>
+                </div>
+            </section>
+
+            <section class="podium-section">
+                <div class="podium-container" id="podiumContainer">
+                    <div class="podium-card place-2" data-game-index="1">
+                        <div class="podium-medal silver"><i class="fas fa-medal"></i><span>2</span></div>
+                        <div class="podium-img-wrap">
+                            <img src="jogo2-logo.png" alt="" class="podium-img">
+                            <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="podium-info">
+                            <h3 class="podium-name">Jogo 2</h3>
+                            <span class="podium-genre">Gênero</span>
+                            <div class="podium-stats">
+                                <span class="stat primary-stat"><i class="fas fa-eye"></i> <span class="stat-value">—</span></span>
+                                <span class="stat gold"><i class="fas fa-star"></i> <span class="stat-rating">—</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="podium-card place-1" data-game-index="0">
+                        <div class="podium-crown"><i class="fas fa-crown"></i></div>
+                        <div class="podium-medal gold"><i class="fas fa-medal"></i><span>1</span></div>
+                        <div class="podium-img-wrap">
+                            <img src="jogo1-logo.png" alt="" class="podium-img">
+                            <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="podium-info">
+                            <h3 class="podium-name">Jogo 1</h3>
+                            <span class="podium-genre">Gênero</span>
+                            <div class="podium-stats">
+                                <span class="stat primary-stat"><i class="fas fa-eye"></i> <span class="stat-value">—</span></span>
+                                <span class="stat gold"><i class="fas fa-star"></i> <span class="stat-rating">—</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="podium-card place-3" data-game-index="2">
+                        <div class="podium-medal bronze"><i class="fas fa-medal"></i><span>3</span></div>
+                        <div class="podium-img-wrap">
+                            <img src="jogo3-logo.png" alt="" class="podium-img">
+                            <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="podium-info">
+                            <h3 class="podium-name">Jogo 3</h3>
+                            <span class="podium-genre">Gênero</span>
+                            <div class="podium-stats">
+                                <span class="stat primary-stat"><i class="fas fa-eye"></i> <span class="stat-value">—</span></span>
+                                <span class="stat gold"><i class="fas fa-star"></i> <span class="stat-rating">—</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ranking-list-section">
+                <h2 class="section-title">
+                    Ranking Completo
+                    <span class="games-count">30 jogos</span>
+                </h2>
+                <div class="ranking-list" id="rankingList"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="Ranking.js"></script>
+</body>
+</html>

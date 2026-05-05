@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora — Notícias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Orbitron: fonte gamer moderna, sem exagero -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Noticias.css">
+    <link rel="icon" type="image/png" href="logo velora.png">
+</head>
+<body>
+
+    <!-- =================== CANVAS PARTÍCULAS =================== -->
+    <canvas id="particles"></canvas>
+
+    <!-- =================== HEADER =================== -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="Catalogo.html" class="logo">
+                    <img src="logo velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <span class="logo-text">VELORA</span>
+                <a href="/Catalogo.html" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <a href="./Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i>
+                        Minigames
+                    </a>
+                    <a href="Ranking.html" class="nav-item">
+                        <i class="fas fa-fire"></i>
+                        Ranking
+                    </a>
+                    <a href="Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i>
+                        Noticias
+                    </a>
+                    <a href="ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        Desenvolvedores
+                    </a>
+                    <a href="SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i>
+                        Sobre nós
+                    </a>
+                </nav>
+            </div>
+
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar notícias..." id="search-input">
+                </div>
+
+                <button class="icon-btn" title="Favoritos">
+                    <i class="fas fa-heart"></i>
+                </button>
+
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <img src="https://i.pravatar.cc/40" alt="Usuário">
+                    <span class="user-name">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-item">
+                            <i class="fas fa-user"></i><span>Meu Perfil</span>
+                        </div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-heart"></i><span>Meus Favoritos</span>
+                        </div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-cog"></i><span>Configurações</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =================== MODAL DE ARTIGO =================== -->
+    <div class="article-modal" id="articleModal">
+        <div class="article-modal-content">
+            <div class="article-modal-header">
+                <div class="article-modal-category" id="modal-category"></div>
+                <button class="article-modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="article-modal-img" id="modal-img">
+                <div class="modal-img-placeholder" id="modal-img-placeholder"></div>
+            </div>
+            <div class="article-modal-body">
+                <h2 class="article-modal-title" id="modal-title"></h2>
+                <div class="article-modal-meta" id="modal-meta"></div>
+                <div class="article-modal-text">
+                    <p>Este artigo está em construção. Em breve o conteúdo completo estará disponível aqui na Velora.</p>
+                    <p>Acompanhe a plataforma para ficar por dentro de tudo que acontece no universo dos jogos indie brasileiros.</p>
+                </div>
+                <div class="article-modal-footer">
+                    <span class="wip-badge"><i class="fas fa-clock"></i> Em breve</span>
+                    <a href="#" class="modal-share-btn"><i class="fas fa-share-alt"></i> Compartilhar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== CONTEÚDO PRINCIPAL =================== -->
+    <main class="main-content">
+        <div class="content-container">
+
+            <!-- HERO -->
+            <section class="hero-section">
+                <div class="hero-label">
+                    <i class="fas fa-newspaper"></i>
+                    Portal de Notícias
+                </div>
+                <h1 class="hero-title">
+                    Fique por dentro da<br>
+                    <em class="hero-em">cena indie</em> brasileira
+                </h1>
+                <p class="hero-subtitle">Lançamentos, bastidores, entrevistas e tudo que acontece no universo dos jogos independentes do Brasil.</p>
+            </section>
+
+            <!-- FILTROS -->
+            <section class="filters-section">
+                <div class="filters-left">
+                    <h2 class="section-title">Notícias</h2>
+                    <span class="games-count" id="news-count">15 artigos</span>
+                </div>
+                <div class="filters-right">
+                    <div class="filter-chips" id="filter-chips">
+                        <button class="chip active" data-filter="todos">Todos</button>
+                        <button class="chip" data-filter="lancamentos">Lançamentos</button>
+                        <button class="chip" data-filter="entrevistas">Entrevistas</button>
+                        <button class="chip" data-filter="eventos">Eventos</button>
+                        <button class="chip" data-filter="bastidores">Bastidores</button>
+                        <button class="chip" data-filter="industria">Indústria</button>
+                    </div>
+                    <select class="sort-select" id="sort-select">
+                        <option value="recentes">Mais recentes</option>
+                        <option value="antigas">Mais antigas</option>
+                        <option value="az">A–Z</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- DESTAQUE PRINCIPAL -->
+            <section class="featured-section">
+
+                <div class="featured-main news-item"
+                     data-category="lancamentos"
+                     data-title="Título em rascunho — notícia em destaque da semana"
+                     data-date="10 mar. 2026"
+                     data-author="Equipe Velora"
+                     data-icon="fas fa-gamepad"
+                     onclick="openNews(this)">
+                    <div class="featured-img">
+                        <div class="img-placeholder"><i class="fas fa-gamepad"></i></div>
+                        <div class="featured-badge"><i class="fas fa-star"></i> Destaque</div>
+                        <div class="featured-overlay"></div>
+                    </div>
+                    <div class="featured-body">
+                        <div class="news-category-label">✦ Lançamentos</div>
+                        <h2 class="featured-title">Título em rascunho — notícia em destaque da semana</h2>
+                        <p class="featured-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 10 mar. 2026</span>
+                            <span><i class="fas fa-user"></i> Equipe Velora</span>
+                            <span><i class="fas fa-clock"></i> 5 min</span>
+                            <span class="read-more">Ler mais <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-aside">
+
+                    <div class="aside-card news-item"
+                         data-category="entrevistas"
+                         data-title="Título em rascunho — entrevista com desenvolvedor indie"
+                         data-date="9 mar. 2026"
+                         data-author="Equipe Velora"
+                         data-icon="fas fa-microphone"
+                         onclick="openNews(this)">
+                        <div class="aside-img"><i class="fas fa-microphone"></i></div>
+                        <div class="aside-body">
+                            <div class="news-category-label small">✦ Entrevistas</div>
+                            <div class="aside-title">Título em rascunho — entrevista com desenvolvedor indie</div>
+                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 9 mar. 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="aside-card news-item"
+                         data-category="eventos"
+                         data-title="Título em rascunho — festival de jogos indie em São Paulo"
+                         data-date="8 mar. 2026"
+                         data-author="Equipe Velora"
+                         data-icon="fas fa-trophy"
+                         onclick="openNews(this)">
+                        <div class="aside-img"><i class="fas fa-trophy"></i></div>
+                        <div class="aside-body">
+                            <div class="news-category-label small">✦ Eventos</div>
+                            <div class="aside-title">Título em rascunho — festival de jogos indie em São Paulo</div>
+                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 8 mar. 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="aside-card news-item"
+                         data-category="industria"
+                         data-title="Título em rascunho — mercado indie brasileiro em 2026"
+                         data-date="7 mar. 2026"
+                         data-author="Equipe Velora"
+                         data-icon="fas fa-chart-line"
+                         onclick="openNews(this)">
+                        <div class="aside-img"><i class="fas fa-chart-line"></i></div>
+                        <div class="aside-body">
+                            <div class="news-category-label small">✦ Indústria</div>
+                            <div class="aside-title">Título em rascunho — mercado indie brasileiro em 2026</div>
+                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 7 mar. 2026</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- GRADE DE NOTÍCIAS -->
+            <section class="news-section">
+                <div class="section-header-bar">
+                    <div class="section-header-left">
+                        <div class="section-accent-line"></div>
+                        <h3 class="section-heading">Notícias Recentes</h3>
+                    </div>
+                    <a href="#" class="see-all-link">Ver todas <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="news-grid" id="news-grid">
+
+                    <div class="news-card news-item" data-category="lancamentos"
+                         data-title="Título em rascunho — novo jogo de terror psicológico"
+                         data-date="10 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-gamepad"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-gamepad"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Lançamentos</div>
+                            <h3 class="news-card-title">Título em rascunho — novo jogo de terror psicológico</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 10 mar. 2026</span>
+                                <span class="news-tag">Terror</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="bastidores"
+                         data-title="Título em rascunho — processo criativo de um RPG solo dev"
+                         data-date="9 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-tools"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-tools"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Bastidores</div>
+                            <h3 class="news-card-title">Título em rascunho — processo criativo de um RPG solo dev</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 9 mar. 2026</span>
+                                <span class="news-tag">RPG</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="eventos"
+                         data-title="Título em rascunho — premiação de jogos brasileiros indie"
+                         data-date="8 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-medal"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-medal"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Eventos</div>
+                            <h3 class="news-card-title">Título em rascunho — premiação de jogos brasileiros indie</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 8 mar. 2026</span>
+                                <span class="news-tag">Premiação</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="entrevistas"
+                         data-title="Título em rascunho — conversa com estúdio de Recife"
+                         data-date="7 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-microphone"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-microphone"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Entrevistas</div>
+                            <h3 class="news-card-title">Título em rascunho — conversa com estúdio de Recife</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 7 mar. 2026</span>
+                                <span class="news-tag">Estúdio</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="industria"
+                         data-title="Título em rascunho — investimentos no setor de games em 2026"
+                         data-date="6 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-chart-bar"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-chart-bar"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Indústria</div>
+                            <h3 class="news-card-title">Título em rascunho — investimentos no setor de games em 2026</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 6 mar. 2026</span>
+                                <span class="news-tag">Mercado</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="lancamentos"
+                         data-title="Título em rascunho — jogo de plataforma com folclore nordestino"
+                         data-date="5 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-leaf"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-leaf"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Lançamentos</div>
+                            <h3 class="news-card-title">Título em rascunho — jogo de plataforma com folclore nordestino</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 5 mar. 2026</span>
+                                <span class="news-tag">Plataforma</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="bastidores"
+                         data-title="Título em rascunho — como uma dupla criou um puzzle em 48h"
+                         data-date="4 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-puzzle-piece"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-puzzle-piece"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Bastidores</div>
+                            <h3 class="news-card-title">Título em rascunho — como uma dupla criou um puzzle em 48h</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 4 mar. 2026</span>
+                                <span class="news-tag">Puzzle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="eventos"
+                         data-title="Título em rascunho — Game Jam brasileira bate recorde de participantes"
+                         data-date="3 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-flag"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-flag"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Eventos</div>
+                            <h3 class="news-card-title">Título em rascunho — Game Jam brasileira bate recorde de participantes</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 3 mar. 2026</span>
+                                <span class="news-tag">Game Jam</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="industria"
+                         data-title="Título em rascunho — políticas de incentivo para devs brasileiros"
+                         data-date="2 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-landmark"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-landmark"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Indústria</div>
+                            <h3 class="news-card-title">Título em rascunho — políticas de incentivo para devs brasileiros</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 2 mar. 2026</span>
+                                <span class="news-tag">Política</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" data-category="entrevistas"
+                         data-title="Título em rascunho — estúdio mineiro fala sobre exportar jogos para Europa"
+                         data-date="1 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-globe"
+                         onclick="openNews(this)">
+                        <div class="news-card-img"><i class="fas fa-globe"></i></div>
+                        <div class="news-card-body">
+                            <div class="news-category-label small">✦ Entrevistas</div>
+                            <h3 class="news-card-title">Título em rascunho — estúdio mineiro fala sobre exportar jogos para Europa</h3>
+                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-card-footer">
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 1 mar. 2026</span>
+                                <span class="news-tag">Exportação</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- NEWSLETTER -->
+            <section class="newsletter-section">
+                <div class="newsletter-inner">
+                    <div class="newsletter-glow"></div>
+                    <div class="newsletter-content">
+                        <div class="newsletter-left">
+                            <div class="newsletter-label">
+                                <i class="fas fa-envelope"></i> Newsletter Velora
+                            </div>
+                            <h3 class="newsletter-title">Receba as novidades<br>direto no seu e-mail</h3>
+                            <p class="newsletter-sub">Fique por dentro dos lançamentos, eventos e bastidores do indie brasileiro toda semana.</p>
+                        </div>
+                        <div class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="seu@email.com" id="newsletter-email">
+                            <button class="newsletter-btn" id="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                Assinar grátis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="logo velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <span class="footer-logo-text">VELORA</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <span class="footer-sep">•</span>
+                <a href="#">Privacidade</a>
+                <span class="footer-sep">•</span>
+                <a href="#">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Noticias.js"></script>
+</body>
+</html>

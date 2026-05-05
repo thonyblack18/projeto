@@ -1,0 +1,529 @@
+/* ============================================
+   ARQUIVO: faq-styles.css
+   PROJETO: Velora - Estilos da Página de FAQ
+   ============================================ */
+
+/* ==================== RESET E BASE ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold-primary: #D4AF37;
+    --gold-light: #FFD700;
+    --gold-dark: #B8941E;
+    --black: #0A0A0A;
+    --dark-gray: #2A2A2A;
+    --medium-gray: #808080;
+    --light-gray: #E5E5E5;
+    --white: #FFFFFF;
+    --success: #4CAF50;
+    --warning: #FF9800;
+    --error: #F44336;
+    --info: #2196F3;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+    min-height: 100vh;
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==================== FUNDO ESTRELADO ==================== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent),
+        radial-gradient(1px 1px at 15% 55%, white, transparent),
+        radial-gradient(2px 2px at 70% 25%, white, transparent);
+    background-size: 200% 200%, 250% 250%, 300% 300%, 350% 350%, 
+                     180% 180%, 280% 280%, 220% 220%, 320% 320%;
+    background-position: 0% 0%, 40% 40%, 80% 10%, 20% 90%, 
+                        60% 30%, 10% 60%, 90% 80%, 50% 20%;
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+}
+
+/* ==================== DECORAÇÕES ==================== */
+.background-decoration {
+    position: fixed;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+.circle-decoration {
+    position: fixed;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 30px); }
+}
+
+/* ==================== CONTAINER ==================== */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* ==================== HEADER COM LOGO ==================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ==================== ESPAÇO PARA LOGO VELORA ==================== */
+/* 
+   INSTRUÇÕES PARA ADICIONAR SUA LOGO:
+   
+   1. Para usar IMAGEM da logo:
+      - Descomente a tag <img> no HTML (faq.html)
+      - Adicione o caminho: <img src="assets/images/logo-velora.png" alt="Velora Logo" class="logo-image">
+      - Comente ou remova o <h1 class="logo-text">
+   
+   2. Para usar TEXTO estilizado (atual):
+      - Mantenha o <h1 class="logo-text">VELORA</h1>
+      - O gradiente dourado já está aplicado
+*/
+
+.logo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilo para LOGO EM IMAGEM */
+.logo-image {
+    max-width: 200px;
+    max-height: 60px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.4));
+    transition: var(--transition);
+}
+
+.logo-image:hover {
+    filter: drop-shadow(0 6px 30px rgba(212, 175, 55, 0.6));
+    transform: scale(1.02);
+}
+
+/* Estilo para LOGO EM TEXTO (padrão atual) */
+.logo-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.logo-text:hover {
+    letter-spacing: 0.18em;
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50px;
+    color: var(--gold-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.back-button:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-primary);
+    transform: translateX(-5px);
+}
+
+/* ==================== TÍTULO DA PÁGINA ==================== */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--white);
+}
+
+/* ==================== SELETOR DE CATEGORIAS (TABS) ==================== */
+.category-selector {
+    margin-bottom: 40px;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab {
+    padding: 12px 24px;
+    background: rgba(42, 42, 42, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 50px;
+    color: var(--light-gray);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.tab:hover {
+    background: rgba(42, 42, 42, 0.8);
+    border-color: var(--gold-primary);
+    color: var(--white);
+}
+
+.tab.active {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    border-color: var(--gold-light);
+    color: var(--black);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ==================== BARRA DE PESQUISA ==================== */
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-box::placeholder {
+    color: var(--medium-gray);
+}
+
+.search-box:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-primary);
+    pointer-events: none;
+}
+
+/* ==================== CONTEÚDO FAQ ==================== */
+.faq-content {
+    position: relative;
+}
+
+.faq-section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.faq-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== ITEMS DE FAQ ==================== */
+.faq-item {
+    background: rgba(42, 42, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: var(--gold-primary);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.faq-item.active {
+    border-color: var(--gold-primary);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-question h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--white);
+    flex: 1;
+    margin-right: 20px;
+    line-height: 1.5;
+}
+
+.toggle-icon {
+    font-size: 2rem;
+    color: var(--gold-primary);
+    font-weight: 300;
+    min-width: 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.faq-item.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 2000px;
+    padding: 0 24px 24px 24px; /* CORRIGIDO: padding consistente */
+}
+
+.faq-answer p {
+    color: var(--light-gray);
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.faq-answer ol,
+.faq-answer ul {
+    margin: 16px 0 16px 0; /* CORRIGIDO: removido margin-left excessivo */
+    padding-left: 24px; /* ADICIONADO: padding para indentação correta */
+    color: var(--light-gray);
+}
+
+.faq-answer li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.faq-answer strong {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+/* ==================== DESTACADORES ==================== */
+.tip {
+    background: rgba(76, 175, 80, 0.15);
+    border-left: 4px solid var(--success);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.warning {
+    background: rgba(255, 152, 0, 0.15);
+    border-left: 4px solid var(--warning);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.info {
+    background: rgba(33, 150, 243, 0.15);
+    border-left: 4px solid var(--info);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.tip strong,
+.warning strong,
+.info strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ==================== RODAPÉ DE AJUDA ==================== */
+.help-footer {
+    text-align: center;
+    margin-top: 80px;
+    padding: 50px 30px;
+    background: rgba(42, 42, 42, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.help-footer h3 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: var(--white);
+}
+
+.help-footer p {
+    color: var(--medium-gray);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.contact-button {
+    padding: 16px 40px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    color: var(--black);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.02em;
+}
+
+.contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+}
+
+/* ==================== ESTADO DE BUSCA ==================== */
+.faq-item.hidden {
+    display: none;
+}
+
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--medium-gray);
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--light-gray);
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .logo-text {
+        font-size: 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tab {
+        text-align: center;
+    }
+
+    .faq-question h3 {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .faq-question {
+        padding: 20px 16px;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 16px 20px;
+    }
+}

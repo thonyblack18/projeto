@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Dandara: Trials of Fear Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="InfoJogo.css">
+</head>
+<body>
+
+    <!-- =================== HEADER =================== -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <span class="logo-text">VELORA</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                    <a href="#" class="nav-item active"><i class="fas fa-gamepad"></i> Jogos</a>
+                    <a href="#" class="nav-item"><i class="fas fa-fire"></i> Em alta</a>
+                    <a href="#" class="nav-item"><i class="fas fa-crown"></i> Destaques</a>
+                    <a href="#" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <img src="https://i.pravatar.cc/40?img=12" alt="Usuário">
+                    <span class="user-name">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =================== HERO: GALERIA + SIDEBAR =================== -->
+    <div class="hero-media-section">
+
+        <!-- GALERIA PRINCIPAL -->
+        <div class="gallery-wrapper" id="galleryWrapper">
+            <div class="gallery-track" id="galleryTrack">
+
+                <!-- Slide 0: Trailer -->
+                <div class="gallery-slide slide-trailer" data-index="0">
+                    <div class="youtube-container">
+                        <iframe
+                            id="youtubeIframe"
+                            src="https://www.youtube.com/embed/nMHkFI2aEyc?enablejsapi=1&modestbranding=1&rel=0&color=white"
+                            title="Dandara Trailer"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="slide-label"><i class="fas fa-play-circle"></i> Trailer Oficial</div>
+                </div>
+
+                <!-- Slides de screenshot -->
+                <div class="gallery-slide" data-index="1">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_f67b1b1d10b4b1e1d23e6b35fb13b7454e0bc3a1.1920x1080.jpg" alt="Screenshot 1" class="slide-img" onerror="this.src='https://placehold.co/1280x720/13131a/d4af37?text=Screenshot+1'">
+                    <div class="slide-label">Screenshot 1</div>
+                </div>
+                <div class="gallery-slide" data-index="2">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_6ecba0e0e6df9d4a96a891c614f1e8a80d89cfef.1920x1080.jpg" alt="Screenshot 2" class="slide-img" onerror="this.src='https://placehold.co/1280x720/13131a/d4af37?text=Screenshot+2'">
+                    <div class="slide-label">Screenshot 2</div>
+                </div>
+                <div class="gallery-slide" data-index="3">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_b80b7fc5a46e77bff5a82e0e21cd8e8eae9c23f2.1920x1080.jpg" alt="Screenshot 3" class="slide-img" onerror="this.src='https://placehold.co/1280x720/13131a/d4af37?text=Screenshot+3'">
+                    <div class="slide-label">Screenshot 3</div>
+                </div>
+                <div class="gallery-slide" data-index="4">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_0491eb1e79cde4f4f0dfc57c53a02d8f7b5b8f01.1920x1080.jpg" alt="Screenshot 4" class="slide-img" onerror="this.src='https://placehold.co/1280x720/13131a/d4af37?text=Screenshot+4'">
+                    <div class="slide-label">Screenshot 4</div>
+                </div>
+                <div class="gallery-slide" data-index="5">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_e0a5fcf91dcd6dc6aefd3e09fce78c946c9a2025.1920x1080.jpg" alt="Screenshot 5" class="slide-img" onerror="this.src='https://placehold.co/1280x720/13131a/d4af37?text=Screenshot+5'">
+                    <div class="slide-label">Screenshot 5</div>
+                </div>
+            </div>
+
+            <!-- Setas de navegação -->
+            <button class="gallery-arrow arrow-left" id="arrowLeft" aria-label="Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-arrow arrow-right" id="arrowRight" aria-label="Próximo">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Thumbnails -->
+            <div class="gallery-thumbnails" id="galleryThumbs">
+                <div class="thumb active" data-index="0">
+                    <div class="thumb-trailer-icon"><i class="fas fa-play"></i></div>
+                    <span>Trailer</span>
+                </div>
+                <div class="thumb" data-index="1">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_f67b1b1d10b4b1e1d23e6b35fb13b7454e0bc3a1.1920x1080.jpg" alt="" onerror="this.src='https://placehold.co/120x68/13131a/d4af37?text=1'">
+                </div>
+                <div class="thumb" data-index="2">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_6ecba0e0e6df9d4a96a891c614f1e8a80d89cfef.1920x1080.jpg" alt="" onerror="this.src='https://placehold.co/120x68/13131a/d4af37?text=2'">
+                </div>
+                <div class="thumb" data-index="3">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_b80b7fc5a46e77bff5a82e0e21cd8e8eae9c23f2.1920x1080.jpg" alt="" onerror="this.src='https://placehold.co/120x68/13131a/d4af37?text=3'">
+                </div>
+                <div class="thumb" data-index="4">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_0491eb1e79cde4f4f0dfc57c53a02d8f7b5b8f01.1920x1080.jpg" alt="" onerror="this.src='https://placehold.co/120x68/13131a/d4af37?text=4'">
+                </div>
+                <div class="thumb" data-index="5">
+                    <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/ss_e0a5fcf91dcd6dc6aefd3e09fce78c946c9a2025.1920x1080.jpg" alt="" onerror="this.src='https://placehold.co/120x68/13131a/d4af37?text=5'">
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR DO JOGO -->
+        <aside class="game-sidebar">
+            <div class="curation-badge">
+                <i class="fas fa-award"></i> Destaque Velora
+            </div>
+
+            <div class="game-cover">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/612390/header.jpg"
+                     alt="Dandara"
+                     onerror="this.src='https://placehold.co/320x180/13131a/d4af37?text=Dandara'">
+            </div>
+
+            <h1 class="game-title-hero">Dandara: Trials of Fear Edition</h1>
+            <p class="game-studio"><i class="fas fa-code"></i> Long Hat House</p>
+
+            <div class="rating-block">
+                <div class="stars-row">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="rating-number">4.8</span>
+                <span class="rating-total">/ 5</span>
+                <span class="rating-count">(1.247 avaliações)</span>
+            </div>
+
+            <div class="age-rating">
+                <div class="age-badge">14</div>
+                <span>Conteúdo violento moderado</span>
+            </div>
+
+            <button class="btn-donate" id="btnDonate">
+                <i class="fas fa-hand-holding-heart"></i>
+                Apoiar este jogo
+            </button>
+            <p class="donate-note">Apoie diretamente o desenvolvedor</p>
+
+            <button class="btn-wishlist" id="btnWishlist">
+                <i class="far fa-heart" id="wishlistIcon"></i>
+                <span id="wishlistText">Adicionar aos Favoritos</span>
+            </button>
+
+            <div class="quick-info">
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-calendar-alt"></i> Lançamento</span>
+                    <span class="qi-value">6 Fev. 2018</span>
+                </div>
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-desktop"></i> Plataformas</span>
+                    <span class="qi-value platforms-icons">
+                        <i class="fab fa-windows" title="Windows"></i>
+                        <i class="fab fa-apple" title="Mac"></i>
+                        <i class="fab fa-linux" title="Linux"></i>
+                        <i class="fab fa-android" title="Android"></i>
+                    </span>
+                </div>
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-language"></i> Idiomas</span>
+                    <span class="qi-value">PT-BR, EN, ES, FR, DE</span>
+                </div>
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-tags"></i> Gênero</span>
+                    <span class="qi-value">Metroidvania · Ação</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- =================== CONTEÚDO PRINCIPAL =================== -->
+    <main class="main-content">
+        <div class="content-grid">
+
+            <!-- COLUNA PRINCIPAL -->
+            <section class="col-main">
+
+                <nav class="breadcrumb">
+                    <a href="#">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#">Jogos</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Dandara</span>
+                </nav>
+
+                <!-- Sobre o Jogo -->
+                <div class="section-card">
+                    <h2 class="section-heading"><i class="fas fa-book-open"></i> Sobre o Jogo</h2>
+                    <p class="game-description">
+                        <strong>Dandara: Trials of Fear Edition</strong> é um metroidvania 2D de ação que reinventa a forma como você se move pelo mundo. Em vez de caminhar, a heroína <em>Dandara</em> salta entre superfícies — teto, chão, paredes — desafiando a gravidade em um universo hostil e surreal chamado <strong>Salt</strong>.
+                    </p>
+                    <p class="game-description">
+                        Inspirado na figura histórica brasileira Dandara dos Palmares, o jogo carrega uma forte identidade nacional e uma narrativa de resistência, liberdade e identidade. Com arte pixel deslumbrante, trilha sonora atmosférica e um sistema de combate ágil e preciso, Dandara conquista tanto pela jogabilidade quanto pela profundidade temática.
+                    </p>
+                    <p class="game-description">
+                        A edição <em>Trials of Fear</em> inclui conteúdo adicional exclusivo, novos biomas, chefes e uma expansão da história original — tornando a experiência ainda mais completa para novos jogadores e fãs de longa data.
+                    </p>
+                </div>
+
+                <!-- Tags -->
+                <div class="section-card">
+                    <h2 class="section-heading"><i class="fas fa-hashtag"></i> Tags</h2>
+                    <div class="tags-container">
+                        <span class="tag">Metroidvania</span>
+                        <span class="tag">Indie Brasileiro</span>
+                        <span class="tag">Pixel Art</span>
+                        <span class="tag">Ação</span>
+                        <span class="tag">Plataforma 2D</span>
+                        <span class="tag">Atmosférico</span>
+                        <span class="tag">Exploração</span>
+                        <span class="tag">Chefes Desafiadores</span>
+                        <span class="tag">Trilha Sonora</span>
+                        <span class="tag">Narrativa</span>
+                        <span class="tag">Difícil</span>
+                        <span class="tag tag-highlight"><i class="fas fa-star"></i> Destaque Nacional</span>
+                    </div>
+                </div>
+
+                <!-- Avaliações -->
+                <div class="section-card">
+                    <h2 class="section-heading"><i class="fas fa-chart-bar"></i> Avaliações dos Jogadores</h2>
+
+                    <div class="ratings-overview">
+                        <div class="rating-big">
+                            <span class="rating-big-number">4.8</span>
+                            <div class="stars-row big">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-label">Muito Positivo</span>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="bar-row"><span>5 ★</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span>72%</span></div>
+                            <div class="bar-row"><span>4 ★</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span>18%</span></div>
+                            <div class="bar-row"><span>3 ★</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span>6%</span></div>
+                            <div class="bar-row"><span>2 ★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span>2%</span></div>
+                            <div class="bar-row"><span>1 ★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span>2%</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário avaliação -->
+                    <div class="review-form">
+                        <h3>Deixe sua avaliação</h3>
+                        <div class="star-picker" id="starPicker">
+                            <i class="far fa-star" data-star="1"></i>
+                            <i class="far fa-star" data-star="2"></i>
+                            <i class="far fa-star" data-star="3"></i>
+                            <i class="far fa-star" data-star="4"></i>
+                            <i class="far fa-star" data-star="5"></i>
+                        </div>
+                        <textarea class="review-textarea" placeholder="Escreva o que achou do jogo..."></textarea>
+                        <button class="btn-submit-review" id="btnSubmitReview">Publicar Avaliação</button>
+                    </div>
+
+                    <!-- Comentários -->
+                    <div class="comments-list" id="commentsList">
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="Rafael" class="comment-avatar">
+                                <div class="comment-meta">
+                                    <strong>Rafael_Gamer</strong>
+                                    <span class="comment-date">há 2 dias</span>
+                                </div>
+                                <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                            <p class="comment-text">Uma das melhores experiências indie que já tive. O sistema de movimento é completamente único e a arte é deslumbrante. Orgulho nacional!</p>
+                            <div class="comment-actions">
+                                <button class="like-btn"><i class="fas fa-thumbs-up"></i> 48</button>
+                                <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
+                            </div>
+                        </div>
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <img src="https://i.pravatar.cc/40?img=9" alt="Maria" class="comment-avatar">
+                                <div class="comment-meta">
+                                    <strong>PixelMaria</strong>
+                                    <span class="comment-date">há 5 dias</span>
+                                </div>
+                                <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            </div>
+                            <p class="comment-text">Adorei a referência histórica brasileira na narrativa. A mecânica de saltar nas paredes é viciante. Recomendo para qualquer fã de metroidvanias.</p>
+                            <div class="comment-actions">
+                                <button class="like-btn"><i class="fas fa-thumbs-up"></i> 31</button>
+                                <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
+                            </div>
+                        </div>
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <img src="https://i.pravatar.cc/40?img=15" alt="Lucas" class="comment-avatar">
+                                <div class="comment-meta">
+                                    <strong>LucasDev_BR</strong>
+                                    <span class="comment-date">há 1 semana</span>
+                                </div>
+                                <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                            <p class="comment-text">Como desenvolvedor, fico muito feliz em ver um estúdio brasileiro produzindo algo tão polido e criativo. A Long Hat House é referência pra cena indie nacional.</p>
+                            <div class="comment-actions">
+                                <button class="like-btn"><i class="fas fa-thumbs-up"></i> 27</button>
+                                <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
+                            </div>
+                        </div>
+                        <button class="btn-load-more" id="btnLoadMore">Carregar mais comentários <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- COLUNA LATERAL -->
+            <aside class="col-aside">
+
+                <!-- Detalhes técnicos -->
+                <div class="section-card aside-card">
+                    <h2 class="section-heading"><i class="fas fa-info-circle"></i> Detalhes</h2>
+                    <table class="details-table">
+                        <tr><td><i class="fas fa-code"></i> Desenvolvedor</td><td><a href="#" class="dev-link">Long Hat House</a></td></tr>
+                        <tr><td><i class="fas fa-building"></i> Publicadora</td><td>Raw Fury</td></tr>
+                        <tr><td><i class="fas fa-calendar"></i> Lançamento</td><td>6 Fev. 2018</td></tr>
+                        <tr><td><i class="fas fa-gamepad"></i> Plataformas</td><td>PC, Mac, Linux, iOS, Android, Switch, PS4, Xbox</td></tr>
+                        <tr><td><i class="fas fa-language"></i> Idiomas</td><td>PT-BR, EN, ES, FR, DE, RU, ZH, KO</td></tr>
+                        <tr><td><i class="fas fa-layer-group"></i> Gêneros</td><td>Metroidvania, Ação, Plataforma 2D</td></tr>
+                        <tr><td><i class="fas fa-user-shield"></i> Classificação</td><td>14+ anos</td></tr>
+                        <tr><td><i class="fas fa-users"></i> Modo</td><td>Single-player</td></tr>
+                    </table>
+                </div>
+
+                <!-- Card de doação -->
+                <div class="section-card aside-card donate-card">
+                    <div class="donate-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Apoie a Long Hat House</h3>
+                    <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
+                    <div class="donate-amounts" id="donateAmountsAside">
+                        <button class="amount-btn" data-amount="5">R$ 5</button>
+                        <button class="amount-btn active" data-amount="10">R$ 10</button>
+                        <button class="amount-btn" data-amount="25">R$ 25</button>
+                        <button class="amount-btn" data-amount="50">R$ 50</button>
+                    </div>
+                    <button class="btn-donate-main" id="btnDonateAside">
+                        <i class="fas fa-hand-holding-heart"></i> Apoiar com R$ 10
+                    </button>
+                </div>
+
+                <!-- Jogos similares -->
+                <div class="section-card aside-card">
+                    <h2 class="section-heading"><i class="fas fa-gamepad"></i> Jogos Similares</h2>
+                    <div class="similar-games">
+                        <div class="similar-game-card">
+                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1263620/header.jpg" alt="Momodora" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
+                            <div class="sg-info">
+                                <strong>Momodora: Reverie</strong>
+                                <span>Metroidvania</span>
+                                <div class="sg-stars"><i class="fas fa-star"></i> 4.6</div>
+                            </div>
+                        </div>
+                        <div class="similar-game-card">
+                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1082710/header.jpg" alt="Kambulin" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
+                            <div class="sg-info">
+                                <strong>Kambulin</strong>
+                                <span>Puzzle</span>
+                                <div class="sg-stars"><i class="fas fa-star"></i> 4.7</div>
+                            </div>
+                        </div>
+                        <div class="similar-game-card">
+                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1545560/header.jpg" alt="Mullet Madjack" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
+                            <div class="sg-info">
+                                <strong>Mullet Madjack</strong>
+                                <span>Ação</span>
+                                <div class="sg-stars"><i class="fas fa-star"></i> 4.5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- =================== MODAL DE DOAÇÃO =================== -->
+    <div class="modal-overlay" id="donateModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
+            <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+            <h3>Apoiar Dandara</h3>
+            <p>Sua contribuição vai diretamente para a <strong>Long Hat House</strong> continuar criando jogos incríveis!</p>
+            <div class="modal-amounts" id="modalAmounts">
+                <button class="amount-btn" data-amount="5">R$ 5</button>
+                <button class="amount-btn active" data-amount="10">R$ 10</button>
+                <button class="amount-btn" data-amount="25">R$ 25</button>
+                <button class="amount-btn" data-amount="50">R$ 50</button>
+                <button class="amount-btn" data-amount="100">R$ 100</button>
+            </div>
+            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="1">
+            <button class="btn-confirm-donate" id="confirmDonate">
+                <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
+            </button>
+            <p class="modal-note"><i class="fas fa-lock"></i> Pagamento seguro — Você será redirecionado para o checkout</p>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script src="InfoJogo.js"></script>
+</body>
+</html>

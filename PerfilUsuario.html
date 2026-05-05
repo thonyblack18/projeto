@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velora — Perfil do Usuário</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="PerfilUsuario.css" />
+  <link rel="icon" type="image/png" href="Logo Velora.png">
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+  <div class="grid-background"></div>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="Catalogo.html" class="logo">
+        <div class="logo-img-placeholder"></div>
+        <span class="logo-text">VELORA</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="Catalogo.html">Catálogo</a>
+        <a href="/Minigames/Minigames.html">Minigames</a>
+        <a href="Ranking.html">Ranking</a>
+        <a href="Noticias.html">Notícias</a>
+        <a href="ListaDevs.html">Desenvolvedores</a>
+        <a href="SobreNos.html">Sobre Nós</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn-ghost" id="edit-profile-btn">Editar perfil</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="profile-hero">
+    <div class="hero-content">
+      <div class="avatar-wrap">
+        <div class="profile-avatar">
+         <span id="profileAvatarInitial">U</span>
+          <img id="profileAvatarImg" src="" alt="Foto de perfil" style="display: none;">
+        </div>
+        <span class="badge-online"></span>
+    </div>
+
+      <div class="hero-info">
+        <h1 class="username" id="fullname">Carregando...</h1>
+        <p class="user-handle" id="username">@usuario</p>
+        <p class="user-bio" id="bio">Carregando bio...</p>
+        <p class="user-country" id="country">País não informado</p>
+
+        <div class="user-tags" id="favorite-genres">
+          <span class="tag">Sem gêneros</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stat">
+      <span class="stat-value" id="stat-avaliados" data-target="0">0</span>
+      <span class="stat-label">Jogos Avaliados</span>
+    </div>
+
+    <div class="stat">
+      <span class="stat-value" id="stat-apoiados" data-target="0">0</span>
+      <span class="stat-label">Jogos Apoiados</span>
+    </div>
+
+    <div class="stat">
+      <span class="stat-value" id="stat-comentarios" data-target="0">0</span>
+      <span class="stat-label">Comentários</span>
+    </div>
+
+    <div class="stat">
+      <span class="stat-value" id="stat-membro-desde" data-target="0">0</span>
+      <span class="stat-label">Membro desde</span>
+    </div>
+  </section>
+
+  <main class="main-content">
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Jogos Apoiados</h2>
+        <a href="#" class="section-link">Ver todos →</a>
+      </div>
+
+      <div class="games-grid" id="supported-games">
+        <div class="empty-card">
+          <p>Nenhum jogo apoiado ainda.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Avaliações Recentes</h2>
+        <a href="#" class="section-link">Ver todas →</a>
+      </div>
+
+      <div class="reviews-list" id="recent-reviews">
+        <div class="empty-card">
+          <p>Nenhuma avaliação recente.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="PerfilUsuario.js"></script>
+</body>
+</html>
