@@ -1,0 +1,533 @@
+/* ============================================
+   Minigames.css — Velora
+   ============================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg-dark:    #0a0a0f;
+    --bg-card:    #13131a;
+    --gold:       #d4af37;
+    --gold-light: #f4d03f;
+    --gold-dim:   rgba(212,175,55,0.15);
+    --white:      #ffffff;
+    --gray-300:   #d1d5db;
+    --gray-500:   #6b7280;
+    --gray-700:   #374151;
+    --red:        #ef4444;
+    --card-teal:  #1a1500;
+    --card-teal2: #2a2000;
+    --font-head:  'Syne', sans-serif;
+    --font-body:  'DM Sans', sans-serif;
+    --transition: 0.25s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    overflow-x: hidden; position: relative;
+}
+
+/* =================== ESTRELAS =================== */
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.25), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.18), transparent),
+        radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.22), transparent),
+        radial-gradient(1px 1px at 33% 80%, rgba(255,255,255,0.18), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.25), transparent);
+    background-size: 200% 200%;
+    animation: twinkle 15s ease-in-out infinite;
+    pointer-events: none; z-index: 0;
+}
+@keyframes twinkle { 0%,100%{opacity:.4} 50%{opacity:.65} }
+
+/* =================== HEADER =================== */
+.main-header {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(13,13,26,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+    padding: 0 40px;
+}
+.header-container {
+    max-width: 1600px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 70px;
+}
+.header-left { display: flex; align-items: center; gap: 48px; }
+
+.logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+
+.logo-img-placeholder {
+    width: 36px; height: 36px; border-radius: 8px;
+    border: 1px dashed rgba(212,175,55,0.4);
+    background: rgba(212,175,55,0.05); flex-shrink: 0;
+}
+.logo-img { width: 36px; height: 36px; object-fit: contain; }
+
+.logo-text {
+    font-family: 'Orbitron', 'Syne', sans-serif;
+    font-size: 22px; letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-nav { display: flex; gap: 4px; }
+.nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 14px; color: var(--gray-300); text-decoration: none;
+    font-size: 14px; font-weight: 500; border-radius: 8px;
+    transition: all var(--transition);
+}
+.nav-item i { font-size: 15px; }
+.nav-item:hover, .nav-item.active { background: var(--gold-dim); color: var(--gold); }
+
+.header-right { display: flex; align-items: center; gap: 14px; }
+
+.search-box { position: relative; display: flex; align-items: center; }
+.search-box i { position: absolute; left: 13px; color: var(--gray-500); font-size: 14px; }
+.search-box input {
+    width: 260px; padding: 9px 14px 9px 40px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; color: var(--white); font-size: 14px;
+    transition: all var(--transition); outline: none;
+}
+.search-box input::placeholder { color: var(--gray-500); }
+.search-box input:focus { border-color: var(--gold); background: rgba(255,255,255,0.08); }
+
+.icon-btn {
+    position: relative; width: 40px; height: 40px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; color: var(--gray-300); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition);
+}
+.icon-btn:hover { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+.notification-badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 18px; height: 18px; background: var(--red);
+    border-radius: 50%; font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.user-profile {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 12px 6px 6px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px; cursor: pointer; transition: all var(--transition);
+    position: relative;
+}
+.user-profile:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+.user-avatar-initial {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #0a0a0f; font-weight: 800; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+}
+.user-name { font-size: 14px; font-weight: 500; }
+.user-profile i.fa-chevron-down { font-size: 12px; color: var(--gray-500); transition: transform 0.3s; }
+.user-profile.active i.fa-chevron-down { transform: rotate(180deg); }
+
+.user-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    width: 220px; background: rgba(19,19,26,0.98);
+    backdrop-filter: blur(20px); border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px; padding: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: all 0.3s ease; z-index: 1001;
+}
+.user-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; color: var(--gray-300); font-size: 14px;
+    font-weight: 500; border-radius: 8px; cursor: pointer;
+    transition: all var(--transition); text-decoration: none;
+}
+.dropdown-item:hover { background: var(--gold-dim); color: var(--gold); }
+.dropdown-item i { font-size: 16px; width: 20px; text-align: center; }
+.dropdown-item.logout { color: var(--red); }
+.dropdown-item.logout:hover { background: rgba(239,68,68,0.1); color: var(--red); }
+.dropdown-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 8px 0; }
+
+/* =================== MAIN =================== */
+.main-content {
+    position: relative; z-index: 10; flex: 1;
+    padding: 48px 40px 80px;
+}
+.content-container { max-width: 1200px; margin: 0 auto; }
+
+/* =================== PAGE HEADER =================== */
+.page-header { margin-bottom: 48px; }
+
+.breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--gray-500); margin-bottom: 20px;
+}
+.breadcrumb a { color: var(--gray-500); text-decoration: none; transition: color var(--transition); }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb i { font-size: 10px; }
+
+.page-title {
+    font-family: 'Orbitron', 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800; letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 60%, #fff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 10px;
+    filter: drop-shadow(0 0 24px rgba(212,175,55,0.3));
+}
+
+.page-subtitle { font-size: 15px; color: var(--gray-500); }
+
+/* =================== GRID DE CARDS =================== */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+/* =================== CARD BASE =================== */
+.game-card {
+    position: relative;
+    border-radius: 20px; overflow: hidden;
+    aspect-ratio: 3 / 4.2;
+    cursor: pointer; text-decoration: none;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+    /* teal escuro como na referência */
+    background: linear-gradient(160deg, var(--card-teal2) 0%, var(--card-teal) 100%);
+    border: 2px solid rgba(255,255,255,0.06);
+}
+
+.game-card[data-status="ativo"]:hover {
+    transform: scale(1.07) translateY(-6px);
+    box-shadow: 0 0 0 3px var(--gold), 0 20px 60px rgba(212,175,55,0.35);
+    border-color: var(--gold);
+    z-index: 2;
+}
+
+.game-card[data-status="breve"]:hover {
+    transform: scale(1.03) translateY(-3px);
+    filter: brightness(0.75);
+}
+
+/* =================== INNER DO CARD =================== */
+.card-inner {
+    position: relative; height: 100%;
+    display: flex; flex-direction: column;
+    padding: 20px 18px;
+    background: 
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.04), transparent),
+        /* textura diagonal sutil */
+        repeating-linear-gradient(
+            135deg,
+            transparent,
+            transparent 20px,
+            rgba(255,255,255,0.015) 20px,
+            rgba(255,255,255,0.015) 21px
+        );
+}
+
+/* Glow no topo ao hover (só ativo) */
+.card-glow {
+    position: absolute; top: -40px; left: 50%;
+    transform: translateX(-50%);
+    width: 160px; height: 80px;
+    background: radial-gradient(ellipse, rgba(212,175,55,0.25), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.game-card[data-status="ativo"]:hover .card-glow { opacity: 1; }
+
+/* =================== TOPO DO CARD =================== */
+.card-top {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 8px; margin-bottom: 16px;
+}
+
+.card-coin {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(212,175,55,0.15);
+    border: 1px solid rgba(212,175,55,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 16px;
+    box-shadow: 0 0 12px rgba(212,175,55,0.2);
+}
+.card-coin.muted { background: rgba(212,175,55,0.05); color: rgba(212,175,55,0.3); border-color: rgba(212,175,55,0.1); box-shadow: none; }
+
+.card-title {
+    font-family: 'Orbitron', 'Syne', var(--font-head), sans-serif;
+    font-size: 1.3rem; font-weight: 800;
+    line-height: 1.1; letter-spacing: 1.5px;
+    color: var(--white);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+/* =================== ARTE DO CARD =================== */
+.card-art {
+    flex: 1;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+}
+
+/* FOGUETINHO */
+.art-rocket {
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(212,175,55,0.8)) brightness(1.4);
+    animation: rocketFloat 3s ease-in-out infinite;
+    position: relative; z-index: 2;
+}
+
+@keyframes rocketFloat {
+    0%,100% { transform: translateY(0) rotate(-15deg); }
+    50%      { transform: translateY(-14px) rotate(5deg); }
+}
+
+.art-star {
+    position: absolute;
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 8px rgba(255,215,0,0.9)) brightness(1.5);
+    animation: starFloat 2.5s ease-in-out infinite;
+}
+.s1 { top: 10%; right: 15%; animation-delay: 0s; }
+.s2 { bottom: 20%; left: 10%; animation-delay: 0.8s; font-size: 1.4rem; }
+.s3 { top: 45%; right: 8%; animation-delay: 1.5s; font-size: 1.2rem; }
+
+@keyframes starFloat {
+    0%,100% { transform: translateY(0) scale(1); opacity: 1; }
+    50%      { transform: translateY(-8px) scale(1.15); opacity: 0.8; }
+}
+
+.art-trail {
+    position: absolute;
+    bottom: 25%; left: 38%;
+    width: 4px; height: 40px; border-radius: 2px;
+    background: linear-gradient(to bottom, rgba(212,175,55,0.8), transparent);
+    transform: rotate(-15deg);
+    animation: trailPulse 0.8s ease-in-out infinite;
+}
+.art-trail.t2 {
+    left: 44%; height: 28px;
+    background: linear-gradient(to bottom, rgba(255,120,0,0.6), transparent);
+    animation-delay: 0.2s;
+}
+
+@keyframes trailPulse {
+    0%,100% { opacity: 1; height: 40px; }
+    50%      { opacity: 0.4; height: 24px; }
+}
+
+/* LETRECO */
+.art-wordle {
+    display: flex; flex-direction: column; gap: 5px;
+    position: relative; z-index: 2;
+}
+.wrow { display: flex; gap: 5px; }
+.wc {
+    width: 36px; height: 36px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px; font-family: var(--font-head);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.wc.correct { background: #538d4e; border-color: #538d4e; color: #fff; }
+.wc.present { background: #b59f3b; border-color: #b59f3b; color: #fff; }
+.wc.empty   { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+.empty-row .wc { background: rgba(0,0,0,0.2); }
+
+/* FORCA */
+.art-forca { position: relative; z-index: 2; }
+.forca-board {
+    background: #1a3d2a; border: 2px solid #2a5a3a;
+    border-radius: 8px; padding: 16px 20px;
+    text-align: center;
+}
+.forca-gallows {
+    width: 50px; height: 50px; margin: 0 auto 10px;
+    border-left: 3px solid rgba(255,255,255,0.5);
+    border-top: 3px solid rgba(255,255,255,0.5);
+    position: relative;
+}
+.forca-gallows::after {
+    content: '';
+    position: absolute; top: 0; right: -8px;
+    width: 2px; height: 14px;
+    background: rgba(255,255,255,0.4);
+}
+.forca-letters {
+    font-size: 12px; letter-spacing: 4px;
+    color: rgba(255,255,255,0.7); font-family: monospace;
+}
+
+/* MEMORY */
+.art-memory { position: relative; z-index: 2; }
+.mem-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+}
+.mem-card {
+    width: 34px; height: 34px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.mem-card.revealed { background: rgba(212,175,55,0.2); border-color: rgba(212,175,55,0.4); }
+.mem-card.dark     { background: rgba(0,0,0,0.35); }
+
+/* COIN CHAIN (decoração) */
+.art-coin-chain {
+    position: absolute; top: 0; right: 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.art-coin-chain::before {
+    content: '';
+    display: block; width: 2px; height: 40px;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(212,175,55,0.6) 0px, rgba(212,175,55,0.6) 4px,
+        transparent 4px, transparent 7px
+    );
+}
+.chain-coin {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex; align-items: center; justify-content: center;
+    color: #0a0a0f; font-size: 14px; font-weight: 700;
+    box-shadow: 0 0 12px rgba(212,175,55,0.5);
+}
+
+/* =================== TAG DO CARD =================== */
+.card-tag {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 12px;
+    background: rgba(212,175,55,0.15);
+    border: 1px solid rgba(212,175,55,0.5);
+    color: var(--gold-light); font-size: 12px; font-weight: 700;
+    padding: 6px 12px; border-radius: 8px; width: fit-content;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 12px rgba(212,175,55,0.15);
+    font-family: 'Orbitron', sans-serif;
+}
+.card-tag.muted {
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: none;
+}
+
+/* =================== HOVER LABEL (ativo) =================== */
+.card-hover-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(212,175,55,0.95), rgba(212,175,55,0.8));
+    color: #0a0a0f; font-weight: 700; font-size: 14px;
+    text-align: center; padding: 14px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+.game-card[data-status="ativo"]:hover .card-hover-label {
+    transform: translateY(0);
+}
+
+/* =================== BADGE EM BREVE =================== */
+.card-soon-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 600;
+    padding: 5px 10px; border-radius: 20px;
+    display: flex; align-items: center; gap: 5px;
+    letter-spacing: 0.04em;
+}
+
+/* cards "em breve" ficam levemente apagados */
+.game-card[data-status="breve"] .card-inner { filter: brightness(0.85) saturate(0.8); }
+
+/* =================== FOOTER =================== */
+.main-footer {
+    position: relative; z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1); padding: 22px 40px;
+}
+.footer-container {
+    max-width: 1600px; margin: 0 auto;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-img-placeholder.small { width: 24px; height: 24px; border-radius: 5px; }
+.logo-text.small { font-size: 15px; }
+.footer-copy { font-size: 12px; color: var(--gray-500); }
+.footer-links { display: flex; align-items: center; gap: 12px; }
+.footer-links a { font-size: 12px; color: var(--gray-500); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-links .sep { color: var(--gray-700); font-size: 11px; }
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1100px) {
+    .games-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+@media (max-width: 900px) {
+    .main-nav { display: none; }
+    .main-header { padding: 0 20px; }
+    .main-content { padding: 32px 20px 60px; }
+}
+@media (max-width: 580px) {
+    .games-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .page-title { font-size: 2rem; }
+    .search-box { display: none; }
+    .search-box-header { display: none; }
+    .user-name { display: none; }
+}
+@media (max-width: 380px) {
+    .games-grid { grid-template-columns: 1fr; max-width: 260px; margin: 0 auto; }
+}
+
+/* ===== HEADER-LEFT + SEARCH-BOX-HEADER (padrão FAQ) ===== */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+.search-box-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.search-box-header i {
+    position: absolute;
+    left: 13px;
+    color: var(--gray-500);
+    font-size: 13px;
+    pointer-events: none;
+}
+.search-box-header input {
+    width: 240px;
+    padding: 9px 14px 9px 38px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-sub);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 13px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    transition: var(--transition);
+    outline: none;
+}
+.search-box-header input::placeholder { color: var(--gray-500); }
+.search-box-header input:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.08);
+}
