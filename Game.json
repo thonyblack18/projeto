@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "title": "Dandara: Trials of Fear Edition",
+    "image": "Logos/Dandara Logo 1.jpg",
+    "genre": "Metroidvania",
+    "rating": 4.8,
+    "favoriteId": "static:1",
+    "pageId": 1,
+    "description": "Dandara é um metroidvania brasileiro com mecânicas únicas de movimentação e combate."
+  },
+  {
+    "id": 2,
+    "title": "Mullet Madjack",
+    "image": "Logos/Mullet Madjack Logo.jpg",
+    "genre": "Arcade",
+    "rating": 4.5,
+    "favoriteId": "static:2",
+    "pageId": 2,
+    "description": "Um jogo frenético de ação em primeira pessoa com estética retrô."
+  },
+  {
+    "id": 3,
+    "title": "Horizon Chase Turbo",
+    "image": "Logos/Horizon Chase Turbo Logo.jpg",
+    "genre": "Corrida",
+    "rating": 4.9,
+    "favoriteId": "static:3",
+    "pageId": 3,
+    "description": "Jogo de corrida arcade inspirado nos clássicos dos anos 90."
+  },
+  {
+    "id": 4,
+    "title": "A.I.L.A",
+    "image": "Logos/AILA Logo.jpeg",
+    "genre": "Beat 'em up",
+    "rating": 4.5,
+    "favoriteId": "static:4",
+    "pageId": 4,
+    "description": "Ação intensa com combate corpo a corpo em estilo arcade."
+  },
+  {
+    "id": 5,
+    "title": "Kambulin",
+    "image": "Logos/Kambulin Logo.jpeg",
+    "genre": "Aventura",
+    "rating": 4.6,
+    "favoriteId": "static:5",
+    "pageId": 5,
+    "description": "Uma aventura com foco em exploração e narrativa."
+  },
+  {
+    "id": 6,
+    "title": "Momodora: Reverie Under the Moonlight",
+    "image": "Logos/Momodora Logo 2.jpg",
+    "genre": "Aventura",
+    "rating": 4.4,
+    "favoriteId": "static:6",
+    "pageId": 6,
+    "description": "Metroidvania com combate preciso e atmosfera sombria."
+  },
+  {
+    "id": 7,
+    "title": "Knights of Pen and Paper II",
+    "image": "Logos/Knights Logo.jpeg",
+    "genre": "RPG",
+    "rating": 4.3,
+    "favoriteId": "static:7",
+    "pageId": 7,
+    "description": "RPG com estética de mesa de jogo e humor leve."
+  },
+  {
+    "id": 8,
+    "title": "Chroma Squad",
+    "image": "Logos/Chroma Squad Logo.jpg",
+    "genre": "Estratégia",
+    "rating": 4.8,
+    "favoriteId": "static:8",
+    "pageId": 8,
+    "description": "Jogo tático inspirado em séries estilo Power Rangers."
+  },
+  {
+    "id": 9,
+    "title": "Mark of the Deep",
+    "image": "Logos/Mark of the Deep Logo.jpg",
+    "genre": "Aventura",
+    "rating": 4.5,
+    "favoriteId": "static:9",
+    "pageId": 9,
+    "description": "Exploração e mistério em um mundo sombrio."
+  },
+  {
+    "id": 10,
+    "title": "Tupi: The Legend of Arariboia",
+    "image": "Logos/Tupi Logo.jpg",
+    "genre": "Ação",
+    "rating": 4.7,
+    "favoriteId": "static:10",
+    "pageId": 10,
+    "description": "Jogo de ação inspirado na cultura indígena brasileira."
+  },
+  {
+    "id": 11,
+    "title": "171",
+    "image": "Logos/171 Logo.jpg",
+    "genre": "Ação",
+    "rating": 4.7,
+    "favoriteId": "static:11",
+    "pageId": 11,
+    "description": "Mundo aberto inspirado em ambientes urbanos brasileiros."
+  },
+  {
+    "id": 12,
+    "title": "Sina",
+    "image": "Logos/Sina Logo.jpeg",
+    "genre": "Aventura",
+    "rating": 4.6,
+    "favoriteId": "static:12",
+    "pageId": 12,
+    "description": "Jogo narrativo com foco em exploração e história."
+  },
+  {
+    "id": 13,
+    "title": "9Kings",
+    "image": "Logos/9kings Logo.jpg",
+    "genre": "RPG",
+    "rating": 4.4,
+    "favoriteId": "static:13",
+    "pageId": 13,
+    "description": "RPG com foco em estratégia e progressão de personagens."
+  },
+  {
+    "id": 14,
+    "title": "Gaúcho and the Grassland",
+    "image": "Logos/Gaucho Logo.jpg",
+    "genre": "Casual",
+    "rating": 4.8,
+    "favoriteId": "static:14",
+    "pageId": 14,
+    "description": "Exploração tranquila inspirada na cultura do sul do Brasil."
+  },
+  {
+    "id": 15,
+    "title": "Pipistrello and the Cursed Yoyo",
+    "image": "Logos/Pipi Logo.jpg",
+    "genre": "Plataforma",
+    "rating": 4.5,
+    "favoriteId": "static:15",
+    "pageId": 15,
+    "description": "Plataforma criativo com mecânicas baseadas em yoyo."
+  },
+  {
+    "id": 16,
+    "title": "No Heroes Here",
+    "image": "Logos/No Heroes Here.jpg",
+    "genre": "Plataforma",
+    "rating": 4.7,
+    "favoriteId": "static:16",
+    "pageId": 16,
+    "description": "Cooperação e defesa de castelo em estilo pixel art."
+  },
+  {
+    "id": 17,
+    "title": "Dragon Khan",
+    "image": "Logos/Dragon Khan Logo.jpg",
+    "genre": "RPG",
+    "rating": 4.9,
+    "favoriteId": "static:17",
+    "pageId": 17,
+    "description": "RPG com foco em fantasia e combate estratégico."
+  },
+  {
+    "id": 18,
+    "title": "99 Vidas",
+    "image": "Logos/99 Vidas Logo.jpeg",
+    "genre": "Arcade",
+    "rating": 4.3,
+    "favoriteId": "static:18",
+    "pageId": 18,
+    "description": "Beat 'em up com estética retrô e humor brasileiro."
+  },
+  {
+    "id": 19,
+    "title": "Dandy Ace",
+    "image": "Logos/Dandy Ace Logo.jpeg",
+    "genre": "Roguelike",
+    "rating": 4.8,
+    "favoriteId": "static:19",
+    "pageId": 19,
+    "description": "Roguelike rápido com magias combináveis."
+  },
+  {
+    "id": 20,
+    "title": "Mombo Combo Legacy",
+    "image": "Logos/Mombo Logo.jpeg",
+    "genre": "Ação",
+    "rating": 4.6,
+    "favoriteId": "static:20",
+    "pageId": 20,
+    "description": "Ação frenética com combate arcade."
+  }
+]

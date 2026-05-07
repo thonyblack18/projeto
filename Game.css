@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    background: #0b1220;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.game-header {
+    padding: 15px 30px;
+    background: #111a2e;
+}
+
+.game-header a {
+    color: white;
+    text-decoration: none;
+}
+
+#game-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px;
+}
+
+#game-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+#game-banner {
+    width: 100%;
+    border-radius: 16px;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.game-info-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: #111a2e;
+    border-radius: 12px;
+}
+
+#game-description {
+    color: #cbd5e1;
+    line-height: 1.6;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvedores — Velora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@400;600;700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ListaDevs.css">
+    <link rel="icon" type="image/png" href="logo velora.png">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="Catalogo.html" class="logo">
+                    <div class="logo-img-placeholder"></div>
+                    <span class="logo-text">VELORA</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                    <a href="Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
+                    <a href="Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
+                    <a href="Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                    <a href="#top" class="nav-item active"><i class="fas fa-users"></i> Desenvolvedores</a>
+                    <a href="SobreNos.html" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box-header">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+                    <span class="user-name" id="userName">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i><span>Meu Perfil</span>
+                    </div>
+                    <a href="SuporteUsuario.html" class="dropdown-item">
+                        <i class="fas fa-headset"></i><span>Suporte</span>
+                    </a>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i><span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-content">
+        <div class="content-container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <nav class="breadcrumb">
+                    <a href="Catalogo.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Desenvolvedores</span>
+                </nav>
+                <div class="page-header-inner">
+                    <div>
+                        <h1 class="page-title">Desenvolvedores</h1>
+                        <p class="page-subtitle">Os criadores por trás dos jogos Indies brasileiros na Velora</p>
+                    </div>
+                    <div class="page-stats">
+                        <div class="page-stat">
+                            <span class="page-stat-val">20</span>
+                            <span class="page-stat-label">Devs cadastrados</span>
+                        </div>
+                        <div class="page-stat">
+                            <span class="page-stat-val">—</span>
+                            <span class="page-stat-label">Jogos publicados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="filters-bar">
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar desenvolvedor...">
+                </div>
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="filter-tab active" data-filter="all">Todos</button>
+                    <button class="filter-tab" data-filter="verified">Verificados</button>
+                    <button class="filter-tab" data-filter="new">Novos</button>
+                </div>
+            </div>
+
+            <!-- GRID DE DEVS -->
+            <div class="devs-grid" id="devsGrid">
+                <!-- Preenchido pelo JS -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="Catalogo.html" class="footer-logo">
+                <div class="logo-img-placeholder small"></div>
+                <span class="logo-text small">VELORA</span>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="#">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="ListaDevs.js"></script>
+</body>
+</html>

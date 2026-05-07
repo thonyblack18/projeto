@@ -673,6 +673,69 @@ def update_privacy(user_id):
     finally:
         conn.close()
 
+@app.route("/api/games", methods=["POST"])
+def create_game():
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        data = request.get_json()
+
+        developer_id = data.get("developer_id")
+        title = (data.get("title") or "").strip()
+        description = (data.get("description") or "").strip()
+        short_description = (data.get("short_description") or "").strip()
+        genre = (data.get("genre") or "").strip()
+        platform = (data.get("platform") or "").strip()
+        cover_url = (data.get("cover_url") or "").strip()
+        banner_url = (data.get("banner_url") or "").strip()
+        trailer_url = (data.get("trailer_url") or "").strip()
+
+        if not developer_id or not title:
+            return jsonify({"error": "Developer e título são obrigatórios."}), 400
+
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO games (
+                developer_id,
+                title,
+                description,
+                short_description,
+                genre,
+                platform,
+                cover_url,
+                banner_url,
+                trailer_url,
+                status
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            developer_id,
+            title,
+            description,
+            short_description,
+            genre,
+            platform,
+            cover_url,
+            banner_url,
+            trailer_url,
+            "draft"
+        ))
+
+        conn.commit()
+
+        return jsonify({"message": "Jogo criado com sucesso!"}), 201
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": f"Erro ao criar jogo: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
 @app.route("/api/games", methods=["GET"])
 def get_games():
     conn = get_connection()
@@ -683,23 +746,22 @@ def get_games():
 
     try:
         cursor = conn.cursor(dictionary=True)
+
         cursor.execute("""
             SELECT
                 id,
                 developer_id,
                 title,
-                tagline,
                 description,
                 short_description,
                 genre,
                 platform,
-                cover_image,
-                banner_image,
+                cover_url,
+                banner_url,
                 trailer_url,
                 official_website,
                 release_date,
                 price,
-                rating,
                 status,
                 created_at,
                 updated_at
@@ -720,7 +782,7 @@ def get_games():
     finally:
         if cursor:
             cursor.close()
-        conn.close()
+        conn.close()        
 
 if __name__ == "__main__":
     app.run(debug=True)
