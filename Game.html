@@ -1,18 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Velora - Game</title>
+
+    <link rel="stylesheet" href="Game.css">
+</head>
+
 <body>
 
-<header class="game-header">
-    <a href="Catalogo.html">← Voltar</a>
-</header>
-<link rel="stylesheet" href="Game.css">
-<main id="game-container">
-    <h1 id="game-title">Carregando...</h1>
+    <header class="game-header">
 
-    <img id="game-banner" src="" alt="Banner do jogo">
+        <a href="Catalogo.html" class="back-btn">
+            ← Voltar ao catálogo
+        </a>
 
-    <div class="game-info-box">
-        <p id="game-description"></p>
-    </div>
-</main>
+    </header>
 
-<script src="Game.js"></script>
+    <main id="game-container">
+
+        <h1 class="game-title">
+            Carregando...
+        </h1>
+
+        <img
+            class="game-image"
+            src=""
+            alt="Imagem do jogo"
+        >
+
+        <div class="game-info-box">
+
+            <p class="game-genre"></p>
+
+            <p class="game-rating"></p>
+
+            <p class="game-description"></p>
+
+        </div>
+
+        <button id="favBtn">
+            ❤️ Favoritar
+        </button>
+
+    </main>
+
+    <script src="Game.js"></script>
+
 </body>
+
+</html>
