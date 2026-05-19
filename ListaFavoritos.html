@@ -10,193 +10,177 @@
 </head>
 <body>
 
-    <!-- =================== HEADER =================== -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="header-left">
-                <div class="logo">
-                    <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
-                    <span class="logo-text">VELORA</span>
-                </div>
-                <nav class="main-nav">
-                    <a href="/Catalogo.html" class="nav-item active">
-                        <i class="fas fa-home"></i>
-                        Início
-                    </a>
-                    <a href="./Minigames/PaginaMinigames.html" class="nav-item">
-                        <i class="fas fa-gamepad"></i>
-                        Minigames
-                    </a>
-                    <a href="Ranking.html" class="nav-item">
-                        <i class="fas fa-fire"></i>
-                        Ranking
-                    </a>
-                    <a href="Noticias.html" class="nav-item">
-                        <i class="fas fa-newspaper"></i>
-                        Noticias
-                    </a>
-                    <a href="ListaDevs.html" class="nav-item">
-                        <i class="fas fa-users"></i>
-                        Desenvolvedores
-                    </a>
-                    <a href="SobreNos.html" class="nav-item">
-                        <i class="fas fa-crown"></i>
-                        Sobre nós
-                    </a>
-                </nav>
-            </div>
-            <div class="header-right">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar nos favoritos..." id="searchInput">
-                </div>
-
-                <button class="icon-btn fav-active" title="Favoritos">
-                    <i class="fas fa-heart"></i>
-                </button>
-
-                <button class="icon-btn" title="Notificações">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </button>
-
-                <div class="user-profile" id="userProfile">
-                    <img src="https://via.placeholder.com/40" alt="Usuário">
-                    <span class="user-name">Jogador</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-
-                <div class="user-dropdown" id="userDropdown">
-                    <div class="dropdown-item" id="dropMeuPerfil">
-                        <i class="fas fa-user"></i>
-                        <span>Meu Perfil</span>
-                    </div>
-                    <div class="dropdown-item" id="dropSuporte">
-                        <i class="fas fa-headset"></i>
-                        <span>Suporte ao Usuário</span>
-                    </div>
-                    <a href="Configuracoes.html" class="dropdown-item">
-                        <i class="fas fa-cog"></i>
-                        <span>Configurações</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <div class="dropdown-item logout" id="dropSair">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Sair</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- =================== MAIN CONTENT =================== -->
-    <main class="main-content">
-
-        <!-- Modal de confirmação — remover um jogo -->
-        <div class="filter-modal" id="confirmModal">
-            <div class="filter-modal-content" style="max-width:420px;">
-                <div class="filter-modal-header">
-                    <h3><i class="fas fa-heart-broken" style="color:#ef4444;margin-right:10px;"></i>Remover favorito?</h3>
-                    <button class="close-modal" id="closeConfirm">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="filter-modal-body">
-                    <p id="confirmText" style="color:var(--gray-300);font-size:15px;line-height:1.6;"></p>
-                </div>
-                <div class="filter-modal-footer">
-                    <button class="btn-clear" id="btnCancelar">Cancelar</button>
-                    <button class="btn-remove-confirm" id="btnConfirmar">Remover</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de confirmação — limpar tudo -->
-        <div class="filter-modal" id="clearAllModal">
-            <div class="filter-modal-content" style="max-width:420px;">
-                <div class="filter-modal-header">
-                    <h3><i class="fas fa-trash-alt" style="color:#ef4444;margin-right:10px;"></i>Limpar tudo?</h3>
-                    <button class="close-modal" id="closeClearAll">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="filter-modal-body">
-                    <p style="color:var(--gray-300);font-size:15px;line-height:1.6;">
-                        Tem certeza que deseja remover <strong>todos os jogos</strong> da sua lista de favoritos? Esta ação não pode ser desfeita.
-                    </p>
-                </div>
-                <div class="filter-modal-footer">
-                    <button class="btn-clear" id="btnCancelarClear">Cancelar</button>
-                    <button class="btn-remove-confirm" id="btnConfirmarClear">Limpar tudo</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-container">
-
-            <!-- Hero Section -->
-            <section class="hero-section">
-                <h1 class="hero-title">Meus Favoritos</h1>
-                <p class="hero-subtitle">Sua coleção pessoal de jogos indies brasileiros</p>
-            </section>
-
-            <!-- Barra de controles -->
-            <section class="filters-section">
-                <div class="filters-left">
-                    <h2 class="section-title">Lista de Favoritos</h2>
-                    <span class="games-count" id="favCount">0 jogos</span>
-                </div>
-
-                <div class="filters-right">
-                    <!-- Filtros rápidos -->
-                    <button class="filter-btn qf-btn active" data-filter="todos">
-                        Todos
-                    </button>
-                    <button class="filter-btn qf-btn" data-filter="lancado">
-                        <i class="fas fa-check-circle"></i> Lançados
-                    </button>
-                    <button class="filter-btn qf-btn" data-filter="desenvolvimento">
-                        <i class="fas fa-hammer"></i> Em Dev
-                    </button>
-
-                    <!-- Ordenação -->
-                    <select class="sort-select" id="sortSelect">
-                        <option value="recentes">Adicionados recentemente</option>
-                        <option value="rating">Melhor avaliação</option>
-                        <option value="az">A-Z</option>
-                        <option value="za">Z-A</option>
-                    </select>
-
-                    <!-- Limpar tudo -->
-                    <button class="filter-btn btn-limpar-tudo" id="btnLimparTudo">
-                        <i class="fas fa-trash-alt"></i> Limpar tudo
-                    </button>
-                </div>
-            </section>
-
-            <!-- Grade de favoritos -->
-            <section class="games-grid" id="favGrid"></section>
-
-            <!-- Sem resultados na busca -->
-            <div class="empty-state" id="noResults" style="display:none;">
-                <i class="fas fa-search"></i>
-                <p>Nenhum jogo encontrado</p>
-                <span>Tente outro termo de busca ou filtro</span>
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-left">
+            <div class="logo">
+                <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
+                <span class="logo-text">VELORA</span>
             </div>
 
-            <!-- Lista vazia -->
-            <div class="empty-state" id="emptyState" style="display:none;">
-                <i class="far fa-heart"></i>
-                <p>Nenhum favorito ainda</p>
-                <span>Explore o catálogo e clique no <i class="fas fa-heart" style="color:#ef4444;"></i> para salvar jogos aqui</span>
-                <a href="Catalogo.html" class="btn-explorar">
-                    <i class="fas fa-gamepad"></i> Explorar Catálogo
+            <nav class="main-nav">
+                <a href="Catalogo.html" class="nav-item">
+                    <i class="fas fa-home"></i> Início
                 </a>
+                <a href="Minigames/PaginaMinigames.html" class="nav-item">
+                    <i class="fas fa-gamepad"></i> Minigames
+                </a>
+                <a href="Ranking.html" class="nav-item">
+                    <i class="fas fa-fire"></i> Ranking
+                </a>
+                <a href="Noticias.html" class="nav-item">
+                    <i class="fas fa-newspaper"></i> Noticias
+                </a>
+                <a href="ListaDevs.html" class="nav-item">
+                    <i class="fas fa-users"></i> Desenvolvedores
+                </a>
+                <a href="SobreNos.html" class="nav-item">
+                    <i class="fas fa-crown"></i> Sobre nós
+                </a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar nos favoritos..." id="searchInput">
             </div>
 
-        </div>
-    </main>
+            <button class="icon-btn fav-active" title="Favoritos">
+                <i class="fas fa-heart"></i>
+            </button>
 
-    <script src="ListaFavoritos.js"></script>
+            <button class="icon-btn" title="Notificações">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+
+            <div class="user-profile" id="userProfile">
+                <img src="https://via.placeholder.com/40" alt="Usuário">
+                <span class="user-name">Jogador</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-item" id="dropMeuPerfil">
+                    <i class="fas fa-user"></i>
+                    <span>Meu Perfil</span>
+                </div>
+                <div class="dropdown-item" id="dropSuporte">
+                    <i class="fas fa-headset"></i>
+                    <span>Suporte ao Usuário</span>
+                </div>
+                <a href="Configuracoes.html" class="dropdown-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item logout" id="dropSair">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+
+    <div class="filter-modal" id="confirmModal">
+        <div class="filter-modal-content" style="max-width:420px;">
+            <div class="filter-modal-header">
+                <h3><i class="fas fa-heart-broken" style="color:#ef4444;margin-right:10px;"></i>Remover favorito?</h3>
+                <button class="close-modal" id="closeConfirm">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="filter-modal-body">
+                <p id="confirmText" style="color:var(--gray-300);font-size:15px;line-height:1.6;"></p>
+            </div>
+            <div class="filter-modal-footer">
+                <button class="btn-clear" id="btnCancelar">Cancelar</button>
+                <button class="btn-remove-confirm" id="btnConfirmar">Remover</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-modal" id="clearAllModal">
+        <div class="filter-modal-content" style="max-width:420px;">
+            <div class="filter-modal-header">
+                <h3><i class="fas fa-trash-alt" style="color:#ef4444;margin-right:10px;"></i>Limpar tudo?</h3>
+                <button class="close-modal" id="closeClearAll">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="filter-modal-body">
+                <p style="color:var(--gray-300);font-size:15px;line-height:1.6;">
+                    Tem certeza que deseja remover <strong>todos os jogos</strong> da sua lista de favoritos? Esta ação não pode ser desfeita.
+                </p>
+            </div>
+            <div class="filter-modal-footer">
+                <button class="btn-clear" id="btnCancelarClear">Cancelar</button>
+                <button class="btn-remove-confirm" id="btnConfirmarClear">Limpar tudo</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+
+        <section class="hero-section">
+            <h1 class="hero-title">Meus Favoritos</h1>
+            <p class="hero-subtitle">Sua coleção pessoal de jogos indies brasileiros</p>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-left">
+                <h2 class="section-title">Lista de Favoritos</h2>
+                <span class="games-count" id="favCount">0 jogos</span>
+            </div>
+
+            <div class="filters-right">
+                <button class="filter-btn qf-btn active" data-filter="todos">Todos</button>
+
+                <button class="filter-btn qf-btn" data-filter="lancado">
+                    <i class="fas fa-check-circle"></i> Lançados
+                </button>
+
+                <button class="filter-btn qf-btn" data-filter="desenvolvimento">
+                    <i class="fas fa-hammer"></i> Em Dev
+                </button>
+
+                <select class="sort-select" id="sortSelect">
+                    <option value="recentes">Adicionados recentemente</option>
+                    <option value="rating">Melhor avaliação</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                </select>
+
+                <button class="filter-btn btn-limpar-tudo" id="btnLimparTudo">
+                    <i class="fas fa-trash-alt"></i> Limpar tudo
+                </button>
+            </div>
+        </section>
+
+        <section class="games-grid" id="favGrid"></section>
+
+        <div class="empty-state" id="noResults" style="display:none;">
+            <i class="fas fa-search"></i>
+            <p>Nenhum jogo encontrado</p>
+            <span>Tente outro termo de busca ou filtro</span>
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <i class="far fa-heart"></i>
+            <p>Nenhum favorito ainda</p>
+            <span>Explore o catálogo e clique no <i class="fas fa-heart" style="color:#ef4444;"></i> para salvar jogos aqui</span>
+            <a href="Catalogo.html" class="btn-explorar">
+                <i class="fas fa-gamepad"></i> Explorar Catálogo
+            </a>
+        </div>
+
+    </div>
+</main>
+
+<script src="ListaFavoritos.js"></script>
 </body>
 </html>

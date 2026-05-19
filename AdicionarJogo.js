@@ -311,63 +311,73 @@ document.getElementById('btn-rascunho').addEventListener('click', () => {
 });
 
 // =================== ENVIO DO FORMULÁRIO ===================
-document.getElementById('game-form').addEventListener('submit', async e => {
+// =================== ENVIO DO FORMULÁRIO ===================
+document.getElementById('game-form').addEventListener('submit', async (e) => {
+
     e.preventDefault();
 
     const title = document.getElementById('game-title').value.trim();
+
     const desc = document.getElementById('game-desc').value.trim();
-    const tagline = document.getElementById('game-tagline').value.trim();
 
-    const genres = [...document.querySelectorAll('.genre-chip.selected')]
-        .map(c => c.dataset.genre)
-        .join(', ');
+    const genres = [
+        ...document.querySelectorAll('.genre-chip.selected')
+    ].map(c => c.dataset.genre);
 
-    const platforms = [...document.querySelectorAll('.platform-chip.selected')]
-        .map(c => c.dataset.platform)
-        .join(', ');
+    const coverFile = coverInput.files[0];
 
-    const trailer = document.getElementById('trailer-url').value.trim();
+    // =================== VALIDAÇÕES ===================
 
-    const cover = document.getElementById('preview-cover-img').src || "";
+    if (!title) {
+        showToast('⚠️ Preencha o nome do jogo.', 'error');
+        return;
+    }
 
-    // ⚠️ TEMPORÁRIO (depois vamos pegar do login)
-    const developer_id = 1;
+    if (!desc) {
+        showToast('⚠️ Adicione uma descrição.', 'error');
+        return;
+    }
 
-    // validações (mantém as suas)
-    if (!title) return showToast('⚠️ Preencha o nome do jogo.', 'error');
-    if (!desc) return showToast('⚠️ Adicione uma descrição.', 'error');
-    if (!genres) return showToast('⚠️ Selecione um gênero.', 'error');
-    if (!cover) return showToast('⚠️ Envie a capa.', 'error');
-    if (!platforms) return showToast('⚠️ Selecione uma plataforma.', 'error');
+    if (!genres.length) {
+        showToast('⚠️ Selecione um gênero.', 'error');
+        return;
+    }
+
+    if (!coverFile) {
+        showToast('⚠️ Envie a capa do jogo.', 'error');
+        return;
+    }
+
+    // =================== ENVIO ===================
+
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("description", desc);
+    formData.append("genre", genres.join(", "));
+    formData.append("image", coverFile);
 
     try {
-        const res = await fetch("http://127.0.0.1:5000/api/games", {
+
+        const response = await fetch("http://127.0.0.1:5000/add-game", {
+
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                developer_id: developer_id,
-                title: title,
-                description: desc,
-                short_description: tagline,
-                genre: genres,
-                platform: platforms,
-                cover_url: cover,
-                banner_url: cover,
-                trailer_url: trailer
-            })
+            body: formData
+
         });
 
-        const data = await res.json();
+        const data = await response.json();
 
-        if (!res.ok) {
-            return showToast(data.error || "Erro ao enviar jogo", "error");
-        }
+        console.log(data);
 
-        showToast("🚀 Jogo enviado com sucesso!");
+        showToast('🚀 Jogo publicado com sucesso!');
 
     } catch (err) {
-        showToast("Erro ao conectar com o servidor", "error");
+
+        console.error(err);
+
+        showToast('❌ Erro ao salvar jogo.', 'error');
+
     }
+
 });

@@ -1,6 +1,28 @@
 [
   {
     "id": 1,
-    "title": "Dandara"
+    "title": "Dandara",
+    "image": "Logos/Dandara Logo 1.jpg",
+    "genre": "Metroidvania",
+    "rating": "4.8",
+    "description": "Um jogo brasileiro de ação e plataforma.",
+    "page": "InfoJogos/dandara/Dandara.html"
+  },
+  {
+    "id": 2,
+    "title": "Mullet Madjack",
+    "image": "Logos/Mullet Madjack Logo.jpg",
+    "genre": "Arcade",
+    "rating": "4.5",
+    "description": "Um FPS arcade frenético.",
+    "page": "InfoJogos/mullet-madjack/MulletMadjack.html"
+  },
+  {
+    "id": 3,
+    "title": "Velora",
+    "image": "uploads/logo velora transparente.png",
+    "genre": "RPG, Ação, Aventura",
+    "rating": "5.0",
+    "description": "sadsdfefewfwfewfe"
   }
 ]

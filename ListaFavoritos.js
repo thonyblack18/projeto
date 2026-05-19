@@ -2,15 +2,15 @@ const API_BASE = "http://127.0.0.1:5000";
 
 // =================== BASE DE DADOS DOS JOGOS ESTÁTICOS ===================
 const TODOS_JOGOS = [
-    { id: 1,  titulo: "Dandara: Trials of Fear Edition", desenvolvedor: "Long Hat House", genero: "Metroidvania", avaliacao: 4.8, status: "lancado", logo: "Logos/Dandara Logo 1.jpg", rota: "InfoJogos/dandara/Dandara.html", source: "static" },
-    { id: 2,  titulo: "Mullet Madjack", desenvolvedor: "Hammer95", genero: "Arcade", avaliacao: 4.5, status: "lancado", logo: "Logos/Mullet Madjack Logo.jpg", rota: "jogos/mullet-madjack/", source: "static" },
-    { id: 3,  titulo: "Horizon Chase Turbo", desenvolvedor: "Aquiris", genero: "Corrida", avaliacao: 4.9, status: "lancado", logo: "Logos/Horizon Chase Turbo Logo.jpg", rota: "jogos/horizon-chase/", source: "static" },
-    { id: 4,  titulo: "A.I.L.A", desenvolvedor: "Estúdio Aila", genero: "Beat 'em up", avaliacao: 4.5, status: "lancado", logo: "Logos/AILA Logo.jpeg", rota: "jogos/aila/", source: "static" },
-    { id: 5,  titulo: "Kambulin", desenvolvedor: "Kambulin Studio", genero: "Aventura", avaliacao: 4.6, status: "lancado", logo: "Logos/Kambulin Logo.jpeg", rota: "jogos/kambulin/", source: "static" },
-    { id: 6,  titulo: "Momodora: Reverie Under the Moonlight", desenvolvedor: "rdein", genero: "Aventura", avaliacao: 4.4, status: "lancado", logo: "Logos/Momodora Logo 2.jpg", rota: "jogos/momodora/", source: "static" },
-    { id: 7,  titulo: "Knights of Pen and Paper II", desenvolvedor: "Behold Studios", genero: "RPG", avaliacao: 4.3, status: "lancado", logo: "Logos/Knights Logo.jpeg", rota: "jogos/knights/", source: "static" },
-    { id: 8,  titulo: "Chroma Squad", desenvolvedor: "Behold Studios", genero: "Estratégia", avaliacao: 4.8, status: "lancado", logo: "Logos/Chroma Squad Logo.jpg", rota: "jogos/chroma-squad/", source: "static" },
-    { id: 9,  titulo: "Mark of the Deep", desenvolvedor: "Mad Mimic", genero: "Aventura", avaliacao: 4.5, status: "lancado", logo: "Logos/Mark of the Deep Logo.jpg", rota: "jogos/mark-of-the-deep/", source: "static" },
+    { id: 1, titulo: "Dandara: Trials of Fear Edition", desenvolvedor: "Long Hat House", genero: "Metroidvania", avaliacao: 4.8, status: "lancado", logo: "Logos/Dandara Logo 1.jpg", rota: "InfoJogos/dandara/Dandara.html", source: "static" },
+    { id: 2, titulo: "Mullet Madjack", desenvolvedor: "Hammer95", genero: "Arcade", avaliacao: 4.5, status: "lancado", logo: "Logos/Mullet Madjack Logo.jpg", rota: "InfoJogos/mullet-madjack/MulletMadjack.html", source: "static" },
+    { id: 3, titulo: "Horizon Chase Turbo", desenvolvedor: "Aquiris", genero: "Corrida", avaliacao: 4.9, status: "lancado", logo: "Logos/Horizon Chase Turbo Logo.jpg", rota: "jogos/horizon-chase/", source: "static" },
+    { id: 4, titulo: "A.I.L.A", desenvolvedor: "Estúdio Aila", genero: "Beat 'em up", avaliacao: 4.5, status: "lancado", logo: "Logos/AILA Logo.jpeg", rota: "jogos/aila/", source: "static" },
+    { id: 5, titulo: "Kambulin", desenvolvedor: "Kambulin Studio", genero: "Aventura", avaliacao: 4.6, status: "lancado", logo: "Logos/Kambulin Logo.jpeg", rota: "jogos/kambulin/", source: "static" },
+    { id: 6, titulo: "Momodora: Reverie Under the Moonlight", desenvolvedor: "rdein", genero: "Aventura", avaliacao: 4.4, status: "lancado", logo: "Logos/Momodora Logo 2.jpg", rota: "jogos/momodora/", source: "static" },
+    { id: 7, titulo: "Knights of Pen and Paper II", desenvolvedor: "Behold Studios", genero: "RPG", avaliacao: 4.3, status: "lancado", logo: "Logos/Knights Logo.jpeg", rota: "jogos/knights/", source: "static" },
+    { id: 8, titulo: "Chroma Squad", desenvolvedor: "Behold Studios", genero: "Estratégia", avaliacao: 4.8, status: "lancado", logo: "Logos/Chroma Squad Logo.jpg", rota: "jogos/chroma-squad/", source: "static" },
+    { id: 9, titulo: "Mark of the Deep", desenvolvedor: "Mad Mimic", genero: "Aventura", avaliacao: 4.5, status: "lancado", logo: "Logos/Mark of the Deep Logo.jpg", rota: "jogos/mark-of-the-deep/", source: "static" },
     { id: 10, titulo: "Tupi: The Legend of Arariboia", desenvolvedor: "Tupi Dev", genero: "Ação", avaliacao: 4.7, status: "desenvolvimento", logo: "Logos/Tupi Logo.jpg", rota: "jogos/tupi/", source: "static" },
     { id: 11, titulo: "171", desenvolvedor: "Cezar Carvalho", genero: "Ação", avaliacao: 4.7, status: "lancado", logo: "Logos/171 Logo.jpg", rota: "jogos/171/", source: "static" },
     { id: 12, titulo: "Sina", desenvolvedor: "Estúdio Sina", genero: "Aventura", avaliacao: 4.6, status: "desenvolvimento", logo: "Logos/Sina Logo.jpeg", rota: "jogos/sina/", source: "static" },
@@ -27,7 +27,7 @@ const TODOS_JOGOS = [
 // =================== ESTADO ===================
 let favoritosIds = JSON.parse(localStorage.getItem('velora_favoritos_ids') || '[]');
 let jogosAPI = [];
-
+let jogosJSON = [];
 let filtroAtivo = 'todos';
 let ordemAtiva = 'recentes';
 let buscaAtiva = '';
@@ -45,36 +45,81 @@ async function carregarJogosAPI() {
         const data = await res.json();
 
         jogosAPI = (data.games || []).map(game => ({
-            id: game.id,
-            titulo: game.title,
-            desenvolvedor: "Desenvolvedor independente",
-            genero: game.genre || "Sem gênero",
-            avaliacao: parseFloat(game.rating || 0),
-            status: game.status === "released" || game.status === "published" ? "lancado" : "desenvolvimento",
-            logo: game.cover_image || "",
-            rota: "#",
-            source: "api"
-        }));
+        id: game.id,
+        titulo: game.title,
+        desenvolvedor: "Desenvolvedor independente",
+        genero: game.genre || "Sem gênero",
+        avaliacao: parseFloat(game.rating || 0),
+        status: game.status === "released" || game.status === "published"
+        ? "lancado"
+        : "desenvolvimento",
+
+        logo: game.cover_image || "",
+    
+        rota: `Game.html?id=${game.id}`,
+
+        source: "api"
+    }));
     } catch (err) {
         console.error("Erro ao carregar jogos da API:", err);
         jogosAPI = [];
     }
 }
+async function carregarJogosJSON() {
+    try {
+        const res = await fetch("Game.json");
+        const games = await res.json();
 
+        jogosJSON = games.map(game => ({
+            id: game.id,
+            titulo: game.title,
+            desenvolvedor: "Desenvolvedor Velora",
+            genero: game.genre || "Sem gênero",
+            avaliacao: parseFloat(game.rating || 0),
+            status: "desenvolvimento",
+            logo: game.image || "",
+            rota: game.page ? game.page : `Game.html?id=${game.id}`,
+            source: "json"
+        }));
+    } catch (err) {
+        console.error("Erro ao carregar Game.json:", err);
+        jogosJSON = [];
+    }
+}
 // =================== HELPERS ===================
 function getJogoKey(jogo) {
     return `${jogo.source}:${jogo.id}`;
 }
 
 function getTodosJogosUnificados() {
-    return [...TODOS_JOGOS, ...jogosAPI];
+    return [...TODOS_JOGOS, ...jogosAPI, ...jogosJSON];
 }
 
 // =================== LISTA FILTRADA ===================
 function getLista() {
     const todos = getTodosJogosUnificados();
 
-    let lista = todos.filter(j => favoritosIds.includes(getJogoKey(j)));
+    let lista = todos.filter(j => {
+        const key = getJogoKey(j);
+
+        return favoritosIds.includes(key)
+            || favoritosIds.includes(j.id)
+            || favoritosIds.includes(String(j.id));
+    });
+
+    // remove duplicados pelo título
+    const vistos = new Set();
+
+    lista = lista.filter(jogo => {
+        const chave = jogo.titulo.toLowerCase().trim();
+
+        if (vistos.has(chave)) {
+            return false;
+        }
+
+        vistos.add(chave);
+        return true;
+    });
 
     if (filtroAtivo !== 'todos') {
         lista = lista.filter(j => j.status === filtroAtivo);
@@ -99,7 +144,10 @@ function getLista() {
             lista.sort((a, b) => b.titulo.localeCompare(a.titulo));
             break;
         default:
-            lista.sort((a, b) => favoritosIds.lastIndexOf(getJogoKey(b)) - favoritosIds.lastIndexOf(getJogoKey(a)));
+            lista.sort((a, b) =>
+                favoritosIds.lastIndexOf(getJogoKey(b)) -
+                favoritosIds.lastIndexOf(getJogoKey(a))
+            );
     }
 
     return lista;
@@ -206,8 +254,10 @@ document.getElementById('btnConfirmar').addEventListener('click', () => {
     idParaRemover = null;
     fecharModal('confirmModal');
 });
+
 document.getElementById('btnCancelar').addEventListener('click', () => fecharModal('confirmModal'));
 document.getElementById('closeConfirm').addEventListener('click', () => fecharModal('confirmModal'));
+
 document.getElementById('confirmModal').addEventListener('click', (e) => {
     if (e.target === document.getElementById('confirmModal')) fecharModal('confirmModal');
 });
@@ -215,6 +265,7 @@ document.getElementById('confirmModal').addEventListener('click', (e) => {
 document.getElementById('btnLimparTudo').addEventListener('click', () => {
     if (favoritosIds.length > 0) abrirModal('clearAllModal');
 });
+
 document.getElementById('btnConfirmarClear').addEventListener('click', () => {
     favoritosIds = [];
     salvar();
@@ -222,8 +273,10 @@ document.getElementById('btnConfirmarClear').addEventListener('click', () => {
     fecharModal('clearAllModal');
     showToast('Lista de favoritos limpa');
 });
+
 document.getElementById('btnCancelarClear').addEventListener('click', () => fecharModal('clearAllModal'));
 document.getElementById('closeClearAll').addEventListener('click', () => fecharModal('clearAllModal'));
+
 document.getElementById('clearAllModal').addEventListener('click', (e) => {
     if (e.target === document.getElementById('clearAllModal')) fecharModal('clearAllModal');
 });
@@ -280,6 +333,7 @@ if (userProfile && userDropdown) {
     document.getElementById('dropMeuPerfil')?.addEventListener('click', () => {
         let user = null;
         try { user = JSON.parse(localStorage.getItem('velora_user')); } catch (e) {}
+
         if (!user) window.location.href = 'LoginCadastro.html';
         else if (user.account_type === 'developer') window.location.href = 'PerfilDev.html';
         else window.location.href = 'PerfilUsuario.html';
@@ -303,9 +357,11 @@ document.getElementById('header-logo')?.addEventListener('error', function () {
 // =================== TOAST ===================
 function showToast(msg) {
     document.querySelector('.velora-toast')?.remove();
+
     const t = document.createElement('div');
     t.className = 'velora-toast';
     t.textContent = msg;
+
     t.style.cssText = `
         position:fixed; bottom:32px; left:50%;
         transform:translateX(-50%) translateY(20px);
@@ -316,11 +372,14 @@ function showToast(msg) {
         transition:all .4s cubic-bezier(.34,1.56,.64,1);
         white-space:nowrap; box-shadow:0 8px 24px rgba(0,0,0,.4);
         pointer-events:none;`;
+
     document.body.appendChild(t);
+
     requestAnimationFrame(() => {
         t.style.opacity = '1';
         t.style.transform = 'translateX(-50%) translateY(0)';
     });
+
     setTimeout(() => {
         t.style.opacity = '0';
         t.style.transform = 'translateX(-50%) translateY(10px)';
@@ -331,6 +390,7 @@ function showToast(msg) {
 // =================== INICIALIZAÇÃO ===================
 async function init() {
     await carregarJogosAPI();
+    await carregarJogosJSON();
     renderizar();
 }
 

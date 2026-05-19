@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from database import get_connection
@@ -673,69 +674,6 @@ def update_privacy(user_id):
     finally:
         conn.close()
 
-@app.route("/api/games", methods=["POST"])
-def create_game():
-    conn = get_connection()
-    if not conn:
-        return jsonify({"error": "Erro de conexão com o banco."}), 500
-
-    try:
-        data = request.get_json()
-
-        developer_id = data.get("developer_id")
-        title = (data.get("title") or "").strip()
-        description = (data.get("description") or "").strip()
-        short_description = (data.get("short_description") or "").strip()
-        genre = (data.get("genre") or "").strip()
-        platform = (data.get("platform") or "").strip()
-        cover_url = (data.get("cover_url") or "").strip()
-        banner_url = (data.get("banner_url") or "").strip()
-        trailer_url = (data.get("trailer_url") or "").strip()
-
-        if not developer_id or not title:
-            return jsonify({"error": "Developer e título são obrigatórios."}), 400
-
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            INSERT INTO games (
-                developer_id,
-                title,
-                description,
-                short_description,
-                genre,
-                platform,
-                cover_url,
-                banner_url,
-                trailer_url,
-                status
-            )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (
-            developer_id,
-            title,
-            description,
-            short_description,
-            genre,
-            platform,
-            cover_url,
-            banner_url,
-            trailer_url,
-            "draft"
-        ))
-
-        conn.commit()
-
-        return jsonify({"message": "Jogo criado com sucesso!"}), 201
-
-    except Exception as e:
-        conn.rollback()
-        return jsonify({"error": f"Erro ao criar jogo: {str(e)}"}), 500
-
-    finally:
-        cursor.close()
-        conn.close()
-
 @app.route("/api/games", methods=["GET"])
 def get_games():
     conn = get_connection()
@@ -746,22 +684,23 @@ def get_games():
 
     try:
         cursor = conn.cursor(dictionary=True)
-
         cursor.execute("""
             SELECT
                 id,
                 developer_id,
                 title,
+                tagline,
                 description,
                 short_description,
                 genre,
                 platform,
-                cover_url,
-                banner_url,
+                cover_image,
+                banner_image,
                 trailer_url,
                 official_website,
                 release_date,
                 price,
+                rating,
                 status,
                 created_at,
                 updated_at
@@ -782,7 +721,52 @@ def get_games():
     finally:
         if cursor:
             cursor.close()
-        conn.close()        
+        conn.close()
+        
+from flask import request, jsonify
+import json
 
+@app.route('/add-game', methods=['POST'])
+def add_game():
+
+    title = request.form.get("title")
+    description = request.form.get("description")
+    genre = request.form.get("genre")
+
+    image = request.files.get("image")
+
+    if not image:
+        return jsonify({
+            "error": "Imagem não enviada"
+        }), 400
+
+    # cria pasta uploads se não existir
+    os.makedirs("uploads", exist_ok=True)
+
+    image_path = f"uploads/{image.filename}"
+
+    image.save(image_path)
+
+    with open('Game.json', 'r', encoding='utf-8') as file:
+        jogos = json.load(file)
+
+    novo_jogo = {
+        "id": len(jogos) + 1,
+        "title": title,
+        "image": image_path,
+        "genre": genre,
+        "rating": "5.0",
+        "description": description
+    }
+
+    jogos.append(novo_jogo)
+
+    with open('Game.json', 'w', encoding='utf-8') as file:
+        json.dump(jogos, file, indent=2, ensure_ascii=False)
+
+    return jsonify({
+        "message": "Jogo salvo com sucesso"
+    })
+        
 if __name__ == "__main__":
     app.run(debug=True)

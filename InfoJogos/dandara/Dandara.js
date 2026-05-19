@@ -508,6 +508,40 @@ btnWishlist?.addEventListener("click", () => {
     setFavoritos(favoritos);
     updateWishlistUI();
 });
+function getCatalogoCorreto() {
+    let user = null;
 
+    try {
+        user = JSON.parse(localStorage.getItem("velora_user"));
+    } catch (e) {}
+
+    if (user && user.account_type === "developer") {
+        return "../../CatalogoDev.html";
+    }
+
+    return "../../Catalogo.html";
+}
+
+const catalogoCorreto = getCatalogoCorreto();
+
+document.getElementById("linkInicio")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+
+document.getElementById("linkJogos")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+
+document.getElementById("breadcrumbInicio")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+
+document.getElementById("breadcrumbJogos")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
 // carregar estado ao abrir página
 updateWishlistUI();

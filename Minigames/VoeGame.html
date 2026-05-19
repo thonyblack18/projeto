@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOE! — Velora Minigame</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="VoeGame.css">
+    <link rel="icon" type="image/png" href="logo velora.png">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="Catalogo.html" class="logo">
+                    <div class="logo-img-placeholder"></div>
+                    <span class="logo-text">VELORA</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-gamepad"></i> Jogos</a>
+                    <a href="#" class="nav-item"><i class="fas fa-fire"></i> Em alta</a>
+                    <a href="#" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                    <a href="ListaDevs.html" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+                    <a href="#" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box-header">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+                    <span class="user-name" id="userName">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i><span>Meu Perfil</span>
+                    </div>
+                    <a href="SuporteUsuario.html" class="dropdown-item">
+                        <i class="fas fa-headset"></i><span>Suporte</span>
+                    </a>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i><span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- TELA INICIAL -->
+        <div class="screen" id="screenStart">
+            <div class="start-layout">
+                <div class="start-inner">
+                    <div class="start-logo">
+                        <span class="rocket-spin">🚀</span>
+                        <h1 class="start-title">
+                            VOE!
+                            <span>VELORA SPACE RUNNER</span>
+                        </h1>
+                    </div>
+                    <p class="start-desc">
+                        Pilote o foguete pela galáxia e desvie de planetas e asteroides. Quanto mais longe você chegar, maior sua pontuação!
+                    </p>
+                    <div class="controls-box">
+                        <div class="ctrl-row">
+                            <kbd>ESPAÇO</kbd>
+                            <span>ou</span>
+                            <kbd>↑</kbd>
+                            <span>— pular / subir</span>
+                        </div>
+                        <div class="ctrl-row">
+                            <kbd>↓</kbd>
+                            <span>— mergulho rápido</span>
+                        </div>
+                        <p class="ctrl-note">Toque na tela para pular no mobile</p>
+                    </div>
+                    <div class="diff-row">
+                        <button class="diff-btn active" data-gravity="0.45" data-speed="4">FÁCIL</button>
+                        <button class="diff-btn" data-gravity="0.55" data-speed="5.5">NORMAL</button>
+                        <button class="diff-btn" data-gravity="0.7" data-speed="7">DIFÍCIL</button>
+                    </div>
+                    <button class="btn-launch" id="btnStart">
+                        <i class="fas fa-rocket"></i> LANÇAR FOGUETE
+                    </button>
+                    <a href="Minigames.html" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Voltar aos Minigames
+                    </a>
+                </div>
+
+                <!-- RANKING LATERAL -->
+                <aside class="ranking-panel">
+                    <div class="ranking-panel-title">
+                        <i class="fas fa-trophy"></i> Ranking
+                    </div>
+                    <div class="ranking-list" id="rankingList">
+                        <!-- Preenchido pelo JS -->
+                    </div>
+                    <p class="rank-note">
+                        <!-- BACKEND: GET /api/minigames/voe/ranking -->
+                        <i class="fas fa-satellite"></i>
+                        Ranking global em breve
+                    </p>
+                </aside>
+            </div>
+        </div>
+
+        <!-- TELA DO JOGO -->
+        <div class="screen hidden" id="screenGame">
+            <div class="game-arena">
+                <div class="hud">
+                    <div class="hud-left">
+                        <div class="hud-stat">
+                            <span class="hud-label">Pontuação</span>
+                            <span class="hud-value gold" id="scoreDisplay">0</span>
+                        </div>
+                        <div class="hud-stat">
+                            <span class="hud-label">Recorde</span>
+                            <span class="hud-value" id="hiScoreDisplay">0</span>
+                        </div>
+                        <div class="hud-stat">
+                            <span class="hud-label">Nível</span>
+                            <span class="hud-value" id="levelDisplay">1</span>
+                        </div>
+                    </div>
+                    <div class="hud-right">
+                        <div class="hud-lives" id="livesDisplay">
+                            <span class="life-icon">🚀</span>
+                            <span class="life-icon">🚀</span>
+                            <span class="life-icon">🚀</span>
+                        </div>
+                        <button class="btn-pause-hud" id="btnPause">
+                            <i class="fas fa-pause" id="pauseIcon"></i>
+                            <span id="pauseLabel">PAUSAR</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="canvas-wrap">
+                    <canvas id="gameCanvas" width="800" height="280"></canvas>
+                    <div class="canvas-overlay hidden" id="pauseOverlay">
+                        <div class="overlay-icon">⏸️</div>
+                        <div class="overlay-title">PAUSADO</div>
+                        <div class="overlay-sub">PRESSIONE ESPAÇO PARA CONTINUAR</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA GAME OVER -->
+        <div class="screen hidden" id="screenOver">
+            <div class="over-inner">
+                <div class="over-boom">💥</div>
+                <h2 class="over-title">MISSÃO ENCERRADA</h2>
+                <div class="over-stats">
+                    <div class="over-stat">
+                        <span class="over-stat-label">Pontuação</span>
+                        <span class="over-stat-val gold" id="finalScore">0</span>
+                    </div>
+                    <div class="over-stat">
+                        <span class="over-stat-label">Distância</span>
+                        <span class="over-stat-val" id="finalDist">0</span>
+                    </div>
+                    <div class="over-stat">
+                        <span class="over-stat-label">Nível</span>
+                        <span class="over-stat-val" id="finalLevel">1</span>
+                    </div>
+                </div>
+                <div class="record-badge hidden" id="newRecord">
+                    <i class="fas fa-crown"></i> NOVO RECORDE!
+                </div>
+                <div class="over-btns">
+                    <button class="btn-primary-over" id="btnRestart">
+                        <i class="fas fa-redo"></i> TENTAR NOVAMENTE
+                    </button>
+                    <button class="btn-secondary-over" id="btnMenu">
+                        <i class="fas fa-home"></i> MENU
+                    </button>
+                    <a href="Minigames.html" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Minigames
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="Catalogo.html" class="footer-logo">
+                <div class="logo-img-placeholder small"></div>
+                <span class="logo-text small">VELORA</span>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="#">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="VoeGame.js"></script>
+</body>
+</html>

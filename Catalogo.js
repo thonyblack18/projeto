@@ -3,8 +3,8 @@ const API_BASE = "http://127.0.0.1:5000";
 // =================== CLIQUE NO CARD DO JOGO ===================
 const gameRoutes = {
     'Dandara: Trials of Fear Edition': 'InfoJogos/dandara/Dandara.html',
-    'Mullet Madjack': 'InfoJogos/mullet-madjack/mullet.html',
-    'Horizon Chase Turbo': 'InfoJogos/horizon-chase/Horizon.html',
+    'Mullet Madjack': 'jogos/mullet-madjack/',
+    'Horizon Chase Turbo': 'jogos/horizon-chase/',
     'A.I.L.A': 'jogos/aila/',
     'Kambulin': 'jogos/kambulin/',
     'Momodora: Reverie Under the Moonlight': 'jogos/momodora/',
@@ -345,22 +345,11 @@ function bindDropdownUsuario() {
 // =================== JOGOS DA API ===================
 async function carregarJogosAPI() {
     try {
-        console.log("Buscando jogos da API...");
-
         const res = await fetch(`${API_BASE}/api/games`);
-
-        console.log("Resposta recebida:", res);
-
         const data = await res.json();
 
-        console.log("Dados da API:", data);
-
-        const games = data.games || [];
-
-        console.log("Jogos encontrados:", games);
-
+        const games = (data.games || []).slice(0, 10);
         renderJogosAPI(games);
-
     } catch (err) {
         console.error("Erro ao carregar jogos da API:", err);
     }
@@ -378,11 +367,10 @@ function renderJogosAPI(games) {
         card.innerHTML = `
             <div class="game-image">
                 <img 
-                    src="${game.cover_url || ''}" 
+                    src="${game.cover_image || ''}" 
                     alt="${game.title}" 
                     class="game-logo"
                 >
-
                 <button class="favorite-btn" data-id="api:${game.id}">
                     <i class="far fa-heart"></i>
                 </button>
@@ -392,22 +380,13 @@ function renderJogosAPI(games) {
                 <h3 class="game-title">${game.title}</h3>
 
                 <p class="game-desc">
-                    ${
-                        game.short_description ||
-                        (game.description
-                            ? game.description.slice(0, 80) + "..."
-                            : "Sem descrição.")
-                    }
+                    ${game.short_description || (game.description ? game.description.slice(0, 80) + "..." : "Sem descrição.")}
                 </p>
 
                 <div class="game-meta">
-                    <span class="game-genre">
-                        ${game.genre || "Sem gênero"}
-                    </span>
-
+                    <span class="game-genre">${game.genre || "Sem gênero"}</span>
                     <span class="game-rating">
-                        <i class="fas fa-star"></i>
-                        ${game.rating || "0.0"}
+                        <i class="fas fa-star"></i> ${game.rating || "0.0"}
                     </span>
                 </div>
             </div>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foguetinho Game — Velora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="FoguetinhoGame.css">
+    <link rel="icon" type="image/png" href="logo velora.png">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="Catalogo.html" class="logo">
+                <div class="logo-img-placeholder"></div>
+                <span class="logo-text">VELORA</span>
+            </a>
+            <nav class="main-nav">
+                <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                <a href="Catalogo.html" class="nav-item"><i class="fas fa-gamepad"></i> Jogos</a>
+                <a href="Minigames.html" class="nav-item active"><i class="fas fa-star"></i> Minigames</a>
+                <a href="#" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+            </nav>
+            <div class="header-right">
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+                    <span class="user-name" id="userName">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i><span>Meu Perfil</span>
+                    </div>
+                    <a href="SuporteUsuario.html" class="dropdown-item">
+                        <i class="fas fa-headset"></i><span>Suporte</span>
+                    </a>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i><span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TELA INICIAL -->
+        <div class="screen" id="screenStart">
+            <div class="screen-inner">
+                <div class="game-logo-wrap">
+                    <span class="rocket-emoji">🚀</span>
+                    <h1 class="game-title">FOGUETINHO<br><span>GAME</span></h1>
+                </div>
+                <p class="game-desc">Pilote o foguete e colete o máximo de estrelas que conseguir. Não bata nas paredes!</p>
+                <div class="controls-hint">
+                    <div class="hint-item"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ou <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></div>
+                    <p>para mover o foguete</p>
+                </div>
+                <div class="difficulty-row">
+                    <button class="diff-btn active" data-speed="150">FÁCIL</button>
+                    <button class="diff-btn" data-speed="100">NORMAL</button>
+                    <button class="diff-btn" data-speed="65">DIFÍCIL</button>
+                </div>
+                <button class="btn-primary" id="btnStart">
+                    <i class="fas fa-rocket"></i> INICIAR VOO
+                </button>
+                <a href="Minigames.html" class="btn-back-mini">
+                    <i class="fas fa-arrow-left"></i> Voltar aos Minigames
+                </a>
+            </div>
+        </div>
+
+        <!-- TELA DO JOGO -->
+        <div class="screen hidden" id="screenGame">
+            <div class="game-layout">
+
+                <!-- PAINEL ESQUERDO -->
+                <aside class="side-panel left-panel">
+                    <div class="info-card">
+                        <span class="info-label">Pontuação</span>
+                        <span class="info-value gold" id="scoreDisplay">0</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Recorde</span>
+                        <span class="info-value" id="hiScoreDisplay">0</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Nível</span>
+                        <span class="info-value" id="levelDisplay">1</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Velocidade</span>
+                        <div class="speed-dots" id="speedDots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <button class="btn-pause" id="btnPause">
+                        <i class="fas fa-pause" id="pauseIcon"></i>
+                        <span id="pauseLabel">PAUSAR</span>
+                    </button>
+                </aside>
+
+                <!-- CANVAS -->
+                <div class="canvas-wrap">
+                    <canvas id="gameCanvas"></canvas>
+                    <div class="pause-overlay hidden" id="pauseOverlay">
+                        <i class="fas fa-pause-circle"></i>
+                        <p>PAUSADO</p>
+                    </div>
+                </div>
+
+                <!-- PAINEL DIREITO — RANKING -->
+                <aside class="side-panel right-panel">
+                    <h3 class="panel-title"><i class="fas fa-trophy"></i> Ranking</h3>
+                    <div class="ranking-list" id="rankingList"></div>
+                    <p class="ranking-note">
+                        <i class="fas fa-info-circle"></i>
+                        Ranking global em breve
+                    </p>
+                </aside>
+
+            </div>
+        </div>
+
+        <!-- TELA DE GAME OVER -->
+        <div class="screen hidden" id="screenOver">
+            <div class="screen-inner over-screen">
+                <div class="explosion-emoji">💥</div>
+                <h2 class="over-title">FIM DE MISSÃO!</h2>
+                <div class="over-stats">
+                    <div class="over-stat">
+                        <span class="over-stat-label">Pontuação</span>
+                        <span class="over-stat-value gold" id="finalScore">0</span>
+                    </div>
+                    <div class="over-stat">
+                        <span class="over-stat-label">Estrelas</span>
+                        <span class="over-stat-value" id="finalStars">0</span>
+                    </div>
+                    <div class="over-stat">
+                        <span class="over-stat-label">Nível</span>
+                        <span class="over-stat-value" id="finalLevel">1</span>
+                    </div>
+                </div>
+                <div class="new-record hidden" id="newRecord">
+                    <i class="fas fa-crown"></i> NOVO RECORDE!
+                </div>
+                <div class="over-buttons">
+                    <button class="btn-primary" id="btnRestart">
+                        <i class="fas fa-redo"></i> TENTAR NOVAMENTE
+                    </button>
+                    <button class="btn-secondary" id="btnMenu">
+                        <i class="fas fa-home"></i> MENU
+                    </button>
+                    <a href="Minigames.html" class="btn-back-mini">
+                        <i class="fas fa-arrow-left"></i> Voltar aos Minigames
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="Catalogo.html" class="footer-logo">
+                <div class="logo-img-placeholder small"></div>
+                <span class="logo-text small">VELORA</span>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="#">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="FoguetinhoGame.js"></script>
+</body>
+</html>

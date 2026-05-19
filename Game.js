@@ -1,88 +1,134 @@
 const params = new URLSearchParams(window.location.search);
 
-const id = Number(params.get("id")) || 1;
-
-const titleEl = document.querySelector(".game-title");
-
-const imgEl = document.querySelector(".game-image");
-
-const genreEl = document.querySelector(".game-genre");
-
-const ratingEl = document.querySelector(".game-rating");
-
-const descEl = document.querySelector(".game-description");
-
-const favBtn = document.querySelector("#favBtn");
-
-let favorites =
-  JSON.parse(localStorage.getItem("velora_favoritos_ids")) || [];
+const gameId = params.get("id");
 
 fetch("Game.json")
+    .then(response => response.json())
 
-  .then(res => res.json())
+    .then(games => {
 
-  .then(games => {
+        const game = games.find(g => g.id == gameId);
 
-    const game = games.find(g => g.id === id);
+        if (!game) {
 
-    if (!game) {
+            document.body.innerHTML = `
+                <h1 style="
+                    color:white;
+                    text-align:center;
+                    margin-top:100px;
+                    font-family:Arial;
+                ">
+                    Jogo não encontrado.
+                </h1>
+            `;
 
-      titleEl.innerHTML = "Jogo não encontrado";
+            return;
+        }
 
-      return;
+        // =========================
+        // TÍTULO DA ABA
+        // =========================
+        document.title = `Velora | ${game.title}`;
+
+        // =========================
+        // HERO
+        // =========================
+        document.getElementById("game-title").textContent = game.title;
+
+        document.getElementById("game-description").textContent =
+            game.description || "Sem descrição.";
+
+        document.getElementById("game-genre").textContent =
+            game.genre || "Indie";
+
+        document.getElementById("game-rating").textContent =
+            game.rating || "5.0";
+
+        document.getElementById("rating-big-number").textContent =
+            game.rating || "5.0";
+
+        // =========================
+        // IMAGENS
+        // =========================
+        document.getElementById("game-cover").src = game.image;
+
+        document.getElementById("main-game-image").src = game.image;
+
+        document.getElementById("thumb-main-image").src = game.image;
+
+        // =========================
+        // BREADCRUMB
+        // =========================
+        document.getElementById("breadcrumb-title").textContent =
+            game.title;
+
+        // =========================
+        // DETALHES
+        // =========================
+        document.getElementById("detail-genre").textContent =
+            game.genre || "Indie";
+
+        // =========================
+        // TAGS
+        // =========================
+        const tagsContainer = document.getElementById("game-tags");
+
+        tagsContainer.innerHTML = `
+            <span class="tag">${game.genre}</span>
+            <span class="tag">Indie</span>
+            <span class="tag">Velora</span>
+        `;
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        document.body.innerHTML = `
+            <h1 style="
+                color:white;
+                text-align:center;
+                margin-top:100px;
+                font-family:Arial;
+            ">
+                Erro ao carregar jogo.
+            </h1>
+        `;
+    });
+
+    function getCatalogoCorreto() {
+    let user = null;
+
+    try {
+        user = JSON.parse(localStorage.getItem("velora_user"));
+    } catch (e) {}
+
+    if (user && user.account_type === "developer") {
+        return "CatalogoDev.html";
     }
 
-    titleEl.innerHTML = game.title;
-
-    imgEl.src = game.image;
-
-    genreEl.innerHTML =
-      "🎮 Gênero: " + game.genre;
-
-    ratingEl.innerHTML =
-      "⭐ Nota: " + game.rating;
-
-    descEl.innerHTML =
-      game.description;
-
-    updateFavButton(game.id);
-
-    favBtn.onclick = () => {
-
-      toggleFavorite(game.id);
-
-      updateFavButton(game.id);
-    };
-  });
-
-function toggleFavorite(id) {
-
-  if (favorites.includes(id)) {
-
-    favorites =
-      favorites.filter(f => f !== id);
-
-  } else {
-
-    favorites.push(id);
-  }
-
-  localStorage.setItem(
-    "velora_favoritos_ids",
-    JSON.stringify(favorites)
-  );
+    return "Catalogo.html";
 }
 
-function updateFavButton(id) {
+const catalogoCorreto = getCatalogoCorreto();
 
-  if (favorites.includes(id)) {
+document.getElementById("linkInicio")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
 
-    favBtn.innerHTML =
-      "💔 Remover dos favoritos";
+document.getElementById("linkJogos")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
 
-  } else {
+document.getElementById("breadcrumbInicio")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
 
-    favBtn.innerHTML =
-      "❤️ Favoritar";
-  }
-}
+document.getElementById("breadcrumbJogos")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});

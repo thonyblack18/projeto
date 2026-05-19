@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minigames — Velora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@400;600;700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Minigames.css">
+    <link rel="icon" href="logo velora.png" type="image/png">
+</head>
+<body>
+
+    <!-- =================== HEADER =================== -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../Catalogo.html" class="logo">
+                    <div class="logo-img-placeholder"></div>
+                    <span class="logo-text">VELORA</span>
+                </a>
+                <nav class="main-nav">
+                        <a href="../Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                        <a href="Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
+                        <a href="../Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
+                        <a href="../Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                        <a href="#" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+                        <a href="#" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-box-header">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+                    <span class="user-name" id="userName">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i><span>Meu Perfil</span>
+                    </div>
+                    <a href="SuporteUsuario.html" class="dropdown-item">
+                        <i class="fas fa-headset"></i><span>Suporte ao Usuário</span>
+                    </a>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i><span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =================== MAIN =================== -->
+    <main class="main-content">
+        <div class="content-container">
+
+            <div class="page-header">
+                <nav class="breadcrumb">
+                    <a href="Catalogo.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Minigames</span>
+                </nav>
+                <h1 class="page-title">Minigames</h1>
+                <p class="page-subtitle">Jogue, ganhe pontos e apoie a cena indie brasileira</p>
+            </div>
+
+            <!-- GRID DE CARDS -->
+            <div class="games-grid">
+
+                <a href="FoguetinhoGame.html" class="game-card" data-status="ativo">
+                    <div class="card-inner">
+                        <div class="card-glow"></div>
+                        <div class="card-top">
+                            <h2 class="card-title">FOGUETINHO<br>GAME</h2>
+                        </div>
+                        <div class="card-art">
+                            <div class="art-rocket">🚀</div>
+                            <div class="art-star s1">⭐</div>
+                            <div class="art-star s2">🌟</div>
+                            <div class="art-star s3">💫</div>
+                            <div class="art-trail"></div>
+                            <div class="art-trail t2"></div>
+                        </div>
+                        <div class="card-tag">
+                            <i class="fas fa-star"></i>
+                            <span>+10 pts / estrela</span>
+                        </div>
+                    </div>
+                    <div class="card-hover-label">Jogar agora <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <!-- VOE! — VELORA SPACE RUNNER -->
+                <a href="VoeGame.html" class="game-card" data-status="ativo">
+                    <div class="card-inner">
+                        <div class="card-glow"></div>
+                        <div class="card-top">
+                            <h2 class="card-title">VOE!<br>SPACE RUNNER</h2>
+                        </div>
+                        <div class="card-art">
+                            <div class="art-rocket" style="animation-name:rocketRun">🚀</div>
+                            <div class="art-star s1">🪐</div>
+                            <div class="art-star s2">☄️</div>
+                            <div class="art-star s3">🌠</div>
+                            <div class="art-trail"></div>
+                            <div class="art-trail t2"></div>
+                        </div>
+                        <div class="card-tag">
+                            <i class="fas fa-rocket"></i>
+                            <span>Desvie de planetas</span>
+                        </div>
+                    </div>
+                    <div class="card-hover-label">Jogar agora <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <!-- LETRECO GAME (em breve) -->
+                <div class="game-card" data-status="breve">
+                    <div class="card-inner">
+                        <div class="card-glow"></div>
+                        <div class="card-top">
+                            <h2 class="card-title">LETRECO<br>GAME</h2>
+                        </div>
+                        <div class="card-art">
+                            <div class="art-wordle">
+                                <div class="wrow">
+                                    <span class="wc correct">V</span>
+                                    <span class="wc present">E</span>
+                                    <span class="wc empty">L</span>
+                                    <span class="wc empty">O</span>
+                                </div>
+                                <div class="wrow">
+                                    <span class="wc correct">R</span>
+                                    <span class="wc correct">A</span>
+                                    <span class="wc empty"> </span>
+                                    <span class="wc empty"> </span>
+                                </div>
+                                <div class="wrow empty-row">
+                                    <span class="wc empty"></span>
+                                    <span class="wc empty"></span>
+                                    <span class="wc empty"></span>
+                                    <span class="wc empty"></span>
+                                </div>
+                            </div>
+                            <div class="art-deco">
+                                <div class="art-deco-emoji">⭐</div>
+                            </div>
+                        </div>
+                        <div class="card-tag muted">
+                            <i class="fas fa-clock"></i>
+                            <span>Em breve</span>
+                        </div>
+                    </div>
+                    <div class="card-soon-badge"><i class="fas fa-clock"></i> Em breve</div>
+                </div>
+
+                <!-- MEMORY GAME -->
+                <a href="MemoryGame.html" class="game-card" data-status="ativo">
+                    <div class="card-inner">
+                        <div class="card-glow"></div>
+                        <div class="card-top">
+                            <h2 class="card-title">MEMORY<br>GAME</h2>
+                        </div>
+                        <div class="card-art">
+                            <div class="art-memory">
+                                <div class="mem-grid">
+                                    <div class="mem-card revealed">⭐</div>
+                                    <div class="mem-card dark"></div>
+                                    <div class="mem-card revealed">⭐</div>
+                                    <div class="mem-card dark"></div>
+                                    <div class="mem-card revealed">🚀</div>
+                                    <div class="mem-card dark"></div>
+                                    <div class="mem-card dark"></div>
+                                    <div class="mem-card revealed">🚀</div>
+                                    <div class="mem-card dark"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-tag">
+                            <i class="fas fa-brain"></i>
+                            <span>Ache os pares</span>
+                        </div>
+                    </div>
+                    <div class="card-hover-label">Jogar agora <i class="fas fa-arrow-right"></i></div>
+                </a>
+
+            </div><!-- /games-grid -->
+
+        </div>
+    </main>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="logo-img-placeholder small"></div>
+                <span class="logo-text small">VELORA</span>
+            </div>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="#">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Minigames.js"></script>
+</body>
+</html>

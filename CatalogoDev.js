@@ -11,75 +11,116 @@ if (!user) {
 }
 
 // =================== FAVORITAR JOGOS ===================
-const favoriteBtns = document.querySelectorAll('.favorite-btn');
 
-favoriteBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Impede que o clique no card seja acionado
-        
-        const icon = btn.querySelector('i');
-        
-        if (btn.classList.contains('favorited')) {
-            // Remove dos favoritos
-            btn.classList.remove('favorited');
-            icon.classList.remove('fas');
-            icon.classList.add('far');
-        } else {
-            // Adiciona aos favoritos
-            btn.classList.add('favorited');
-            icon.classList.remove('far');
-            icon.classList.add('fas');
-            
-            // Animação de feedback
-            btn.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                btn.style.transform = 'scale(1)';
-            }, 200);
-        }
-    });
-});
 
 // =================== CLIQUE NO CARD DO JOGO ===================
-const gameRoutes = {
-    'Dandara: Trials of Fear Edition': 'InfoJogos/dandara/Dandara.html',
-    'Mullet Madjack':                  'jogos/mullet-madjack/',
-    'Horizon Chase Turbo':             'jogos/horizon-chase/',
-    'A.I.L.A':                        'jogos/aila/',
-    'Kambulin':                        'jogos/kambulin/',
-    'Momodora: Reverie Under the Moonlight': 'jogos/momodora/',
-    'Knights of Pen and Paper II':     'jogos/knights/',
-    'Chroma Squad':                    'jogos/chroma-squad/',
-    'Mark of the Deep':                'jogos/mark-of-the-deep/',
-    'Tupi: The Legend of Arariboia':   'jogos/tupi/',
-    '171':                             'jogos/171/',
-    'Sina':                            'jogos/sina/',
-    '9Kings':                          'InfoJogos/9kings/9kings.html',
-    'Gaúcho and the Grassland':        'jogos/gaucho/',
-    'Pipistrello and the Cursed Yoyo': 'jogos/pipistrello/',
-    'No Heroes Here':                  'jogos/no-heroes-here/',
-    'Dragon Khan':                     'jogos/dragon-khan/',
-    '99 Vidas':                        'jogos/99-vidas/',
-    'Dandy Ace':                       'jogos/dandy-ace/',
-    'Mombo Combo Legacy':              'jogos/mombo-combo/',
-};
+const gamesGrid = document.querySelector(".games-grid");
 
-const gameCards = document.querySelectorAll('.game-card');
+fetch("Game.json")
 
-gameCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const gameTitle = card.querySelector('.game-title').textContent;
-        const route = gameRoutes[gameTitle];
-        if (route) {
-            window.location.href = route;
-        }
+  .then(res => res.json())
+
+  .then(games => {
+
+    gamesGrid.innerHTML = "";
+
+    games.forEach(game => {
+
+      gamesGrid.innerHTML += `
+
+        <a href="${game.page ? game.page : `Game.html?id=${game.id}`}" class="game-card-link">
+
+          <div class="game-card">
+
+            <div class="game-image">
+
+              <img
+                src="${game.image}"
+                alt="${game.title}"
+                class="game-logo"
+              >
+
+              <button class="favorite-btn">
+                <i class="far fa-heart"></i>
+              </button>
+
+            </div>
+
+            <div class="game-info">
+
+              <h3 class="game-title">
+                ${game.title}
+              </h3>
+
+              <div class="game-meta">
+
+                <span class="game-genre">
+                  ${game.genre}
+                </span>
+
+                <span class="game-rating">
+                  ⭐ ${game.rating}
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      `;
     });
-});
+
+    const favoriteBtns =
+      document.querySelectorAll('.favorite-btn');
+
+    favoriteBtns.forEach(btn => {
+
+      btn.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        e.stopPropagation();
+
+        const icon = btn.querySelector('i');
+
+        if (btn.classList.contains('favorited')) {
+
+          btn.classList.remove('favorited');
+
+          icon.classList.remove('fas');
+
+          icon.classList.add('far');
+
+        } else {
+
+          btn.classList.add('favorited');
+
+          icon.classList.remove('far');
+
+          icon.classList.add('fas');
+
+          btn.style.transform = 'scale(1.3)';
+
+          setTimeout(() => {
+
+            btn.style.transform = 'scale(1)';
+
+          }, 200);
+        }
+      });
+    });
+  });
+
 // =================== BUSCA DE JOGOS ===================
 const searchInput = document.querySelector('.search-box input');
 
 searchInput?.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
-    
+    const gameCards = document.querySelectorAll('.game-card');
+
     gameCards.forEach(card => {
         const title = card.querySelector('.game-title').textContent.toLowerCase();
         const genre = card.querySelector('.game-genre').textContent.toLowerCase();
@@ -98,6 +139,7 @@ const sortSelect = document.querySelector('.sort-select');
 sortSelect?.addEventListener('change', (e) => {
     const sortType = e.target.value;
     const gamesGrid = document.querySelector('.games-grid');
+    const gameCards = document.querySelectorAll('.game-card');
     const cardsArray = Array.from(gameCards);
     
     cardsArray.sort((a, b) => {
@@ -113,12 +155,11 @@ sortSelect?.addEventListener('change', (e) => {
                 return titleA.localeCompare(titleB);
             case 'Z-A':
                 return titleB.localeCompare(titleA);
-            default: // Mais recentes
+            default:
                 return 0;
         }
     });
     
-    // Reorganiza os cards
     cardsArray.forEach(card => gamesGrid.appendChild(card));
 });
 
@@ -129,10 +170,7 @@ navItems.forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Remove active de todos
         navItems.forEach(nav => nav.classList.remove('active'));
-        
-        // Adiciona active no clicado
         item.classList.add('active');
         
         console.log('Navegando para:', item.textContent.trim());
@@ -154,14 +192,12 @@ closeModal?.addEventListener('click', () => {
     filterModal.classList.remove('active');
 });
 
-// Fecha o modal ao clicar fora dele
 filterModal?.addEventListener('click', (e) => {
     if (e.target === filterModal) {
         filterModal.classList.remove('active');
     }
 });
 
-// Limpar filtros
 clearFilters?.addEventListener('click', () => {
     const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]');
     const radios = filterModal.querySelectorAll('input[type="radio"]');
@@ -172,14 +208,11 @@ clearFilters?.addEventListener('click', () => {
     });
 });
 
-// Aplicar filtros
 applyFilters?.addEventListener('click', () => {
-    // Aqui você pode implementar a lógica de filtragem
     console.log('Filtros aplicados!');
     
     filterModal.classList.remove('active');
     
-    // Exemplo de como pegar os filtros selecionados:
     const selectedGenres = Array.from(filterModal.querySelectorAll('input[type="checkbox"]:checked'))
         .map(cb => cb.value);
     const selectedRating = filterModal.querySelector('input[name="rating"]:checked').value;
@@ -202,7 +235,6 @@ const gameLogos = document.querySelectorAll('.game-logo');
 
 gameLogos.forEach(logo => {
     logo.addEventListener('error', function() {
-        // Cria um placeholder caso a imagem não carregue
         this.style.display = 'none';
         const placeholder = document.createElement('div');
         placeholder.style.cssText = `
@@ -242,7 +274,6 @@ if (userProfile && userDropdown) {
         e.stopPropagation();
     });
 
-    // =================== MEU PERFIL — redireciona para PerfilDev.html ===================
     document.getElementById('dropMeuPerfil')?.addEventListener('click', () => {
         let user = null;
         try { user = JSON.parse(localStorage.getItem("velora_user")); } catch (e) {}
@@ -256,28 +287,20 @@ if (userProfile && userDropdown) {
         }
     });
 
-    // =================== SUPORTE AO USUÁRIO — redireciona para SuporteUsuario.html ===================
     document.getElementById('dropSuporte')?.addEventListener('click', () => {
         window.location.href = "SuporteUsuario.html";
     });
 
-    // =================== ADICIONAR JOGO — exclusivo do desenvolvedor ===================
-    // O redirecionamento já é feito pelo href="AdicionarJogo.html" no próprio <a> do HTML.
-    // Este listener é opcional, mas pode ser útil para futuros controles de permissão.
     document.getElementById('dropAdicionarJogo')?.addEventListener('click', (e) => {
         let user = null;
         try { user = JSON.parse(localStorage.getItem("velora_user")); } catch (err) {}
 
-        // Segurança extra: se por algum motivo um não-dev acessar esta página,
-        // bloqueia o redirecionamento e manda pro login.
         if (!user || user.account_type !== "developer") {
             e.preventDefault();
             window.location.href = "LoginCadastro.html";
         }
     });
-    // ================================================================================
 
-    // =================== SAIR — limpa sessão e redireciona ===================
     document.getElementById('dropSair')?.addEventListener('click', () => {
         localStorage.removeItem("velora_user");
         window.location.href = "LoginCadastro.html";
