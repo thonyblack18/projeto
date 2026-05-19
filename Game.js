@@ -132,3 +132,54 @@ document.getElementById("breadcrumbJogos")?.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = catalogoCorreto;
 });
+
+// =================== FAVORITAR JOGO DINÂMICO ===================
+const btnWishlist = document.getElementById("btnWishlist");
+const wishlistIcon = document.getElementById("wishlistIcon");
+const wishlistText = document.getElementById("wishlistText");
+
+const JOGO_ID = `json:${gameId}`;
+
+function getFavoritos() {
+    try {
+        return JSON.parse(localStorage.getItem("velora_favoritos_ids") || "[]");
+    } catch (e) {
+        return [];
+    }
+}
+
+function salvarFavoritos(lista) {
+    localStorage.setItem("velora_favoritos_ids", JSON.stringify(lista));
+}
+
+function atualizarBotaoFavorito() {
+    const favoritos = getFavoritos();
+    const isFav = favoritos.includes(JOGO_ID);
+
+    wishlistIcon.className = isFav ? "fas fa-heart-broken" : "far fa-heart";
+    wishlistText.textContent = isFav ? "Remover dos Favoritos" : "Adicionar aos Favoritos";
+    btnWishlist.classList.toggle("favorited", isFav);
+}
+
+btnWishlist?.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let favoritos = getFavoritos();
+
+    if (favoritos.includes(JOGO_ID)) {
+        favoritos = favoritos.filter(id => id !== JOGO_ID);
+    } else {
+        favoritos.push(JOGO_ID);
+    }
+
+    salvarFavoritos(favoritos);
+    atualizarBotaoFavorito();
+});
+
+atualizarBotaoFavorito();
+
+const btnFavoritosHeader = document.getElementById("btnFavoritos");
+
+btnFavoritosHeader?.addEventListener("click", () => {
+    window.location.href = "ListaFavoritos.html";
+});

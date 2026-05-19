@@ -24,6 +24,11 @@ fetch("Game.json")
 
     gamesGrid.innerHTML = "";
 
+    const gamesCount = document.getElementById("gamesCount");
+
+    if (gamesCount) {
+        gamesCount.textContent = `${games.length} jogos disponíveis`;
+    }
     games.forEach(game => {
 
       gamesGrid.innerHTML += `
@@ -40,7 +45,7 @@ fetch("Game.json")
                 class="game-logo"
               >
 
-              <button class="favorite-btn">
+              <button class="favorite-btn" data-id="json:${game.id}">
                 <i class="far fa-heart"></i>
               </button>
 
@@ -74,43 +79,47 @@ fetch("Game.json")
     });
 
     const favoriteBtns =
-      document.querySelectorAll('.favorite-btn');
+  document.querySelectorAll('.favorite-btn');
 
-    favoriteBtns.forEach(btn => {
+let favoritosIds =
+  JSON.parse(localStorage.getItem('velora_favoritos_ids') || '[]');
 
-      btn.addEventListener('click', (e) => {
+favoriteBtns.forEach(btn => {
 
-        e.preventDefault();
+  const jogoId = btn.dataset.id;
+  const icon = btn.querySelector('i');
 
-        e.stopPropagation();
+  if (favoritosIds.includes(jogoId)) {
+    btn.classList.add('favorited');
+    icon.classList.remove('far');
+    icon.classList.add('fas');
+  }
 
-        const icon = btn.querySelector('i');
+  btn.addEventListener('click', (e) => {
 
-        if (btn.classList.contains('favorited')) {
+    e.preventDefault();
+    e.stopPropagation();
 
-          btn.classList.remove('favorited');
+    if (favoritosIds.includes(jogoId)) {
+      favoritosIds = favoritosIds.filter(id => id !== jogoId);
 
-          icon.classList.remove('fas');
+      btn.classList.remove('favorited');
+      icon.classList.remove('fas');
+      icon.classList.add('far');
 
-          icon.classList.add('far');
+    } else {
+      favoritosIds.push(jogoId);
 
-        } else {
+      btn.classList.add('favorited');
+      icon.classList.remove('far');
+      icon.classList.add('fas');
+    }
 
-          btn.classList.add('favorited');
-
-          icon.classList.remove('far');
-
-          icon.classList.add('fas');
-
-          btn.style.transform = 'scale(1.3)';
-
-          setTimeout(() => {
-
-            btn.style.transform = 'scale(1)';
-
-          }, 200);
-        }
-      });
+    localStorage.setItem(
+      'velora_favoritos_ids',
+      JSON.stringify(favoritosIds)
+      );
+     });
     });
   });
 
@@ -119,14 +128,14 @@ const searchInput = document.querySelector('.search-box input');
 
 searchInput?.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
-    const gameCards = document.querySelectorAll('.game-card');
+    const gameCards = document.querySelectorAll('.game-card-link');
 
     gameCards.forEach(card => {
         const title = card.querySelector('.game-title').textContent.toLowerCase();
         const genre = card.querySelector('.game-genre').textContent.toLowerCase();
         
         if (title.includes(searchTerm) || genre.includes(searchTerm)) {
-            card.style.display = 'block';
+            card.style.display = 'flex';
         } else {
             card.style.display = 'none';
         }
@@ -306,3 +315,9 @@ if (userProfile && userDropdown) {
         window.location.href = "LoginCadastro.html";
     });
 }
+
+const btnFavoritos = document.querySelector('.icon-btn[title="Favoritos"]');
+
+btnFavoritos?.addEventListener("click", () => {
+    window.location.href = "ListaFavoritos.html";
+});
