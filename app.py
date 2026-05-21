@@ -694,8 +694,8 @@ def get_games():
                 short_description,
                 genre,
                 platform,
-                cover_image,
-                banner_image,
+                cover_url,
+                banner_url,
                 trailer_url,
                 official_website,
                 release_date,
@@ -728,45 +728,83 @@ import json
 
 @app.route('/add-game', methods=['POST'])
 def add_game():
+    print("ROTA /add-game NOVA FOI CHAMADA")
 
     title = request.form.get("title")
     description = request.form.get("description")
     genre = request.form.get("genre")
+    platform = request.form.get("platform") or ""
+    developer_id = request.form.get("developer_id")
 
     image = request.files.get("image")
 
-    if not image:
+    if not title or not description or not genre:
+        return jsonify({"error": "Preencha título, descrição e gênero."}), 400
+
+    image_path = ""
+
+    if image:
+        os.makedirs("uploads", exist_ok=True)
+
+        filename = secure_filename(image.filename)
+        image_path = f"uploads/{filename}"
+
+        image.save(image_path)
+
+    conn = get_connection()
+
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO games (
+                developer_id,
+                title,
+                description,
+                short_description,
+                genre,
+                platform,
+                cover_url,
+                banner_url,
+                price,
+                is_free,
+                status,
+                rating
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            developer_id,
+            title,
+            description,
+            description[:120],
+            genre,
+            platform,
+            image_path,
+            image_path,
+            0.00,
+            0,
+            "draft",
+            5.0
+        ))
+
+        conn.commit()
+
         return jsonify({
-            "error": "Imagem não enviada"
-        }), 400
+            "message": "Jogo salvo no MySQL com sucesso.",
+            "game_id": cursor.lastrowid
+        }), 201
 
-    # cria pasta uploads se não existir
-    os.makedirs("uploads", exist_ok=True)
+    except Exception as e:
+        conn.rollback()
+        print("ERRO AO SALVAR JOGO:", str(e))
+        return jsonify({"error": f"Erro ao salvar jogo: {str(e)}"}), 500
 
-    image_path = f"uploads/{image.filename}"
-
-    image.save(image_path)
-
-    with open('Game.json', 'r', encoding='utf-8') as file:
-        jogos = json.load(file)
-
-    novo_jogo = {
-        "id": len(jogos) + 1,
-        "title": title,
-        "image": image_path,
-        "genre": genre,
-        "rating": "5.0",
-        "description": description
-    }
-
-    jogos.append(novo_jogo)
-
-    with open('Game.json', 'w', encoding='utf-8') as file:
-        json.dump(jogos, file, indent=2, ensure_ascii=False)
-
-    return jsonify({
-        "message": "Jogo salvo com sucesso"
-    })
+    finally:
+        cursor.close()
+        conn.close()
         
 if __name__ == "__main__":
     app.run(debug=True)

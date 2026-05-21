@@ -62,7 +62,9 @@ function showToast(message, type = 'success') {
 function setupCounter(inputId, countId, max) {
     const el = document.getElementById(inputId);
     const ct = document.getElementById(countId);
+
     if (!el || !ct) return;
+
     el.addEventListener('input', () => {
         ct.textContent = `${el.value.length}/${max}`;
         updateChecklist();
@@ -70,9 +72,9 @@ function setupCounter(inputId, countId, max) {
     });
 }
 
-setupCounter('game-title',   'title-count',   80);
+setupCounter('game-title', 'title-count', 80);
 setupCounter('game-tagline', 'tagline-count', 120);
-setupCounter('game-desc',    'desc-count',    1500);
+setupCounter('game-desc', 'desc-count', 1500);
 
 // =================== CHIPS DE GÊNERO ===================
 document.querySelectorAll('.genre-chip').forEach(chip => {
@@ -110,13 +112,17 @@ tagsContainer.addEventListener('click', () => tagInput.focus());
 tagInput.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ',') && tagInput.value.trim()) {
         e.preventDefault();
+
         const val = tagInput.value.trim().replace(/,/g, '');
+
         if (val && tags.length < 10 && !tags.includes(val)) {
             tags.push(val);
             renderTags();
         }
+
         tagInput.value = '';
     }
+
     if (e.key === 'Backspace' && !tagInput.value && tags.length) {
         tags.pop();
         renderTags();
@@ -125,25 +131,29 @@ tagInput.addEventListener('keydown', e => {
 
 function renderTags() {
     tagsContainer.querySelectorAll('.tag').forEach(t => t.remove());
+
     tags.forEach((tag, i) => {
         const el = document.createElement('div');
         el.className = 'tag';
         el.innerHTML = `${tag}<button type="button" class="tag-remove" data-i="${i}">×</button>`;
+
         el.querySelector('.tag-remove').addEventListener('click', () => {
             tags.splice(i, 1);
             renderTags();
             updatePreview();
         });
+
         tagsContainer.insertBefore(el, tagInput);
     });
+
     updatePreview();
 }
 
 // =================== UPLOAD DA CAPA ===================
-const coverInput       = document.getElementById('cover-input');
-const coverPreview     = document.getElementById('cover-preview');
-const coverUploadArea  = document.getElementById('cover-upload-area');
-const previewCoverImg  = document.getElementById('preview-cover-img');
+const coverInput = document.getElementById('cover-input');
+const coverPreview = document.getElementById('cover-preview');
+const coverUploadArea = document.getElementById('cover-upload-area');
+const previewCoverImg = document.getElementById('preview-cover-img');
 const previewPlaceholder = document.getElementById('preview-placeholder');
 
 coverInput.addEventListener('change', function () {
@@ -170,37 +180,47 @@ coverUploadArea.addEventListener('drop', e => {
 
 function loadCover(file) {
     const url = URL.createObjectURL(file);
+
     coverPreview.src = url;
     coverPreview.classList.add('show');
+
     coverUploadArea.style.display = 'none';
+
     previewCoverImg.src = url;
     previewCoverImg.style.display = 'block';
+
     previewPlaceholder.style.display = 'none';
+
     updateChecklist();
 }
 
 // =================== UPLOAD DE SCREENSHOTS ===================
 const screenshotsInput = document.getElementById('screenshots-input');
-const screenshotsGrid  = document.getElementById('screenshots-grid');
+const screenshotsGrid = document.getElementById('screenshots-grid');
 let screenshots = [];
 
 screenshotsInput.addEventListener('change', function () {
     Array.from(this.files).forEach(f => {
         if (screenshots.length < 6) screenshots.push(URL.createObjectURL(f));
     });
+
     renderScreenshots();
 });
 
 function renderScreenshots() {
     screenshotsGrid.innerHTML = '';
+
     screenshots.forEach((url, i) => {
         const div = document.createElement('div');
         div.className = 'screenshot-thumb';
+
         div.innerHTML = `
             <img src="${url}" alt="">
             <button type="button" class="screenshot-remove" onclick="removeScreenshot(${i})">
                 <i class="fas fa-times"></i>
-            </button>`;
+            </button>
+        `;
+
         screenshotsGrid.appendChild(div);
     });
 }
@@ -214,7 +234,9 @@ window.removeScreenshot = (i) => {
 window.addRoadmapItem = function () {
     const list = document.getElementById('roadmap-list');
     const div = document.createElement('div');
+
     div.className = 'roadmap-item';
+
     div.innerHTML = `
         <i class="fas fa-grip-vertical roadmap-grip"></i>
         <input type="text" placeholder="Descreva a etapa...">
@@ -225,29 +247,40 @@ window.addRoadmapItem = function () {
         </select>
         <button type="button" class="roadmap-remove-btn" onclick="removeRoadmapItem(this)">
             <i class="fas fa-times"></i>
-        </button>`;
+        </button>
+    `;
+
     list.appendChild(div);
 };
 
 window.removeRoadmapItem = function (btn) {
     const list = document.getElementById('roadmap-list');
-    if (list.children.length > 1) btn.closest('.roadmap-item').remove();
+
+    if (list.children.length > 1) {
+        btn.closest('.roadmap-item').remove();
+    }
 };
 
 // =================== PRÉ-VISUALIZAÇÃO EM TEMPO REAL ===================
 function updatePreview() {
-    const title  = document.getElementById('game-title').value.trim();
-    const desc   = document.getElementById('game-desc').value.trim();
-    const genres = [...document.querySelectorAll('.genre-chip.selected')].map(c => c.dataset.genre);
+    const title = document.getElementById('game-title').value.trim();
+    const desc = document.getElementById('game-desc').value.trim();
+
+    const genres = [
+        ...document.querySelectorAll('.genre-chip.selected')
+    ].map(c => c.dataset.genre);
 
     const pTitle = document.getElementById('preview-title');
+
     pTitle.textContent = title || 'Nome do jogo...';
     pTitle.className = 'preview-title' + (title ? '' : ' empty');
 
     const pDesc = document.getElementById('preview-desc');
+
     pDesc.textContent = desc
         ? (desc.length > 110 ? desc.slice(0, 110) + '...' : desc)
         : 'Descrição aparecerá aqui...';
+
     pDesc.className = 'preview-desc' + (desc ? '' : ' empty');
 
     document.getElementById('preview-genre').textContent = genres.join(' · ');
@@ -261,47 +294,54 @@ function updatePreview() {
 // =================== CHECKLIST E BARRA DE PROGRESSO ===================
 function setCheck(id, ok) {
     const circle = document.getElementById(`chk-${id}-circle`);
-    const item   = document.getElementById(`chk-${id}`);
+    const item = document.getElementById(`chk-${id}`);
+
     if (!circle) return;
+
     circle.className = 'check-circle' + (ok ? ' ok' : '');
     circle.innerHTML = ok ? '<i class="fas fa-check" style="font-size:9px;"></i>' : '';
+
     item.className = 'check-item' + (ok ? ' ok' : '');
 }
 
 function updateChecklist() {
-    const title    = document.getElementById('game-title').value.trim().length > 0;
-    const desc     = document.getElementById('game-desc').value.trim().length > 10;
-    const genre    = document.querySelectorAll('.genre-chip.selected').length > 0;
-    const cover    = coverPreview.classList.contains('show');
+    const title = document.getElementById('game-title').value.trim().length > 0;
+    const desc = document.getElementById('game-desc').value.trim().length > 10;
+    const genre = document.querySelectorAll('.genre-chip.selected').length > 0;
+    const cover = coverPreview.classList.contains('show');
     const platform = document.querySelectorAll('.platform-chip.selected').length > 0;
-    const status   = document.querySelectorAll('.status-card.selected').length > 0;
+    const status = document.querySelectorAll('.status-card.selected').length > 0;
 
-    setCheck('title',    title);
-    setCheck('desc',     desc);
-    setCheck('genre',    genre);
-    setCheck('cover',    cover);
+    setCheck('title', title);
+    setCheck('desc', desc);
+    setCheck('genre', genre);
+    setCheck('cover', cover);
     setCheck('platform', platform);
-    setCheck('status',   status);
+    setCheck('status', status);
 
     const done = [title, desc, genre, cover, platform, status].filter(Boolean).length;
-    const pct  = Math.round((done / 6) * 100);
+    const pct = Math.round((done / 6) * 100);
+
     document.getElementById('progress-percent').textContent = pct + '%';
     document.getElementById('progress-fill').style.width = pct + '%';
 }
 
 // =================== DESTAQUE DA ETAPA ATUAL (SCROLL) ===================
 const stepItems = document.querySelectorAll('.step-item');
-const sections  = document.querySelectorAll('.form-section');
+const sections = document.querySelectorAll('.form-section');
 
 window.addEventListener('scroll', () => {
     let current = 0;
+
     sections.forEach((sec, i) => {
         if (window.scrollY + 140 >= sec.offsetTop) current = i;
     });
+
     const stepIndex = Math.min(current, stepItems.length - 1);
+
     stepItems.forEach((s, i) => {
         s.classList.toggle('active', i === stepIndex);
-        s.classList.toggle('done',   i < stepIndex);
+        s.classList.toggle('done', i < stepIndex);
     });
 });
 
@@ -311,23 +351,29 @@ document.getElementById('btn-rascunho').addEventListener('click', () => {
 });
 
 // =================== ENVIO DO FORMULÁRIO ===================
-// =================== ENVIO DO FORMULÁRIO ===================
 document.getElementById('game-form').addEventListener('submit', async (e) => {
-
     e.preventDefault();
 
     const title = document.getElementById('game-title').value.trim();
-
     const desc = document.getElementById('game-desc').value.trim();
 
     const genres = [
         ...document.querySelectorAll('.genre-chip.selected')
     ].map(c => c.dataset.genre);
 
+    const platforms = [
+        ...document.querySelectorAll('.platform-chip.selected')
+    ].map(c => c.dataset.platform);
+
+    const status = document.querySelector('.status-card.selected')?.dataset.status || "draft";
+
+    const tagline = document.getElementById('game-tagline').value.trim();
+
+    const trailerUrl = document.getElementById('trailer-url').value.trim();
+
     const coverFile = coverInput.files[0];
 
     // =================== VALIDAÇÕES ===================
-
     if (!title) {
         showToast('⚠️ Preencha o nome do jogo.', 'error');
         return;
@@ -343,41 +389,54 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
         return;
     }
 
+    if (!platforms.length) {
+        showToast('⚠️ Selecione uma plataforma.', 'error');
+        return;
+    }
+
     if (!coverFile) {
         showToast('⚠️ Envie a capa do jogo.', 'error');
         return;
     }
 
-    // =================== ENVIO ===================
+    const user = JSON.parse(localStorage.getItem("velora_user"));
 
+    if (!user || user.account_type !== "developer") {
+        showToast('⚠️ Você precisa estar logado como desenvolvedor.', 'error');
+        return;
+    }
+
+    // =================== ENVIO ===================
     const formData = new FormData();
 
     formData.append("title", title);
     formData.append("description", desc);
     formData.append("genre", genres.join(", "));
+    formData.append("platform", platforms.join(", "));
+    formData.append("status", status);
+    formData.append("tagline", tagline);
+    formData.append("trailer_url", trailerUrl);
     formData.append("image", coverFile);
+    formData.append("developer_id", user.id);
 
     try {
-
         const response = await fetch("http://127.0.0.1:5000/add-game", {
-
             method: "POST",
             body: formData
-
         });
 
         const data = await response.json();
 
         console.log(data);
 
+        if (!response.ok) {
+            showToast(data.error || '❌ Erro ao salvar jogo.', 'error');
+            return;
+        }
+
         showToast('🚀 Jogo publicado com sucesso!');
-
     } catch (err) {
-
         console.error(err);
-
         showToast('❌ Erro ao salvar jogo.', 'error');
-
     }
-
 });
