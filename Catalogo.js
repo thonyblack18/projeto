@@ -146,14 +146,24 @@ function applyCatalogState() {
 }
 
 // =================== CARREGAR JOGOS ===================
-fetch("Game.json")
+fetch("http://127.0.0.1:5000/api/games")
     .then(res => res.json())
-    .then(games => {
-        allGames = games;
+    .then(data => {
+
+        allGames = data.games.map(game => ({
+            ...game,
+
+            image: game.cover_url
+                ? `http://127.0.0.1:5000/${game.cover_url}`
+                : "logo-velora.png",
+
+            rating: game.rating || "5.0"
+        }));
+
         applyCatalogState();
     })
     .catch(err => {
-        console.error("Erro ao carregar Game.json:", err);
+        console.error("Erro ao carregar jogos:", err);
     });
 
 // =================== BUSCA ===================

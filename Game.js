@@ -2,12 +2,12 @@ const params = new URLSearchParams(window.location.search);
 
 const gameId = params.get("id");
 
-fetch("Game.json")
+fetch(`http://127.0.0.1:5000/api/games/${gameId}`)
     .then(response => response.json())
 
-    .then(games => {
+    .then(data => {
 
-        const game = games.find(g => g.id == gameId);
+        const game = data.game;
 
         if (!game) {
 
@@ -36,7 +36,7 @@ fetch("Game.json")
         document.getElementById("game-title").textContent = game.title;
 
         document.getElementById("game-description").textContent =
-            game.description || "Sem descrição.";
+            game.description || game.short_description || "Sem descrição.";
 
         document.getElementById("game-genre").textContent =
             game.genre || "Indie";
@@ -50,11 +50,11 @@ fetch("Game.json")
         // =========================
         // IMAGENS
         // =========================
-        document.getElementById("game-cover").src = game.image;
+        document.getElementById("game-cover").src = game.cover_url;
 
-        document.getElementById("main-game-image").src = game.image;
+        document.getElementById("main-game-image").src = game.banner_url || game.cover_url;
 
-        document.getElementById("thumb-main-image").src = game.image;
+        document.getElementById("thumb-main-image").src = game.cover_url;
 
         // =========================
         // BREADCRUMB
@@ -98,16 +98,6 @@ fetch("Game.json")
     });
 
     function getCatalogoCorreto() {
-    let user = null;
-
-    try {
-        user = JSON.parse(localStorage.getItem("velora_user"));
-    } catch (e) {}
-
-    if (user && user.account_type === "developer") {
-        return "CatalogoDev.html";
-    }
-
     return "Catalogo.html";
 }
 

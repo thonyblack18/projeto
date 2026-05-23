@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
@@ -805,6 +805,64 @@ def add_game():
     finally:
         cursor.close()
         conn.close()
-        
+
+@app.route("/uploads/<path:filename>")
+def uploaded_file(filename):
+    return send_from_directory("uploads", filename)
+
+@app.route("/api/games/<int:game_id>", methods=["GET"])
+def get_game_by_id(game_id):
+    conn = get_connection()
+
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    cursor = None
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT
+                g.id,
+                g.developer_id,
+                g.title,
+                g.tagline,
+                g.description,
+                g.short_description,
+                g.genre,
+                g.platform,
+                g.cover_url,
+                g.banner_url,
+                g.trailer_url,
+                g.official_website,
+                g.release_date,
+                g.price,
+                g.rating,
+                g.status,
+                g.created_at,
+                g.updated_at,
+                u.name AS developer_name
+            FROM games g
+            LEFT JOIN users u ON u.id = g.developer_id
+            WHERE g.id = %s
+        """, (game_id,))
+
+        game = cursor.fetchone()
+
+        if not game:
+            return jsonify({"error": "Jogo não encontrado."}), 404
+
+        return jsonify({"game": game}), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Erro ao buscar jogo: {str(e)}"}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        conn.close()
+
 if __name__ == "__main__":
     app.run(debug=True)

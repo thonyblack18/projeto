@@ -102,9 +102,7 @@ function getLista() {
     let lista = todos.filter(j => {
         const key = getJogoKey(j);
 
-        return favoritosIds.includes(key)
-            || favoritosIds.includes(j.id)
-            || favoritosIds.includes(String(j.id));
+        return favoritosIds.includes(key);
     });
 
     // remove duplicados pelo título
@@ -137,12 +135,15 @@ function getLista() {
         case 'rating':
             lista.sort((a, b) => b.avaliacao - a.avaliacao);
             break;
+
         case 'az':
             lista.sort((a, b) => a.titulo.localeCompare(b.titulo));
             break;
+
         case 'za':
             lista.sort((a, b) => b.titulo.localeCompare(a.titulo));
             break;
+
         default:
             lista.sort((a, b) =>
                 favoritosIds.lastIndexOf(getJogoKey(b)) -
@@ -394,16 +395,6 @@ async function init() {
     renderizar();
 }
 function getCatalogoCorreto() {
-    let user = null;
-
-    try {
-        user = JSON.parse(localStorage.getItem("velora_user"));
-    } catch (e) {}
-
-    if (user && user.account_type === "developer") {
-        return "CatalogoDev.html";
-    }
-
     return "Catalogo.html";
 }
 
