@@ -54,7 +54,9 @@ async function carregarJogosAPI() {
         ? "lancado"
         : "desenvolvimento",
 
-        logo: game.cover_image || "",
+        logo: game.cover_url
+    ? `${API_BASE}/${game.cover_url}`
+    : "",
     
         rota: `Game.html?id=${game.id}`,
 
