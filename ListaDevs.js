@@ -1,3 +1,72 @@
+// =================== CANVAS DE PARTÍCULAS ===================
+const canvas = document.getElementById('particles');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+
+    class Star {
+        constructor() { this.reset(true); }
+        reset(init) {
+            this.x = init ? Math.random() * canvas.width : -50;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 1.8 + 0.4;
+            this.speedX = Math.random() * 0.7 + 0.3;
+            this.opacity = Math.random() * 0.5 + 0.3;
+            this.twinkleSpeed = Math.random() * 0.025 + 0.008;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+        }
+        update() {
+            this.x += this.speedX;
+            this.twinklePhase += this.twinkleSpeed;
+            this.currentOpacity = Math.max(0, this.opacity + Math.sin(this.twinklePhase) * 0.28);
+            if (this.x > canvas.width + 50) this.reset(false);
+        }
+        draw() {
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.currentOpacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    const stars = Array.from({ length: 140 }, () => new Star());
+
+    function animateStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(star => { star.update(); star.draw(); });
+        requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+    window.addEventListener('resize', resizeCanvas);
+}
+
+// =================== LOGO FALLBACK ===================
+function setupLogoFallback(imgId, placeholderId) {
+    const img = document.getElementById(imgId);
+    const placeholder = document.getElementById(placeholderId);
+    if (!img || !placeholder) return;
+
+    img.addEventListener('error', () => {
+        img.style.display = 'none';
+        placeholder.style.display = 'flex';
+    });
+
+    if (img.complete && img.naturalWidth === 0) {
+        img.style.display = 'none';
+        placeholder.style.display = 'flex';
+    }
+}
+
+setupLogoFallback('header-logo', 'logo-placeholder');
+setupLogoFallback('footer-logo', 'footer-logo-placeholder');
+
 /* ============================================
    ListaDevs.js — Velora
    ============================================ */
