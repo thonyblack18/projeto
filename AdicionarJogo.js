@@ -425,23 +425,38 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
     formData.append("developer_id", user.id);
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/add-game", {
-            method: "POST",
-            body: formData
-        });
+    const submitBtn = document.querySelector(".submit-main-btn");
 
-        const data = await response.json();
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Publicando...`;
 
-        console.log(data);
+    const response = await fetch("http://127.0.0.1:5000/add-game", {
+        method: "POST",
+        body: formData
+    });
 
-        if (!response.ok) {
-            showToast(data.error || '❌ Erro ao salvar jogo.', 'error');
-            return;
-        }
+    const data = await response.json();
+    console.log(data);
 
-        showToast('🚀 Jogo publicado com sucesso!');
-    } catch (err) {
-        console.error(err);
-        showToast('❌ Erro ao salvar jogo.', 'error');
+    if (!response.ok) {
+        showToast(data.error || "❌ Erro ao salvar jogo.", "error");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fas fa-rocket"></i> Publicar jogo`;
+        return;
     }
+
+    showToast("🚀 Jogo publicado com sucesso!");
+
+    setTimeout(() => {
+        window.location.href = `Game.html?id=${data.game_id}`;
+    }, 1200);
+
+} catch (err) {
+    console.error(err);
+    showToast("❌ Erro ao salvar jogo.", "error");
+
+    const submitBtn = document.querySelector(".submit-main-btn");
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = `<i class="fas fa-rocket"></i> Publicar jogo`;
+}
 });
