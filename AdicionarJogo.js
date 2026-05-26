@@ -417,6 +417,11 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
     formData.append("tagline", tagline);
     formData.append("trailer_url", trailerUrl);
     formData.append("image", coverFile);
+    const screenshotFiles = screenshotsInput.files;
+
+    for (let i = 0; i < screenshotFiles.length; i++) {
+    formData.append("screenshots", screenshotFiles[i]);
+    }
     formData.append("developer_id", user.id);
 
     try {

@@ -38,13 +38,15 @@ function renderGames(games) {
                     <div class="game-image">
                         <img src="${game.image}" alt="${game.title}" class="game-logo">
 
-                        <button class="favorite-btn" data-id="json:${game.id}">
+                        <button class="favorite-btn" data-id="api:${game.id}">
                             <i class="far fa-heart"></i>
                         </button>
                     </div>
 
                     <div class="game-info">
                         <h3 class="game-title">${game.title}</h3>
+
+                        <p class="game-desc">${game.description || ""}</p>
 
                         <div class="game-meta">
                             <span class="game-genre">${game.genre}</span>
@@ -145,7 +147,7 @@ function applyCatalogState() {
     renderGames(games);
 }
 
-// =================== CARREGAR JOGOS ===================
+// =================== CARREGAR JOGOS DO BACKEND ===================
 fetch("http://127.0.0.1:5000/api/games")
     .then(res => res.json())
     .then(data => {
@@ -157,7 +159,12 @@ fetch("http://127.0.0.1:5000/api/games")
                 ? `http://127.0.0.1:5000/${game.cover_url}`
                 : "logo-velora.png",
 
-            rating: game.rating || "5.0"
+            rating: game.rating || "5.0",
+
+            description:
+                game.short_description ||
+                game.description ||
+                ""
         }));
 
         applyCatalogState();
@@ -231,15 +238,6 @@ applyFilters?.addEventListener("click", () => {
     applyCatalogState();
 });
 
-// =================== LOGO ERRO ===================
-const headerLogo = document.getElementById("header-logo");
-
-if (headerLogo) {
-    headerLogo.addEventListener("error", function () {
-        this.style.display = "none";
-    });
-}
-
 // =================== AVATAR HEADER ===================
 function carregarAvatarHeader() {
     const avatarImg = document.getElementById("headerUserAvatar");
@@ -255,17 +253,29 @@ function carregarAvatarHeader() {
     }
 
     const foto = currentUser.profile_photo || "";
-    const nome = (currentUser.display_name || currentUser.name || currentUser.username || "Jogador").trim();
+    const nome = (
+        currentUser.display_name ||
+        currentUser.name ||
+        currentUser.username ||
+        "Jogador"
+    ).trim();
+
     const inicial = nome.charAt(0).toUpperCase();
 
     if (userName) {
-        userName.textContent = currentUser.account_type === "developer" ? "Desenvolvedor" : "Jogador";
+        userName.textContent =
+            currentUser.account_type === "developer"
+                ? "Desenvolvedor"
+                : "Jogador";
     }
 
     if (foto && avatarImg) {
         avatarImg.src = foto;
         avatarImg.style.display = "block";
-        if (avatarInitial) avatarInitial.style.display = "none";
+
+        if (avatarInitial) {
+            avatarInitial.style.display = "none";
+        }
     } else {
         if (avatarImg) {
             avatarImg.src = "";
@@ -290,6 +300,7 @@ if (userProfile && userDropdown) {
 
     userProfile.addEventListener("click", (e) => {
         e.stopPropagation();
+
         userDropdown.classList.toggle("active");
         userProfile.classList.toggle("active");
     });
@@ -329,9 +340,50 @@ if (userProfile && userDropdown) {
     });
 }
 
+// =================== MOSTRAR / ESCONDER ADICIONAR JOGO ===================
+function controlarOpcaoAdicionarJogo() {
+    const addGameItem = document.getElementById("dropAdicionarJogo");
+
+    if (!addGameItem) return;
+
+    let currentUser = null;
+
+    try {
+        currentUser = JSON.parse(localStorage.getItem("velora_user"));
+    } catch (e) {}
+
+    if (currentUser && currentUser.account_type === "developer") {
+        addGameItem.style.display = "flex";
+    } else {
+        addGameItem.style.display = "none";
+    }
+}
+
+controlarOpcaoAdicionarJogo();
+
 // =================== BOTÃO FAVORITOS HEADER ===================
 const btnFavoritos = document.getElementById("btnFavoritos");
 
 btnFavoritos?.addEventListener("click", () => {
     window.location.href = "ListaFavoritos.html";
+});
+
+// =================== LOGO FALLBACK ===================
+document.getElementById("header-logo")?.addEventListener("error", function () {
+    this.style.display = "none";
+});
+
+document.getElementById("footer-logo")?.addEventListener("error", function () {
+    this.style.display = "none";
+});
+
+// =================== NAVBAR ACTIVE ===================
+document.querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener("click", () => {
+        document.querySelectorAll(".nav-item").forEach(nav => {
+            nav.classList.remove("active");
+        });
+
+        item.classList.add("active");
+    });
 });

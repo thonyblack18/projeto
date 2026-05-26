@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from database import get_connection
 import os
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -702,6 +703,7 @@ def get_games():
                 price,
                 rating,
                 status,
+                screenshots,       
                 created_at,
                 updated_at
             FROM games
@@ -736,25 +738,39 @@ def add_game():
     platform = request.form.get("platform") or ""
     developer_id = request.form.get("developer_id")
 
+    price = request.form.get("price", "0.00")
+    is_free = request.form.get("is_free", "0")
+    status = request.form.get("status", "draft")
+    trailer_url = request.form.get("trailer_url")
     image = request.files.get("image")
+    screenshots = request.files.getlist("screenshots")
 
     if not title or not description or not genre:
         return jsonify({"error": "Preencha título, descrição e gênero."}), 400
 
     image_path = ""
+    screenshots_paths = []
+
+    os.makedirs("uploads", exist_ok=True)
 
     if image:
-        os.makedirs("uploads", exist_ok=True)
-
         filename = secure_filename(image.filename)
         image_path = f"uploads/{filename}"
-
         image.save(image_path)
+
+    for screenshot in screenshots:
+        if screenshot and screenshot.filename:
+            filename = secure_filename(screenshot.filename)
+            screenshot_path = f"uploads/{filename}"
+            screenshot.save(screenshot_path)
+            screenshots_paths.append(screenshot_path)
 
     conn = get_connection()
 
     if not conn:
         return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    cursor = None
 
     try:
         cursor = conn.cursor()
@@ -769,12 +785,14 @@ def add_game():
                 platform,
                 cover_url,
                 banner_url,
+                trailer_url,
                 price,
                 is_free,
                 status,
-                rating
+                rating,
+                screenshots
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             developer_id,
             title,
@@ -784,17 +802,20 @@ def add_game():
             platform,
             image_path,
             image_path,
-            0.00,
-            0,
-            "draft",
-            5.0
+            trailer_url,
+            price,
+            is_free,
+            status,
+            5.0,
+            json.dumps(screenshots_paths)
         ))
 
         conn.commit()
 
         return jsonify({
             "message": "Jogo salvo no MySQL com sucesso.",
-            "game_id": cursor.lastrowid
+            "game_id": cursor.lastrowid,
+            "screenshots": screenshots_paths
         }), 201
 
     except Exception as e:
@@ -803,7 +824,8 @@ def add_game():
         return jsonify({"error": f"Erro ao salvar jogo: {str(e)}"}), 500
 
     finally:
-        cursor.close()
+        if cursor:
+            cursor.close()
         conn.close()
 
 @app.route("/uploads/<path:filename>")
@@ -840,6 +862,7 @@ def get_game_by_id(game_id):
                 g.price,
                 g.rating,
                 g.status,
+                g.screenshots,       
                 g.created_at,
                 g.updated_at,
                 u.name AS developer_name

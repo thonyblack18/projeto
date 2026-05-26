@@ -128,7 +128,7 @@ const btnWishlist = document.getElementById("btnWishlist");
 const wishlistIcon = document.getElementById("wishlistIcon");
 const wishlistText = document.getElementById("wishlistText");
 
-const JOGO_ID = `json:${gameId}`;
+const JOGO_ID = `api:${gameId}`;
 
 function getFavoritos() {
     try {

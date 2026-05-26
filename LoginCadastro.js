@@ -202,11 +202,7 @@ localStorage.setItem("velora_user", JSON.stringify(userFinal));
         showToast("✅ Login realizado!");
 
         setTimeout(() => {
-    if (userFinal.account_type === "developer") {
-        window.location.href = "CatalogoDev.html";
-    } else {
-        window.location.href = "Catalogo.html";
-    }
+    window.location.href = "Catalogo.html";
         }, 800);
 
     } catch (err) {
