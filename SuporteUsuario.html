@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suporte — Velora</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="SuporteUsuario.css">
-    <link rel="icon" type="image/png" href="logo velora.png">
+    <link rel="icon" type="image/png" href="Logo Velora.png">
 </head>
 <body>
 
@@ -18,37 +19,18 @@
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-
                 <a href="Catalogo.html" class="logo">
-                    <img src="Logo Velora.png" alt="Velora" class="logo-img">
+                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
                 </a>
 
                 <nav class="main-nav">
-                    <a href="Catalogo.html" class="nav-item">
-                        <i class="fas fa-home">
-                        </i> Início
-                    </a>
-                    <a href="./Minigames/PaginaMinigames.html" class="nav-item">
-                        <i class="fas fa-gamepad">
-                        </i> Minigames
-                    </a>
-                    <a href="Ranking.html" class="nav-item">
-                        <i class="fas fa-fire">
-                        </i> Ranking
-                    </a>
-                    <a href="Noticias.html" class="nav-item">
-                        <i class="fas fa-newspaper"></i> 
-                        Notícias
-                    </a>
-                    <a href="ListaDevs.html" class="nav-item">
-                        <i class="fas fa-users"></i>
-                        Desenvolvedores
-                    </a>
-                    <a href="SobreNos.html" class="nav-item">
-                        <i class="fas fa-crown"></i>
-                        Sobre nós
-                    </a>
+                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                    <a href="./Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
+                    <a href="Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
+                    <a href="Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                    <a href="ListaDevs.html" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+                    <a href="SobreNos.html" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
                 </nav>
             </div>
 
@@ -71,21 +53,21 @@
                     <div class="user-avatar-initial" id="userAvatarInitial">J</div>
                     <span class="user-name" id="userName">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
-                </div>
 
-                <div class="user-dropdown" id="userDropdown">
-                    <div class="dropdown-item" id="dropMeuPerfil">
-                        <i class="fas fa-user"></i><span>Meu Perfil</span>
-                    </div>
-                    <div class="dropdown-item active-page">
-                        <i class="fas fa-headset"></i><span>Suporte ao Usuário</span>
-                    </div>
-                    <a href="Configuracoes.html" class="dropdown-item">
-                        <i class="fas fa-cog"></i><span>Configurações</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <div class="dropdown-item logout" id="dropSair">
-                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-item" id="dropMeuPerfil">
+                            <i class="fas fa-user"></i><span>Meu Perfil</span>
+                        </div>
+                        <div class="dropdown-item active-page">
+                            <i class="fas fa-headset"></i><span>Suporte</span>
+                        </div>
+                        <a href="Configuracoes.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i><span>Configurações</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item logout" id="dropSair">
+                            <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,70 +79,110 @@
         <div class="content-container">
 
             <section class="hero-section">
-                <h1 class="hero-title">Central de Suporte</h1>
-                <p class="hero-subtitle">Como podemos te ajudar hoje?</p>
+                <div class="hero-label"><i class="fas fa-headset"></i> Central de Ajuda</div>
+                <h1 class="hero-title">Suporte <span>Velora</span></h1>
+                <p class="hero-subtitle">Encontre respostas rápidas, resolva problemas e fale com a equipe quando precisar.</p>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>6</strong>
+                        <span>Categorias</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>24h</strong>
+                        <span>Para resposta</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>BR</strong>
+                        <span>Comunidade indie</span>
+                    </div>
+                </div>
             </section>
 
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" class="search-box" placeholder="Pesquise por conta, pagamento, jogos..." id="searchInput">
-                <button class="search-btn" id="searchButton">
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
+            <section class="support-search-panel">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="support-search-input" placeholder="Pesquise por conta, jogos, bugs, perfil..." id="searchInput">
+                    <button class="search-btn" id="searchButton" title="Pesquisar">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
 
-            <p class="section-label">Categorias de ajuda</p>
-            <div class="categories-grid">
-
-                <div class="category-card" data-category="conta">
-                    <div class="category-icon"><i class="fas fa-user-shield"></i></div>
-                    <h4 class="category-title">Conta e Segurança</h4>
-                    <p class="category-description">Login, senha, verificação de perfil</p>
-                    <i class="fas fa-chevron-right category-arrow"></i>
+            <section class="categories-section">
+                <div class="section-header">
+                    <div>
+                        <span class="section-kicker">Escolha uma área</span>
+                        <h2 class="section-title">Categorias de ajuda</h2>
+                    </div>
+                    <p class="section-desc">Clique em uma categoria para encontrar orientações sobre o assunto.</p>
                 </div>
 
-                <div class="category-card" data-category="desenvolvedores">
-                    <div class="category-icon"><i class="fas fa-code"></i></div>
-                    <h4 class="category-title">Para Desenvolvedores</h4>
-                    <p class="category-description">Cadastro de jogos, portfólio, perfil</p>
-                    <i class="fas fa-chevron-right category-arrow"></i>
+                <div class="categories-grid">
+                    <div class="category-card" data-category="conta">
+                        <div class="category-icon"><i class="fas fa-user-shield"></i></div>
+                        <div class="category-content">
+                            <h4 class="category-title">Conta e Segurança</h4>
+                            <p class="category-description">Login, senha, verificação de perfil e segurança da conta.</p>
+                        </div>
+                        <i class="fas fa-chevron-right category-arrow"></i>
+                    </div>
+
+                    <div class="category-card" data-category="desenvolvedores">
+                        <div class="category-icon"><i class="fas fa-code"></i></div>
+                        <div class="category-content">
+                            <h4 class="category-title">Para Desenvolvedores</h4>
+                            <p class="category-description">Cadastro de jogos, portfólio, publicação e perfil dev.</p>
+                        </div>
+                        <i class="fas fa-chevron-right category-arrow"></i>
+                    </div>
+
+                    <div class="category-card" data-category="apoio">
+                        <div class="category-icon"><i class="fas fa-heart"></i></div>
+                        <div class="category-content">
+                            <h4 class="category-title">Apoio e Doações</h4>
+                            <p class="category-description">Como apoiar jogos, pagamentos e contribuições.</p>
+                        </div>
+                        <i class="fas fa-chevron-right category-arrow"></i>
+                    </div>
+
+                    <div class="category-card" data-category="catalogo">
+                        <div class="category-icon"><i class="fas fa-gamepad"></i></div>
+                        <div class="category-content">
+                            <h4 class="category-title">Catálogo de Jogos</h4>
+                            <p class="category-description">Busca, filtros, avaliações, favoritos e páginas dos jogos.</p>
+                        </div>
+                        <i class="fas fa-chevron-right category-arrow"></i>
+                    </div>
+
+                    <div class="category-card" data-category="comunidade">
+                        <div class="category-icon"><i class="fas fa-users"></i></div>
+                        <div class="category-content">
+                            <h4 class="category-title">Comunidade</h4>
+                            <p class="category-description">Comentários, feedbacks, rankings e moderação.</p>
+                        </div>
+                        <i class="fas fa-chevron-right category-arrow"></i>
+                    </div>
+
+                    <div class="category-card" data-category="problemas">
+                        <div class="category-icon"><i class="fas fa-bug"></i></div>
+                        <div class="category-content">
+                            <h4 class="category-title">Problemas Técnicos</h4>
+                            <p class="category-description">Erros, bugs, compatibilidade e funcionamento do site.</p>
+                        </div>
+                        <i class="fas fa-chevron-right category-arrow"></i>
+                    </div>
                 </div>
+            </section>
 
-                <div class="category-card" data-category="apoio">
-                    <div class="category-icon"><i class="fas fa-heart"></i></div>
-                    <h4 class="category-title">Apoio e Doações</h4>
-                    <p class="category-description">Como apoiar jogos, pagamentos</p>
-                    <i class="fas fa-chevron-right category-arrow"></i>
+            <section class="quick-contact">
+                <div class="quick-contact-icon"><i class="fas fa-paper-plane"></i></div>
+                <div class="quick-contact-text">
+                    <h3>Não encontrou o que procura?</h3>
+                    <p>Entre em contato diretamente com nossa equipe de suporte.</p>
                 </div>
-
-                <div class="category-card" data-category="catalogo">
-                    <div class="category-icon"><i class="fas fa-gamepad"></i></div>
-                    <h4 class="category-title">Catálogo de Jogos</h4>
-                    <p class="category-description">Busca, filtros, avaliações</p>
-                    <i class="fas fa-chevron-right category-arrow"></i>
-                </div>
-
-                <div class="category-card" data-category="comunidade">
-                    <div class="category-icon"><i class="fas fa-users"></i></div>
-                    <h4 class="category-title">Comunidade</h4>
-                    <p class="category-description">Comentários, feedbacks, moderação</p>
-                    <i class="fas fa-chevron-right category-arrow"></i>
-                </div>
-
-                <div class="category-card" data-category="problemas">
-                    <div class="category-icon"><i class="fas fa-bug"></i></div>
-                    <h4 class="category-title">Problemas Técnicos</h4>
-                    <p class="category-description">Erros, bugs, compatibilidade</p>
-                    <i class="fas fa-chevron-right category-arrow"></i>
-                </div>
-
-            </div>
-
-            <div class="quick-contact">
-                <h3>Não encontrou o que procura?</h3>
-                <p>Entre em contato diretamente com nossa equipe de suporte</p>
                 <button class="contact-button" id="contactBtn">Falar com Suporte</button>
-            </div>
+            </section>
 
         </div>
     </main>
@@ -169,14 +191,14 @@
     <footer class="main-footer">
         <div class="footer-container">
             <a href="Catalogo.html" class="footer-logo">
-                <div class="logo-img-placeholder small"></div>
-                <span class="logo-text small">VELORA</span>
+                <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <span class="footer-logo-text">VELORA</span>
             </a>
             <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
             <div class="footer-links">
-                <a href="#">Termos de Uso</a>
+                <a href="TermosDeUso.html">Termos de Uso</a>
                 <span class="sep">·</span>
-                <a href="#">Privacidade</a>
+                <a href="TermosPriv.html">Privacidade</a>
                 <span class="sep">·</span>
                 <a href="SuporteUsuario.html" class="active-link">Suporte</a>
             </div>
