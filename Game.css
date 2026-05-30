@@ -883,3 +883,13 @@ body::before {
     border: none;
     display: block;
 }
+
+.game-description p {
+    margin-bottom: 26px;
+    line-height: 1.8;
+}
+
+.game-description .gold-text {
+    color: #f3c623;
+    font-weight: 800;
+}
