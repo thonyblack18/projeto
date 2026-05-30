@@ -742,6 +742,10 @@ def add_game():
     is_free = request.form.get("is_free", "0")
     status = request.form.get("status", "draft")
     trailer_url = request.form.get("trailer_url")
+    tags = request.form.get("tags", "[]")
+    release_date = request.form.get("release_date")
+    age_rating = request.form.get("age_rating")
+    player_mode = request.form.get("player_mode")
     image = request.files.get("image")
     screenshots = request.files.getlist("screenshots")
 
@@ -783,6 +787,7 @@ def add_game():
                 short_description,
                 genre,
                 platform,
+                release_date,
                 cover_url,
                 banner_url,
                 trailer_url,
@@ -790,9 +795,12 @@ def add_game():
                 is_free,
                 status,
                 rating,
-                screenshots
+                screenshots,
+                tags,
+                age_rating,
+                player_mode
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             developer_id,
             title,
@@ -800,6 +808,7 @@ def add_game():
             description[:120],
             genre,
             platform,
+            release_date,
             image_path,
             image_path,
             trailer_url,
@@ -807,7 +816,10 @@ def add_game():
             is_free,
             status,
             5.0,
-            json.dumps(screenshots_paths)
+            json.dumps(screenshots_paths),
+            tags,
+            age_rating,
+            player_mode
         ))
 
         conn.commit()
@@ -853,12 +865,15 @@ def get_game_by_id(game_id):
                 g.description,
                 g.short_description,
                 g.genre,
+                g.tags,
                 g.platform,
                 g.cover_url,
                 g.banner_url,
                 g.trailer_url,
                 g.official_website,
                 g.release_date,
+                g.age_rating,
+                g.player_mode,
                 g.price,
                 g.rating,
                 g.status,

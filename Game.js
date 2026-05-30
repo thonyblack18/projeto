@@ -253,8 +253,15 @@ fetch(`${API_BASE}/api/games/${gameId}`)
 
         document.getElementById("game-title").textContent = game.title;
 
-        document.getElementById("game-description").textContent =
-            game.description || game.short_description || "Sem descrição.";
+        const descriptionEl = document.getElementById("game-description");
+
+        const description = game.description || game.short_description || "Sem descrição.";
+
+        descriptionEl.innerHTML = description
+            .split(/\n+/)
+            .filter(paragrafo => paragrafo.trim() !== "")
+            .map(paragrafo => `<p>${paragrafo.trim()}</p>`)
+            .join("");
 
         document.getElementById("game-genre").textContent = game.genre || "Indie";
         document.getElementById("detail-genre").textContent = game.genre || "Indie";
@@ -280,14 +287,33 @@ fetch(`${API_BASE}/api/games/${gameId}`)
 
         document.getElementById("game-release").textContent = release;
         document.getElementById("detail-release").textContent = release;
+        
+        const ageRating = game.age_rating || "Livre";
+
+        document.getElementById("game-age").textContent = ageRating;
+        document.getElementById("detail-age").textContent = ageRating;
+
+        const playerMode = game.player_mode || "Não informado";
+
+        document.getElementById("detail-player-mode").textContent = playerMode;
 
         const tagsContainer = document.getElementById("game-tags");
 
-        tagsContainer.innerHTML = `
-            <span class="tag">${game.genre || "Indie"}</span>
-            <span class="tag">Indie</span>
-            <span class="tag">Velora</span>
-        `;
+        let gameTags = [];
+
+        try {
+            gameTags = JSON.parse(game.tags || "[]");
+        } catch (e) {
+            gameTags = [];
+        }
+
+        if (!gameTags.length && game.genre) {
+            gameTags = game.genre.split(",").map(tag => tag.trim());
+        }
+
+        tagsContainer.innerHTML = gameTags.length
+            ? gameTags.map(tag => `<span class="tag">${tag}</span>`).join("")
+    : `<span class="tag">Indie</span>`;
 
         renderizarGaleria(game);
     })

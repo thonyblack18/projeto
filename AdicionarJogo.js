@@ -371,6 +371,10 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
 
     const trailerUrl = document.getElementById('trailer-url').value.trim();
 
+    const releaseDate = document.getElementById('release-date').value.trim();
+    const ageRating = document.getElementById('age-rating').value.trim();
+    const playerMode = document.getElementById('player-mode').value.trim();
+
     const coverFile = coverInput.files[0];
 
     // =================== VALIDAÇÕES ===================
@@ -413,9 +417,13 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
     formData.append("description", desc);
     formData.append("genre", genres.join(", "));
     formData.append("platform", platforms.join(", "));
+    formData.append("tags", JSON.stringify(tags));
     formData.append("status", status);
     formData.append("tagline", tagline);
     formData.append("trailer_url", trailerUrl);
+    formData.append("release_date", releaseDate);
+    formData.append("age_rating", ageRating);
+    formData.append("player_mode", playerMode);
     formData.append("image", coverFile);
     const screenshotFiles = screenshotsInput.files;
 
