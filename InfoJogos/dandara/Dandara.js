@@ -659,3 +659,19 @@ document.getElementById("breadcrumbJogos")?.addEventListener("click", (e) => {
 });
 // carregar estado ao abrir página
 updateWishlistUI();
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
