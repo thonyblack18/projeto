@@ -206,9 +206,7 @@
 
     // Carregar mais comentários (simulado)
     const extraComments = [
-        { avatar: 28, name: 'AnaBR_Play', date: 'há 2 semanas', rating: 5, text: 'Que jogo incrível! Fiquei emocionada com a história e a referência histórica. Precisa de mais jogos assim.' },
-        { avatar: 33, name: 'GamerZé',    date: 'há 3 semanas', rating: 4, text: 'Muito bom, só achei a curva de dificuldade um pouco abrupta no início. Mas depois que pega o jeito, é viciante!' },
-        { avatar: 41, name: 'DonaPixel',  date: 'há 1 mês',    rating: 5, text: 'Arte pixel deslumbrante. A Long Hat House é talentosa demais. Jogo obrigatório para qualquer fã de indie.' },
+        { avatar: 28, name: 'NoGrip', date: 'há 1 semanas', rating: 4, text: 'A IA dos adversários às vezes parece ‘roubar’ velocidade nas retas finais, oque pode frustrar' },
     ];
     let extraLoaded = false;
 
@@ -247,64 +245,178 @@
 
 
     // =================== MODAL DE DOAÇÃO ===================
-    const donateModal   = document.getElementById('donateModal');
-    const closeDonate   = document.getElementById('closeDonateModal');
-    const confirmDonate = document.getElementById('confirmDonate');
-    const customAmount  = document.getElementById('customAmount');
+// =================== MODAL DE DOAÇÃO ===================
+const donateModal   = document.getElementById('donateModal');
+const closeDonate   = document.getElementById('closeDonateModal');
+const confirmDonate = document.getElementById('confirmDonate');
+const customAmount  = document.getElementById('customAmount');
 
-    let selectedAmount = 10;
+const MIN_DONATE = 0.10;
+const MAX_DONATE = 5000000;
 
-    // Abre o modal (botões)
-    [document.getElementById('btnDonate'), document.getElementById('btnDonateAside')]
-        .forEach(btn => btn && btn.addEventListener('click', () => {
-            donateModal.classList.add('active');
-        }));
+let selectedAmount = 10;
 
-    closeDonate.addEventListener('click', () => donateModal.classList.remove('active'));
-    donateModal.addEventListener('click', e => { if (e.target === donateModal) donateModal.classList.remove('active'); });
-
-    // Seleção de valor no modal
-    document.querySelectorAll('#modalAmounts .amount-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('#modalAmounts .amount-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            selectedAmount = parseInt(btn.dataset.amount, 10);
-            customAmount.value = '';
-            confirmDonate.innerHTML = `<i class="fas fa-heart"></i> Confirmar Doação de R$ ${selectedAmount}`;
-        });
+function formatMoney(value) {
+    return value.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
     });
+}
 
-    // Input valor personalizado
-    customAmount.addEventListener('input', () => {
-        const val = parseInt(customAmount.value, 10);
-        if (val > 0) {
-            document.querySelectorAll('#modalAmounts .amount-btn').forEach(b => b.classList.remove('active'));
-            selectedAmount = val;
-            confirmDonate.innerHTML = `<i class="fas fa-heart"></i> Confirmar Doação de R$ ${val}`;
-        }
-    });
+function updateDonateButton() {
+    confirmDonate.innerHTML =
+        `<i class="fas fa-heart"></i> Confirmar Doação de R$ ${formatMoney(selectedAmount)}`;
+}
 
-    // Confirmar doação
-    confirmDonate.addEventListener('click', () => {
-        donateModal.classList.remove('active');
-        showToast(`<i class="fas fa-heart"></i> Obrigado pelo apoio de R$ ${selectedAmount}! ❤️`);
-    });
+function createDonationWarning() {
+    if (!customAmount) return;
 
-    // Seleção de valor no card aside
-    document.querySelectorAll('#donateAmountsAside .amount-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('#donateAmountsAside .amount-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const val = btn.dataset.amount;
-            document.getElementById('btnDonateAside').innerHTML =
-                `<i class="fas fa-hand-holding-heart"></i> Apoiar com R$ ${val}`;
-            selectedAmount = parseInt(val, 10);
-        });
-    });
+    let warning = document.getElementById('donationWarning');
 
-    document.getElementById('btnDonateAside').addEventListener('click', () => {
+    if (!warning) {
+        warning = document.createElement('p');
+        warning.id = 'donationWarning';
+        warning.className = 'modal-note';
+        warning.innerHTML = '<i class="fas fa-info-circle"></i> Valor mínimo: R$ 0,10';
+        customAmount.insertAdjacentElement('afterend', warning);
+    }
+}
+
+function showDonationWarning(message) {
+    let warning = document.getElementById('donationWarning');
+
+    if (!warning) {
+        createDonationWarning();
+        warning = document.getElementById('donationWarning');
+    }
+
+    warning.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+
+    clearTimeout(warning.timeout);
+
+    warning.timeout = setTimeout(() => {
+        warning.innerHTML = '<i class="fas fa-info-circle"></i> Valor mínimo: R$ 0,10';
+    }, 3000);
+}
+
+createDonationWarning();
+updateDonateButton();
+
+// Abre o modal
+[document.getElementById('btnDonate'), document.getElementById('btnDonateAside')]
+    .forEach(btn => btn && btn.addEventListener('click', () => {
         donateModal.classList.add('active');
+    }));
+
+// Fecha o modal
+closeDonate.addEventListener('click', () => {
+    donateModal.classList.remove('active');
+});
+
+donateModal.addEventListener('click', e => {
+    if (e.target === donateModal) {
+        donateModal.classList.remove('active');
+    }
+});
+
+// Botões de valor do modal
+document.querySelectorAll('#modalAmounts .amount-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#modalAmounts .amount-btn')
+            .forEach(b => b.classList.remove('active'));
+
+        btn.classList.add('active');
+
+        selectedAmount = parseFloat(btn.dataset.amount);
+        customAmount.value = '';
+
+        updateDonateButton();
     });
+});
+
+// Valor personalizado
+customAmount.addEventListener('input', () => {
+    let val = parseFloat(customAmount.value.replace(',', '.'));
+
+    document.querySelectorAll('#modalAmounts .amount-btn')
+        .forEach(b => b.classList.remove('active'));
+
+    if (isNaN(val)) {
+        selectedAmount = MIN_DONATE;
+        updateDonateButton();
+        return;
+    }
+
+    if (val > MAX_DONATE) {
+        showDonationWarning('O valor máximo permitido é R$ 5.000.000,00.');
+        val = MAX_DONATE;
+        customAmount.value = MAX_DONATE;
+    }
+
+    selectedAmount = val;
+    updateDonateButton();
+});
+
+// Quando sair do campo, corrige se estiver abaixo ou acima
+customAmount.addEventListener('blur', () => {
+    let val = parseFloat(customAmount.value.replace(',', '.'));
+
+    if (isNaN(val)) return;
+
+    if (val < MIN_DONATE) {
+        showDonationWarning('O valor mínimo permitido é R$ 0,10.');
+        selectedAmount = MIN_DONATE;
+        customAmount.value = MIN_DONATE.toFixed(2);
+    } else if (val > MAX_DONATE) {
+        showDonationWarning('O valor máximo permitido é R$ 5.000.000,00.');
+        selectedAmount = MAX_DONATE;
+        customAmount.value = MAX_DONATE;
+    } else {
+        selectedAmount = val;
+    }
+
+    updateDonateButton();
+});
+
+// Confirmar doação
+confirmDonate.addEventListener('click', () => {
+    if (selectedAmount < MIN_DONATE) {
+        showDonationWarning('O valor mínimo permitido é R$ 0,10.');
+        return;
+    }
+
+    if (selectedAmount > MAX_DONATE) {
+        showDonationWarning('O valor máximo permitido é R$ 5.000.000,00.');
+        return;
+    }
+
+    donateModal.classList.remove('active');
+
+    showToast(
+        `<i class="fas fa-heart"></i> Obrigado pelo apoio de R$ ${formatMoney(selectedAmount)}! ❤️`
+    );
+});
+
+// Seleção de valor no card lateral
+document.querySelectorAll('#donateAmountsAside .amount-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#donateAmountsAside .amount-btn')
+            .forEach(b => b.classList.remove('active'));
+
+        btn.classList.add('active');
+
+        selectedAmount = parseFloat(btn.dataset.amount);
+
+        document.getElementById('btnDonateAside').innerHTML =
+            `<i class="fas fa-hand-holding-heart"></i> Apoiar com R$ ${formatMoney(selectedAmount)}`;
+
+        updateDonateButton();
+    });
+});
+
+document.getElementById('btnDonateAside').addEventListener('click', () => {
+    donateModal.classList.add('active');
+});
 
 
     // =================== TOAST ===================
@@ -398,5 +510,166 @@
         });
     }
 
+document.addEventListener("DOMContentLoaded", () => {
 
+    const btnWishlist = document.getElementById("btnWishlist");
+    const wishlistIcon = document.getElementById("wishlistIcon");
+    const wishlistText = document.getElementById("wishlistText");
+
+    const JOGO_ID = 1; // Dandara
+
+    function getFavoritos() {
+        try {
+            return JSON.parse(localStorage.getItem("velora_favoritos_ids") || "[]");
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function salvarFavoritos(lista) {
+        localStorage.setItem("velora_favoritos_ids", JSON.stringify(lista));
+        console.log("Favoritos salvos:", lista);
+    }
+
+    function atualizarBotao() {
+        const favoritos = getFavoritos();
+        const isFav = favoritos.includes(JOGO_ID);
+
+        if (isFav) {
+            wishlistIcon.classList.remove("far");
+            wishlistIcon.classList.add("fas");
+            wishlistText.textContent = "Remover dos Favoritos";
+            btnWishlist.classList.add("favorited");
+        } else {
+            wishlistIcon.classList.remove("fas");
+            wishlistIcon.classList.add("far");
+            wishlistText.textContent = "Adicionar aos Favoritos";
+            btnWishlist.classList.remove("favorited");
+        }
+    }
+
+    btnWishlist.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let favoritos = getFavoritos();
+
+        if (favoritos.includes(JOGO_ID)) {
+            favoritos = favoritos.filter(id => id !== JOGO_ID);
+        } else {
+            favoritos.push(JOGO_ID);
+        }
+
+        salvarFavoritos(favoritos);s
+        atualizarBotao();
+    });
+
+    atualizarBotao();
+});
 })();
+
+const btnFavoritos = document.getElementById("btnFavoritos");
+
+btnFavoritos?.addEventListener("click", () => {
+    window.location.href = "../../ListaFavoritos.html";
+});
+
+const btnWishlist = document.getElementById("btnWishlist");
+const wishlistIcon = document.getElementById("wishlistIcon");
+const wishlistText = document.getElementById("wishlistText");
+
+const GAME_ID = 1;
+
+// pegar favoritos
+function getFavoritos() {
+    return JSON.parse(localStorage.getItem("velora_favoritos")) || [];
+}
+
+// salvar favoritos
+function setFavoritos(lista) {
+    localStorage.setItem("velora_favoritos", JSON.stringify(lista));
+}
+
+// verificar se já está favoritado
+function isFavorito(id) {
+    return getFavoritos().includes(id);
+}
+
+// atualizar visual do botão
+function updateWishlistUI() {
+    if (isFavorito(GAME_ID)) {
+        wishlistIcon.classList.remove("far");
+        wishlistIcon.classList.add("fas");
+        wishlistText.textContent = "Remover dos Favoritos";
+    } else {
+        wishlistIcon.classList.remove("fas");
+        wishlistIcon.classList.add("far");
+        wishlistText.textContent = "Adicionar aos Favoritos";
+    }
+}
+
+// clique do botão
+btnWishlist?.addEventListener("click", () => {
+    let favoritos = getFavoritos();
+
+    if (isFavorito(GAME_ID)) {
+        favoritos = favoritos.filter(id => id !== GAME_ID);
+    } else {
+        favoritos.push(GAME_ID);
+    }
+
+    setFavoritos(favoritos);
+    updateWishlistUI();
+});
+function getCatalogoCorreto() {
+    let user = null;
+
+    try {
+        user = JSON.parse(localStorage.getItem("velora_user"));
+    } catch (e) {}
+
+    if (user && user.account_type === "developer") {
+        return "../../CatalogoDev.html";
+    }
+
+    return "../../Catalogo.html";
+}
+
+const catalogoCorreto = getCatalogoCorreto();
+
+document.getElementById("linkInicio")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+
+document.getElementById("linkJogos")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+
+document.getElementById("breadcrumbInicio")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+
+document.getElementById("breadcrumbJogos")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
+// carregar estado ao abrir página
+updateWishlistUI();
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});

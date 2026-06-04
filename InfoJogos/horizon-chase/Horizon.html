@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velora | Horizon Chase Turbo</title>
+    <title>Velora | Dandara: Trials of Fear Edition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Horizon.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
-    <link rel="icon" href="Logo Velora.png" type="image/png">
+    <link rel="icon" href="/projeto-main/logo-velora.png" type="image/png">
 
 </head>
 <body>
@@ -17,16 +17,16 @@
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-                <div class="logo">
-                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                <a href="../../Catalogo.html" class="logo">
+                    <img src="/projeto-main/logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
-                </div>
+                </a>
                 
                 <nav class="main-nav">
-                    <a href="../../Catalogo.html" class="nav-item">
+                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio">
                         <i class="fas fa-home"></i> Início
                     </a>
-                    <a href="/Minigames/Minigames.html" class="nav-item active">
+                    <a href="../../Minigames/Minigames.html" class="nav-item">
                         <i class="fas fa-gamepad"></i> Minigames
                     </a>
                     <a href="../../Ranking.html" class="nav-item">
@@ -44,11 +44,20 @@
                 </nav>
             </div>
             <div class="header-right">
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                     <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+                
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
+                    <i class="fas fa-heart"></i>
+                </button>
+
                 <button class="icon-btn" title="Notificações">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
@@ -59,17 +68,18 @@
                     <span class="user-name">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-<!-- =================== DROPDOWN DO USUÁRIO =================== -->
+
+                <!-- =================== DROPDOWN DO USUÁRIO =================== -->
                 <div class="user-dropdown" id="userDropdown">
-                    <a href="/PerfilUsuario.html" class="dropdown-item" id="dropMeuPerfil">
+                    <div class="dropdown-item" id="dropMeuPerfil">
                         <i class="fas fa-user"></i>
                         <span>Meu Perfil</span>
                     </div>
-                    <a href="/SuporteUsuario.html" class="dropdown-item" id="dropSuporte">
+                    <div class="dropdown-item" id="dropSuporte">
                         <i class="fas fa-headset"></i>
                         <span>Suporte ao Usuário</span>
-                    </a>
-                     <a href="/Configuracoes.html" class="dropdown-item">
+                    </div>
+                    <a href="../../Configuracoes.html" class="dropdown-item">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
@@ -77,6 +87,7 @@
                     <div class="dropdown-item logout" id="dropSair">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Sair</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,7 +103,12 @@
                 <!-- Slide 0: Trailer -->
                 <div class="gallery-slide slide-trailer" data-index="0">
                     <div class="youtube-container">
-                       <iframe width="560" height="315" src="https://www.youtube.com/embed/SNL3RhmXPh4?si=J1sRzMm0xRhxUvet" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                       <iframe width="560" height="315" 
+                        src="https://www.youtube.com/embed/4VomFVNGgnA?si=yNuQz8MHQz4VcIZa" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="slide-label"><i class="fas fa-play-circle"></i> Trailer Oficial</div>
                 </div>
@@ -111,11 +127,11 @@
                     <div class="slide-label">Screenshot 3</div>
                 </div>
                 <div class="gallery-slide" data-index="4">
-                    <img src="Foto 4.jpg" alt="Screenshot 4" class="slide-img">
+                    <img src="Foto 4.jpg"Screenshot 4" class="slide-img">
                     <div class="slide-label">Screenshot 4</div>
                 </div>
                 <div class="gallery-slide" data-index="5">
-                    <img src="Foto 5" alt="Screenshot 5" class="slide-img">
+                    <img src="Foto 5.jpg" alt="Screenshot 5" class="slide-img">
                     <div class="slide-label">Screenshot 5</div>
                 </div>
                 <div class="gallery-slide" data-index="6">
@@ -177,7 +193,7 @@
         <aside class="game-sidebar">
 
             <div class="game-cover">
-                <img src="Capa.jpg" alt="Mullet Madjack">
+                <img src="Capa.jpg" alt="Horizon">
             </div>
 
             <div class="curation-badge">
@@ -185,7 +201,10 @@
             </div>
 
             <h1 class="game-title-hero">Horizon Chase Turbo</h1>
-            <p class="game-studio"><i class="fas fa-code"></i>Aquiris Game Studio</p>
+            <p class="game-studio">
+                <i class="fas fa-code"></i>
+               <a href="https://www.aquiris.com.br/" target="_blank">AQUIRIS</a>
+            </p>
 
             <div class="rating-block">
                 <div class="stars-row">
@@ -198,8 +217,8 @@
             </div>
 
             <div class="age-rating">
-                <div class="age-badge">14</div>
-                <span>Conteúdo violento moderado</span>
+                <div class="age-badge">L</div>
+                <span>Arcade</span>
             </div>
 
             <button class="btn-donate" id="btnDonate">
@@ -208,15 +227,15 @@
             </button>
             <p class="donate-note">Apoie diretamente o desenvolvedor</p>
 
-            <button class="btn-wishlist" id="btnWishlist">
-                <i class="far fa-heart" id="wishlistIcon"></i>
-                <span id="wishlistText">Adicionar aos Favoritos</span>
+            <button type="button" class="btn-wishlist" id="btnWishlist">
+            <i class="far fa-heart" id="wishlistIcon"></i>
+            <span id="wishlistText">Adicionar aos Favoritos</span>
             </button>
 
             <div class="quick-info">
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-calendar-alt"></i> Lançamento</span>
-                    <span class="qi-value">15 Maio 2018</span>
+                    <span class="qi-value">15 mai. 2018</span>
                 </div>
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-desktop"></i> Plataformas</span>
@@ -227,11 +246,11 @@
                 </div>
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-language"></i> Idiomas</span>
-                    <span class="qi-value">PT-BR, EN, ES, FR, DE</span>
+                    <span class="qi-value">PT-BR, EN, RU, FR, ES, JP</span>
                 </div>
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-tags"></i> Gênero</span>
-                    <span class="qi-value">Corrida · Arcade</span>
+                    <span class="qi-value">Corrida · Retro · Anos 90</span>
                 </div>
             </div>
         </aside>
@@ -245,9 +264,9 @@
             <section class="col-main">
 
                 <nav class="breadcrumb">
-                    <a href="#">Início</a>
+                    <a href="../../Catalogo.html">Início</a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="#">Jogos</a>
+                    <a href="../../Catalogo.html">Catálogo</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Horizon Chase Turbo</span>
                 </nav>
@@ -256,27 +275,16 @@
                 <div class="section-card">
                     <h2 class="section-heading"><i class="fas fa-book-open"></i> Sobre o Jogo</h2>
                      <p class="game-description">
-                        <strong><em>Mullet Madjack</em></strong>é um jogo de tiro em primeira pessoa <em>FRENÉTICO</em> de um jogador onde você está dentro de um <strong>ANIME</strong> da era dos vídeo cassetes! .
+                        <strong><em>Horizon Chase Turbo</em></strong>  É uma corrida ao redor do mundo. A cada nova copa, você pilotará seu carro por lugares extraordinários, assistindo ao pôr do sol, enfrentando chuva, neve, cinzas vulcânicas e até mesmo tempestades de areia severas. Seja dia ou noite, cada pista se passa em belos cartões-postais de todo o mundo.
                     </p>
 
                     <p class="game-description">
-                        Incremente seu personagem até você alcançar o último andar. Faça seu melhor tempo ou tente de novo. Aqui a <strong>PRESSA É AMIGA DA PERFEIÇÃO!</strong>
-
+                        Horizon Chase Turbo resgata o contexto gráfico da geração 16 bits e cria um estilo inspirado no passado sem abrir mão da contemporaneidade. A estética poligonal e de cores secundárias acentua a beleza visual do jogo, resultando em uma atmosfera única e harmoniosa. Você sentirá a alma <strong><em>retrô</em></strong> do jogo em uma roupagem completamente moderna.
                     </p>
 
                     <p class="game-description">
-                        Em um mundo no ano de 2095, onde "Robilionários" dominaram o mundo, e os humanos são viciados em dopamina. Jack Banhammer, um "moderador" contratado pela Peace Corp, parte para resgatar o "Influenciador" de um arranhacéu cheio de Robilionários assassinos em troca de um novo par de sapatos
-                    </p>
-                     <p class="game-description">
-                          Você é <em>MULLET MAD JACK</em> e matará inimigos para reabastecer seus 10 SEGUNDOS DE VIDA!
-                    </p>
-                    <p class="game-description">
-                        O mundo é controlado por robôs super ricos chamados "ROBILIONÁRIOS",
-                        Aqueles que ousam viver a cada 10 SEGUNDOS DE VIDA apenas pra acabar com estes robôs são chamados, MODERADORES!
-                    </p>
-                    <p class="game-description">
-                        Em um futuro distante, HUMANIDADE e INTERNET se fundem em um novo ser.
-                        Um humano precisa de DOPAMINA a cada 10 SEGUNDOS ou ele MORRE!
+                        Inspirado nos grandes sucessos dos anos 80 e 90: Out Run, Lotus Turbo Challenge, Top Gear (SNES), Rush, entre outros. Cada curva e cada volta no Horizon Chase Turbo recria a jogabilidade de arcade clássica e oferece velocidade e diversão ilimitadas. Pise fundo e divirta-se!
+
                     </p>
                 </div>
 
@@ -284,18 +292,16 @@
                 <div class="section-card">
                     <h2 class="section-heading"><i class="fas fa-hashtag"></i> Tags</h2>
                     <div class="tags-container">
-                        <span class="tag">Metroidvania</span>
-                        <span class="tag">Indie Brasileiro</span>
-                        <span class="tag">Pixel Art</span>
+                        <span class="tag">Corrida</span>
+                        <span class="tag">Arcade</span>
+                        <span class="tag">Retrô</span>
                         <span class="tag">Ação</span>
-                        <span class="tag">Plataforma 2D</span>
+                        <span class="tag">Indie</span>
                         <span class="tag">Atmosférico</span>
-                        <span class="tag">Exploração</span>
-                        <span class="tag">Chefes Desafiadores</span>
+                        <span class="tag">Condução</span>
+                        <span class="tag">Colorido</span>
                         <span class="tag">Trilha Sonora</span>
-                        <span class="tag">Narrativa</span>
-                        <span class="tag">Difícil</span>
-                        <span class="tag tag-highlight"><i class="fas fa-star"></i> Destaque Nacional</span>
+                        <span class="tag">Épico</span>
                     </div>
                 </div>
 
@@ -340,10 +346,10 @@
                     <div class="comments-list" id="commentsList">
                         <div class="comment-card">
                             <div class="comment-header">
-                                <img src="https://i.pravatar.cc/40?img=3" alt="Rafael" class="comment-avatar">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="SpeedKingBR" class="comment-avatar">
                                 <div class="comment-meta">
-                                    <strong>SpeedKingBR </strong>
-                                    <span class="comment-date">há 2 dias</span>
+                                    <strong>SpeedKingBR</strong>
+                                    <span class="comment-date">há 6 dias</span>
                                 </div>
                                 <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             </div>
@@ -355,10 +361,10 @@
                         </div>
                         <div class="comment-card">
                             <div class="comment-header">
-                                <img src="https://i.pravatar.cc/40?img=9" alt="Maria" class="comment-avatar">
+                                <img src="https://i.pravatar.cc/40?img=9" alt="RetroDriver" class="comment-avatar">
                                 <div class="comment-meta">
                                     <strong>RetroDriver</strong>
-                                    <span class="comment-date">há 5 dias</span>
+                                    <span class="comment-date">há 3 dias</span>
                                 </div>
                                 <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
                             </div>
@@ -370,14 +376,14 @@
                         </div>
                         <div class="comment-card">
                             <div class="comment-header">
-                                <img src="https://i.pravatar.cc/40?img=15" alt="Lucas" class="comment-avatar">
+                                <img src="https://i.pravatar.cc/40?img=15" alt="ArcadeFan99" class="comment-avatar">
                                 <div class="comment-meta">
                                     <strong>ArcadeFan99</strong>
                                     <span class="comment-date">há 1 semana</span>
                                 </div>
                                 <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             </div>
-                            <p class="comment-text">Sistema de progressão simples mas viciante</p>
+                            <p class="comment-text">Sistema de progressão simples mas viciante.</p>
                             <div class="comment-actions">
                                 <button class="like-btn"><i class="fas fa-thumbs-up"></i> 27</button>
                                 <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
@@ -396,21 +402,21 @@
                 <div class="section-card aside-card">
                     <h2 class="section-heading"><i class="fas fa-info-circle"></i> Detalhes</h2>
                     <table class="details-table">
-                        <tr><td><i class="fas fa-code"></i> Desenvolvedor</td><td><a href="#" class="dev-link">Aquiris Game Studio</a></td></tr>
-                        <tr><td><i class="fas fa-building"></i> Publicadora</td><td>Raw Fury</td></tr>
-                        <tr><td><i class="fas fa-calendar"></i> Lançamento</td><td>15 de maio de 2024</td></tr>
-                        <tr><td><i class="fas fa-gamepad"></i> Plataformas</td><td>PC, Mac, iOS, Switch, PS4, Xbox</td></tr>
-                        <tr><td><i class="fas fa-language"></i> Idiomas</td><td>PT-BR, EN, ES, FR, DE, RU, ZH, KO</td></tr>
-                        <tr><td><i class="fas fa-layer-group"></i> Gêneros</td><td>FPS, Ação, Roguelike</td></tr>
-                        <tr><td><i class="fas fa-user-shield"></i> Classificação</td><td>14+ anos</td></tr>
-                        <tr><td><i class="fas fa-users"></i> Modo</td><td>Single-player</td></tr>
+                        <tr><td><i class="fas fa-code"></i> Desenvolvedor</td><td><a href="https://www.aquiris.com.br/" target="_blank">AQUIRIS</a></td></tr>
+                        <tr><td><i class="fas fa-building"></i> Publicadora</td><td>AQUIRIS</td></tr>
+                        <tr><td><i class="fas fa-calendar"></i> Lançamento</td><td>15 mai. 2018</td></tr>
+                        <tr><td><i class="fas fa-gamepad"></i> Plataformas</td><td>PC, Mac, iOS, Switch, Xbox</td></tr>
+                        <tr><td><i class="fas fa-language"></i> Idiomas</td><td>PPT-BR, EN, RU, FR, ES, JP</td></tr>
+                        <tr><td><i class="fas fa-layer-group"></i> Gêneros</td><td>Corrida, Retro, Anos 90</td></tr>
+                        <tr><td><i class="fas fa-user-shield"></i> Classificação</td><td>Livre</td></tr>
+                        <tr><td><i class="fas fa-users"></i> Modo</td><td>Single-player, Multi-player</td></tr>
                     </table>
                 </div>
 
                 <!-- Card de doação -->
                 <div class="section-card aside-card donate-card">
                     <div class="donate-icon"><i class="fas fa-seedling"></i></div>
-                    <h3>Apoie a Aquiris Game Studio</h3>
+                    <h3>Apoie a AQUIRIS</h3>
                     <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
                     <div class="donate-amounts" id="donateAmountsAside">
                         <button class="amount-btn" data-amount="5">R$ 5</button>
@@ -422,38 +428,6 @@
                         <i class="fas fa-hand-holding-heart"></i> Apoiar com R$ 10
                     </button>
                 </div>
-
-                <!-- Jogos similares -->
-                <!-- <div class="section-card aside-card">
-                    <h2 class="section-heading"><i class="fas fa-gamepad"></i> Jogos Similares</h2>
-                    <div class="similar-games">
-                        <div class="similar-game-card">
-                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1263620/header.jpg" alt="Momodora" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
-                            <div class="sg-info">
-                                <strong>Momodora: Reverie</strong>
-                                <span>Metroidvania</span>
-                                <div class="sg-stars"><i class="fas fa-star"></i> 4.6</div>
-                            </div>
-                        </div>
-                        <div class="similar-game-card">
-                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1082710/header.jpg" alt="Kambulin" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
-                            <div class="sg-info">
-                                <strong>Kambulin</strong>
-                                <span>Puzzle</span>
-                                <div class="sg-stars"><i class="fas fa-star"></i> 4.7</div>
-                            </div>
-                        </div>
-                        <div class="similar-game-card">
-                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1545560/header.jpg" alt="Mullet Madjack" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
-                            <div class="sg-info">
-                                <strong>Mullet Madjack</strong>
-                                <span>Ação</span>
-                                <div class="sg-stars"><i class="fas fa-star"></i> 4.5</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
             </aside>
         </div>
     </main>
@@ -464,7 +438,7 @@
             <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
             <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
             <h3>Apoiar Horizon Chase Turbo</h3>
-            <p>Sua contribuição vai diretamente para a <strong>Hammer95</strong> continuar criando jogos incríveis!</p>
+            <p>Sua contribuição vai diretamente para a <strong>AQUIRIS</strong> continuar criando jogos incríveis!</p>
             <div class="modal-amounts" id="modalAmounts">
                 <button class="amount-btn" data-amount="5">R$ 5</button>
                 <button class="amount-btn active" data-amount="10">R$ 10</button>
@@ -472,7 +446,7 @@
                 <button class="amount-btn" data-amount="50">R$ 50</button>
                 <button class="amount-btn" data-amount="100">R$ 100</button>
             </div>
-            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="1">
+            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="0.10" max="5000000" step="0.01">
             <button class="btn-confirm-donate" id="confirmDonate">
                 <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
             </button>
@@ -487,16 +461,19 @@
     <div class="toast" id="toast"></div>
 
         <footer class="main-footer">
-        <div class="footer-logo-box">
-            <img src="logo-velora.png" alt="Velora" class="footer-logo-img">
-            <span class="footer-logo-text">VELORA</span>
-        </div>
-        <div class="footer-links">
-            <a href="#">Termos de Uso</a>
-            <span class="separator">•</span>
-            <a href="#">Privacidade</a>
-            <span class="separator">•</span>
-            <a href="#">Suporte</a>
+        <div class="footer-container">
+            <a href="../../Catalogo.html" class="footer-logo">
+                <img src="/projeto-main/logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <span class="footer-logo-text">VELORA</span>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="../../TermosDeUso.html">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="../../TermosPriv.html">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="../../SuporteUsuario.html">Suporte</a>
+            </div>
         </div>
     </footer>
 
