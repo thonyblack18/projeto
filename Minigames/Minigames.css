@@ -706,3 +706,176 @@ body::before {
         text-align: center;
     }
 }
+
+
+
+/* ============================================================
+   AJUSTE FINAL — HEADER/FOOTER/RESPONSIVO PADRÃO DANDARA
+   Apenas visual/menu/footer. Não altera backend.
+   ============================================================ */
+
+.logo-text,
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+
+.logo-text {
+    font-size: 22px;
+}
+
+.footer-logo-text {
+    font-size: 15px;
+}
+
+.header-right {
+    position: relative;
+}
+
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.footer-logo {
+    text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        background: rgba(13,13,26,0.98);
+        border: 1px solid rgba(212,175,55,0.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .search-box,
+    .search-box-header {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .main-content {
+        padding: 32px 20px 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        gap: 12px;
+    }
+
+    .header-left {
+        gap: 18px;
+    }
+
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile {
+        padding: 5px;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .notification-badge {
+        width: 16px;
+        height: 16px;
+    }
+
+    .main-footer {
+        padding: 24px 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+}
