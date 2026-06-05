@@ -1,0 +1,1134 @@
+/* ============================================
+   ARQUIVO: faq-styles.css
+   PROJETO: Velora - Estilos da Página de FAQ
+   ============================================ */
+
+/* ==================== RESET E BASE ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold-primary: #D4AF37;
+    --gold-light: #FFD700;
+    --gold-dark: #B8941E;
+    --black: #0A0A0A;
+    --dark-gray: #2A2A2A;
+    --medium-gray: #808080;
+    --light-gray: #E5E5E5;
+    --white: #FFFFFF;
+    --success: #4CAF50;
+    --warning: #FF9800;
+    --error: #F44336;
+    --info: #2196F3;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+    min-height: 100vh;
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==================== FUNDO ESTRELADO ==================== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent),
+        radial-gradient(1px 1px at 15% 55%, white, transparent),
+        radial-gradient(2px 2px at 70% 25%, white, transparent);
+    background-size: 200% 200%, 250% 250%, 300% 300%, 350% 350%, 
+                     180% 180%, 280% 280%, 220% 220%, 320% 320%;
+    background-position: 0% 0%, 40% 40%, 80% 10%, 20% 90%, 
+                        60% 30%, 10% 60%, 90% 80%, 50% 20%;
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+}
+
+/* ==================== DECORAÇÕES ==================== */
+.background-decoration {
+    position: fixed;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+.circle-decoration {
+    position: fixed;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 30px); }
+}
+
+/* ==================== CONTAINER ==================== */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* ==================== HEADER COM LOGO ==================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ==================== ESPAÇO PARA LOGO VELORA ==================== */
+/* 
+   INSTRUÇÕES PARA ADICIONAR SUA LOGO:
+   
+   1. Para usar IMAGEM da logo:
+      - Descomente a tag <img> no HTML (faq.html)
+      - Adicione o caminho: <img src="assets/images/logo-velora.png" alt="Velora Logo" class="logo-image">
+      - Comente ou remova o <h1 class="logo-text">
+   
+   2. Para usar TEXTO estilizado (atual):
+      - Mantenha o <h1 class="logo-text">VELORA</h1>
+      - O gradiente dourado já está aplicado
+*/
+
+.logo-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilo para LOGO EM IMAGEM */
+.logo-image {
+    max-width: 200px;
+    max-height: 60px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.4));
+    transition: var(--transition);
+}
+
+.logo-image:hover {
+    filter: drop-shadow(0 6px 30px rgba(212, 175, 55, 0.6));
+    transform: scale(1.02);
+}
+
+/* Estilo para LOGO EM TEXTO (padrão atual) */
+.logo-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.logo-text:hover {
+    letter-spacing: 0.18em;
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50px;
+    color: var(--gold-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.back-button:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold-primary);
+    transform: translateX(-5px);
+}
+
+/* ==================== TÍTULO DA PÁGINA ==================== */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--white);
+}
+
+/* =================== CORREÇÃO HERO FAQ =================== */
+
+.hero-section {
+    text-align: center;
+    padding: 70px 20px 34px;
+    margin-bottom: 28px;
+}
+
+.page-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+
+    background: linear-gradient(
+        135deg,
+        var(--gold) 0%,
+        var(--gold-light) 55%,
+        #ffffff 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    filter: drop-shadow(0 0 22px rgba(212,175,55,0.25));
+}
+
+.page-subtitle {
+    font-size: 1.15rem;
+    color: var(--gray-300);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+}
+
+.tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto 26px;
+    max-width: 1050px;
+}
+
+.search-container {
+    margin: 0 auto 56px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 48px 16px 28px;
+    }
+
+    .page-title {
+        font-size: 2.8rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+        margin-bottom: 26px;
+    }
+
+    .tabs-wrapper {
+        gap: 8px;
+    }
+}
+
+/* ==================== SELETOR DE CATEGORIAS (TABS) ==================== */
+.category-selector {
+    margin-bottom: 40px;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab {
+    padding: 12px 24px;
+    background: rgba(42, 42, 42, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 50px;
+    color: var(--light-gray);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.tab:hover {
+    background: rgba(42, 42, 42, 0.8);
+    border-color: var(--gold-primary);
+    color: var(--white);
+}
+
+.tab.active {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    border-color: var(--gold-light);
+    color: var(--black);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ==================== BARRA DE PESQUISA ==================== */
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-box::placeholder {
+    color: var(--medium-gray);
+}
+
+.search-box:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-primary);
+    pointer-events: none;
+}
+
+/* ==================== CONTEÚDO FAQ ==================== */
+.faq-content {
+    position: relative;
+}
+
+.faq-section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.faq-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== ITEMS DE FAQ ==================== */
+.faq-item {
+    background: rgba(42, 42, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: var(--gold-primary);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.faq-item.active {
+    border-color: var(--gold-primary);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-question h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--white);
+    flex: 1;
+    margin-right: 20px;
+    line-height: 1.5;
+}
+
+.toggle-icon {
+    font-size: 2rem;
+    color: var(--gold-primary);
+    font-weight: 300;
+    min-width: 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.faq-item.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 2000px;
+    padding: 0 24px 24px 24px; /* CORRIGIDO: padding consistente */
+}
+
+.faq-answer p {
+    color: var(--light-gray);
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.faq-answer ol,
+.faq-answer ul {
+    margin: 16px 0 16px 0; /* CORRIGIDO: removido margin-left excessivo */
+    padding-left: 24px; /* ADICIONADO: padding para indentação correta */
+    color: var(--light-gray);
+}
+
+.faq-answer li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.faq-answer strong {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+/* ==================== DESTACADORES ==================== */
+.tip {
+    background: rgba(76, 175, 80, 0.15);
+    border-left: 4px solid var(--success);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.warning {
+    background: rgba(255, 152, 0, 0.15);
+    border-left: 4px solid var(--warning);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.info {
+    background: rgba(33, 150, 243, 0.15);
+    border-left: 4px solid var(--info);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.tip strong,
+.warning strong,
+.info strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ==================== RODAPÉ DE AJUDA ==================== */
+.help-footer {
+    text-align: center;
+    margin-top: 80px;
+    padding: 50px 30px;
+    background: rgba(42, 42, 42, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.help-footer h3 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: var(--white);
+}
+
+.help-footer p {
+    color: var(--medium-gray);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.contact-button {
+    padding: 16px 40px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    color: var(--black);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.02em;
+}
+
+.contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+}
+
+/* ==================== ESTADO DE BUSCA ==================== */
+.faq-item.hidden {
+    display: none;
+}
+
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--medium-gray);
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--light-gray);
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .logo-text {
+        font-size: 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tab {
+        text-align: center;
+    }
+
+    .faq-question h3 {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .faq-question {
+        padding: 20px 16px;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 16px 20px;
+    }
+}
+
+
+/* ============================================================
+   HEADER + FOOTER + RESPONSIVO PADRÃO DANDARA
+   Apenas visual/menu/footer. Não altera backend.
+   ============================================================ */
+
+:root {
+    --bg-dark: #0a0a0f;
+    --bg-card: #13131a;
+    --bg-card2: #1a1a25;
+    --gold: #d4af37;
+    --gold-primary: #d4af37;
+    --gold-light: #f4d03f;
+    --gold-dim: rgba(212,175,55,0.15);
+    --white: #ffffff;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --red: #ef4444;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --transition: 0.25s ease;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-dark);
+    color: var(--white);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fundo estrelado padrão Velora */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.25), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.18), transparent),
+        radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.22), transparent),
+        radial-gradient(1px 1px at 33% 80%, rgba(255,255,255,0.18), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.25), transparent);
+    background-size: 200% 200%;
+    animation: twinkleStars 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes twinkleStars {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.65; }
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+    padding: 48px 40px 80px;
+}
+
+.content-container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* =================== HEADER =================== */
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(13,13,26,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+    padding: 0 40px;
+}
+
+.header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+/* LOGO PADRÃO VELORA: use a imagem "Logo Velora.png" no HTML */
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo-text,
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    animation: none;
+    text-shadow: none;
+}
+
+.logo-text {
+    font-size: 22px;
+}
+
+.logo-text:hover {
+    letter-spacing: 2px;
+    filter: none;
+}
+
+.main-nav {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    color: var(--gray-300);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.nav-item i {
+    font-size: 15px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+}
+
+.search-box-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box-header i {
+    position: absolute;
+    left: 13px;
+    color: var(--gray-500);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.search-box-header input {
+    width: 240px;
+    padding: 9px 14px 9px 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 14px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.search-box-header input::placeholder {
+    color: var(--gray-500);
+}
+
+.search-box-header input:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.08);
+}
+
+.icon-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    background: var(--red);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.user-profile:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+}
+
+.user-avatar-initial {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--bg-dark);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user-profile i.fa-chevron-down {
+    font-size: 12px;
+    color: var(--gray-500);
+    transition: transform 0.3s;
+}
+
+.user-profile.active i.fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    background: rgba(19,19,26,0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    color: var(--gray-300);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.dropdown-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item.logout {
+    color: var(--red);
+}
+
+.dropdown-item.logout:hover {
+    background: rgba(239,68,68,0.1);
+    color: var(--red);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 8px 0;
+}
+
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =================== FOOTER =================== */
+
+.main-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    padding: 28px 40px;
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.footer-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+/* LOGO PADRÃO VELORA: use a imagem "Logo Velora.png" no HTML */
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.footer-logo-text {
+    font-size: 15px;
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover,
+.footer-links a.active-link {
+    color: var(--gold);
+}
+
+.footer-links .sep {
+    color: var(--gray-700);
+    font-size: 11px;
+}
+
+/* =================== RESPONSIVO MENU/FOOTER =================== */
+
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        background: rgba(13,13,26,0.98);
+        border: 1px solid rgba(212,175,55,0.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .search-box-header {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 36px 18px 62px;
+    }
+
+    .header-container {
+        gap: 12px;
+    }
+
+    .header-left {
+        gap: 18px;
+    }
+
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile {
+        padding: 5px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .notification-badge {
+        width: 16px;
+        height: 16px;
+    }
+
+    .main-footer {
+        padding: 24px 16px;
+    }
+}
