@@ -11,51 +11,79 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- =================== HEADER PADRÃO VELO​RA =================== -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
                 <a href="Catalogo.html" class="logo">
-                    <div class="logo-img-placeholder"></div>
+                    <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
                 </a>
+                
                 <nav class="main-nav">
-                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
-                    <a href="Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
-                    <a href="Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
-                    <a href="Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
-                    <a href="#top" class="nav-item active"><i class="fas fa-users"></i> Desenvolvedores</a>
-                    <a href="SobreNos.html" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
+                    <a href="Catalogo.html" class="nav-item">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Minigames
+                    </a>
+                    <a href="Ranking.html" class="nav-item">
+                        <i class="fas fa-fire"></i> Ranking
+                    </a>
+                    <a href="Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i> Notícias
+                    </a>
+                    <a href="ListaDevs.html" class="nav-item active">
+                        <i class="fas fa-users"></i> Desenvolvedores
+                    </a>
+                    <a href="SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i> Sobre nós
+                    </a>
                 </nav>
             </div>
+
             <div class="header-right">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="search-box-header">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
+
+                <button class="icon-btn" title="Favoritos">
+                    <i class="fas fa-heart"></i>
+                </button>
+
                 <button class="icon-btn" title="Notificações">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
+
                 <div class="user-profile" id="userProfile">
                     <div class="user-avatar-initial" id="userAvatarInitial">J</div>
                     <span class="user-name" id="userName">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
+
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-item" id="dropMeuPerfil">
-                        <i class="fas fa-user"></i><span>Meu Perfil</span>
+                        <i class="fas fa-user"></i>
+                        <span>Meu Perfil</span>
                     </div>
                     <a href="SuporteUsuario.html" class="dropdown-item">
-                        <i class="fas fa-headset"></i><span>Suporte</span>
+                        <i class="fas fa-headset"></i>
+                        <span>Suporte</span>
                     </a>
                     <a href="Configuracoes.html" class="dropdown-item">
-                        <i class="fas fa-cog"></i><span>Configurações</span>
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item logout" id="dropSair">
-                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
                     </div>
                 </div>
             </div>
@@ -112,24 +140,41 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- =================== FOOTER PADRÃO VELO​RA =================== -->
     <footer class="main-footer">
         <div class="footer-container">
             <a href="Catalogo.html" class="footer-logo">
-                <div class="logo-img-placeholder small"></div>
-                <span class="logo-text small">VELORA</span>
+                <img src="logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <span class="footer-logo-text">VELORA</span>
             </a>
             <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
             <div class="footer-links">
-                <a href="#">Termos de Uso</a>
+                <a href="TermosDeUso.html">Termos de Uso</a>
                 <span class="sep">·</span>
-                <a href="#">Privacidade</a>
+                <a href="TermosPriv.html">Privacidade</a>
                 <span class="sep">·</span>
                 <a href="SuporteUsuario.html">Suporte</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mainNav = document.querySelector(".main-nav");
+
+        mobileMenuBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            mainNav?.classList.toggle("active");
+        });
+
+        document.addEventListener("click", () => {
+            mainNav?.classList.remove("active");
+        });
+
+        mainNav?.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+    </script>
     <script src="ListaDevs.js"></script>
 </body>
 </html>
