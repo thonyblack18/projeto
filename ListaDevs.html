@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desenvolvedores — Velora</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@400;600;700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@400;600;700;800&family=Orbitron:wght@700;800;900&family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="ListaDevs.css">
-    <link rel="icon" type="image/png" href="logo velora.png">
+    <link rel="icon" type="image/png" href="logo-velora.png">
 </head>
 <body>
 
-    <!-- =================== HEADER PADRÃO VELO​RA =================== -->
+    <!-- HEADER -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
@@ -19,31 +19,17 @@
                     <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
                 </a>
-                
                 <nav class="main-nav">
-                    <a href="Catalogo.html" class="nav-item">
-                        <i class="fas fa-home"></i> Início
-                    </a>
-                    <a href="Minigames/Minigames.html" class="nav-item">
-                        <i class="fas fa-gamepad"></i> Minigames
-                    </a>
-                    <a href="Ranking.html" class="nav-item">
-                        <i class="fas fa-fire"></i> Ranking
-                    </a>
-                    <a href="Noticias.html" class="nav-item">
-                        <i class="fas fa-newspaper"></i> Notícias
-                    </a>
-                    <a href="ListaDevs.html" class="nav-item active">
-                        <i class="fas fa-users"></i> Desenvolvedores
-                    </a>
-                    <a href="SobreNos.html" class="nav-item">
-                        <i class="fas fa-crown"></i> Sobre nós
-                    </a>
+                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
+                    <a href="Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
+                    <a href="Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
+                    <a href="Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                    <a href="#top" class="nav-item active"><i class="fas fa-users"></i> Desenvolvedores</a>
+                    <a href="SobreNos.html" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
                 </nav>
             </div>
-
             <div class="header-right">
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
                     <i class="fas fa-bars"></i>
                 </button>
 
@@ -51,39 +37,29 @@
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-
-                <button class="icon-btn" title="Favoritos">
-                    <i class="fas fa-heart"></i>
-                </button>
-
-                <button class="icon-btn" title="Notificações">
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos" type="button"><i class="fas fa-heart"></i></button>
+                <button class="icon-btn" title="Notificações" type="button">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
-
                 <div class="user-profile" id="userProfile">
                     <div class="user-avatar-initial" id="userAvatarInitial">J</div>
                     <span class="user-name" id="userName">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-item" id="dropMeuPerfil">
-                        <i class="fas fa-user"></i>
-                        <span>Meu Perfil</span>
+                        <i class="fas fa-user"></i><span>Meu Perfil</span>
                     </div>
                     <a href="SuporteUsuario.html" class="dropdown-item">
-                        <i class="fas fa-headset"></i>
-                        <span>Suporte</span>
+                        <i class="fas fa-headset"></i><span>Suporte ao Usuário</span>
                     </a>
                     <a href="Configuracoes.html" class="dropdown-item">
-                        <i class="fas fa-cog"></i>
-                        <span>Configurações</span>
+                        <i class="fas fa-cog"></i><span>Configurações</span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item logout" id="dropSair">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Sair</span>
+                        <i class="fas fa-sign-out-alt"></i><span>Sair</span>
                     </div>
                 </div>
             </div>
@@ -140,7 +116,7 @@
         </div>
     </main>
 
-    <!-- =================== FOOTER PADRÃO VELO​RA =================== -->
+    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-container">
             <a href="Catalogo.html" class="footer-logo">
@@ -158,23 +134,6 @@
         </div>
     </footer>
 
-    <script>
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mainNav = document.querySelector(".main-nav");
-
-        mobileMenuBtn?.addEventListener("click", (e) => {
-            e.stopPropagation();
-            mainNav?.classList.toggle("active");
-        });
-
-        document.addEventListener("click", () => {
-            mainNav?.classList.remove("active");
-        });
-
-        mainNav?.addEventListener("click", (e) => {
-            e.stopPropagation();
-        });
-    </script>
     <script src="ListaDevs.js"></script>
 </body>
 </html>

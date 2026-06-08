@@ -375,3 +375,25 @@ document.getElementById('filterTabs').addEventListener('click', e => {
 // ===== INIT =====
 renderDevs();
 console.log('👨‍💻 Lista de Devs — Velora carregada!');
+
+// =================== MENU MOBILE PADRÃO DANDARA ===================
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+// =================== ATALHO FAVORITOS ===================
+document.getElementById("btnFavoritos")?.addEventListener("click", () => {
+    window.location.href = "ListaFavoritos.html";
+});
