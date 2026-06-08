@@ -545,3 +545,383 @@ kbd {
     .start-title { font-size: 1.8rem; }
     .footer-container { flex-direction: column; align-items: center; text-align: center; }
 }
+
+/* ============================================================
+   AJUSTE FINAL — HEADER/FOOTER/RESPONSIVO PADRÃO DANDARA
+   Apenas visual/menu/footer. Não altera backend.
+   ============================================================ */
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(13,13,26,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+    padding: 0 40px;
+}
+
+.header-container {
+    max-width: 1600px;
+    height: 70px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo-text,
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.logo-text {
+    font-size: 22px;
+}
+
+.footer-logo-text {
+    font-size: 15px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+}
+
+.search-box-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box-header i {
+    position: absolute;
+    left: 13px;
+    color: var(--gray-500);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.search-box-header input {
+    width: 260px;
+    padding: 9px 14px 9px 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 14px;
+    font-family: var(--font-body);
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+.search-box-header input::placeholder {
+    color: var(--gray-500);
+}
+
+.search-box-header input:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.08);
+}
+
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-btn:hover,
+.icon-btn:hover {
+    background: var(--gold-dim, rgba(212,175,55,0.15));
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.main-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    padding: 28px 40px;
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.footer-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        background: rgba(13,13,26,0.98);
+        border: 1px solid rgba(212,175,55,0.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .search-box-header {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .main-content {
+        padding: 32px 20px 60px;
+    }
+
+    .start-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ranking-panel {
+        width: 100%;
+        max-width: 560px;
+    }
+
+    .hud {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --canvas-h: 220px;
+    }
+
+    .header-container {
+        gap: 12px;
+    }
+
+    .header-left {
+        gap: 18px;
+    }
+
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile {
+        padding: 5px;
+    }
+
+    .start-logo {
+        align-items: center;
+    }
+
+    .hud-left,
+    .hud-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --canvas-h: 180px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .main-content {
+        padding: 26px 14px 50px;
+    }
+
+    .start-logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .start-title {
+        font-size: 1.7rem;
+        text-align: center;
+    }
+
+    .diff-row {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .ctrl-row {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .over-stat {
+        min-width: 100px;
+    }
+
+    .main-footer {
+        padding: 24px 16px;
+    }
+}
+
+
+/* ============================================================
+   AJUSTE VOE — BOTÃO SAIR NO PAUSE + DIFICULDADE
+   Apenas front-end. Não altera backend.
+   ============================================================ */
+
+.canvas-overlay {
+    gap: 12px;
+}
+
+.btn-pause-exit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 10px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,175,55,0.35);
+    border-radius: 9px;
+    color: var(--gold);
+    font-family: var(--font-game);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.btn-pause-exit:hover {
+    background: rgba(212,175,55,0.12);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .btn-pause-exit {
+        font-size: 10px;
+        padding: 9px 14px;
+    }
+}
+
+
+/* ============================================================
+   AJUSTE VOE — PAUSE COM DUAS SAÍDAS
+   ============================================================ */
+
+.pause-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+.btn-pause-exit {
+    border: 1px solid rgba(212,175,55,0.35);
+}
+
+.btn-pause-exit[type="button"] {
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .pause-actions {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .pause-actions .btn-pause-exit {
+        width: min(230px, 90%);
+    }
+}

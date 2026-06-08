@@ -23,9 +23,9 @@ const state = {
     distance:   0,
     level:      1,
     lives:      3,
-    speed:      5.0,
-    baseSpeed:  5.0,
-    gravity:    0.55,
+    speed:      5.2,
+    baseSpeed:  5.2,
+    gravity:    0.50,
     raf:        null,
     frameCount: 0,
 
@@ -125,7 +125,7 @@ function initGame() {
     state.jumping     = false;
     state.diving      = false;
     state.obstacles   = [];
-    state.obsCooldown = 80;
+    state.obsCooldown = 55;
     state.particles   = [];
     state.flashTimer  = 0;
     state.frameCount  = 0;
@@ -195,7 +195,7 @@ function dive() {
 // ===== OBSTÁCULOS =====
 function spawnObstacle() {
     const template = OBS_TYPES[Math.floor(Math.random() * OBS_TYPES.length)];
-    const speedMult = state.speed / 5.0;
+    const speedMult = state.speed / (state.baseSpeed >= 9 ? 4.35 : 4.6);
     let obsY;
 
     switch (template.yMode) {
@@ -231,9 +231,28 @@ function spawnObstacle() {
     }
 
     // cooldown variado por nível
-    const minCool = Math.max(40, 110 - state.level * 8);
-    const maxCool = Math.max(80, 200 - state.level * 10);
+    const hardMode = state.baseSpeed >= 9;
+    const minCool = hardMode
+        ? Math.max(24, 70 - state.level * 6)
+        : Math.max(28, 82 - state.level * 7);
+
+    const maxCool = hardMode
+        ? Math.max(46, 118 - state.level * 8)
+        : Math.max(54, 145 - state.level * 9);
+
     state.obsCooldown = minCool + Math.floor(Math.random() * (maxCool - minCool));
+
+    // No difícil, o jogo fica mais intenso com pares ocasionais de obstáculos.
+    // A distância extra evita ficar injusto/impossível.
+    const extraChance = hardMode
+        ? Math.min(0.48, 0.22 + state.level * 0.035)
+        : (state.level >= 3 ? 0.35 : 0);
+
+    if (Math.random() < extraChance) {
+        const extra = { ...obs, x: obs.x + obs.w + 145 + Math.random() * 95 };
+        extra.scored = false;
+        state.obstacles.push(extra);
+    }
 }
 
 // ===== PARTÍCULAS =====
@@ -325,10 +344,10 @@ function checkCollisions() {
 
 // ===== LEVEL UP =====
 function checkLevelUp() {
-    const newLevel = 1 + Math.floor(state.distance / 300);
+    const newLevel = 1 + Math.floor(state.distance / (state.baseSpeed >= 9 ? 220 : 240));
     if (newLevel > state.level) {
         state.level  = newLevel;
-        state.speed  = state.baseSpeed + (state.level - 1) * 0.6;
+        state.speed  = state.baseSpeed + (state.level - 1) * (state.baseSpeed >= 9 ? 0.95 : 0.85);
         state.flashTimer = 45;
         updateHUD();
     }
@@ -832,3 +851,36 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
 
     console.log('🚀 VOE! — Velora Space Runner carregado!');
 })();
+
+// =================== MENU MOBILE PADRÃO DANDARA ===================
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+// Atalho visual para favoritos
+document.getElementById("btnFavoritos")?.addEventListener("click", () => {
+    window.location.href = "../ListaFavoritos.html";
+});
+
+// =================== MENU DO VOE PELO PAUSE ===================
+document.getElementById("btnPauseMenu")?.addEventListener("click", () => {
+    state.running = false;
+    state.paused = false;
+    if (state.raf) cancelAnimationFrame(state.raf);
+    document.getElementById("pauseOverlay")?.classList.add("hidden");
+    document.getElementById("pauseIcon").className = "fas fa-pause";
+    document.getElementById("pauseLabel").textContent = "PAUSAR";
+    showScreen("start");
+});
