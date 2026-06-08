@@ -4,6 +4,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initDropdown();
+    initMobileMenu();
+    initHeaderActions();
     animateCards();
 });
 
@@ -36,13 +38,13 @@ function initDropdown() {
     document.getElementById('dropMeuPerfil')?.addEventListener('click', () => {
         let u = null;
         try { u = JSON.parse(localStorage.getItem('velora_user')); } catch(e) {}
-        if (!u) { window.location.href = 'LoginCadastro.html'; return; }
-        window.location.href = u.account_type === 'developer' ? 'PerfilDev.html' : 'PerfilUsuario.html';
+        if (!u) { window.location.href = '../LoginCadastro.html'; return; }
+        window.location.href = u.account_type === 'developer' ? '../PerfilDev.html' : '../PerfilUsuario.html';
     });
 
     document.getElementById('dropSair')?.addEventListener('click', () => {
         localStorage.removeItem('velora_user');
-        window.location.href = 'LoginCadastro.html';
+        window.location.href = '../LoginCadastro.html';
     });
 }
 
@@ -61,3 +63,29 @@ function animateCards() {
 }
 
 console.log('🎮 Velora Minigames — carregado!');
+
+// =================== MENU HAMBURGER PADRÃO DANDARA ===================
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mainNav = document.querySelector(".main-nav");
+
+    mobileMenuBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        mainNav?.classList.toggle("active");
+    });
+
+    document.addEventListener("click", () => {
+        mainNav?.classList.remove("active");
+    });
+
+    mainNav?.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+}
+
+// =================== AÇÕES DO HEADER ===================
+function initHeaderActions() {
+    document.getElementById("btnFavoritos")?.addEventListener("click", () => {
+        window.location.href = "../ListaFavoritos.html";
+    });
+}

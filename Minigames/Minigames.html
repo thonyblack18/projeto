@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@400;600;700;800&family=Orbitron:wght@700;800;900&family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Minigames.css">
-    <link rel="icon" href="logo velora.png" type="image/png">
+    <link rel="icon" href="../logo-velora.png" type="image/png">
 </head>
 <body>
 
@@ -17,12 +17,12 @@
             <div class="header-left">
                 <a href="../Catalogo.html" class="logo">
                     <!-- LOGO PADRÃO VELORA: coloque o arquivo "Logo Velora.png" na pasta principal do projeto -->
-                    <img src="../Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <img src="../logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
                 </a>
 
                 <nav class="main-nav">
-                    <a href="../Catalogo.html" class="nav-item">
+                    <a href="../Catalogo.html" class="nav-item" id="linkInicio">
                         <i class="fas fa-home"></i> Início
                     </a>
                     <a href="Minigames.html" class="nav-item active">
@@ -53,7 +53,7 @@
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
 
-                <button class="icon-btn" title="Favoritos" type="button">
+                <button class="icon-btn" title="Favoritos" type="button" id="btnFavoritos">
                     <i class="fas fa-heart"></i>
                 </button>
 
@@ -233,7 +233,7 @@
         <div class="footer-container">
             <a href="../Catalogo.html" class="footer-logo">
                 <!-- LOGO PADRÃO VELORA: coloque o arquivo "Logo Velora.png" na pasta principal do projeto -->
-                <img src="../Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <img src="../logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
                 <span class="footer-logo-text">VELORA</span>
             </a>
 
@@ -248,24 +248,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mainNav = document.querySelector(".main-nav");
-
-        mobileMenuBtn?.addEventListener("click", (e) => {
-            e.stopPropagation();
-            mainNav?.classList.toggle("active");
-        });
-
-        document.addEventListener("click", () => {
-            mainNav?.classList.remove("active");
-        });
-
-        mainNav?.addEventListener("click", (e) => {
-            e.stopPropagation();
-        });
-    </script>
 
     <script src="Minigames.js"></script>
 </body>
