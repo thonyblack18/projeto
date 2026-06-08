@@ -107,6 +107,16 @@ document.addEventListener('keydown', e => {
 const userProfile  = document.getElementById('userProfile');
 const userDropdown = document.getElementById('userDropdown');
 
+function getUsuarioVelora() {
+    try { return JSON.parse(localStorage.getItem('velora_user')); }
+    catch (e) { return null; }
+}
+
+function getCatalogoCorreto() {
+    const user = getUsuarioVelora();
+    return user && user.account_type === 'developer' ? 'CatalogoDev.html' : 'Catalogo.html';
+}
+
 if (userProfile && userDropdown) {
     userProfile.addEventListener('click', e => {
         e.stopPropagation();
@@ -121,19 +131,55 @@ if (userProfile && userDropdown) {
 
     userDropdown.addEventListener('click', e => e.stopPropagation());
 
-    userDropdown.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const text = item.querySelector('span').textContent;
-            if (text === 'Sair') {
-                alert('Logout realizado com sucesso!');
-            } else {
-                alert(`Navegando para: ${text}`);
-            }
-            userDropdown.classList.remove('active');
-            userProfile.classList.remove('active');
-        });
+    document.getElementById('dropMeuPerfil')?.addEventListener('click', () => {
+        const user = getUsuarioVelora();
+
+        if (!user) {
+            window.location.href = 'LoginCadastro.html';
+        } else if (user.account_type === 'developer') {
+            window.location.href = 'PerfilDev.html';
+        } else {
+            window.location.href = 'PerfilUsuario.html';
+        }
+    });
+
+    document.getElementById('dropMeusFavoritos')?.addEventListener('click', () => {
+        window.location.href = 'ListaFavoritos.html';
+    });
+
+    document.getElementById('dropSair')?.addEventListener('click', () => {
+        localStorage.removeItem('velora_user');
+        window.location.href = 'LoginCadastro.html';
     });
 }
+
+// =================== MENU MOBILE / LINKS PADRÃO ===================
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mainNav = document.querySelector('.main-nav');
+
+mobileMenuBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    mainNav?.classList.toggle('active');
+});
+
+mainNav?.addEventListener('click', e => e.stopPropagation());
+
+document.addEventListener('click', () => {
+    mainNav?.classList.remove('active');
+});
+
+mainNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mainNav.classList.remove('active'));
+});
+
+document.getElementById('linkInicio')?.addEventListener('click', e => {
+    e.preventDefault();
+    window.location.href = getCatalogoCorreto();
+});
+
+document.getElementById('btnFavoritos')?.addEventListener('click', () => {
+    window.location.href = 'ListaFavoritos.html';
+});
 
 // =================== LOGOS QUE NÃO CARREGAM ===================
 document.getElementById('header-logo')?.addEventListener('error', function () { this.style.display = 'none'; });

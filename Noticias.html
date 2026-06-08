@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Orbitron: fonte gamer moderna, sem exagero -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Noticias.css">
     <link rel="icon" type="image/png" href="logo velora.png">
 </head>
@@ -22,40 +23,41 @@
                 <a href="Catalogo.html" class="logo">
                     <img src="logo velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
-                <a href="/Catalogo.html" class="nav-item active">
-                        <i class="fas fa-home"></i>
-                        Início
+                </a>
+
+                <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item" id="linkInicio">
+                        <i class="fas fa-home"></i> Início
                     </a>
                     <a href="./Minigames/Minigames.html" class="nav-item">
-                        <i class="fas fa-gamepad"></i>
-                        Minigames
+                        <i class="fas fa-gamepad"></i> Minigames
                     </a>
                     <a href="Ranking.html" class="nav-item">
-                        <i class="fas fa-fire"></i>
-                        Ranking
+                        <i class="fas fa-fire"></i> Ranking
                     </a>
-                    <a href="Noticias.html" class="nav-item">
-                        <i class="fas fa-newspaper"></i>
-                        Noticias
+                    <a href="Noticias.html" class="nav-item active">
+                        <i class="fas fa-newspaper"></i> Notícias
                     </a>
                     <a href="ListaDevs.html" class="nav-item">
-                        <i class="fas fa-users"></i>
-                        Desenvolvedores
+                        <i class="fas fa-users"></i> Desenvolvedores
                     </a>
                     <a href="SobreNos.html" class="nav-item">
-                        <i class="fas fa-crown"></i>
-                        Sobre nós
+                        <i class="fas fa-crown"></i> Sobre nós
                     </a>
                 </nav>
             </div>
 
             <div class="header-right">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar notícias..." id="search-input">
                 </div>
 
-                <button class="icon-btn" title="Favoritos">
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
                     <i class="fas fa-heart"></i>
                 </button>
 
@@ -68,21 +70,25 @@
                     <img src="https://i.pravatar.cc/40" alt="Usuário">
                     <span class="user-name">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
+                </div>
 
-                    <div class="user-dropdown" id="userDropdown">
-                        <div class="dropdown-item">
-                            <i class="fas fa-user"></i><span>Meu Perfil</span>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="fas fa-heart"></i><span>Meus Favoritos</span>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="fas fa-cog"></i><span>Configurações</span>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-item logout">
-                            <i class="fas fa-sign-out-alt"></i><span>Sair</span>
-                        </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i>
+                        <span>Meu Perfil</span>
+                    </div>
+                    <div class="dropdown-item" id="dropMeusFavoritos">
+                        <i class="fas fa-heart"></i>
+                        <span>Meus Favoritos</span>
+                    </div>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
                     </div>
                 </div>
             </div>
@@ -437,17 +443,18 @@
 
     <!-- =================== FOOTER =================== -->
     <footer class="main-footer">
-        <div class="footer-inner">
-            <div class="footer-logo">
+        <div class="footer-container">
+            <a href="Catalogo.html" class="footer-logo">
                 <img src="logo velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
                 <span class="footer-logo-text">VELORA</span>
-            </div>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
             <div class="footer-links">
-                <a href="#">Termos de Uso</a>
-                <span class="footer-sep">•</span>
-                <a href="#">Privacidade</a>
-                <span class="footer-sep">•</span>
-                <a href="#">Suporte</a>
+                <a href="TermosDeUso.html">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="TermosPriv.html">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="SuporteUsuario.html">Suporte</a>
             </div>
         </div>
     </footer>
