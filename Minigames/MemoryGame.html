@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rubik+Glitch&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="MemoryGame.css">
-    <link rel="icon" type="image/png" href="logo velora.png">
+    <link rel="icon" type="image/png" href="logo-velora.png">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
 
                     <a href="../Catalogo.html" class="logo">
 
-                        <img src="../Logo Velora.png"
+                        <img src="logo-velora.png"
                             alt="Velora"
                             class="logo-img"
                             id="header-logo">
@@ -69,6 +69,10 @@
 
                 <div class="header-right">
 
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
                     <div class="search-box">
                         <i class="fas fa-search"></i>
 
@@ -76,11 +80,11 @@
                             placeholder="Buscar jogos...">
                     </div>
 
-                    <button class="icon-btn" title="Favoritos">
+                    <button class="icon-btn" id="btnFavoritos" title="Favoritos" type="button">
                         <i class="fas fa-heart"></i>
                     </button>
 
-                    <button class="icon-btn" title="Notificações">
+                    <button class="icon-btn" title="Notificações" type="button">
                         <i class="fas fa-bell"></i>
 
                         <span class="notification-badge">
@@ -260,7 +264,7 @@
         <a href="../Catalogo.html"
            class="footer-logo">
 
-            <img src="../Logo Velora.png"
+            <img src="logo-velora.png"
                  alt="Velora"
                  class="footer-logo-img"
                  id="footer-logo">

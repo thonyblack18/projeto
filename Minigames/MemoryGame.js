@@ -375,15 +375,15 @@ document.getElementById('modeGrid')
         if (!u) {
 
             window.location.href =
-                'LoginCadastro.html';
+                '../LoginCadastro.html';
 
             return;
         }
 
         window.location.href =
             u.account_type === 'developer'
-                ? 'PerfilDev.html'
-                : 'PerfilUsuario.html';
+                ? '../PerfilDev.html'
+                : '../PerfilUsuario.html';
     });
 
     document.getElementById('dropSair')
@@ -392,7 +392,7 @@ document.getElementById('modeGrid')
         localStorage.removeItem('velora_user');
 
         window.location.href =
-            'LoginCadastro.html';
+            '../LoginCadastro.html';
     });
 
 })();
@@ -401,3 +401,24 @@ document.getElementById('modeGrid')
 showScreen('start');
 
 console.log('🧠 Memory Game — Velora carregado!');
+
+// ===== MENU MOBILE / FAVORITOS — padrão Dandara =====
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.getElementById("btnFavoritos")?.addEventListener("click", () => {
+    window.location.href = "../ListaFavoritos.html";
+});
