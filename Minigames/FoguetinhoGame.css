@@ -828,3 +828,269 @@ kbd {
         text-align: center;
     }
 }
+
+
+/* ============================================================
+   AJUSTE FINAL — HEADER/FOOTER/RESPONSIVO PADRÃO DANDARA
+   Apenas visual/menu/footer. Não altera lógica do jogo/backend.
+   ============================================================ */
+
+.logo-text,
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+}
+
+.logo-text { font-size: 22px; }
+.footer-logo-text { font-size: 15px; }
+
+.header-container {
+    height: 70px;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 0;
+}
+
+.header-left {
+    width: auto;
+    justify-content: flex-start;
+    gap: 48px;
+}
+
+.header-right {
+    width: auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(212,175,55,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.footer-logo {
+    text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .header-container {
+        height: 70px;
+        min-height: 70px;
+        padding: 0;
+        flex-wrap: nowrap;
+    }
+
+    .header-left {
+        width: auto;
+        gap: 18px;
+    }
+
+    .header-right {
+        width: auto;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        background: rgba(13,13,26,0.98);
+        border: 1px solid rgba(212,175,55,0.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .main-content {
+        padding: 32px 20px 60px;
+        align-items: flex-start;
+    }
+
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-panel {
+        width: 100%;
+        max-width: var(--canvas-size);
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .info-card {
+        flex: 1;
+        min-width: 110px;
+    }
+
+    .canvas-wrap {
+        order: 1;
+    }
+
+    .left-panel {
+        order: 2;
+    }
+
+    .right-panel {
+        order: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .header-right {
+        gap: 10px;
+    }
+
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile {
+        padding: 5px;
+    }
+
+    .screen-inner {
+        gap: 20px;
+    }
+
+    .game-logo-wrap {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .game-title {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .difficulty-row {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 520px) {
+    :root {
+        --canvas-size: min(320px, calc(100vw - 32px));
+    }
+
+    .main-content {
+        padding: 26px 14px 50px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .notification-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+    }
+
+    .game-title {
+        font-size: 1.6rem;
+    }
+
+    .controls-hint {
+        padding: 14px 16px;
+    }
+
+    .hint-item {
+        gap: 5px;
+    }
+
+    .side-panel {
+        max-width: var(--canvas-size);
+    }
+
+    .info-value {
+        font-size: 1.4rem;
+    }
+
+    .over-title {
+        font-size: 1.6rem;
+    }
+
+    .main-footer {
+        padding: 24px 16px;
+    }
+}

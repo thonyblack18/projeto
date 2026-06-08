@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foguetinho Game — Velora</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rubik+Glitch&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Rubik+Glitch&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="FoguetinhoGame.css">
-    <link rel="icon" type="image/png" href="logo velora.png">
+    <link rel="icon" type="image/png" href="logo-velora.png">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
         <div class="header-container">
             <div class="header-left">
                 <a href="../Catalogo.html" class="logo">
-                    <img src="../Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
                 </a>
 
@@ -54,16 +54,20 @@
             </div>
 
             <div class="header-right">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
 
-                <button class="icon-btn" title="Favoritos">
+                <button class="icon-btn" title="Favoritos" id="btnFavoritos" type="button">
                     <i class="fas fa-heart"></i>
                 </button>
 
-                <button class="icon-btn" title="Notificações">
+                <button class="icon-btn" title="Notificações" type="button">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
@@ -228,7 +232,7 @@
     <footer class="main-footer">
         <div class="footer-container">
             <a href="../Catalogo.html" class="footer-logo">
-                <img src="../Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <img src="logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
                 <span class="footer-logo-text">VELORA</span>
             </a>
 
