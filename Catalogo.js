@@ -46,7 +46,6 @@ function renderGames(games) {
                     <div class="game-info">
                         <h3 class="game-title">${game.title}</h3>
 
-                        <p class="game-desc">${game.description || ""}</p>
 
                         <div class="game-meta">
                             <span class="game-genre">${game.genre}</span>

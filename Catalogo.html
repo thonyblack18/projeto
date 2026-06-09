@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velora | Página Inicial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700;900&family=Rubik+Glitch&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Catalogo.css">
-    <link rel="icon" href="Velora Logo.png" type="image/png">
-    
+    <link rel="icon" href="Logo Velora.png" type="image/png">
 </head>
 <body>
-    <!-- Header/Menu -->
+    <!-- HEADER PADRÃO VELORA -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-                <!-- =================== LOGO DO HEADER =================== -->
-                <div class="logo">
-                    <img src="logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
+                <a href="Catalogo.html" class="logo">
+                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
-                </div>
-                <!-- ====================================================== -->
-                
-                 <nav class="main-nav">
-                    <a href="/Catalogo.html" class="nav-item active">
+                </a>
+
+                <nav class="main-nav">
+                    <a href="Catalogo.html" class="nav-item active">
                         <i class="fas fa-home"></i>
                         Início
                     </a>
@@ -48,45 +46,46 @@
                     </a>
                 </nav>
             </div>
-            
+
             <div class="header-right">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-                
+
                 <button class="icon-btn" id="btnFavoritos" title="Favoritos">
-                <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
                 </button>
-                
+
                 <button class="icon-btn" title="Notificações">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
-                
+
                 <div class="user-profile" id="userProfile">
                     <img id="headerUserAvatar" src="" alt="Usuário" style="display: none;">
                     <div class="header-avatar-initial" id="headerAvatarInitial">U</div>
                     <span class="user-name" id="headerUserName">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                
+
                 <div class="user-dropdown" id="userDropdown">
-    <!-- =================== DROPDOWN — itens e redirecionamentos =================== -->
                     <div class="dropdown-item" id="dropMeuPerfil">
                         <i class="fas fa-user"></i>
                         <span>Meu Perfil</span>
                     </div>
+
                     <div class="dropdown-item" id="dropSuporte">
                         <i class="fas fa-headset"></i>
                         <span>Suporte ao Usuário</span>
                     </div>
+
                     <a href="Configuracoes.html" class="dropdown-item">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
 
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider dropdown-divider--dev"></div>
 
                     <a href="AdicionarJogo.html" class="dropdown-item dropdown-item--dev" id="dropAdicionarJogo">
                         <i class="fas fa-plus-circle"></i>
@@ -94,6 +93,7 @@
                     </a>
 
                     <div class="dropdown-divider"></div>
+
                     <div class="dropdown-item logout" id="dropSair">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Sair</span>
@@ -114,7 +114,7 @@
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                
+
                 <div class="filter-modal-body">
                     <div class="filter-section">
                         <h4>Gênero</h4>
@@ -145,7 +145,7 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="filter-section">
                         <h4>Avaliação</h4>
                         <div class="filter-options">
@@ -163,7 +163,7 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="filter-section">
                         <h4>Plataforma</h4>
                         <div class="filter-options">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="filter-modal-footer">
                     <button class="btn-clear" id="clearFilters">Limpar Filtros</button>
                     <button class="btn-apply" id="applyFilters">Aplicar</button>
@@ -209,7 +209,7 @@
                     <h2 class="section-title">Catálogo Completo</h2>
                     <span class="games-count" id="gamesCount">0 jogos disponíveis</span>
                 </div>
-                
+
                 <div class="filters-right">
                     <button class="filter-btn">
                         <i class="fas fa-filter"></i>
@@ -224,15 +224,28 @@
                 </div>
             </section>
 
-            <!-- Grade de Jogos -->
-                <!-- =================== JOGO 1 =================== -->
-               <section class="games-grid">
-                
-               </section>
-    </div>
+            <!-- Grade de Jogos carregada pelo backend -->
+            <section class="games-grid"></section>
+        </div>
     </main>
 
-<script src="Catalogo.js"></script>
-<script src="auth-menu.js"></script>
+    <!-- FOOTER PADRÃO VELORA -->
+    <footer class="main-footer">
+        <div class="footer-logo-box">
+            <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+            <span class="footer-logo-text">VELORA</span>
+        </div>
+
+        <div class="footer-links">
+            <a href="TermosDeUso.html">Termos de Uso</a>
+            <span class="separator">•</span>
+            <a href="TermosPriv.html">Privacidade</a>
+            <span class="separator">•</span>
+            <a href="SuporteUsuario.html">Suporte</a>
+        </div>
+    </footer>
+
+    <script src="Catalogo.js"></script>
+    <script src="auth-menu.js"></script>
 </body>
 </html>

@@ -741,7 +741,7 @@ def add_game():
     price = request.form.get("price", "0.00")
     is_free = request.form.get("is_free", "0")
     status = request.form.get("status", "draft")
-    trailer_url = request.form.get("trailer_url")
+    trailer_url = (request.form.get("trailer_url") or "").strip()
     tags = request.form.get("tags", "[]")
     release_date = request.form.get("release_date")
     age_rating = request.form.get("age_rating")
@@ -902,5 +902,62 @@ def get_game_by_id(game_id):
 
         conn.close()
 
+@app.route("/api/games/<int:game_id>", methods=["PUT"])
+def update_game(game_id):
+    conn = None
+    cursor = None
+
+    try:
+        data = request.get_json()
+
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        description = data.get("description") or ""
+
+        cursor.execute("""
+            UPDATE games
+            SET title=%s,
+                description=%s,
+                short_description=%s,
+                genre=%s,
+                platform=%s,
+                status=%s,
+                trailer_url=%s,
+                release_date=%s,
+                age_rating=%s,
+                player_mode=%s,
+                tags=%s
+            WHERE id=%s
+        """, (
+            data.get("title"),
+            description,
+            description[:120],
+            data.get("genre"),
+            data.get("platform"),
+            data.get("status"),
+            data.get("trailer_url"),
+            data.get("release_date"),
+            data.get("age_rating"),
+            data.get("player_mode"),
+            data.get("tags"),
+            game_id
+        ))
+
+        conn.commit()
+        return jsonify({"message": "Jogo atualizado com sucesso."}), 200
+
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        print("ERRO AO ATUALIZAR JOGO:", e)
+        return jsonify({"message": str(e)}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+            
 if __name__ == "__main__":
     app.run(debug=True)

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velora — Adicionar Jogo</title>
+    <title>Velora — Editar Jogo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="AdicionarJogo.css">
+    <link rel="stylesheet" href="EditarJogo.css">
     <link rel="icon" type="image/png" href="logo velora.png">
 </head>
 <body>
@@ -32,11 +32,15 @@
                     <span class="logo-text">VELORA</span>
                 </a>
 
-                <nav class="main-nav">
+                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav class="main-nav" id="mainNav">
                     <a href="Catalogo.html" class="nav-item">
                         <i class="fas fa-home"></i> Início
                     </a>
-                    <a href="Catalogo.html" class="nav-item active">
+                    <a href="Catalogo.html" class="nav-item">
                         <i class="fas fa-gamepad"></i> Jogos
                     </a>
                     <a href="Minigames/PaginaMinigames.html" class="nav-item">
@@ -60,7 +64,7 @@
             <div class="header-right">
                 <button class="save-draft-btn" id="btn-rascunho">
                     <i class="fas fa-save"></i>
-                    <span>Salvar rascunho</span>
+                    <span>Salvar edição</span>
                 </button>
 
                 <button class="icon-btn" title="Favoritos" onclick="window.location.href='ListaFavoritos.html'">
@@ -103,14 +107,23 @@
                 </div>
             </div>
         </div>
+            <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
     </header>
 
     <!-- =================== CONTEÚDO PRINCIPAL =================== -->
     <div class="page-wrapper">
 
         <div class="page-header">
-            <h1>Adicionar <span>novo jogo</span></h1>
-            <p>Preencha as informações do seu jogo para publicá-lo na Velora</p>
+            <h1>Editar <span>jogo</span></h1>
+            <p>Atualize as informações do jogo já cadastrado na Velora</p>
+        </div>
+
+        <div class="edit-alert">
+            <i class="fas fa-pen-to-square"></i>
+            <div>
+                <strong>Modo edição ativo</strong>
+                <p>Os campos abaixo serão carregados com dados do jogo selecionado. Por enquanto, tudo fica salvo localmente para teste do front.</p>
+            </div>
         </div>
 
         <!-- Barra de etapas -->
@@ -620,15 +633,14 @@
                     <!-- Botão de publicar -->
                     <div class="submit-area">
                         <button type="submit" class="submit-main-btn" form="game-form">
-                            <i class="fas fa-rocket"></i>
-                            Publicar jogo
+                            <i class="fas fa-save"></i>
+                            Salvar alterações
                         </button>
                         <div class="submit-note">
-                            Ao publicar, você concorda com os <a href="#">Termos de Uso</a> e confirma
-                            que possui os direitos sobre o conteúdo enviado.
+                            Ao salvar, suas alterações ficarão registradas no rascunho local desta página.
                             <br><br>
-                            <i class="fas fa-clock gold-icon"></i>
-                            Jogos passam por análise em até <strong class="gold-text">48h úteis</strong>.
+                            <i class="fas fa-code gold-icon"></i>
+                            Futuramente esta ação será integrada ao backend.
                         </div>
                     </div>
 
@@ -659,6 +671,56 @@
         </div>
     </footer>
 
-    <script src="AdicionarJogo.js"></script>
+
+    <script>
+        // Menu hambúrguer responsivo — apenas front-end visual
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav') || document.querySelector('.main-nav');
+            const backdrop = document.getElementById('mobileMenuBackdrop');
+
+            if (!menuToggle || !mainNav) return;
+
+            const closeMenu = () => {
+                mainNav.classList.remove('mobile-open');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                if (backdrop) backdrop.classList.remove('active');
+            };
+
+            const openMenu = () => {
+                mainNav.classList.add('mobile-open');
+                menuToggle.classList.add('active');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                if (backdrop) backdrop.classList.add('active');
+            };
+
+            menuToggle.addEventListener('click', () => {
+                if (mainNav.classList.contains('mobile-open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            if (backdrop) {
+                backdrop.addEventListener('click', closeMenu);
+            }
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+
+    <script src="EditarJogo.js"></script>
 </body>
 </html>

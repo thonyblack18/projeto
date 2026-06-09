@@ -737,3 +737,53 @@ document.addEventListener("click", (e) => {
     deleteAccount();
   }
 });
+
+// =================== MENU HAMBÚRGUER RESPONSIVO ===================
+function setupMobileMenu() {
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav") || document.querySelector(".main-nav");
+
+  if (!menuToggle || !mainNav) return;
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("mobile-open");
+    menuToggle.classList.toggle("active", isOpen);
+    menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+    const icon = menuToggle.querySelector("i");
+    if (icon) {
+      icon.classList.toggle("fa-bars", !isOpen);
+      icon.classList.toggle("fa-times", isOpen);
+    }
+  });
+
+  mainNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("mobile-open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      const icon = menuToggle.querySelector("i");
+      if (icon) {
+        icon.classList.add("fa-bars");
+        icon.classList.remove("fa-times");
+      }
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1024) {
+      mainNav.classList.remove("mobile-open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      const icon = menuToggle.querySelector("i");
+      if (icon) {
+        icon.classList.add("fa-bars");
+        icon.classList.remove("fa-times");
+      }
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", setupMobileMenu);

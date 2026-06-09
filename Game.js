@@ -47,6 +47,18 @@ function normalizarYoutube(url) {
     };
 }
 
+function formatarDescricao(texto) {
+    if (!texto) return "";
+
+    return texto
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\[y\](.*?)\[\/y\]/g, '<span class="yellow-text">$1</span>')
+        .replace(/\[b\](.*?)\[\/b\]/g, '<strong>$1</strong>')
+        .replace(/\n/g, "<br>");
+}
+
 function getFavoritos() {
     try {
         return JSON.parse(localStorage.getItem("velora_favoritos_ids") || "[]");
@@ -257,7 +269,7 @@ fetch(`${API_BASE}/api/games/${gameId}`)
 
         const description = game.description || game.short_description || "Sem descrição.";
 
-        descriptionEl.innerHTML = description
+        descriptionEl.innerHTML = formatarDescricao(description)
             .split(/\n+/)
             .filter(paragrafo => paragrafo.trim() !== "")
             .map(paragrafo => `<p>${paragrafo.trim()}</p>`)
@@ -282,8 +294,19 @@ fetch(`${API_BASE}/api/games/${gameId}`)
 
         document.getElementById("detail-platforms").textContent =
             game.platform || "Não informado";
+        
+        console.log(game.release_date);
 
-        const release = game.release_date || "Não informado";
+        let release = "Não informado";
+
+        if (game.release_date) {
+            release = new Date(game.release_date).toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                timeZone: "UTC"
+            });
+        }
 
         document.getElementById("game-release").textContent = release;
         document.getElementById("detail-release").textContent = release;
@@ -316,6 +339,28 @@ fetch(`${API_BASE}/api/games/${gameId}`)
     : `<span class="tag">Indie</span>`;
 
         renderizarGaleria(game);
+
+        const currentUser = JSON.parse(localStorage.getItem("velora_user") || "null");
+
+        if (
+            currentUser &&
+            currentUser.account_type === "developer" &&
+            Number(currentUser.id) === Number(game.developer_id)
+        ) {
+            const detailsCard = document.querySelector(".details-table")?.closest(".section-card");
+
+            if (detailsCard) {
+                const editBtn = document.createElement("button");
+                editBtn.className = "edit-game-btn";
+                editBtn.innerHTML = `<i class="fas fa-edit"></i> Editar jogo`;
+
+                editBtn.addEventListener("click", () => {
+                    window.location.href = `EditarJogo.html?id=${game.id}`;
+                });
+
+                detailsCard.appendChild(editBtn);
+            }
+        }
     })
     .catch(error => {
         console.error(error);

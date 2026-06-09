@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Velora — Configurações</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Configuracoes.css" />
   <link rel="icon" type="image/png" href="logo velora.png">
 </head>
@@ -12,45 +13,49 @@
 
   <canvas id="particles"></canvas>
   <div class="grid-background"></div>
+  <!-- HEADER PADRÃO VELORA -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="Catalogo.html" class="logo">
+          <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+          <div class="logo-img-placeholder"></div>
+          <span class="logo-text">VELORA</span>
+        </a>
 
-  <!-- NAVBAR -->
-    <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="Logo Velora.png" class="logo">
-        <div class="logo-img-placeholder"></div>
-        <span class="logo-text">VELORA</span>
-      </a>
-      <div class="nav-links">
-        <a href="/Catalogo.html" class="nav-item active">
-                        <i class="fas fa-home"></i>
-                        Início
-                    </a>
-                    <a href="./Minigames/PaginaMinigames.html" class="nav-item">
-                        <i class="fas fa-gamepad"></i>
-                        Jogos
-                    </a>
-                    <a href="Ranking.html" class="nav-item">
-                        <i class="fas fa-fire"></i>
-                        Ranking
-                    </a>
-                    <a href="Noticias.html" class="nav-item">
-                        <i class="fas fa-newspaper"></i>
-                        Noticias
-                    </a>
-                    <a href="ListaDevs.html" class="nav-item">
-                        <i class="fas fa-users"></i>
-                        Desenvolvedores
-                    </a>
-                    <a href="SobreNos.html" class="nav-item">
-                        <i class="fas fa-crown"></i>
-                        Sobre nós
-                    </a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="main-nav" id="mainNav">
+          <a href="Catalogo.html" class="nav-item">
+            <i class="fas fa-home"></i> Início
+          </a>
+          <a href="./Minigames/PaginaMinigames.html" class="nav-item">
+            <i class="fas fa-gamepad"></i> Minigames
+          </a>
+          <a href="Ranking.html" class="nav-item">
+            <i class="fas fa-fire"></i> Ranking
+          </a>
+          <a href="Noticias.html" class="nav-item">
+            <i class="fas fa-newspaper"></i> Notícias
+          </a>
+          <a href="ListaDevs.html" class="nav-item">
+            <i class="fas fa-users"></i> Desenvolvedores
+          </a>
+          <a href="SobreNos.html" class="nav-item">
+            <i class="fas fa-crown"></i> Sobre nós
+          </a>
+        </nav>
       </div>
-      <div class="nav-actions">
-        <a href="#" class="btn-ghost" id="btnVoltarPerfil"><i class="fas fa-arrow-left"></i> Voltar ao perfil</a>
+
+      <div class="header-right">
+        <a href="#" class="btn-ghost" id="btnVoltarPerfil">
+          <i class="fas fa-arrow-left"></i> Voltar ao perfil
+        </a>
       </div>
     </div>
-  </nav>
+  </header>
 
   <!-- PAGE HEADER -->
   <div class="page-header">
@@ -431,13 +436,25 @@
 
     </div>
   </div>
+  <!-- FOOTER PADRÃO VELORA -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <a href="Catalogo.html" class="footer-logo">
+        <img src="Logo Velora.png" alt="Velora" class="footer-logo-img">
+        <div class="logo-img-placeholder small"></div>
+        <span class="footer-logo-text">VELORA</span>
+      </a>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2026 Velora — Valorizando os games indies do Brasil</p>
-    <a href="#" class="footer-support">Suporte</a>
-    <a href="#" class="footer-support">Política de Privacidade</a>
-    <a href="#" class="footer-support">Termos de Uso</a>
+      <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+
+      <div class="footer-links">
+        <a href="TermosDeUso.html">Termos de Uso</a>
+        <span class="sep">·</span>
+        <a href="TermosPrivacidade.html">Privacidade</a>
+        <span class="sep">·</span>
+        <a href="SuporteUsuario.html">Suporte</a>
+      </div>
+    </div>
   </footer>
 
   <!-- MODAL EXCLUIR CONTA -->

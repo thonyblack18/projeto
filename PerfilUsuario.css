@@ -2,7 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --font-velora: 'Inter', -apple-system, sans-serif;
+    --font-velora: 'Rubik Glitch', sans-serif;
     --bg-dark: #0a0a0f;
     --bg-card: #13131a;
     --gold: #d4af37;
@@ -521,4 +521,343 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+/* =================== HEADER PADRÃO VELORA =================== */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(13, 13, 26, 0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    padding: 0 40px;
+}
+
+.header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo-img-placeholder {
+    display: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #0a0a0f;
+    font-weight: 900;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.logo-text {
+    font-family: var(--font-velora);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-nav {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    color: var(--gray-300);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav-item i { font-size: 15px; }
+
+.nav-item:hover,
+.nav-item.active {
+    background: var(--gold-dim, rgba(212,175,55,0.15));
+    color: var(--gold);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 13px;
+    color: var(--gray-500);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.search-box input {
+    width: 260px;
+    padding: 9px 14px 9px 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 14px;
+    transition: all 0.25s ease;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-box input::placeholder { color: var(--gray-500); }
+.search-box input:focus { border-color: var(--gold); background: rgba(255,255,255,0.08); }
+
+.icon-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--gold-dim, rgba(212,175,55,0.15));
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    background: #ef4444;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.user-menu { position: relative; }
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.user-profile:hover { background: var(--gold-dim, rgba(212,175,55,0.15)); border-color: var(--gold); }
+
+.user-avatar-initial {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #0a0a0f;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-name { font-size: 14px; font-weight: 500; }
+.user-profile i { font-size: 12px; color: var(--gray-500); }
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 230px;
+    background: rgba(19,19,26,0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.user-menu:hover .user-dropdown,
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    color: var(--gray-300);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+}
+
+.dropdown-item:hover { background: var(--gold-dim, rgba(212,175,55,0.15)); color: var(--gold); }
+.dropdown-item i { font-size: 16px; width: 20px; text-align: center; }
+.dropdown-item.logout { color: #ef4444; }
+.dropdown-item.logout:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
+.dropdown-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 8px 0; }
+
+/* =================== FOOTER PADRÃO VELORA =================== */
+.main-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    padding: 32px 40px;
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.footer-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.footer-logo-placeholder {
+    display: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #0a0a0f;
+    font-weight: 900;
+    font-size: 13px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo-text {
+    font-family: var(--font-velora);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+.footer-links a {
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+.footer-sep { opacity: 0.4; }
+
+@media (max-width: 1024px) {
+    .main-header { padding: 0 20px; }
+    .main-nav { display: none; }
+    .search-box input { width: 200px; }
+}
+
+@media (max-width: 768px) {
+    .header-container { height: 66px; }
+    .search-box { display: none; }
+    .user-name { display: none; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .main-header { padding: 0 14px; }
+    .header-left { gap: 18px; }
+    .logo-text { font-size: 19px; }
+    .icon-btn { width: 36px; height: 36px; }
 }

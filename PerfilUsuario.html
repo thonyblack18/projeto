@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Velora — Perfil do Usuário</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="PerfilUsuario.css" />
   <link rel="icon" type="image/png" href="logo velora.png">
 </head>
@@ -13,24 +14,93 @@
   <canvas id="particles"></canvas>
   <div class="grid-background"></div>
 
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="Catalogo.html" class="logo">
-        <div class="logo-img-placeholder"></div>
-        <span class="logo-text">VELORA</span>
-      </a>
+  <!-- =================== HEADER PADRÃO VELORA =================== -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="Catalogo.html" class="logo">
+          <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+          <div class="logo-img-placeholder" id="logo-placeholder">V</div>
+          <span class="logo-text">VELORA</span>
+        </a>
 
-      <div class="nav-links">
-        <a href="Catalogo.html">Explorar</a>
-        <a href="Catalogo.html">Catálogo</a>
-        <a href="#">Destaques</a>
+        <nav class="main-nav">
+          <a href="Catalogo.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            Início
+          </a>
+          <a href="./Minigames/Minigames.html" class="nav-item">
+            <i class="fas fa-gamepad"></i>
+            Minigames
+          </a>
+          <a href="Ranking.html" class="nav-item">
+            <i class="fas fa-fire"></i>
+            Ranking
+          </a>
+          <a href="Noticias.html" class="nav-item">
+            <i class="fas fa-newspaper"></i>
+            Notícias
+          </a>
+          <a href="ListaDevs.html" class="nav-item">
+            <i class="fas fa-users"></i>
+            Desenvolvedores
+          </a>
+          <a href="SobreNos.html" class="nav-item">
+            <i class="fas fa-crown"></i>
+            Sobre nós
+          </a>
+        </nav>
       </div>
 
-      <div class="nav-actions">
-        <button class="btn-ghost" id="edit-profile-btn">Editar perfil</button>
+      <div class="header-right">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar jogos...">
+        </div>
+
+        <button class="icon-btn" title="Favoritos" onclick="window.location.href='ListaFavoritos.html'">
+          <i class="fas fa-heart"></i>
+        </button>
+
+        <button class="icon-btn" title="Notificações">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </button>
+
+        <div class="user-menu">
+          <div class="user-profile" id="userProfile">
+            <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+            <span class="user-name" id="userName">Jogador</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+
+          <div class="user-dropdown" id="userDropdown">
+            <a href="PerfilUsuario.html" class="dropdown-item">
+              <i class="fas fa-user"></i>
+              <span>Meu Perfil</span>
+            </a>
+            <button class="dropdown-item" id="edit-profile-btn" type="button">
+              <i class="fas fa-pen"></i>
+              <span>Editar perfil</span>
+            </button>
+            <a href="SuporteUsuario.html" class="dropdown-item">
+              <i class="fas fa-headset"></i>
+              <span>Suporte ao Usuário</span>
+            </a>
+            <a href="Configuracoes.html" class="dropdown-item">
+              <i class="fas fa-cog"></i>
+              <span>Configurações</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="LoginCadastro.html" class="dropdown-item logout" id="dropSair">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Sair</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
+  </header>
 
   <section class="profile-hero">
     <div class="hero-content">
@@ -106,6 +176,26 @@
     </section>
 
   </main>
+
+
+  <!-- =================== FOOTER PADRÃO VELORA =================== -->
+  <footer class="main-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+        <div class="footer-logo-placeholder" id="footer-logo-placeholder">V</div>
+        <span class="footer-logo-text">VELORA</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="TermosDeUso.html">Termos de Uso</a>
+        <span class="footer-sep">•</span>
+        <a href="TermosPrivacidade.html">Privacidade</a>
+        <span class="footer-sep">•</span>
+        <a href="SuporteUsuario.html">Suporte</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="PerfilUsuario.js"></script>
 </body>
