@@ -6,6 +6,7 @@ const gameId = params.get("id");
 let slides = [];
 let thumbs = [];
 let currentSlide = 0;
+let selectedRating = 0;
 
 function atualizarGaleria(index) {
     if (!slides.length || !thumbs.length) return;
@@ -137,6 +138,33 @@ function configurarNavegacao() {
     });
 }
 
+function mostrarToast(mensagem) {
+    const toast = document.getElementById("toast");
+
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${mensagem}`;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+function configurarDropdownUsuario() {
+    const userProfile = document.getElementById("userProfile");
+    const userDropdown = document.getElementById("userDropdown");
+
+    if (!userProfile || !userDropdown) return;
+
+    userProfile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", () => {
+        userDropdown.classList.remove("active");
+    });
+}
+
 function renderizarGaleria(game) {
     document.getElementById("game-cover").src = game.cover_url;
 
@@ -245,6 +273,165 @@ function renderizarGaleria(game) {
     });
 
     atualizarGaleria(0);
+}
+
+function renderizarComentarios(reviews) {
+    const commentsList = document.getElementById("commentsList");
+
+    commentsList.innerHTML = "";
+
+    if (!reviews.length) {
+        commentsList.innerHTML = `
+            <button class="btn-load-more">
+                Ainda não há comentários
+            </button>
+        `;
+        return;
+    }
+
+    reviews.forEach(review => {
+        let estrelas = "";
+
+        for (let i = 1; i <= 5; i++) {
+            estrelas += `<i class="${i <= review.rating ? "fas" : "far"} fa-star"></i>`;
+        }
+
+        commentsList.innerHTML += `
+            <div class="comment-card">
+                <div class="comment-header">
+                    <img
+                        class="comment-avatar"
+                        src="${review.avatar_url || "https://i.pravatar.cc/80"}">
+
+                    <div class="comment-meta">
+                        <strong>${review.user_name}</strong>
+                        <span class="comment-date">
+                            ${new Date(review.created_at).toLocaleDateString("pt-BR")}
+                        </span>
+                    </div>
+
+                    <div class="comment-stars">
+                        ${estrelas}
+                    </div>
+                </div>
+
+                <div class="comment-text">
+                    ${review.review_text || ""}
+                </div>
+            </div>
+        `;
+    });
+}
+
+function carregarAvaliacoes() {
+    fetch(`${API_BASE}/api/games/${gameId}/reviews`)
+        .then(r => r.json())
+        .then(data => {
+
+            document.getElementById("game-rating").textContent =
+                data.summary.average_rating;
+
+            document.getElementById("rating-big-number").textContent =
+                data.summary.average_rating;
+
+            document.querySelector(".rating-count").textContent =
+                `(${data.summary.total_reviews} avaliações)`;
+
+                const reviews = data.reviews || [];
+                const total = reviews.length;
+
+                for (let nota = 5; nota >= 1; nota--) {
+                    const qtd = reviews.filter(r => Number(r.rating) === nota).length;
+                    const porcentagem = total > 0 ? Math.round((qtd / total) * 100) : 0;
+
+                    const index = 5 - nota;
+                    const barRow = document.querySelectorAll(".bar-row")[index];
+
+                    if (barRow) {
+                        barRow.querySelector(".bar-fill").style.width = `${porcentagem}%`;
+                        barRow.querySelector("span:last-child").textContent = `${porcentagem}%`;
+                    }
+                }
+
+            renderizarComentarios(data.reviews);
+        });
+}
+
+function configurarAvaliacoes() {
+
+    const estrelas = document.querySelectorAll("#starPicker i");
+
+    estrelas.forEach(star => {
+
+        star.addEventListener("click", () => {
+
+            selectedRating = Number(star.dataset.star);
+
+            estrelas.forEach(s => {
+                if (Number(s.dataset.star) <= selectedRating) {
+                    s.className = "fas fa-star selected";
+                } else {
+                    s.className = "far fa-star";
+                }
+            });
+
+        });
+
+    });
+
+    document.getElementById("btnSubmitReview")
+        .addEventListener("click", () => {
+
+            const usuario = JSON.parse(
+                localStorage.getItem("velora_user") || "null"
+            );
+
+            if (!usuario) {
+                alert("Faça login para avaliar.");
+                return;
+            }
+
+            const review_text =
+                document.querySelector(".review-textarea").value;
+
+            fetch(`${API_BASE}/api/games/${gameId}/reviews`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: usuario.id,
+                    rating: selectedRating,
+                    review_text
+                })
+            })
+            .then(r => r.json())
+            .then(data => {
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                document.querySelector(".review-textarea").value = "";
+
+                estrelas.forEach(s => {
+                    s.className = "far fa-star";
+                });
+
+                selectedRating = 0;
+
+                carregarAvaliacoes();
+
+                if (review_text.trim() !== "") {
+                    mostrarToast("Seu comentário foi publicado!");
+                } else {
+                    mostrarToast("Sua avaliação foi publicada!");
+                }
+            });
+
+        });
+
 }
 
 fetch(`${API_BASE}/api/games/${gameId}`)
@@ -374,3 +561,6 @@ fetch(`${API_BASE}/api/games/${gameId}`)
 
 configurarNavegacao();
 configurarFavorito();
+configurarAvaliacoes();
+carregarAvaliacoes();
+configurarDropdownUsuario();

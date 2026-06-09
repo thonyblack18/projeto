@@ -743,7 +743,7 @@ def add_game():
     status = request.form.get("status", "draft")
     trailer_url = (request.form.get("trailer_url") or "").strip()
     tags = request.form.get("tags", "[]")
-    release_date = request.form.get("release_date")
+    release_date = request.form.get("release_date") or None
     age_rating = request.form.get("age_rating")
     player_mode = request.form.get("player_mode")
     image = request.files.get("image")
@@ -959,5 +959,140 @@ def update_game(game_id):
         if conn:
             conn.close()
             
+@app.route("/api/games/<int:game_id>/reviews", methods=["GET"])
+def get_game_reviews(game_id):
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT 
+                gr.id,
+                gr.game_id,
+                gr.user_id,
+                gr.rating,
+                gr.review_text,
+                gr.created_at,
+                u.name AS user_name,
+                pp.avatar_url
+            FROM game_reviews gr
+            LEFT JOIN users u ON u.id = gr.user_id
+            LEFT JOIN player_profiles pp ON pp.user_id = gr.user_id
+            WHERE gr.game_id = %s
+            ORDER BY gr.created_at DESC
+        """, (game_id,))
+
+        reviews = cursor.fetchall()
+
+        cursor.execute("""
+            SELECT 
+                COUNT(*) AS total_reviews,
+                COALESCE(ROUND(AVG(rating), 1), 0) AS average_rating
+            FROM game_reviews
+            WHERE game_id = %s
+        """, (game_id,))
+
+        summary = cursor.fetchone()
+
+        return jsonify({
+            "reviews": reviews,
+            "summary": summary
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Erro ao buscar avaliações: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route("/api/games/<int:game_id>/reviews", methods=["POST"])
+def create_game_review(game_id):
+    data = request.get_json()
+
+    user_id = data.get("user_id")
+    rating = data.get("rating")
+    review_text = (data.get("review_text") or "").strip()
+
+    if not user_id:
+        return jsonify({"error": "Usuário não identificado. Faça login para avaliar."}), 401
+
+    if not rating:
+        return jsonify({"error": "Selecione uma nota para o jogo."}), 400
+
+    try:
+        rating = int(rating)
+    except:
+        return jsonify({"error": "Nota inválida."}), 400
+
+    if rating < 1 or rating > 5:
+        return jsonify({"error": "A nota deve ser entre 1 e 5."}), 400
+
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT id FROM games WHERE id = %s
+        """, (game_id,))
+
+        if not cursor.fetchone():
+            return jsonify({"error": "Jogo não encontrado."}), 404
+
+        cursor.execute("""
+            SELECT id FROM game_reviews
+            WHERE game_id = %s AND user_id = %s
+        """, (game_id, user_id))
+
+        existing_review = cursor.fetchone()
+
+        if existing_review:
+            cursor.execute("""
+                UPDATE game_reviews
+                SET rating = %s, review_text = %s
+                WHERE game_id = %s AND user_id = %s
+            """, (rating, review_text, game_id, user_id))
+        else:
+            cursor.execute("""
+                INSERT INTO game_reviews (game_id, user_id, rating, review_text)
+                VALUES (%s, %s, %s, %s)
+            """, (game_id, user_id, rating, review_text))
+
+        cursor.execute("""
+            SELECT COALESCE(ROUND(AVG(rating), 1), 0) AS average_rating
+            FROM game_reviews
+            WHERE game_id = %s
+        """, (game_id,))
+
+        average = cursor.fetchone()["average_rating"]
+
+        cursor.execute("""
+            UPDATE games
+            SET rating = %s
+            WHERE id = %s
+        """, (average, game_id))
+
+        conn.commit()
+
+        return jsonify({
+            "message": "Avaliação salva com sucesso.",
+            "average_rating": average
+        }), 201
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": f"Erro ao salvar avaliação: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
 if __name__ == "__main__":
     app.run(debug=True)
