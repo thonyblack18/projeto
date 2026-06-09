@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | 9 Kings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="9kings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../Logo Velora.png" type="image/png">
+
+</head>
+<body>
+
+    <!-- =================== HEADER =================== -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="../../Catalogo.html" class="logo">
+                    <img src="../../Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <span class="logo-text">VELORA</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="../../Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Minigames
+                    </a>
+                    <a href="../../Ranking.html" class="nav-item">
+                        <i class="fas fa-fire"></i> Ranking
+                    </a>
+                    <a href="../../Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i> Notícias
+                    </a>
+                    <a href="../../ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i> Desenvolvedores
+                    </a>
+                    <a href="../../SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i> Sobre nós
+                    </a>
+                </nav>
+            </div>
+            <div class="header-right">
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                     <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+                
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
+                    <i class="fas fa-heart"></i>
+                </button>
+
+                <button class="icon-btn" title="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <img src="https://i.pravatar.cc/40?img=12" alt="Usuário">
+                    <span class="user-name">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <!-- =================== DROPDOWN DO USUÁRIO =================== -->
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i>
+                        <span>Meu Perfil</span>
+                    </div>
+                    <div class="dropdown-item" id="dropSuporte">
+                        <i class="fas fa-headset"></i>
+                        <span>Suporte ao Usuário</span>
+                    </div>
+                    <a href="../../Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =================== HERO: GALERIA + SIDEBAR =================== -->
+    <div class="hero-media-section">
+
+        <!-- GALERIA PRINCIPAL -->
+        <div class="gallery-wrapper" id="galleryWrapper">
+            <div class="gallery-track" id="galleryTrack">
+
+                <!-- Slide 0: Trailer -->
+                <div class="gallery-slide slide-trailer" data-index="0">
+                    <div class="youtube-container">
+                       <iframe width="560" height="315" 
+                        src="https://www.youtube.com/embed/UBXGTQ38ivg?si=fXXDVpihlrZ6_cKy" title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="slide-label"><i class="fas fa-play-circle"></i> Trailer Oficial</div>
+                </div>
+
+                <!-- Slides de screenshot -->
+                <div class="gallery-slide" data-index="1">
+                    <img src="foto 1.jpg" alt="Imagem 1 Dandara" class="slide-img">
+                    <div class="slide-label">Imagem 1</div>
+                </div>
+                <div class="gallery-slide" data-index="2">
+                    <img src="foto 2.jpg" alt="Screenshot 2" class="slide-img">
+                    <div class="slide-label">Screenshot 2</div>
+                </div>
+                <div class="gallery-slide" data-index="3">
+                    <img src="foto 3.jpg" alt="Screenshot 3" class="slide-img">
+                    <div class="slide-label">Screenshot 3</div>
+                </div>
+                <div class="gallery-slide" data-index="4">
+                    <img src="foto 4.jpg" alt="Screenshot 4" class="slide-img">
+                    <div class="slide-label">Screenshot 4</div>
+                </div>
+                <div class="gallery-slide" data-index="5">
+                    <img src="foto 5.jpg" alt="Screenshot 5" class="slide-img">
+                    <div class="slide-label">Screenshot 5</div>
+                </div>
+                <div class="gallery-slide" data-index="6">
+                    <img src="foto 6.jpg" alt="Screenshot 6" class="slide-img">
+                    <div class="slide-label">Screenshot 6</div>
+                </div>
+                <div class="gallery-slide" data-index="7">
+                    <img src="foto 7.jpg" alt="Screenshot 7" class="slide-img">
+                    <div class="slide-label">Screenshot 7</div>
+                </div>
+                <div class="gallery-slide" data-index="8">
+                    <img src="foto 8.jpg" alt="Screenshot 8" class="slide-img">
+                    <div class="slide-label">Screenshot 8</div>
+                </div>
+                <div class="gallery-slide" data-index="9">
+                    <img src="foto 9.jpg" alt="Screenshot 9" class="slide-img">
+                    <div class="slide-label">Screenshot 9</div>
+                </div>
+            </div>
+
+            <!-- Setas de navegação -->
+            <button class="gallery-arrow arrow-left" id="arrowLeft" aria-label="Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-arrow arrow-right" id="arrowRight" aria-label="Próximo">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Thumbnails -->
+            <div class="gallery-thumbnails" id="galleryThumbs">
+                <div class="thumb active" data-index="0">
+                    <div class="thumb-trailer-icon"><i class="fas fa-play"></i></div>
+                    <span>Trailer</span>
+                </div>
+                <div class="thumb" data-index="1">
+                    <img src="foto 1.jpg" alt="" >                
+                </div>
+                <div class="thumb" data-index="2">
+                    <img src="foto 2.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="3">
+                    <img src="foto 3.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="4">
+                    <img src="foto 4.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="5">
+                    <img src="foto 5.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="6">
+                    <img src="foto 6.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="7">
+                    <img src="foto 7.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="8">
+                    <img src="foto 8.jpg" alt="">
+                </div>
+                <div class="thumb" data-index="9">
+                    <img src="foto 9.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR DO JOGO -->
+        <aside class="game-sidebar">
+
+            <div class="game-cover">
+                <img src="Capa.jpg" alt="9 Kings">
+            </div>
+
+            <h1 class="game-title-hero">9 Kings</h1>
+            <p class="game-studio">
+                <i class="fas fa-code"></i>
+               <a href="https://www.sadsocket.com/" target="_blank">Sad Socket</a>
+            </p>
+
+            <div class="rating-block">
+                <div class="stars-row">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="rating-number">4.2</span>
+                <span class="rating-total">/ 5</span>
+                <span class="rating-count">(2.116 avaliações)</span>
+            </div>
+
+            <div class="age-rating">
+                <div class="age-badge">10</div>
+                <span>Violência</span>
+            </div>
+
+            <button class="btn-donate" id="btnDonate">
+                <i class="fas fa-hand-holding-heart"></i>
+                Apoiar este jogo
+            </button>
+            <p class="donate-note">Apoie diretamente o desenvolvedor</p>
+
+            <button type="button" class="btn-wishlist" id="btnWishlist">
+            <i class="far fa-heart" id="wishlistIcon"></i>
+            <span id="wishlistText">Adicionar aos Favoritos</span>
+            </button>
+
+            <div class="quick-info">
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-calendar-alt"></i> Lançamento</span>
+                    <span class="qi-value">Por anunciar</span>
+                </div>
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-desktop"></i> Plataformas</span>
+                    <span class="qi-value platforms-icons">
+                        <i class="fab fa-windows" title="Windows"></i>
+                        <i class="fab fa-apple" title="Mac"></i>
+                    </span>
+                </div>
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-language"></i> Idiomas</span>
+                    <span class="qi-value">PT-BR, EN, ES, FR, RU, JP, CN</span>
+                </div>
+                <div class="qi-item">
+                    <span class="qi-label"><i class="fas fa-tags"></i> Gênero</span>
+                    <span class="qi-value">Estratégia · Roguelike  · Casual</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- =================== CONTEÚDO PRINCIPAL =================== -->
+    <main class="main-content">
+        <div class="content-grid">
+
+            <!-- COLUNA PRINCIPAL -->
+            <section class="col-main">
+
+                <nav class="breadcrumb">
+                    <a href="../../Catalogo.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="../../Catalogo.html">Catálogo</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>171</span>
+                </nav>
+
+                <!-- Sobre o Jogo -->
+                <div class="section-card">
+                    <h2 class="section-heading"><i class="fas fa-book-open"></i> Sobre o Jogo</h2>
+                     <p class="game-description">
+                        Constrói a tua cidade e torna-a no reino mais poderoso de todos os tempos, através da combinação de exercícios, unidades, feitiços e colocação de terras. Tira partido de combinações caóticas e vantagens poderosas para venceres no jogo. Aumenta o tamanho do teu reino de maneira estratégica, prepara-te para imensos eventos únicos e mostra ao mundo que o teu reino irá perdurar para sempre, tanto por tua conta como no multijogador assíncrono.
+                    </p>
+
+                    <p class="game-description">
+                         <strong><em>CONSTRÓI A TUA CAPITAL</em></strong>
+                    </p>
+
+                    <p class="game-description">
+                        Parte de uma aldeia modesta e torna-a numa cidadela enorme, onde a tua capital recruta as unidades e aumenta o poder das mesmas. Expande o teu reino estrategicamente ao longo do tempo e constrói-o para que sobreviva décadas de guerra e conflitos.
+                    </p>
+                    <p class="game-description">
+                         <strong><em>PROTEGE O TEU REINO</em></strong>
+                    </p>
+                    <p class="game-description">
+                        Desde cavaleiros e feiticeiros poderosos, até magos e bombistas perigosos mas frágeis, desde hordas de duendes malvados a cogumelos sencientes, tens dezenas de unidades para liderar. Junta ouro para contratar milhares de mercenários, usa magia negra para erguer os mortos e utiliza as forças da própria natureza para derrotar os teus adversários!
+                    </p>
+                    <p class="game-description">
+                         <strong><em>CONSTRÓI O TEU BARALHO</em></strong>
+                    </p>
+                    <p class="game-description">
+                        Cada um dos reis tem um baralho inicial diferente de edifícios, soldados e feitiços, mas podes saquear os reis rivais que atacam as tuas terras para teres acesso a cartas dos seus baralhos únicos. Mantém a paz com as unidades que não se adequam ao teu estilo de jogo e declara guerra aos reis com os poderes e unidades que queres. Usa as ferramentas retiradas aos teus adversários para desbloquear inúmeras combinações de reforços acumuláveis e modificadores para montar um exército imparável.
+                    </p>
+                    <p class="game-description">
+                         <strong><em>GOVERNA À TUA MANEIRA</em></strong>
+                    </p>
+                    <p class="game-description">
+                        Combina as tuas cartas de várias maneiras: experimenta combinações doidas e vê exércitos enormes a lutarem pela tua coroa, sobrevive perante adversários cada vez mais poderosos ou tira partido do jogo e observa os rivais todos a caírem por terra.
+                    </p>
+                </div>
+
+                <!-- Tags -->
+                <div class="section-card">
+                    <h2 class="section-heading"><i class="fas fa-hashtag"></i> Tags</h2>
+                    <div class="tags-container">
+                        <span class="tag">Estratégia</span>
+                        <span class="tag">Casual</span>
+                        <span class="tag">Cartas</span>
+                        <span class="tag">Roguelite</span>
+                        <span class="tag">Fantasia</span>
+                        <span class="tag">História</span>
+                        <span class="tag">Difícil</span>
+                        <span class="tag">Combate</span>
+                        <span class="tag">Baseado em Turnos</span>
+                    </div>
+                </div>
+
+                <!-- Avaliações -->
+                <div class="section-card">
+                    <h2 class="section-heading"><i class="fas fa-chart-bar"></i> Avaliações dos Jogadores</h2>
+
+                    <div class="ratings-overview">
+                        <div class="rating-big">
+                            <span class="rating-big-number">4.5</span>
+                            <div class="stars-row big">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-label">Muito Positivo</span>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="bar-row"><span>5 ★</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span>72%</span></div>
+                            <div class="bar-row"><span>4 ★</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span>18%</span></div>
+                            <div class="bar-row"><span>3 ★</span><div class="bar-track"><div class="bar-fill" style="width:6%"></div></div><span>6%</span></div>
+                            <div class="bar-row"><span>2 ★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span>2%</span></div>
+                            <div class="bar-row"><span>1 ★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span>2%</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário avaliação -->
+                    <div class="review-form">
+                        <h3>Deixe sua avaliação</h3>
+                        <div class="star-picker" id="starPicker">
+                            <i class="far fa-star" data-star="1"></i>
+                            <i class="far fa-star" data-star="2"></i>
+                            <i class="far fa-star" data-star="3"></i>
+                            <i class="far fa-star" data-star="4"></i>
+                            <i class="far fa-star" data-star="5"></i>
+                        </div>
+                        <textarea class="review-textarea" placeholder="Escreva o que achou do jogo..."></textarea>
+                        <button class="btn-submit-review" id="btnSubmitReview">Publicar Avaliação</button>
+                    </div>
+
+                    <!-- Comentários -->
+                    <div class="comments-list" id="commentsList">
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="SentFan" class="comment-avatar">
+                                <div class="comment-meta">
+                                    <strong>DiceRoller </strong>
+                                    <span class="comment-date">há 2 dias</span>
+                                </div>
+                                <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                            <p class="comment-text">Viciante demais</p>
+                            <div class="comment-actions">
+                                <button class="like-btn"><i class="fas fa-thumbs-up"></i> 48</button>
+                                <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
+                            </div>
+                        </div>
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <img src="https://i.pravatar.cc/40?img=9" alt="RPGMaster" class="comment-avatar">
+                                <div class="comment-meta">
+                                    <strong>RPGMaster</strong>
+                                    <span class="comment-date">há 4 dias</span>
+                                </div>
+                                <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            </div>
+                            <p class="comment-text">Muito divertido.</p>
+                            <div class="comment-actions">
+                                <button class="like-btn"><i class="fas fa-thumbs-up"></i> 31</button>
+                                <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
+                            </div>
+                        </div>
+                        <div class="comment-card">
+                            <div class="comment-header">
+                                <img src="https://i.pravatar.cc/40?img=15" alt="TabletopFan" class="comment-avatar">
+                                <div class="comment-meta">
+                                    <strong>TabletopFan</strong>
+                                    <span class="comment-date">há 5 dias</span>
+                                </div>
+                                <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            </div>
+                            <p class="comment-text">Ideia genial.</p>
+                            <div class="comment-actions">
+                                <button class="like-btn"><i class="fas fa-thumbs-up"></i> 27</button>
+                                <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
+                            </div>
+                        </div>
+                        <button class="btn-load-more" id="btnLoadMore">Carregar mais comentários <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- COLUNA LATERAL -->
+            <aside class="col-aside">
+
+                <!-- Detalhes técnicos -->
+                <div class="section-card aside-card">
+                    <h2 class="section-heading"><i class="fas fa-info-circle"></i> Detalhes</h2>
+                    <table class="details-table">
+                        <tr><td><i class="fas fa-code"></i> Desenvolvedor</td><td><a href="https://triunfogamestudios.com/" target="_blank">Sad Socket</a></td></tr>
+                        <tr><td><i class="fas fa-building"></i> Publicadora</td><td>Hooded Horse, Sidekick Publishing</td></tr>
+                        <tr><td><i class="fas fa-calendar"></i> Lançamento</td><td>23 mai. 2025</td></tr>
+                        <tr><td><i class="fas fa-gamepad"></i> Plataformas</td><td>PC, Mac</td></tr>
+                        <tr><td><i class="fas fa-language"></i> Idiomas</td><td>PT-BR, EN</td></tr>
+                        <tr><td><i class="fas fa-layer-group"></i> Gêneros</td><td>Jogo de Cartas, Estratégia, Fantasia</td></tr>
+                        <tr><td><i class="fas fa-user-shield"></i> Classificação</td><td>10+ anos</td></tr>
+                        <tr><td><i class="fas fa-users"></i> Modo</td><td>Single-player</td></tr>
+                    </table>
+                </div>
+
+                <!-- Card de doação -->
+                <div class="section-card aside-card donate-card">
+                    <div class="donate-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Apoie a Sad Socket</h3>
+                    <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
+                    <div class="donate-amounts" id="donateAmountsAside">
+                        <button class="amount-btn" data-amount="5">R$ 5</button>
+                        <button class="amount-btn active" data-amount="10">R$ 10</button>
+                        <button class="amount-btn" data-amount="25">R$ 25</button>
+                        <button class="amount-btn" data-amount="50">R$ 50</button>
+                    </div>
+                    <button class="btn-donate-main" id="btnDonateAside">
+                        <i class="fas fa-hand-holding-heart"></i> Apoiar com R$ 10
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- =================== MODAL DE DOAÇÃO =================== -->
+    <div class="modal-overlay" id="donateModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
+            <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+            <h3>Apoiar 9 Kings</h3>
+            <p>Sua contribuição vai diretamente para a <strong>Sad Socket</strong> continuar criando jogos incríveis!</p>
+            <div class="modal-amounts" id="modalAmounts">
+                <button class="amount-btn" data-amount="5">R$ 5</button>
+                <button class="amount-btn active" data-amount="10">R$ 10</button>
+                <button class="amount-btn" data-amount="25">R$ 25</button>
+                <button class="amount-btn" data-amount="50">R$ 50</button>
+                <button class="amount-btn" data-amount="100">R$ 100</button>
+            </div>
+            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="0.10" max="5000000" step="0.01">
+            <button class="btn-confirm-donate" id="confirmDonate">
+                <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
+            </button>
+            <p class="modal-note"><i class="fas fa-lock"></i> Pagamento seguro — Você será redirecionado para o checkout</p>
+        </div>
+    </div>
+
+
+    
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+        <footer class="main-footer">
+        <div class="footer-container">
+            <a href="../../Catalogo.html" class="footer-logo">
+                <img src="../../Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <span class="footer-logo-text">VELORA</span>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="../../TermosDeUso.html">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="../../TermosPriv.html">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="../../SuporteUsuario.html">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="9kings.js"></script>
+</body>
+</html>
