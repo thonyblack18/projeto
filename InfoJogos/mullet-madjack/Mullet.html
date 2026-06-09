@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velora | Dandara: Trials of Fear Edition</title>
+    <title>Velora | Mullet Madjack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Mullet.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
-    <link rel="icon" href="/projeto-main/logo-velora.png" type="image/png">
+    <link rel="icon" href="../../Logo Velora.png" type="image/png">
 
 </head>
 <body>
@@ -17,16 +17,16 @@
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-                <a href="../../Catalogo.html" class="logo">
-                    <img src="/projeto-main/logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
+                <div class="logo">
+                    <img src="../../Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
-                </a>
+                </div>
                 
                 <nav class="main-nav">
-                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio">
+                    <a href="../../Catalogo.html" class="nav-item">
                         <i class="fas fa-home"></i> Início
                     </a>
-                    <a href="../../Minigames/Minigames.html" class="nav-item">
+                    <a href="/Minigames/Minigames.html" class="nav-item active">
                         <i class="fas fa-gamepad"></i> Minigames
                     </a>
                     <a href="../../Ranking.html" class="nav-item">
@@ -44,20 +44,11 @@
                 </nav>
             </div>
             <div class="header-right">
-
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                     <i class="fas fa-bars"></i>
-                </button>
-
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-                
-                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
-                    <i class="fas fa-heart"></i>
-                </button>
-
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
                 <button class="icon-btn" title="Notificações">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
@@ -68,18 +59,17 @@
                     <span class="user-name">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-
-                <!-- =================== DROPDOWN DO USUÁRIO =================== -->
+<!-- =================== DROPDOWN DO USUÁRIO =================== -->
                 <div class="user-dropdown" id="userDropdown">
-                    <div class="dropdown-item" id="dropMeuPerfil">
+                    <a href="/PerfilUsuario.html" class="dropdown-item" id="dropMeuPerfil">
                         <i class="fas fa-user"></i>
                         <span>Meu Perfil</span>
                     </div>
-                    <div class="dropdown-item" id="dropSuporte">
+                    <a href="/SuporteUsuario.html" class="dropdown-item" id="dropSuporte">
                         <i class="fas fa-headset"></i>
                         <span>Suporte ao Usuário</span>
-                    </div>
-                    <a href="../../Configuracoes.html" class="dropdown-item">
+                    </a>
+                     <a href="/Configuracoes.html" class="dropdown-item">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
@@ -87,7 +77,6 @@
                     <div class="dropdown-item logout" id="dropSair">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Sair</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -103,13 +92,7 @@
                 <!-- Slide 0: Trailer -->
                 <div class="gallery-slide slide-trailer" data-index="0">
                     <div class="youtube-container">
-                       <iframe width="560" height="315" 
-                        src="https://www.youtube.com/embed/0Pisjh9zxX4?si=PucqHBuucNw11hr1" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                        </iframe>
+                       <iframe width="560" height="315" src="https://www.youtube.com/embed/0Pisjh9zxX4?si=8bap1fpXYjaIt5SN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="slide-label"><i class="fas fa-play-circle"></i> Trailer Oficial</div>
                 </div>
@@ -124,11 +107,11 @@
                     <div class="slide-label">Screenshot 2</div>
                 </div>
                 <div class="gallery-slide" data-index="3">
-                    <img src="foto 3.jpg" alt="Screenshot 3" class="slide-img">
+                    <img src="Foto 3" alt="Screenshot 3" class="slide-img">
                     <div class="slide-label">Screenshot 3</div>
                 </div>
                 <div class="gallery-slide" data-index="4">
-                    <img src="foto 4.jpg"Screenshot 4" class="slide-img">
+                    <img src="foto 4.jpg" alt="Screenshot 4" class="slide-img">
                     <div class="slide-label">Screenshot 4</div>
                 </div>
                 <div class="gallery-slide" data-index="5">
@@ -136,7 +119,7 @@
                     <div class="slide-label">Screenshot 5</div>
                 </div>
                 <div class="gallery-slide" data-index="6">
-                    <img src="foto 6.jpg"Screenshot 5" class="slide-img">
+                    <img src="foto 6.jpg" alt="Screenshot 5" class="slide-img">
                     <div class="slide-label">Screenshot 6</div>
                 </div>
                 <div class="gallery-slide" data-index="7">
@@ -144,7 +127,7 @@
                     <div class="slide-label">Screenshot 7</div>
                 </div>
                 <div class="gallery-slide" data-index="5">
-                    <img src="foto 8.jpg" alt="Screenshot 5" class="slide-img">
+                    <img src="Foto 8" alt="Screenshot 5" class="slide-img">
                     <div class="slide-label">Screenshot 8</div>
                 </div>
             </div>
@@ -194,18 +177,15 @@
         <aside class="game-sidebar">
 
             <div class="game-cover">
-                <img src="Capa.png" alt="Mullet">
+                <img src="Capa.png" alt="Mullet Madjack">
             </div>
 
             <div class="curation-badge">
                 <i class="fas fa-award"></i> Destaque Velora
             </div>
 
-            <h1 class="game-title-hero">Mullet Madjack</h1>
-            <p class="game-studio">
-                <i class="fas fa-code"></i>
-               <a href="https://www.hammer95.com/" target="_blank">HAMMER95</a>
-            </p>
+            <h1 class="game-title-hero">Mullet MadJack</h1>
+            <p class="game-studio"><i class="fas fa-code"></i>Hammer95</p>
 
             <div class="rating-block">
                 <div class="stars-row">
@@ -218,8 +198,8 @@
             </div>
 
             <div class="age-rating">
-                <div class="age-badge">16</div>
-                <span>Violência Extrema</span>
+                <div class="age-badge">14</div>
+                <span>Conteúdo violento moderado</span>
             </div>
 
             <button class="btn-donate" id="btnDonate">
@@ -228,15 +208,15 @@
             </button>
             <p class="donate-note">Apoie diretamente o desenvolvedor</p>
 
-            <button type="button" class="btn-wishlist" id="btnWishlist">
-            <i class="far fa-heart" id="wishlistIcon"></i>
-            <span id="wishlistText">Adicionar aos Favoritos</span>
+            <button class="btn-wishlist" id="btnWishlist">
+                <i class="far fa-heart" id="wishlistIcon"></i>
+                <span id="wishlistText">Adicionar aos Favoritos</span>
             </button>
 
             <div class="quick-info">
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-calendar-alt"></i> Lançamento</span>
-                    <span class="qi-value">15 mai. 2024</span>
+                    <span class="qi-value">15 Maio 2024</span>
                 </div>
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-desktop"></i> Plataformas</span>
@@ -247,11 +227,11 @@
                 </div>
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-language"></i> Idiomas</span>
-                    <span class="qi-value">PT-BR, EN, ES, FR, RU, KO</span>
+                    <span class="qi-value">PT-BR, EN, ES, FR, DE</span>
                 </div>
                 <div class="qi-item">
                     <span class="qi-label"><i class="fas fa-tags"></i> Gênero</span>
-                    <span class="qi-value">FPS · Ação · Roguelike</span>
+                    <span class="qi-value">Metroidvania · Ação</span>
                 </div>
             </div>
         </aside>
@@ -265,9 +245,9 @@
             <section class="col-main">
 
                 <nav class="breadcrumb">
-                    <a href="../../Catalogo.html">Início</a>
+                    <a href="#">Início</a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="../../Catalogo.html">Catálogo</a>
+                    <a href="#">Jogos</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Mullet Madjack</span>
                 </nav>
@@ -276,21 +256,27 @@
                 <div class="section-card">
                     <h2 class="section-heading"><i class="fas fa-book-open"></i> Sobre o Jogo</h2>
                      <p class="game-description">
-                        <strong><em>MULLET MAD JACK</em></strong>  é um jogo de tiro em primeira pessoa <em>FRENÉTICO</em> de um jogador onde você está dentro de um <strong>ANIME</strong> da era dos vídeo cassetes!
+                        <strong><em>Mullet Madjack</em></strong>é um jogo de tiro em primeira pessoa <em>FRENÉTICO</em> de um jogador onde você está dentro de um <strong>ANIME</strong> da era dos vídeo cassetes! .
                     </p>
 
                     <p class="game-description">
-                        Incremente seu personagem até você alcançar o último andar. Faça seu melhor tempo ou tente de novo. Aqui a <strong><em>PRESSA É AMIGA DA PERFEIÇÃO!</em></strong>
+                        Incremente seu personagem até você alcançar o último andar. Faça seu melhor tempo ou tente de novo. Aqui a <strong>PRESSA É AMIGA DA PERFEIÇÃO!</strong>
+
                     </p>
 
                     <p class="game-description">
-                        Em um mundo no ano de 2095, onde "Robilionários" dominaram o mundo, e os humanos são viciados em dopamina. Jack Banhammer, um "moderador" contratado pela Peace Corp, parte para resgatar o "Influenciador" de um arranhacéu cheio de Robilionários assassinos em troca de um novo par de sapatos.
+                        Em um mundo no ano de 2095, onde "Robilionários" dominaram o mundo, e os humanos são viciados em dopamina. Jack Banhammer, um "moderador" contratado pela Peace Corp, parte para resgatar o "Influenciador" de um arranhacéu cheio de Robilionários assassinos em troca de um novo par de sapatos
                     </p>
                      <p class="game-description">
-                         Em um futuro distante, <em>HUMANIDADE e INTERNET</em> se fundem em um novo ser. Um humano precisa de DOPAMINA a cada 10 SEGUNDOS ou ele MORRE! O mundo é controlado por robôs super ricos chamados "ROBILIONÁRIOS", Aqueles que ousam viver a cada 10 SEGUNDOS DE VIDA apenas pra acabar com estes robôs são chamados, MODERADORES! 
+                          Você é <em>MULLET MAD JACK</em> e matará inimigos para reabastecer seus 10 SEGUNDOS DE VIDA!
                     </p>
                     <p class="game-description">
-                        Você é MULLET MAD JACK e matará inimigos para reabastecer seus <strong><em>10 SEGUNDOS DE VIDA!<strong></em>
+                        O mundo é controlado por robôs super ricos chamados "ROBILIONÁRIOS",
+                        Aqueles que ousam viver a cada 10 SEGUNDOS DE VIDA apenas pra acabar com estes robôs são chamados, MODERADORES!
+                    </p>
+                    <p class="game-description">
+                        Em um futuro distante, HUMANIDADE e INTERNET se fundem em um novo ser.
+                        Um humano precisa de DOPAMINA a cada 10 SEGUNDOS ou ele MORRE!
                     </p>
                 </div>
 
@@ -300,14 +286,15 @@
                     <div class="tags-container">
                         <span class="tag">Metroidvania</span>
                         <span class="tag">Indie Brasileiro</span>
-                        <span class="tag">Frenético</span>
+                        <span class="tag">Pixel Art</span>
                         <span class="tag">Ação</span>
-                        <span class="tag">Tiros em Primeira Pessoa</span>
+                        <span class="tag">Plataforma 2D</span>
                         <span class="tag">Atmosférico</span>
-                        <span class="tag">Anime</span>
-                        <span class="tag">Cyberpun</span>
+                        <span class="tag">Exploração</span>
+                        <span class="tag">Chefes Desafiadores</span>
                         <span class="tag">Trilha Sonora</span>
-                        <span class="tag">Robots</span>
+                        <span class="tag">Narrativa</span>
+                        <span class="tag">Difícil</span>
                         <span class="tag tag-highlight"><i class="fas fa-star"></i> Destaque Nacional</span>
                     </div>
                 </div>
@@ -353,14 +340,15 @@
                     <div class="comments-list" id="commentsList">
                         <div class="comment-card">
                             <div class="comment-header">
-                                <img src="https://i.pravatar.cc/40?img=3" alt="Jugmaster990" class="comment-avatar">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="Rafael" class="comment-avatar">
                                 <div class="comment-meta">
                                     <strong>Jugmaster990</strong>
-                                    <span class="comment-date">há 5 dias</span>
+                                    <span class="comment-date">há 2 dias</span>
                                 </div>
                                 <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             </div>
-                            <p class="comment-text">Comecei só pra testar e quando vi já tava 3 horas jogando. O loop de matar praganhar tempo é genial.</p>
+                            <p class="comment-text">Comecei só pra testar e quando vi já tava 3 horas jogando. O loop de matar pra
+                            ganhar tempo é genial</p>
                             <div class="comment-actions">
                                 <button class="like-btn"><i class="fas fa-thumbs-up"></i> 48</button>
                                 <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
@@ -368,14 +356,15 @@
                         </div>
                         <div class="comment-card">
                             <div class="comment-header">
-                                <img src="https://i.pravatar.cc/40?img=9" alt="Minetomber" class="comment-avatar">
+                                <img src="https://i.pravatar.cc/40?img=9" alt="Maria" class="comment-avatar">
                                 <div class="comment-meta">
                                     <strong>Minetomber</strong>
-                                    <span class="comment-date">há 2 dias</span>
+                                    <span class="comment-date">há 5 dias</span>
                                 </div>
                                 <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
                             </div>
-                            <p class="comment-text">A estética anime + cyberpunk é absurda. Parece que você tá dentro de um desenho dos anos 90.</p>
+                            <p class="comment-text">A estética anime + cyberpunk é absurda. Parece que você tá dentro de um
+                            desenho dos anos 90.</p>
                             <div class="comment-actions">
                                 <button class="like-btn"><i class="fas fa-thumbs-up"></i> 31</button>
                                 <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
@@ -383,14 +372,14 @@
                         </div>
                         <div class="comment-card">
                             <div class="comment-header">
-                                <img src="https://i.pravatar.cc/40?img=15" alt="Juliocesarxbox666" class="comment-avatar">
+                                <img src="https://i.pravatar.cc/40?img=15" alt="Lucas" class="comment-avatar">
                                 <div class="comment-meta">
                                     <strong>Juliocesarxbox666</strong>
                                     <span class="comment-date">há 1 semana</span>
                                 </div>
                                 <div class="comment-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             </div>
-                            <p class="comment-text">Jogo brasileiro com qualidade absurda. Fácil um dos melhores indies recentes.</p>
+                            <p class="comment-text">Jogo brasileiro com qualidade absurda. Fácil um dos melhores indies recentes</p>
                             <div class="comment-actions">
                                 <button class="like-btn"><i class="fas fa-thumbs-up"></i> 27</button>
                                 <button class="reply-btn"><i class="fas fa-reply"></i> Responder</button>
@@ -409,13 +398,13 @@
                 <div class="section-card aside-card">
                     <h2 class="section-heading"><i class="fas fa-info-circle"></i> Detalhes</h2>
                     <table class="details-table">
-                        <tr><td><i class="fas fa-code"></i> Desenvolvedor</td><td><a href="https://www.hammer95.com/" target="_blank">HAMMER95</a></td></tr>
-                        <tr><td><i class="fas fa-building"></i> Publicadora</td><td>Epopeia Games, HAMMER95</td></tr>
-                        <tr><td><i class="fas fa-calendar"></i> Lançamento</td><td>15 mai. 2024</td></tr>
-                        <tr><td><i class="fas fa-gamepad"></i> Plataformas</td><td>PC, Mac, iOS, Switch, Xbox</td></tr>
-                        <tr><td><i class="fas fa-language"></i> Idiomas</td><td>PT-BR, EN, ES, FR, RU, KO</td></tr>
-                        <tr><td><i class="fas fa-layer-group"></i> Gêneros</td><td>Tiros em Primeira Pessoa, Ação, Cyberpunk</td></tr>
-                        <tr><td><i class="fas fa-user-shield"></i> Classificação</td><td>16+ anos</td></tr>
+                        <tr><td><i class="fas fa-code"></i> Desenvolvedor</td><td><a href="#" class="dev-link">Hammer95</a></td></tr>
+                        <tr><td><i class="fas fa-building"></i> Publicadora</td><td>Raw Fury</td></tr>
+                        <tr><td><i class="fas fa-calendar"></i> Lançamento</td><td>15 de maio de 2024</td></tr>
+                        <tr><td><i class="fas fa-gamepad"></i> Plataformas</td><td>PC, Mac, iOS, Switch, PS4, Xbox</td></tr>
+                        <tr><td><i class="fas fa-language"></i> Idiomas</td><td>PT-BR, EN, ES, FR, DE, RU, ZH, KO</td></tr>
+                        <tr><td><i class="fas fa-layer-group"></i> Gêneros</td><td>FPS, Ação, Roguelike</td></tr>
+                        <tr><td><i class="fas fa-user-shield"></i> Classificação</td><td>14+ anos</td></tr>
                         <tr><td><i class="fas fa-users"></i> Modo</td><td>Single-player</td></tr>
                     </table>
                 </div>
@@ -423,7 +412,7 @@
                 <!-- Card de doação -->
                 <div class="section-card aside-card donate-card">
                     <div class="donate-icon"><i class="fas fa-seedling"></i></div>
-                    <h3>Apoie a HAMMER95</h3>
+                    <h3>Apoie a Hammer95</h3>
                     <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
                     <div class="donate-amounts" id="donateAmountsAside">
                         <button class="amount-btn" data-amount="5">R$ 5</button>
@@ -445,7 +434,7 @@
             <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
             <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
             <h3>Apoiar Mullet Madjack</h3>
-            <p>Sua contribuição vai diretamente para a <strong>HAMMER95</strong> continuar criando jogos incríveis!</p>
+            <p>Sua contribuição vai diretamente para a <strong>Hammer95</strong> continuar criando jogos incríveis!</p>
             <div class="modal-amounts" id="modalAmounts">
                 <button class="amount-btn" data-amount="5">R$ 5</button>
                 <button class="amount-btn active" data-amount="10">R$ 10</button>
@@ -453,7 +442,7 @@
                 <button class="amount-btn" data-amount="50">R$ 50</button>
                 <button class="amount-btn" data-amount="100">R$ 100</button>
             </div>
-            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="0.10" max="5000000" step="0.01">
+            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="1">
             <button class="btn-confirm-donate" id="confirmDonate">
                 <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
             </button>
@@ -468,19 +457,16 @@
     <div class="toast" id="toast"></div>
 
         <footer class="main-footer">
-        <div class="footer-container">
-            <a href="../../Catalogo.html" class="footer-logo">
-                <img src="/projeto-main/logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
-                <span class="footer-logo-text">VELORA</span>
-            </a>
-            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
-            <div class="footer-links">
-                <a href="../../TermosDeUso.html">Termos de Uso</a>
-                <span class="sep">·</span>
-                <a href="../../TermosPriv.html">Privacidade</a>
-                <span class="sep">·</span>
-                <a href="../../SuporteUsuario.html">Suporte</a>
-            </div>
+        <div class="footer-logo-box">
+            <img src="../../Logo Velora.png" alt="Velora" class="footer-logo-img">
+            <span class="footer-logo-text">VELORA</span>
+        </div>
+        <div class="footer-links">
+            <a href="../../TermosDeUso.html">Termos de Uso</a>
+            <span class="separator">•</span>
+            <a href="../../TermosPriv.html">Privacidade</a>
+            <span class="separator">•</span>
+            <a href="../../SuporteUsuario.html">Suporte</a>
         </div>
     </footer>
 
