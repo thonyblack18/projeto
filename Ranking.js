@@ -88,7 +88,7 @@ const GAMES = [
         id: 11,
         nome: 'Momodora: Reverie Under The Moonlight',
         genero: 'Metroidvania',
-        img: './Logos/Momodora Logo.jpg',
+        img: './Logos/Momodora.jpg',
         acessos: { semana: 3600, mes: 18000, ano: 76000, todos: 120000 },
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.6, todos: 4.5 }
     },
