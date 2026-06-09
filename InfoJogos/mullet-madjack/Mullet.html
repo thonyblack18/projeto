@@ -13,43 +13,40 @@
 </head>
 <body>
 
-    <!-- =================== HEADER =================== -->
+    <!-- =================== HEADER PADRÃO VELORA / DANDARA =================== -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-                <div class="logo">
+                <a href="../../Catalogo.html" class="logo">
                     <img src="../../Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
-                </div>
-                
+                </a>
+
                 <nav class="main-nav">
-                    <a href="../../Catalogo.html" class="nav-item">
-                        <i class="fas fa-home"></i> Início
-                    </a>
-                    <a href="/Minigames/Minigames.html" class="nav-item active">
-                        <i class="fas fa-gamepad"></i> Minigames
-                    </a>
-                    <a href="../../Ranking.html" class="nav-item">
-                        <i class="fas fa-fire"></i> Ranking
-                    </a>
-                    <a href="../../Noticias.html" class="nav-item">
-                        <i class="fas fa-newspaper"></i> Notícias
-                    </a>
-                    <a href="../../ListaDevs.html" class="nav-item">
-                        <i class="fas fa-users"></i> Desenvolvedores
-                    </a>
-                    <a href="../../SobreNos.html" class="nav-item">
-                        <i class="fas fa-crown"></i> Sobre nós
-                    </a>
+                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio"><i class="fas fa-home"></i> Início</a>
+                    <a href="../../Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
+                    <a href="../../Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
+                    <a href="../../Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
+                    <a href="../../ListaDevs.html" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
+                    <a href="../../SobreNos.html" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
                 </nav>
             </div>
+
             <div class="header-right">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
-                <button class="icon-btn" title="Notificações">
+
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos" type="button">
+                    <i class="fas fa-heart"></i>
+                </button>
+
+                <button class="icon-btn" title="Notificações" type="button">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
@@ -59,17 +56,17 @@
                     <span class="user-name">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-<!-- =================== DROPDOWN DO USUÁRIO =================== -->
+
                 <div class="user-dropdown" id="userDropdown">
-                    <a href="/PerfilUsuario.html" class="dropdown-item" id="dropMeuPerfil">
+                    <div class="dropdown-item" id="dropMeuPerfil">
                         <i class="fas fa-user"></i>
                         <span>Meu Perfil</span>
                     </div>
-                    <a href="/SuporteUsuario.html" class="dropdown-item" id="dropSuporte">
+                    <div class="dropdown-item" id="dropSuporte">
                         <i class="fas fa-headset"></i>
                         <span>Suporte ao Usuário</span>
-                    </a>
-                     <a href="/Configuracoes.html" class="dropdown-item">
+                    </div>
+                    <a href="../../Configuracoes.html" class="dropdown-item">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
@@ -77,6 +74,7 @@
                     <div class="dropdown-item logout" id="dropSair">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Sair</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,9 +243,9 @@
             <section class="col-main">
 
                 <nav class="breadcrumb">
-                    <a href="#">Início</a>
+                    <a href="../../Catalogo.html">Início</a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="#">Jogos</a>
+                    <a href="../../Catalogo.html">Catálogo</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Mullet Madjack</span>
                 </nav>
@@ -457,16 +455,19 @@
     <div class="toast" id="toast"></div>
 
         <footer class="main-footer">
-        <div class="footer-logo-box">
-            <img src="../../Logo Velora.png" alt="Velora" class="footer-logo-img">
-            <span class="footer-logo-text">VELORA</span>
-        </div>
-        <div class="footer-links">
-            <a href="../../TermosDeUso.html">Termos de Uso</a>
-            <span class="separator">•</span>
-            <a href="../../TermosPriv.html">Privacidade</a>
-            <span class="separator">•</span>
-            <a href="../../SuporteUsuario.html">Suporte</a>
+        <div class="footer-container">
+            <a href="../../Catalogo.html" class="footer-logo">
+                <img src="../../Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <span class="footer-logo-text">VELORA</span>
+            </a>
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+            <div class="footer-links">
+                <a href="../../TermosDeUso.html">Termos de Uso</a>
+                <span class="sep">·</span>
+                <a href="../../TermosPriv.html">Privacidade</a>
+                <span class="sep">·</span>
+                <a href="../../SuporteUsuario.html">Suporte</a>
+            </div>
         </div>
     </footer>
 
