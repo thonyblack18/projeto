@@ -14,7 +14,7 @@
 
     <canvas id="particles"></canvas>
 
-    <!-- HEADER -->
+    <!-- HEADER PADRÃO VELORA / DANDARA -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
@@ -23,19 +23,72 @@
                     <div class="logo-img-placeholder" id="logo-placeholder">V</div>
                     <span class="logo-text">VELORA</span>
                 </a>
+
                 <nav class="main-nav">
-                    <a href="Catalogo.html" class="nav-item"><i class="fas fa-home"></i> Início</a>
-                    <a href="./Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i>Minigames</a>
-                    <a href="Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
-                    <a href="Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
-                    <a href="ListaDevs.html" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
-                    <a href="SobreNos.html" class="nav-item active"><i class="fas fa-crown"></i> Sobre nós</a>
+                    <a href="Catalogo.html" class="nav-item">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="./Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Minigames
+                    </a>
+                    <a href="Ranking.html" class="nav-item">
+                        <i class="fas fa-fire"></i> Ranking
+                    </a>
+                    <a href="Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i> Notícias
+                    </a>
+                    <a href="ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i> Desenvolvedores
+                    </a>
+                    <a href="SobreNos.html" class="nav-item active">
+                        <i class="fas fa-crown"></i> Sobre nós
+                    </a>
                 </nav>
             </div>
+
             <div class="header-right">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar...">
+                    <input type="text" placeholder="Buscar jogos...">
+                </div>
+
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos" type="button">
+                    <i class="fas fa-heart"></i>
+                </button>
+
+                <button class="icon-btn" title="Notificações" type="button">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+                    <span class="user-name" id="userName">Jogador</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" id="dropMeuPerfil">
+                        <i class="fas fa-user"></i>
+                        <span>Meu Perfil</span>
+                    </div>
+                    <a href="SuporteUsuario.html" class="dropdown-item">
+                        <i class="fas fa-headset"></i>
+                        <span>Suporte ao Usuário</span>
+                    </a>
+                    <a href="Configuracoes.html" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="dropSair">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -206,19 +259,22 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER PADRÃO VELORA / DANDARA -->
     <footer class="main-footer">
-        <div class="footer-inner">
-            <div class="footer-logo">
-                <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+        <div class="footer-container">
+            <a href="Catalogo.html" class="footer-logo">
+                <img src="logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
                 <div class="footer-logo-placeholder" id="footer-logo-placeholder">V</div>
                 <span class="footer-logo-text">VELORA</span>
-            </div>
+            </a>
+
+            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
+
             <div class="footer-links">
                 <a href="TermosDeUso.html">Termos de Uso</a>
-                <span class="footer-sep">•</span>
-                <a href="TermosPrivacidade.html">Privacidade</a>
-                <span class="footer-sep">•</span>
+                <span class="sep">·</span>
+                <a href="TermosPriv.html">Privacidade</a>
+                <span class="sep">·</span>
                 <a href="SuporteUsuario.html">Suporte</a>
             </div>
         </div>
