@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Redefinir Senha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="RedefinirSenha.css">
+    <link rel="icon" type="image/png" href="Logo Velora.png">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="grid-background"></div>
+
+    <div id="toast" class="toast">
+        <div class="toast-icon"></div>
+        <div class="toast-message"></div>
+        <button class="toast-close" type="button">&times;</button>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="LoginCadastro.html" class="logo-wrapper">
+                <img src="logo-velora.png" alt="Velora" class="header-logo" id="header-logo">
+                <span class="logo-text">VELORA</span>
+            </a>
+            <nav class="header-nav">
+                <a href="Catalogo.html" class="nav-link">Explorar</a>
+                <a href="ListaDevs.html" class="nav-link">Desenvolvedores</a>
+                <a href="SobreNos.html" class="nav-link">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-wrapper">
+            <aside class="info-section">
+                <div class="info-content">
+                    <h1 class="main-title">
+                        Recupere o acesso à sua
+                        <span class="highlight">conta Velora</span>
+                    </h1>
+                    <p class="main-description">
+                        Informe seu token de recuperação e crie uma nova senha segura para voltar a explorar os jogos indies brasileiros.
+                    </p>
+                </div>
+            </aside>
+
+            <section class="form-section">
+                <div class="form-card reset-card">
+                    <div class="reset-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+
+                    <h2 class="form-title">Redefinir senha</h2>
+                    <p class="form-subtitle">Digite o token recebido no e-mail e escolha uma nova senha.</p>
+
+                    <form class="auth-form active" id="form-reset-password">
+                        <div class="input-group">
+                            <label>Email</label>
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="email" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Token de recuperação</label>
+                            <div class="input-box">
+                                <i class="fas fa-shield-alt"></i>
+                                <input type="text" name="token" placeholder="Digite o token recebido" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Nova senha</label>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" placeholder="Mínimo 8 caracteres" required>
+                                <button type="button" class="toggle-pwd"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Confirmar nova senha</label>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="confirm_password" placeholder="Repita a nova senha" required>
+                                <button type="button" class="toggle-pwd"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-check"></i>
+                            Redefinir senha
+                        </button>
+
+                        <div class="reset-links">
+                            <a href="LoginCadastro.html">
+                                <i class="fas fa-arrow-left"></i>
+                                Voltar para login
+                            </a>
+                        </div>
+                    </form>
+
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        O token deve ser o mesmo enviado pelo sistema de recuperação de senha.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-logo-box">
+            <img src="logo-velora.png" alt="Velora" class="footer-logo-img">
+            <span class="footer-logo-text">VELORA</span>
+        </div>
+        <div class="footer-links">
+            <a href="TermosDeUso.html">Termos de Uso</a>
+            <span class="separator">•</span>
+            <a href="TermosPriv.html">Privacidade</a>
+            <span class="separator">•</span>
+            <a href="SuporteUsuario.html">Suporte</a>
+        </div>
+    </footer>
+
+    <script src="RedefinirSenha.js"></script>
+</body>
+</html>
