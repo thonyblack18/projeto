@@ -373,3 +373,485 @@ body::before {
     .equipe-grid { grid-template-columns: 1fr 1fr; }
     .hero-title { font-size: 28px; }
 }
+
+/* ============================================================
+   AJUSTE FINAL — HEADER/FOOTER/RESPONSIVO PADRÃO DANDARA
+   Apenas visual/menu/footer. Não altera backend.
+   ============================================================ */
+
+:root {
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --gold-dim: rgba(212,175,55,0.15);
+    --gray-700: #374151;
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(13,13,26,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+    padding: 0 40px;
+}
+
+.header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo-text,
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.logo-text {
+    font-size: 22px;
+}
+
+.footer-logo-text {
+    font-size: 15px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    color: var(--gray-300);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+}
+
+.icon-btn,
+.mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.mobile-menu-btn {
+    display: none;
+}
+
+.icon-btn:hover,
+.mobile-menu-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    background: var(--red);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.user-profile:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+}
+
+.user-avatar-initial {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--bg-dark);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    background: rgba(19,19,26,0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    color: var(--gray-300);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.dropdown-item.logout {
+    color: var(--red);
+}
+
+.dropdown-item.logout:hover {
+    background: rgba(239,68,68,0.1);
+    color: var(--red);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 8px 0;
+}
+
+.main-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    padding: 28px 40px;
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(10px);
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-links .sep {
+    color: var(--gray-700);
+    font-size: 11px;
+}
+
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        background: rgba(13,13,26,0.98);
+        border: 1px solid rgba(212,175,55,0.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .qs-container {
+        grid-template-columns: 1fr;
+    }
+
+    .qs-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .missao-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        gap: 12px;
+    }
+
+    .header-left {
+        gap: 18px;
+    }
+
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .icon-btn,
+    .mobile-menu-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile {
+        padding: 5px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+    }
+
+    .quem-somos-section,
+    .equipe-section,
+    .missao-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .equipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .qs-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .equipe-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .main-footer {
+        padding: 24px 16px;
+    }
+}
+
+
+/* ============================================================
+   AJUSTE FINAL — EQUIPE E TÍTULOS
+   Apenas visual/conteúdo. Não altera backend/header/footer.
+   ============================================================ */
+
+/* Fonte gamer limpa para "Quem Somos?" e "Nossa Equipe" */
+.hero-title,
+.hero-em,
+.section-heading {
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Evita espaço vazio quando um card não tem links */
+.dev-card .dev-links:empty {
+    display: none;
+}
+
+.dev-card.no-social .dev-desc {
+    flex: 0;
+    margin-bottom: 0;
+}
+
+.dev-card.no-social {
+    justify-content: flex-start;
+}
+
+/* Mantém Alanis e Anthony com apenas GitHub centralizado */
+.dev-links {
+    min-height: 32px;
+    justify-content: center;
+}
+
+.dev-card.no-social .dev-links {
+    display: none;
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+    .hero-title,
+    .section-heading {
+        letter-spacing: 1px;
+    }
+}
