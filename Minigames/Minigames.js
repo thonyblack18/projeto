@@ -15,12 +15,30 @@ function initDropdown() {
     const userDropdown = document.getElementById('userDropdown');
     const nameEl       = document.getElementById('userName');
     const initialEl    = document.getElementById('userAvatarInitial');
+    const avatarImg = document.getElementById('headerUserAvatar');
 
     try {
-        const u = JSON.parse(localStorage.getItem('velora_user'));
-        if (u && nameEl)    nameEl.textContent    = u.name || 'Jogador';
-        if (u && initialEl) initialEl.textContent = (u.name || 'J')[0].toUpperCase();
-    } catch(e) {}
+    const u = JSON.parse(localStorage.getItem('velora_user'));
+
+    if (u && nameEl) {
+        nameEl.textContent = u.account_type === 'developer' ? 'Desenvolvedor' : 'Jogador';
+    }
+
+    if (u?.profile_photo && avatarImg && initialEl) {
+        avatarImg.src = u.profile_photo;
+        avatarImg.style.display = 'block';
+        initialEl.style.display = 'none';
+    } else if (u && initialEl) {
+        const nome = u.display_name || u.name || u.username || 'J';
+        initialEl.textContent = nome.charAt(0).toUpperCase();
+        initialEl.style.display = 'flex';
+
+        if (avatarImg) {
+            avatarImg.src = '';
+            avatarImg.style.display = 'none';
+        }
+    }
+} catch(e) {}
 
     if (userProfile && userDropdown) {
         userProfile.addEventListener('click', e => {
