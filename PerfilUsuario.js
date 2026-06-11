@@ -204,48 +204,139 @@ async function carregarPerfil() {
         const data = await fetchJson(`${API_BASE}/api/profile/user/${user.id}`);
         const profile = data.data;
 
-        setText("fullname", profile.display_name || profile.name || profile.username || "Usuário");
-setText("username", `@${profile.username || "usuario"}`);
-setText("bio", profile.bio, "Sem bio cadastrada.");
-setText("country", profile.country, "País não informado");
+        // =================== FOTO DO PERFIL ===================
+        const avatarImg = document.getElementById("profileAvatarImg");
+        const avatarInitial = document.getElementById("profileAvatarInitial");
+
+        let avatarUrl = profile.avatar_url || "";
+
+        console.log("PROFILE:", profile);
+        console.log("AVATAR URL:", avatarUrl);
+
+        if (avatarUrl && !avatarUrl.startsWith("http")) {
+            avatarUrl = `${API_BASE}/${avatarUrl}`;
+        }
+
+        if (avatarUrl && avatarImg && avatarInitial) {
+
+            avatarImg.src = avatarUrl;
+            avatarImg.style.display = "block";
+            avatarInitial.style.display = "none";
+
+            const userLocal = getStoredUser() || {};
+            userLocal.profile_photo = avatarUrl;
+
+            localStorage.setItem(
+                "velora_user",
+                JSON.stringify(userLocal)
+            );
+
+        } else {
+            setAvatarInitial(profile);
+        }
+
+        setText(
+            "fullname",
+            profile.display_name ||
+            profile.name ||
+            profile.username ||
+            "Usuário"
+        );
+
+        setText(
+            "username",
+            `@${profile.username || "usuario"}`
+        );
+
+        setText(
+            "bio",
+            profile.bio,
+            "Sem bio cadastrada."
+        );
+
+        setText(
+            "country",
+            profile.country,
+            "País não informado"
+        );
 
         renderGenres(profile.favorite_genres);
-        setAvatarInitial(profile);
+
         setStats();
         animateCounters();
+
     } catch (err) {
-        console.error("Erro ao carregar perfil:", err.message);
-        setText("fullname", "Erro ao carregar");
-        setText("username", "@erro");
-        setText("bio", "Não foi possível carregar o perfil.");
-        setText("country", "País não informado");
+
+        console.error(
+            "Erro ao carregar perfil:",
+            err.message
+        );
+
+        setText(
+            "fullname",
+            "Erro ao carregar"
+        );
+
+        setText(
+            "username",
+            "@erro"
+        );
+
+        setText(
+            "bio",
+            "Não foi possível carregar o perfil."
+        );
+
+        setText(
+            "country",
+            "País não informado"
+        );
     }
 }
-//foto do perfil
+
+
+// =================== FOTO DO PERFIL ===================
 function carregarAvatarPerfil() {
+
     const avatarImg = document.getElementById("profileAvatarImg");
     const avatarInitial = document.getElementById("profileAvatarInitial");
 
     let user = {};
+
     try {
-        user = JSON.parse(localStorage.getItem("velora_user")) || {};
+        user = JSON.parse(
+            localStorage.getItem("velora_user")
+        ) || {};
     } catch (e) {
         user = {};
     }
 
     const foto = user.profile_photo || "";
-    const nome = (user.display_name || user.name || user.username || "U").trim();
+    const nome = (
+        user.display_name ||
+        user.name ||
+        user.username ||
+        "U"
+    ).trim();
+
     const inicial = nome.charAt(0).toUpperCase();
 
     if (foto && avatarImg) {
+
         avatarImg.src = foto;
         avatarImg.style.display = "block";
-        if (avatarInitial) avatarInitial.style.display = "none";
+
+        if (avatarInitial) {
+            avatarInitial.style.display = "none";
+        }
+
     } else {
+
         if (avatarImg) {
             avatarImg.src = "";
             avatarImg.style.display = "none";
         }
+
         if (avatarInitial) {
             avatarInitial.textContent = inicial;
             avatarInitial.style.display = "block";
@@ -254,6 +345,90 @@ function carregarAvatarPerfil() {
 }
 
 document.addEventListener("DOMContentLoaded", carregarAvatarPerfil);
+
+async function uploadAvatar() {
+
+    console.log("UPLOAD AVATAR CHAMADO");
+
+    const user = getStoredUser();
+    const input = document.getElementById("avatarInput");
+
+    console.log("user:", user);
+    console.log("input:", input);
+    console.log("files:", input?.files);
+
+    if (!user || !input || !input.files.length) return;
+
+    const formData = new FormData();
+    formData.append("user_id", user.id);
+    formData.append("account_type", user.account_type);
+    formData.append("avatar", input.files[0]);
+
+    const res = await fetch(`${API_BASE}/api/upload-avatar`, {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+        alert(data.error);
+        return;
+    }
+
+    const avatarUrl = `${API_BASE}/${data.avatar_url}`;
+
+    const updatedUser = {
+        ...user,
+        profile_photo: avatarUrl
+    };
+
+    localStorage.setItem("velora_user", JSON.stringify(updatedUser));
+
+    carregarAvatarPerfil();
+    alert("Foto de perfil atualizada!");
+}
+
+function configurarUploadAvatar() {
+    const avatarArea = document.querySelector(".profile-avatar");
+    const input = document.getElementById("avatarInput");
+
+    if (!avatarArea || !input) return;
+
+    avatarArea.style.cursor = "pointer";
+
+    avatarArea.addEventListener("click", () => {
+        input.click();
+    });
+
+    input.addEventListener("change", uploadAvatar);
+}
+
+function carregarAvatarHeader() {
+    const headerAvatarImg = document.getElementById("headerAvatarImg");
+    const userAvatarInitial = document.getElementById("userAvatarInitial");
+
+    const user = getStoredUser() || {};
+    const foto = user.profile_photo || "";
+    const nome = (user.display_name || user.name || user.username || "J").trim();
+
+    if (foto && headerAvatarImg && userAvatarInitial) {
+        headerAvatarImg.src = foto;
+        headerAvatarImg.style.display = "block";
+        userAvatarInitial.style.display = "none";
+    } else if (userAvatarInitial) {
+        userAvatarInitial.textContent = nome.charAt(0).toUpperCase();
+        userAvatarInitial.style.display = "flex";
+
+        if (headerAvatarImg) {
+            headerAvatarImg.src = "";
+            headerAvatarImg.style.display = "none";
+        }
+    }
+}
+
 // =================== INICIAR ===================
 setupEditButton();
+configurarUploadAvatar();
 carregarPerfil();
+carregarAvatarHeader();

@@ -6,6 +6,8 @@ from database import get_connection
 import os
 from dotenv import load_dotenv
 import json
+import secrets
+from datetime import datetime, timedelta
 
 load_dotenv()
 
@@ -240,7 +242,8 @@ def get_dev_profile(user_id):
                 d.city,
                 d.state,
                 d.foundation_year,
-                d.review_status
+                d.review_status,
+                d.avatar_url
             FROM users u
             LEFT JOIN developer_profiles d ON d.user_id = u.id
             WHERE u.id = %s AND u.account_type = 'developer'
@@ -1089,6 +1092,201 @@ def create_game_review(game_id):
     except Exception as e:
         conn.rollback()
         return jsonify({"error": f"Erro ao salvar avaliação: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route("/api/forgot-password", methods=["POST"])
+def forgot_password():
+    data = request.get_json()
+
+    email = (data.get("email") or "").strip().lower()
+
+    if not email:
+        return jsonify({"error": "Informe seu e-mail."}), 400
+
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT id, name, email
+            FROM users
+            WHERE email = %s
+        """, (email,))
+
+        user = cursor.fetchone()
+
+        # Não revela se o email existe ou não
+        if not user:
+            return jsonify({
+                "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
+            }), 200
+
+        token = secrets.token_urlsafe(48)
+        expires_at = datetime.now() + timedelta(minutes=30)
+
+        cursor.execute("""
+            UPDATE password_reset_tokens
+            SET used = 1
+            WHERE user_id = %s AND used = 0
+        """, (user["id"],))
+
+        cursor.execute("""
+            INSERT INTO password_reset_tokens (user_id, token, expires_at)
+            VALUES (%s, %s, %s)
+        """, (user["id"], token, expires_at))
+
+        conn.commit()
+
+        reset_link = f"http://127.0.0.1:5500/RedefinirSenha.html?token={token}"
+
+        print("\n================ LINK DE RECUPERAÇÃO VELORA ================")
+        print(reset_link)
+        print("============================================================\n")
+
+        return jsonify({
+            "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação.",
+            "dev_reset_link": reset_link
+        }), 200
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": f"Erro ao solicitar recuperação: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.route("/api/reset-password", methods=["POST"])
+def reset_password():
+    data = request.get_json()
+
+    token = (data.get("token") or "").strip()
+    new_password = (data.get("new_password") or "").strip()
+
+    if not token or not new_password:
+        return jsonify({"error": "Token e nova senha são obrigatórios."}), 400
+
+    if len(new_password) < 8:
+        return jsonify({"error": "A nova senha deve ter pelo menos 8 caracteres."}), 400
+
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT prt.id, prt.user_id, prt.expires_at, prt.used
+            FROM password_reset_tokens prt
+            WHERE prt.token = %s
+            LIMIT 1
+        """, (token,))
+
+        reset_row = cursor.fetchone()
+
+        if not reset_row:
+            return jsonify({"error": "Link de recuperação inválido."}), 400
+
+        if reset_row["used"] == 1:
+            return jsonify({"error": "Este link já foi utilizado."}), 400
+
+        if reset_row["expires_at"] < datetime.now():
+            return jsonify({"error": "Este link expirou. Solicite uma nova recuperação."}), 400
+
+        new_hash = bcrypt.generate_password_hash(new_password).decode("utf-8")
+
+        cursor.execute("""
+            UPDATE users
+            SET password_hash = %s
+            WHERE id = %s
+        """, (new_hash, reset_row["user_id"]))
+
+        cursor.execute("""
+            UPDATE password_reset_tokens
+            SET used = 1
+            WHERE id = %s
+        """, (reset_row["id"],))
+
+        conn.commit()
+
+        return jsonify({"message": "Senha redefinida com sucesso."}), 200
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": f"Erro ao redefinir senha: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()        
+
+@app.route("/api/upload-avatar", methods=["POST"])
+def upload_avatar():
+
+    user_id = request.form.get("user_id")
+    account_type = request.form.get("account_type")
+    avatar = request.files.get("avatar")
+
+    if not user_id or not account_type:
+        return jsonify({"error": "Dados inválidos."}), 400
+
+    if not avatar:
+        return jsonify({"error": "Nenhuma imagem enviada."}), 400
+
+    os.makedirs("uploads/avatars", exist_ok=True)
+
+    extensao = avatar.filename.split(".")[-1].lower()
+    nome_arquivo = f"avatar_{user_id}_{int(datetime.now().timestamp())}.{extensao}"
+
+    caminho = f"uploads/avatars/{nome_arquivo}"
+
+    avatar.save(caminho)
+
+    conn = get_connection()
+
+    if not conn:
+        return jsonify({"error": "Erro de conexão."}), 500
+
+    try:
+
+        cursor = conn.cursor()
+
+        if account_type == "developer":
+
+            cursor.execute("""
+                UPDATE developer_profiles
+                SET avatar_url=%s
+                WHERE user_id=%s
+            """, (caminho, user_id))
+
+        else:
+
+            cursor.execute("""
+                UPDATE player_profiles
+                SET avatar_url=%s
+                WHERE user_id=%s
+            """, (caminho, user_id))
+
+        conn.commit()
+
+        return jsonify({
+            "message": "Avatar atualizado com sucesso.",
+            "avatar_url": caminho
+        })
+
+    except Exception as e:
+
+        conn.rollback()
+        return jsonify({
+            "error": str(e)
+        }), 500
 
     finally:
         cursor.close()

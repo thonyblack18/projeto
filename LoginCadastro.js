@@ -353,3 +353,47 @@ if (password !== confirmPassword) {
     createStars();
     draw();
 })();
+
+// =========================
+// ESQUECI MINHA SENHA
+// =========================
+
+document.getElementById("forgotPasswordBtn")?.addEventListener("click", async (e) => {
+
+    e.preventDefault();
+
+    const email = prompt("Digite o e-mail cadastrado:");
+
+    if (!email) return;
+
+    try {
+
+        const response = await fetch(`${API_BASE}/api/forgot-password`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email.trim()
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            showToast(`❌ ${data.error}`);
+            return;
+        }
+
+        showToast("📧 Link de recuperação gerado!");
+
+        console.log("LINK DE RECUPERAÇÃO:");
+        console.log(data.dev_reset_link);
+
+    } catch (err) {
+
+        showToast("❌ Erro ao solicitar recuperação.");
+
+    }
+
+});

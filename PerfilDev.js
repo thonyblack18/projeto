@@ -239,37 +239,224 @@ async function carregarPerfilDev() {
     try {
         const data = await fetchJson(`${API_BASE}/api/profile/dev/${user.id}`);
         const profile = data.profile;
-        
+
         // =================== FOTO DO PERFIL ===================
         const avatarImg = document.getElementById("avatarImg");
         const avatarInitial = document.getElementById("avatarInitial");
 
-        const localUser = getStoredUser();
+        let avatarUrl = profile.avatar_url || "";
 
-        if (localUser?.profile_photo && avatarImg && avatarInitial) {
-        avatarImg.src = localUser.profile_photo;
-        avatarImg.style.display = "block";
-        avatarInitial.style.display = "none";
+        if (avatarUrl && !avatarUrl.startsWith("http")) {
+            avatarUrl = `${API_BASE}/${avatarUrl}`;
         }
-        setText("studio-name", profile.dev_display_name || profile.display_name || profile.name || "Desenvolvedor");
-        setText("studio-description", profile.studio_description, "Sem descrição cadastrada.");
+
+        if (avatarUrl && avatarImg && avatarInitial) {
+
+            avatarImg.src = avatarUrl;
+            avatarImg.style.display = "block";
+            avatarInitial.style.display = "none";
+
+            const userLocal = getStoredUser() || {};
+            userLocal.profile_photo = avatarUrl;
+            localStorage.setItem(
+                "velora_user",
+                JSON.stringify(userLocal)
+            );
+
+        } else {
+
+            const localUser = getStoredUser();
+
+            if (localUser?.profile_photo && avatarImg && avatarInitial) {
+                avatarImg.src = localUser.profile_photo;
+                avatarImg.style.display = "block";
+                avatarInitial.style.display = "none";
+            }
+        }
+
+        setText(
+            "studio-name",
+            profile.dev_display_name ||
+            profile.display_name ||
+            profile.name ||
+            "Desenvolvedor"
+        );
+
+        setText(
+            "studio-description",
+            profile.studio_description,
+            "Sem descrição cadastrada."
+        );
+
         setStudioType(profile.dev_type);
         setLocation(profile.city, profile.state);
         setTagline(profile.dev_type, profile.foundation_year);
-        setHref("studio-site", profile.website, "Sem site oficial");
-        setHref("link-website", profile.website, "Sem site oficial");
-        setStudioInitial(profile.dev_display_name || profile.display_name || profile.name);
+
+        setHref(
+            "studio-site",
+            profile.website,
+            "Sem site oficial"
+        );
+
+        setHref(
+            "link-website",
+            profile.website,
+            "Sem site oficial"
+        );
+
+        setStudioInitial(
+            profile.dev_display_name ||
+            profile.display_name ||
+            profile.name
+        );
+
         setTechTags();
         setStats(profile);
         animateCounters();
+
     } catch (err) {
-        console.error("Erro ao carregar perfil dev:", err.message);
-        setText("studio-name", "Erro ao carregar");
-        setText("studio-description", "Não foi possível carregar o perfil do desenvolvedor.");
-        setText("studio-location", "Local não informado");
+
+        console.error(
+            "Erro ao carregar perfil dev:",
+            err.message
+        );
+
+        setText(
+            "studio-name",
+            "Erro ao carregar"
+        );
+
+        setText(
+            "studio-description",
+            "Não foi possível carregar o perfil do desenvolvedor."
+        );
+
+        setText(
+            "studio-location",
+            "Local não informado"
+        );
     }
+}
+async function uploadAvatar() {
+    const user = getStoredUser();
+    const input = document.getElementById("avatarInput");
+
+    if (!user || !input || !input.files.length) return;
+
+    const formData = new FormData();
+
+    formData.append("user_id", user.id);
+    formData.append("account_type", user.account_type);
+    formData.append("avatar", input.files[0]);
+
+    const res = await fetch(`${API_BASE}/api/upload-avatar`, {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+        alert(data.error);
+        return;
+    }
+
+    const avatarUrl = `${API_BASE}/${data.avatar_url}`;
+
+    const updatedUser = {
+        ...user,
+        profile_photo: avatarUrl
+    };
+
+    localStorage.setItem(
+        "velora_user",
+        JSON.stringify(updatedUser)
+    );
+
+    const avatarImg = document.getElementById("avatarImg");
+    const avatarInitial = document.getElementById("avatarInitial");
+
+    if (avatarImg && avatarInitial) {
+        avatarImg.src = avatarUrl;
+        avatarImg.style.display = "block";
+        avatarInitial.style.display = "none";
+    }
+
+    alert("Foto de perfil atualizada!");
+}
+
+function configurarUploadAvatar() {
+
+    const avatarArea = document.querySelector(".studio-logo-wrap");
+    const input = document.getElementById("avatarInput");
+
+    if (!avatarArea || !input) return;
+
+    avatarArea.style.cursor = "pointer";
+
+    avatarArea.addEventListener("click", () => {
+        input.click();
+    });
+
+    input.addEventListener("change", uploadAvatar);
+}
+
+function carregarAvatarHeader() {
+    const headerAvatarImg = document.getElementById("headerAvatarImg");
+    const userAvatarInitial = document.getElementById("userAvatarInitial");
+
+    const user = getStoredUser() || {};
+    const foto = user.profile_photo || "";
+    const nome = (user.display_name || user.name || user.username || "D").trim();
+
+    if (foto && headerAvatarImg && userAvatarInitial) {
+        headerAvatarImg.src = foto;
+        headerAvatarImg.style.display = "block";
+        userAvatarInitial.style.display = "none";
+    } else if (userAvatarInitial) {
+        userAvatarInitial.textContent = nome.charAt(0).toUpperCase();
+        userAvatarInitial.style.display = "flex";
+
+        if (headerAvatarImg) {
+            headerAvatarImg.src = "";
+            headerAvatarImg.style.display = "none";
+        }
+    }
+}
+
+function configurarDropdownUsuario() {
+    const userProfile = document.getElementById("userProfile");
+    const userDropdown = document.getElementById("userDropdown");
+
+    if (!userProfile || !userDropdown) return;
+
+    userProfile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle("active");
+        userProfile.classList.toggle("active");
+    });
+
+    userDropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+        userDropdown.classList.remove("active");
+        userProfile.classList.remove("active");
+    });
+
+    const dropSair = document.getElementById("dropSair");
+
+dropSair?.addEventListener("click", () => {
+    localStorage.removeItem("velora_user");
+    localStorage.removeItem("velora_favoritos_ids");
+    window.location.href = "LoginCadastro.html";
+});
 }
 
 // =================== INICIAR ===================
 setupEditButton();
+configurarUploadAvatar();
 carregarPerfilDev();
+carregarAvatarHeader();
+configurarDropdownUsuario();

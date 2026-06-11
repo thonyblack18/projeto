@@ -335,6 +335,44 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
+function carregarAvatarHeader() {
+    const avatarImg = document.getElementById("headerUserAvatar");
+    const avatarInitial = document.getElementById("userAvatarInitial");
+    const userName = document.getElementById("userName");
+
+    let user = {};
+
+    try {
+        user = JSON.parse(localStorage.getItem("velora_user")) || {};
+    } catch (e) {
+        user = {};
+    }
+
+    const foto = user.profile_photo || "";
+    const nome = (user.display_name || user.name || user.username || "Jogador").trim();
+
+    if (userName) {
+        userName.textContent =
+            user.account_type === "developer"
+            ? "Desenvolvedor"
+            : "Jogador";
+    }
+
+    if (foto && avatarImg && avatarInitial) {
+        avatarImg.src = foto;
+        avatarImg.style.display = "block";
+        avatarInitial.style.display = "none";
+    } else if (avatarInitial) {
+        avatarInitial.textContent = nome.charAt(0).toUpperCase();
+        avatarInitial.style.display = "flex";
+
+        if (avatarImg) {
+            avatarImg.src = "";
+            avatarImg.style.display = "none";
+        }
+    }
+}
+
 // Adiciona animações CSS
 const style = document.createElement('style');
 style.textContent = `
@@ -403,3 +441,5 @@ function debounce(func, wait) {
 console.log('🎮 Velora FAQ - Sistema carregado com sucesso!');
 console.log('💡 Dica: Pressione Ctrl/Cmd + K para buscar');
 console.log('💡 Dica: Pressione ESC para fechar FAQs abertos');
+
+carregarAvatarHeader();

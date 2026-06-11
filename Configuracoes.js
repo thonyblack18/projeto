@@ -535,7 +535,7 @@ function renderAvatarFromLocalStorage() {
   }
 }
 
-function handleAvatarUpload(event) {
+async function handleAvatarUpload(event) {
   const avatarInput = document.getElementById("avatarInput");
   const avatarImg = document.getElementById("avatarImg");
   const avatarInitial = document.getElementById("avatarInitial");
@@ -558,13 +558,29 @@ function handleAvatarUpload(event) {
     return;
   }
 
-  const reader = new FileReader();
+  try {
+    const user = getVeloraUser();
 
-  reader.onload = function () {
-    avatarBase64 = reader.result;
+    const formData = new FormData();
+    formData.append("user_id", user.id || user.user_id);
+    formData.append("account_type", user.account_type);
+    formData.append("avatar", file);
+
+    const response = await fetch(`${API_BASE.replace("/api", "")}/api/upload-avatar`, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || data.error) {
+      throw new Error(data.error || "Erro ao enviar imagem.");
+    }
+
+    const avatarUrl = `${API_BASE.replace("/api", "")}/${data.avatar_url}`;
 
     if (avatarImg) {
-      avatarImg.src = avatarBase64;
+      avatarImg.src = avatarUrl;
       avatarImg.style.display = "block";
     }
 
@@ -572,14 +588,22 @@ function handleAvatarUpload(event) {
       avatarInitial.style.display = "none";
     }
 
+    avatarBase64 = avatarUrl;
+
     const localUser = getVeloraUser();
-    localUser.profile_photo = avatarBase64;
+    localUser.profile_photo = avatarUrl;
     saveVeloraUser(localUser);
 
-    showToast("Foto de perfil atualizada!");
-  };
+    if (currentProfile) {
+      currentProfile.avatar_url = avatarUrl;
+    }
 
-  reader.readAsDataURL(file);
+    showToast("Foto de perfil atualizada!");
+
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || "Erro ao atualizar foto.");
+  }
 }
 
 function removeAvatar() {

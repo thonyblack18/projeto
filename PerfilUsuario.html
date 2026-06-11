@@ -70,6 +70,13 @@
         <div class="user-menu">
           <div class="user-profile" id="userProfile">
             <div class="user-avatar-initial" id="userAvatarInitial">J</div>
+
+            <img
+                id="headerAvatarImg"
+                src=""
+                alt="Foto do usuário"
+                style="display:none; width:36px; height:36px; border-radius:50%; object-fit:cover;"
+            >
             <span class="user-name" id="userName">Jogador</span>
             <i class="fas fa-chevron-down"></i>
           </div>
@@ -106,9 +113,24 @@
     <div class="hero-content">
       <div class="avatar-wrap">
         <div class="profile-avatar">
-         <span id="profileAvatarInitial">U</span>
-          <img id="profileAvatarImg" src="" alt="Foto de perfil" style="display: none;">
-        </div>
+
+    <input
+        type="file"
+        id="avatarInput"
+        accept="image/*"
+        style="display:none;"
+    >
+
+    <span id="profileAvatarInitial">U</span>
+
+    <img
+        id="profileAvatarImg"
+        src=""
+        alt="Foto de perfil"
+        style="display: none;"
+    >
+
+</div>
         <span class="badge-online"></span>
     </div>
 

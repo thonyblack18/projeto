@@ -1,9 +1,6 @@
 CREATE DATABASE IF NOT EXISTS velora;
 USE velora;
 
--- =========================
--- USERS
--- =========================
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
@@ -15,9 +12,6 @@ CREATE TABLE IF NOT EXISTS users (
     terms_accepted_at DATETIME
 );
 
--- =========================
--- PLAYER PROFILES
--- =========================
 CREATE TABLE IF NOT EXISTS player_profiles (
     user_id INT PRIMARY KEY,
     full_name VARCHAR(120) NOT NULL,
@@ -32,9 +26,6 @@ CREATE TABLE IF NOT EXISTS player_profiles (
         ON DELETE CASCADE
 );
 
--- =========================
--- DEVELOPER PROFILES
--- =========================
 CREATE TABLE IF NOT EXISTS developer_profiles (
     user_id INT PRIMARY KEY,
     dev_display_name VARCHAR(120) NOT NULL,
@@ -53,9 +44,6 @@ CREATE TABLE IF NOT EXISTS developer_profiles (
         ON DELETE CASCADE
 );
 
--- =========================
--- GAMES
--- =========================
 CREATE TABLE IF NOT EXISTS games (
     id INT AUTO_INCREMENT PRIMARY KEY,
     developer_id INT NOT NULL,
@@ -67,12 +55,16 @@ CREATE TABLE IF NOT EXISTS games (
 
     genre VARCHAR(255),
     platform VARCHAR(255),
-
     release_date DATE,
 
     cover_url VARCHAR(255),
     banner_url VARCHAR(255),
     screenshots TEXT,
+    tags TEXT,
+
+    age_rating VARCHAR(20),
+    player_mode VARCHAR(100),
+
     trailer_url VARCHAR(255),
     official_website VARCHAR(255),
 
@@ -99,9 +91,6 @@ CREATE TABLE IF NOT EXISTS games (
         ON DELETE CASCADE
 );
 
--- =========================
--- USER FAVORITES
--- =========================
 CREATE TABLE IF NOT EXISTS user_favorites (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -119,9 +108,6 @@ CREATE TABLE IF NOT EXISTS user_favorites (
         ON DELETE CASCADE
 );
 
--- =========================
--- GAME REVIEWS
--- =========================
 CREATE TABLE IF NOT EXISTS game_reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     game_id INT NOT NULL,
@@ -130,6 +116,8 @@ CREATE TABLE IF NOT EXISTS game_reviews (
     review_text TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    UNIQUE KEY unique_user_game_review (game_id, user_id),
 
     CONSTRAINT fk_reviews_game
         FOREIGN KEY (game_id) REFERENCES games(id)
@@ -140,9 +128,19 @@ CREATE TABLE IF NOT EXISTS game_reviews (
         ON DELETE CASCADE
 );
 
--- =========================
--- SUPPORT TICKETS
--- =========================
+CREATE TABLE IF NOT EXISTS password_reset_tokens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    token VARCHAR(255) NOT NULL UNIQUE,
+    expires_at DATETIME NOT NULL,
+    used TINYINT(1) DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_reset_user
+        FOREIGN KEY (user_id) REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS support_tickets (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -157,9 +155,6 @@ CREATE TABLE IF NOT EXISTS support_tickets (
         ON DELETE CASCADE
 );
 
--- =========================
--- SUPPORT MESSAGES
--- =========================
 CREATE TABLE IF NOT EXISTS support_messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ticket_id INT NOT NULL,
