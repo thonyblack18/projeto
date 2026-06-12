@@ -1,3 +1,4 @@
+const API_BASE = "http://127.0.0.1:5000";
 const gamesGrid = document.querySelector(".games-grid");
 
 let allGames = [];
@@ -241,49 +242,38 @@ applyFilters?.addEventListener("click", () => {
 function carregarAvatarHeader() {
     const avatarImg = document.getElementById("headerUserAvatar");
     const avatarInitial = document.getElementById("headerAvatarInitial");
-    const userName = document.getElementById("headerUserName");
+    const userName = document.getElementById("headerUserName") || document.getElementById("userName");
 
-    let currentUser = {};
+    let user = {};
 
     try {
-        currentUser = JSON.parse(localStorage.getItem("velora_user")) || {};
+        user = JSON.parse(localStorage.getItem("velora_user")) || {};
     } catch (e) {
-        currentUser = {};
+        user = {};
     }
 
-    const foto = currentUser.profile_photo || "";
-    const nome = (
-        currentUser.display_name ||
-        currentUser.name ||
-        currentUser.username ||
-        "Jogador"
-    ).trim();
+    let foto = user.profile_photo || "";
+    const nome = (user.display_name || user.name || user.username || "Jogador").trim();
 
-    const inicial = nome.charAt(0).toUpperCase();
+    if (foto && !foto.startsWith("http")) {
+        foto = `${API_BASE}/${foto}`;
+    }
 
     if (userName) {
-        userName.textContent =
-            currentUser.account_type === "developer"
-                ? "Desenvolvedor"
-                : "Jogador";
+        userName.textContent = user.account_type === "developer" ? "Desenvolvedor" : "Jogador";
     }
 
-    if (foto && avatarImg) {
+    if (foto && avatarImg && avatarInitial) {
         avatarImg.src = foto;
         avatarImg.style.display = "block";
+        avatarInitial.style.display = "none";
+    } else if (avatarInitial) {
+        avatarInitial.textContent = nome.charAt(0).toUpperCase();
+        avatarInitial.style.display = "flex";
 
-        if (avatarInitial) {
-            avatarInitial.style.display = "none";
-        }
-    } else {
         if (avatarImg) {
             avatarImg.src = "";
             avatarImg.style.display = "none";
-        }
-
-        if (avatarInitial) {
-            avatarInitial.textContent = inicial;
-            avatarInitial.style.display = "flex";
         }
     }
 }

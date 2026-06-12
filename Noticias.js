@@ -47,22 +47,61 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
 });
 
-// =================== ABRIR NOTÍCIA ORIGINAL ===================
-// A página de notícias é estática.
-// Para cada notícia, cole o link original no HTML em:
-// data-source-url="https://site-da-noticia.com/noticia"
-//
-// Quando o usuário clicar no card, este código abre o link original em outra aba.
-window.openNews = function(el) {
-    const url = el.dataset.sourceUrl;
+// =================== MODAL DE ARTIGO (moderno) ===================
+const articleModal   = document.getElementById('articleModal');
+const modalClose     = document.getElementById('modalClose');
+const modalCategory  = document.getElementById('modal-category');
+const modalTitle     = document.getElementById('modal-title');
+const modalMeta      = document.getElementById('modal-meta');
+const modalImgPH     = document.getElementById('modal-img-placeholder');
 
-    if (!url || url === "#" || url === "COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL") {
-        alert("Link da notícia original ainda não foi cadastrado neste card.");
-        return;
-    }
-
-    window.open(url, "_blank", "noopener,noreferrer");
+// Mapas de label e cor por categoria
+const categoryLabels = {
+    lancamentos: '✦ Lançamentos',
+    entrevistas: '✦ Entrevistas',
+    eventos:     '✦ Eventos',
+    bastidores:  '✦ Bastidores',
+    industria:   '✦ Indústria',
 };
+
+window.openNews = function(el) {
+    const title    = el.dataset.title    || 'Artigo em construção';
+    const date     = el.dataset.date     || '—';
+    const author   = el.dataset.author   || 'Equipe Velora';
+    const category = el.dataset.category || '';
+    const icon     = el.dataset.icon     || 'fas fa-newspaper';
+
+    // Preenche modal
+    modalCategory.textContent = categoryLabels[category] || '✦ Notícias';
+    modalTitle.textContent    = title;
+    modalImgPH.innerHTML      = `<i class="${icon}"></i>`;
+    modalMeta.innerHTML = `
+        <span><i class="fas fa-calendar-alt"></i> ${date}</span>
+        <span><i class="fas fa-user"></i> ${author}</span>
+        <span><i class="fas fa-clock"></i> Em breve</span>
+    `;
+
+    // Abre com animação
+    articleModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
+
+function closeModal() {
+    articleModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+modalClose?.addEventListener('click', closeModal);
+
+// Fechar clicando fora do conteúdo
+articleModal?.addEventListener('click', e => {
+    if (e.target === articleModal) closeModal();
+});
+
+// Fechar com Esc
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && articleModal.classList.contains('active')) closeModal();
+});
 
 // =================== DROPDOWN DO USUÁRIO ===================
 const userProfile  = document.getElementById('userProfile');

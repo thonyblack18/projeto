@@ -568,13 +568,6 @@ body::before {
     justify-content: center;
 }
 
-.featured-news-image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .img-placeholder { font-size: 60px; color: rgba(212,175,55,0.15); }
 
 .featured-overlay {

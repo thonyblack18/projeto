@@ -119,10 +119,41 @@ const userDropdown = document.getElementById("userDropdown");
 const userName = document.getElementById("userName");
 const userAvatarInitial = document.getElementById("userAvatarInitial");
 
+const headerUserAvatar = document.getElementById("headerUserAvatar");
+
 try {
     const user = JSON.parse(localStorage.getItem("velora_user"));
-    if (user && userName) userName.textContent = user.name || "Jogador";
-    if (user && userAvatarInitial) userAvatarInitial.textContent = (user.name || "J")[0].toUpperCase();
+
+    if (user && userName) {
+        userName.textContent =
+            user.account_type === "developer"
+            ? "Desenvolvedor"
+            : "Jogador";
+    }
+
+    if (user?.profile_photo && headerUserAvatar && userAvatarInitial) {
+        let foto = user.profile_photo;
+
+        if (!foto.startsWith("http")) {
+            foto = `http://127.0.0.1:5000/${foto}`;
+        }
+
+        headerUserAvatar.src = foto;
+        headerUserAvatar.style.display = "block";
+        userAvatarInitial.style.display = "none";
+
+    } else if (user && userAvatarInitial) {
+        const nome = user.display_name || user.name || user.username || "J";
+
+        userAvatarInitial.textContent = nome.charAt(0).toUpperCase();
+        userAvatarInitial.style.display = "flex";
+
+        if (headerUserAvatar) {
+            headerUserAvatar.src = "";
+            headerUserAvatar.style.display = "none";
+        }
+    }
+
 } catch (e) {}
 
 if (userProfile && userDropdown) {

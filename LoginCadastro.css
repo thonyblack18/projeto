@@ -713,3 +713,22 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.forgot-password {
+    color: #d4af37;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.forgot-password:hover {
+    color: #f4d35e;
+    text-decoration: underline;
+}
+
+.forgot-password:visited {
+    color: #d4af37;
+}
+
+.forgot-password:active {
+    color: #f4d35e;
+}

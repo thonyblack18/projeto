@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import json
 import secrets
 from datetime import datetime, timedelta
+from flask_mail import Mail, Message
 
 load_dotenv()
 
@@ -16,14 +17,26 @@ app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "velora_secret")
 CORS(app)
 bcrypt = Bcrypt(app)
 
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'anthonysantos180108@gmail.com'
+app.config['MAIL_PASSWORD'] = 'urqh lwfs romg ngsa'
+app.config['MAIL_DEFAULT_SENDER'] = ('Velora', 'anthonysantos180108@gmail.com')
+
+mail = Mail(app)
 
 def row_to_user(user_row):
+
+    avatar = user_row[6] if user_row[5] == "player" else user_row[7]
+
     return {
         "id": user_row[0],
         "name": user_row[1],
         "username": user_row[2],
         "email": user_row[3],
-        "account_type": user_row[5]
+        "account_type": user_row[5],
+        "profile_photo": avatar or ""
     }
 
 
@@ -163,9 +176,22 @@ def login():
         cursor = conn.cursor()
 
         cursor.execute("""
-            SELECT id, name, username, email, password_hash, account_type
-            FROM users
-            WHERE username = %s OR email = %s
+            SELECT
+                u.id,
+                u.name,
+                u.username,
+                u.email,
+                u.password_hash,
+                u.account_type,
+                pp.avatar_url AS player_avatar,
+                dp.avatar_url AS developer_avatar
+            FROM users u
+            LEFT JOIN player_profiles pp
+                ON pp.user_id = u.id
+            LEFT JOIN developer_profiles dp
+                ON dp.user_id = u.id
+            WHERE u.username = %s
+            OR u.email = %s
         """, (login_value, login_value))
 
         user = cursor.fetchone()
@@ -1291,6 +1317,135 @@ def upload_avatar():
     finally:
         cursor.close()
         conn.close()
+
+@app.route('/api/forgot-password', methods=['POST'])
+def forgot_password():
+    data = request.get_json()
+    email = data.get('email')
+
+    if not email:
+        return jsonify({'success': False, 'message': 'Informe o e-mail.'}), 400
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT id, email FROM users WHERE email = %s", (email,))
+    user = cursor.fetchone()
+
+    if not user:
+        cursor.close()
+        conn.close()
+        return jsonify({'success': False, 'message': 'E-mail não encontrado.'}), 404
+
+    token = secrets.token_urlsafe(32)
+    expires_at = datetime.now() + timedelta(minutes=30)
+
+    cursor.execute("""
+        INSERT INTO password_reset_tokens (user_id, token, expires_at)
+        VALUES (%s, %s, %s)
+    """, (user['id'], token, expires_at))
+
+    conn.commit()
+
+    reset_link = f"http://127.0.0.1:5500/RedefinirSenha.html?token={token}"
+
+    msg = Message(
+        subject="Redefinição de senha - Velora",
+        recipients=[user['email']]
+    )
+
+    msg.body = f"""
+    Olá!
+
+    Recebemos uma solicitação para redefinir sua senha na Velora.
+
+    Seu código de recuperação é:
+
+    {token}
+
+    Você também pode acessar este link:
+    {reset_link}
+
+    Este código expira em 30 minutos.
+
+    Se você não solicitou esta alteração, ignore este e-mail.
+
+    Equipe Velora
+    """
+
+    mail.send(msg)
+
+    cursor.close()
+    conn.close()
+
+
+
+    return jsonify({
+        'success': True,
+        'message': 'Código de recuperação gerado. Veja o terminal do Flask.'
+    })
+
+@app.route('/api/reset-password', methods=['POST'])
+def reset_password():
+    data = request.get_json()
+
+    token = data.get('token')
+    new_password = data.get('new_password')
+
+    if not token or not new_password:
+        return jsonify({'success': False, 'message': 'Token e nova senha são obrigatórios.'}), 400
+
+    if len(new_password) < 8:
+        return jsonify({'success': False, 'message': 'A senha deve ter pelo menos 8 caracteres.'}), 400
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT prt.id, prt.user_id, prt.expires_at, prt.used
+        FROM password_reset_tokens prt
+        WHERE prt.token = %s
+    """, (token,))
+
+    reset = cursor.fetchone()
+
+    if not reset:
+        cursor.close()
+        conn.close()
+        return jsonify({'success': False, 'message': 'Token inválido.'}), 400
+
+    if reset['used'] == 1:
+        cursor.close()
+        conn.close()
+        return jsonify({'success': False, 'message': 'Este token já foi usado.'}), 400
+
+    if datetime.now() > reset['expires_at']:
+        cursor.close()
+        conn.close()
+        return jsonify({'success': False, 'message': 'Token expirado.'}), 400
+
+    hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+
+    cursor.execute("""
+        UPDATE users
+        SET password_hash = %s
+        WHERE id = %s
+    """, (hashed_password, reset['user_id']))
+
+    cursor.execute("""
+        UPDATE password_reset_tokens
+        SET used = 1
+        WHERE id = %s
+    """, (reset['id'],))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({
+        'success': True,
+        'message': 'Senha redefinida com sucesso.'
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)

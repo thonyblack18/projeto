@@ -816,3 +816,20 @@ body {
         text-align: center;
     }
 }
+
+.send-code-btn{
+    width:100%;
+    margin:10px 0 20px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#d4af37;
+    color:#000;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.send-code-btn:hover{
+    filter:brightness(1.08);
+}

@@ -10,7 +10,7 @@ async function apiPost(path, body) {
     const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
-        throw new Error(data?.error || `Erro ${res.status}`);
+        throw new Error(data?.message || data?.error || `Erro ${res.status}`);
     }
 
     return data;
@@ -59,6 +59,35 @@ document.querySelectorAll(".toggle-pwd").forEach(btn => {
     });
 });
 
+const sendCodeBtn = document.getElementById("sendCodeBtn");
+
+sendCodeBtn?.addEventListener("click", async () => {
+
+    const email = document.getElementById("email").value.trim();
+
+    if (!email) {
+        showToast("Digite seu e-mail primeiro.", "error");
+        return;
+    }
+
+    try {
+
+        showToast("Enviando código...", "loading");
+
+        await apiPost("/api/forgot-password", {
+            email
+        });
+
+        showToast("Código enviado!");
+
+        sendCodeBtn.innerHTML =
+        '<i class="fas fa-rotate-right"></i> Reenviar código';
+
+    } catch (err) {
+        showToast(err.message || "Erro ao enviar código.", "error");
+    }
+});
+
 document.getElementById("form-reset-password")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -90,7 +119,7 @@ document.getElementById("form-reset-password")?.addEventListener("submit", async
         await apiPost("/api/reset-password", {
             email,
             token,
-            password
+            new_password: password
         });
 
         showToast("Senha redefinida com sucesso!");

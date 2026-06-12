@@ -190,19 +190,12 @@ document.getElementById("form-login")?.addEventListener("submit", async (e) => {
             password
         });
 
-        const antigoUser = JSON.parse(localStorage.getItem("velora_user") || "{}");
-
-        const userFinal = {
-        ...data.user,
-        profile_photo: antigoUser.profile_photo || ""
-        };
-
-localStorage.setItem("velora_user", JSON.stringify(userFinal));
+        localStorage.setItem("velora_user", JSON.stringify(data.user));
 
         showToast("✅ Login realizado!");
 
         setTimeout(() => {
-    window.location.href = "Catalogo.html";
+            window.location.href = "Catalogo.html";
         }, 800);
 
     } catch (err) {
