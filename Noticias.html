@@ -103,33 +103,7 @@
         </div>
     </header>
 
-    <!-- =================== MODAL DE ARTIGO =================== -->
-    <div class="article-modal" id="articleModal">
-        <div class="article-modal-content">
-            <div class="article-modal-header">
-                <div class="article-modal-category" id="modal-category"></div>
-                <button class="article-modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="article-modal-img" id="modal-img">
-                <div class="modal-img-placeholder" id="modal-img-placeholder"></div>
-            </div>
-            <div class="article-modal-body">
-                <h2 class="article-modal-title" id="modal-title"></h2>
-                <div class="article-modal-meta" id="modal-meta"></div>
-                <div class="article-modal-text">
-                    <p>Este artigo está em construção. Em breve o conteúdo completo estará disponível aqui na Velora.</p>
-                    <p>Acompanhe a plataforma para ficar por dentro de tudo que acontece no universo dos jogos indie brasileiros.</p>
-                </div>
-                <div class="article-modal-footer">
-                    <span class="wip-badge"><i class="fas fa-clock"></i> Em breve</span>
-                    <a href="#" class="modal-share-btn"><i class="fas fa-share-alt"></i> Compartilhar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- =================== CONTEÚDO PRINCIPAL =================== -->
     <main class="main-content">
         <div class="content-container">
@@ -173,24 +147,40 @@
             <!-- DESTAQUE PRINCIPAL -->
             <section class="featured-section">
 
+                <!-- =========================================================
+                     NOTÍCIA DESTAQUE PRINCIPAL
+
+                     EDITE A NOTÍCIA NESTE BLOCO:
+                     - data-category   = categoria: lancamentos, entrevistas, eventos, bastidores ou industria
+                     - data-title      = título da notícia
+                     - data-date       = data da notícia
+                     - data-author     = fonte/site da notícia original
+                     - data-source-url = COLE AQUI O LINK DA NOTÍCIA ORIGINAL
+
+                     Depois, troque também os textos visíveis:
+                     - .featured-title
+                     - .featured-excerpt
+                     - data e fonte dentro de .news-meta
+                     ========================================================= -->
+
                 <div class="featured-main news-item"
                      data-category="lancamentos"
-                     data-title="Título em rascunho — notícia em destaque da semana"
-                     data-date="10 mar. 2026"
-                     data-author="Equipe Velora"
-                     data-icon="fas fa-gamepad"
+                     data-title="Mullet Mad Jack celebra lançamento no Switch: Sensacional"
+                     data-date="05 de mai. de 2026"
+                     data-author="Breno Deolindo"
+                     data-source-url="https://www.omelete.com.br/games/mullet-mad-jack-lancamento-switch"
                      onclick="openNews(this)">
                     <div class="featured-img">
-                        <div class="img-placeholder"><i class="fas fa-gamepad"></i></div>
+                        <img src="mullet.jpg" alt="Imagem da notícia" class="featured-news-image">
                         <div class="featured-badge"><i class="fas fa-star"></i> Destaque</div>
                         <div class="featured-overlay"></div>
                     </div>
                     <div class="featured-body">
                         <div class="news-category-label">✦ Lançamentos</div>
-                        <h2 class="featured-title">Título em rascunho — notícia em destaque da semana</h2>
-                        <p class="featured-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <h2 class="featured-title">"Mullet Mad Jack celebra lançamento no Switch: Sensacional</h2>
+                        <p class="featured-excerpt"> A gamescom latam 2026 foi especialíssima para a Epopeia Games e todos os envolvidos na produção de Mullet Mad Jack. Quase dois anos depois de seu lançamento, o jogo brasileiro finalmente está disponível para Nintendo Switch, e a presença no estande da Nintendo celebrava a conquista.</p>
                         <div class="news-meta">
-                            <span><i class="fas fa-calendar-alt"></i> 10 mar. 2026</span>
+                            <span><i class="fas fa-calendar-alt"></i> "05 de mai. de 2026</span>
                             <span><i class="fas fa-user"></i> Equipe Velora</span>
                             <span><i class="fas fa-clock"></i> 5 min</span>
                             <span class="read-more">Ler mais <i class="fas fa-arrow-right"></i></span>
@@ -199,6 +189,18 @@
                 </div>
 
                 <div class="featured-aside">
+                    <!-- =========================================================
+                         NOTÍCIA LATERAL 01
+
+                         Cole as informações neste card:
+                         data-title      = título
+                         data-date       = data
+                         data-author     = fonte/site
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também o texto da .aside-title e a data visível.
+                         ========================================================= -->
+
 
                     <div class="aside-card news-item"
                          data-category="entrevistas"
@@ -206,6 +208,7 @@
                          data-date="9 mar. 2026"
                          data-author="Equipe Velora"
                          data-icon="fas fa-microphone"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="aside-img"><i class="fas fa-microphone"></i></div>
                         <div class="aside-body">
@@ -214,6 +217,18 @@
                             <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 9 mar. 2026</div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA LATERAL 02
+
+                         Cole as informações neste card:
+                         data-title      = título
+                         data-date       = data
+                         data-author     = fonte/site
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também o texto da .aside-title e a data visível.
+                         ========================================================= -->
+
 
                     <div class="aside-card news-item"
                          data-category="eventos"
@@ -221,6 +236,7 @@
                          data-date="8 mar. 2026"
                          data-author="Equipe Velora"
                          data-icon="fas fa-trophy"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="aside-img"><i class="fas fa-trophy"></i></div>
                         <div class="aside-body">
@@ -229,6 +245,18 @@
                             <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 8 mar. 2026</div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA LATERAL 03
+
+                         Cole as informações neste card:
+                         data-title      = título
+                         data-date       = data
+                         data-author     = fonte/site
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também o texto da .aside-title e a data visível.
+                         ========================================================= -->
+
 
                     <div class="aside-card news-item"
                          data-category="industria"
@@ -236,6 +264,7 @@
                          data-date="7 mar. 2026"
                          data-author="Equipe Velora"
                          data-icon="fas fa-chart-line"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="aside-img"><i class="fas fa-chart-line"></i></div>
                         <div class="aside-body">
@@ -259,10 +288,28 @@
                 </div>
 
                 <div class="news-grid" id="news-grid">
+                    <!-- =========================================================
+                         NOTÍCIA 01
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="lancamentos"
                          data-title="Título em rascunho — novo jogo de terror psicológico"
                          data-date="10 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-gamepad"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-gamepad"></i></div>
                         <div class="news-card-body">
@@ -275,10 +322,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 02
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="bastidores"
                          data-title="Título em rascunho — processo criativo de um RPG solo dev"
                          data-date="9 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-tools"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-tools"></i></div>
                         <div class="news-card-body">
@@ -291,10 +356,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 03
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="eventos"
                          data-title="Título em rascunho — premiação de jogos brasileiros indie"
                          data-date="8 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-medal"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-medal"></i></div>
                         <div class="news-card-body">
@@ -307,10 +390,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 04
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="entrevistas"
                          data-title="Título em rascunho — conversa com estúdio de Recife"
                          data-date="7 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-microphone"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-microphone"></i></div>
                         <div class="news-card-body">
@@ -323,10 +424,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 05
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="industria"
                          data-title="Título em rascunho — investimentos no setor de games em 2026"
                          data-date="6 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-chart-bar"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-chart-bar"></i></div>
                         <div class="news-card-body">
@@ -339,10 +458,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 06
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="lancamentos"
                          data-title="Título em rascunho — jogo de plataforma com folclore nordestino"
                          data-date="5 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-leaf"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-leaf"></i></div>
                         <div class="news-card-body">
@@ -355,10 +492,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 07
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="bastidores"
                          data-title="Título em rascunho — como uma dupla criou um puzzle em 48h"
                          data-date="4 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-puzzle-piece"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-puzzle-piece"></i></div>
                         <div class="news-card-body">
@@ -371,10 +526,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 08
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="eventos"
                          data-title="Título em rascunho — Game Jam brasileira bate recorde de participantes"
                          data-date="3 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-flag"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-flag"></i></div>
                         <div class="news-card-body">
@@ -387,10 +560,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 09
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="industria"
                          data-title="Título em rascunho — políticas de incentivo para devs brasileiros"
                          data-date="2 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-landmark"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-landmark"></i></div>
                         <div class="news-card-body">
@@ -403,10 +594,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- =========================================================
+                         NOTÍCIA 10
+
+                         ONDE COLAR:
+                         data-category   = categoria da notícia
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/site original
+                         data-source-url = LINK ORIGINAL DA NOTÍCIA
+
+                         Troque também:
+                         - .news-card-title   = título visível
+                         - .news-card-excerpt = resumo curto
+                         - .news-card-meta    = data visível
+                         - .news-tag          = tag curta
+                         ========================================================= -->
+
 
                     <div class="news-card news-item" data-category="entrevistas"
                          data-title="Título em rascunho — estúdio mineiro fala sobre exportar jogos para Europa"
                          data-date="1 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-globe"
+                     data-source-url="COLE_AQUI_O_LINK_DA_NOTICIA_ORIGINAL"
                          onclick="openNews(this)">
                         <div class="news-card-img"><i class="fas fa-globe"></i></div>
                         <div class="news-card-body">
