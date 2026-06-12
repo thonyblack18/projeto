@@ -1380,6 +1380,37 @@ def upload_avatar():
         cursor.close()
         conn.close()
 
+@app.route("/api/profile/dev/<int:user_id>/stats", methods=["GET"])
+def get_dev_profile_stats(user_id):
+    conn = get_connection()
+
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT COUNT(*) AS total_games
+            FROM games
+            WHERE developer_id = %s
+        """, (user_id,))
+
+        games = cursor.fetchone()
+
+        return jsonify({
+            "published_games": games["total_games"] or 0,
+            "supporters": 0
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "error": f"Erro ao carregar estatísticas: {str(e)}"
+        }), 500
+
+    finally:
+        cursor.close()
+        conn.close()
 
 if __name__ == "__main__":
     app.run(debug=True)
