@@ -131,22 +131,47 @@ function setAvatarInitial(profile) {
     avatar.textContent = source.charAt(0).toUpperCase();
 }
 
-function setStats() {
-    const currentYear = new Date().getFullYear();
+async function setStats(userId) {
 
-    const stats = [
-        { id: "stat-avaliados", value: 0 },
-        { id: "stat-apoiados", value: 0 },
-        { id: "stat-comentarios", value: 0 },
-        { id: "stat-membro-desde", value: currentYear }
-    ];
+    try {
 
-    stats.forEach(stat => {
-        const el = document.getElementById(stat.id);
-        if (!el) return;
-        el.textContent = stat.value;
-        el.dataset.target = stat.value;
-    });
+        const stats = await fetchJson(
+            `${API_BASE}/api/profile/user/${userId}/stats`
+        );
+
+        const currentYear = new Date().getFullYear();
+
+        const values = [
+            {
+                id: "stat-avaliados",
+                value: stats.games_reviewed || 0
+            },
+            {
+                id: "stat-apoiados",
+                value: stats.supported_games || 0
+            },
+            {
+                id: "stat-comentarios",
+                value: stats.comments_count || 0
+            },
+            {
+                id: "stat-membro-desde",
+                value: currentYear
+            }
+        ];
+
+        values.forEach(stat => {
+            const el = document.getElementById(stat.id);
+
+            if (!el) return;
+
+            el.textContent = stat.value;
+            el.dataset.target = stat.value;
+        });
+
+    } catch (err) {
+        console.error("Erro ao carregar estatísticas:", err);
+    }
 }
 
 function animateCounters() {
@@ -262,7 +287,7 @@ async function carregarPerfil() {
 
         renderGenres(profile.favorite_genres);
 
-        setStats();
+        await setStats(user.id);
         animateCounters();
 
     } catch (err) {
