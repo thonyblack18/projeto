@@ -1318,72 +1318,7 @@ def upload_avatar():
         cursor.close()
         conn.close()
 
-@app.route('/api/forgot-password', methods=['POST'])
-def forgot_password():
-    data = request.get_json()
-    email = data.get('email')
 
-    if not email:
-        return jsonify({'success': False, 'message': 'Informe o e-mail.'}), 400
-
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
-
-    cursor.execute("SELECT id, email FROM users WHERE email = %s", (email,))
-    user = cursor.fetchone()
-
-    if not user:
-        cursor.close()
-        conn.close()
-        return jsonify({'success': False, 'message': 'E-mail não encontrado.'}), 404
-
-    token = secrets.token_urlsafe(32)
-    expires_at = datetime.now() + timedelta(minutes=30)
-
-    cursor.execute("""
-        INSERT INTO password_reset_tokens (user_id, token, expires_at)
-        VALUES (%s, %s, %s)
-    """, (user['id'], token, expires_at))
-
-    conn.commit()
-
-    reset_link = f"http://127.0.0.1:5500/RedefinirSenha.html?token={token}"
-
-    msg = Message(
-        subject="Redefinição de senha - Velora",
-        recipients=[user['email']]
-    )
-
-    msg.body = f"""
-    Olá!
-
-    Recebemos uma solicitação para redefinir sua senha na Velora.
-
-    Seu código de recuperação é:
-
-    {token}
-
-    Você também pode acessar este link:
-    {reset_link}
-
-    Este código expira em 30 minutos.
-
-    Se você não solicitou esta alteração, ignore este e-mail.
-
-    Equipe Velora
-    """
-
-    mail.send(msg)
-
-    cursor.close()
-    conn.close()
-
-
-
-    return jsonify({
-        'success': True,
-        'message': 'Código de recuperação gerado. Veja o terminal do Flask.'
-    })
 
 @app.route('/api/reset-password', methods=['POST'])
 def reset_password():
