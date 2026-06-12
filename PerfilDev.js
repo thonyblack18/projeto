@@ -158,30 +158,45 @@ function setTechTags() {
     });
 }
 
-function setStats(profile) {
-    const gamesEl = document.getElementById("stat-games");
-    const supportersEl = document.getElementById("stat-supporters");
-    const monthsEl = document.getElementById("stat-months");
+async function setStats(profile, userId) {
 
-    let months = 0;
-    if (profile.foundation_year) {
-        const currentYear = new Date().getFullYear();
-        months = Math.max(0, (currentYear - Number(profile.foundation_year)) * 12);
-    }
+    try {
 
-    if (gamesEl) {
-        gamesEl.textContent = "0";
-        gamesEl.dataset.target = "0";
-    }
+        const stats = await fetchJson(
+            `${API_BASE}/api/profile/dev/${userId}/stats`
+        );
 
-    if (supportersEl) {
-        supportersEl.textContent = "0";
-        supportersEl.dataset.target = "0";
-    }
+        const gamesEl = document.getElementById("stat-games");
+        const supportersEl = document.getElementById("stat-supporters");
+        const monthsEl = document.getElementById("stat-months");
 
-    if (monthsEl) {
-        monthsEl.textContent = String(months);
-        monthsEl.dataset.target = String(months);
+        let months = 0;
+
+        if (profile.foundation_year) {
+            const currentYear = new Date().getFullYear();
+            months = Math.max(
+                0,
+                (currentYear - Number(profile.foundation_year)) * 12
+            );
+        }
+
+        if (gamesEl) {
+            gamesEl.textContent = stats.published_games || 0;
+            gamesEl.dataset.target = stats.published_games || 0;
+        }
+
+        if (supportersEl) {
+            supportersEl.textContent = stats.supporters || 0;
+            supportersEl.dataset.target = stats.supporters || 0;
+        }
+
+        if (monthsEl) {
+            monthsEl.textContent = months;
+            monthsEl.dataset.target = months;
+        }
+
+    } catch (err) {
+        console.error(err);
     }
 }
 
@@ -311,7 +326,7 @@ async function carregarPerfilDev() {
         );
 
         setTechTags();
-        setStats(profile);
+        await setStats(profile, user.id);
         animateCounters();
 
     } catch (err) {
