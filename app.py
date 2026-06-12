@@ -1123,6 +1123,44 @@ def create_game_review(game_id):
         cursor.close()
         conn.close()
 
+@app.route("/api/profile/user/<int:user_id>/stats", methods=["GET"])
+def get_user_profile_stats(user_id):
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT COUNT(DISTINCT game_id) AS games_reviewed
+            FROM game_reviews
+            WHERE user_id = %s
+        """, (user_id,))
+        reviewed = cursor.fetchone()
+
+        cursor.execute("""
+            SELECT COUNT(*) AS comments_count
+            FROM game_reviews
+            WHERE user_id = %s
+            AND review_text IS NOT NULL
+            AND review_text <> ''
+        """, (user_id,))
+        comments = cursor.fetchone()
+
+        return jsonify({
+            "games_reviewed": reviewed["games_reviewed"] or 0,
+            "supported_games": 0,
+            "comments_count": comments["comments_count"] or 0
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Erro ao buscar estatísticas: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
 @app.route("/api/forgot-password", methods=["POST"])
 def forgot_password():
     data = request.get_json()
@@ -1136,6 +1174,8 @@ def forgot_password():
     if not conn:
         return jsonify({"error": "Erro de conexão com o banco."}), 500
 
+    cursor = None
+
     try:
         cursor = conn.cursor(dictionary=True)
 
@@ -1147,7 +1187,6 @@ def forgot_password():
 
         user = cursor.fetchone()
 
-        # Não revela se o email existe ou não
         if not user:
             return jsonify({
                 "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
@@ -1171,13 +1210,35 @@ def forgot_password():
 
         reset_link = f"http://127.0.0.1:5500/RedefinirSenha.html?token={token}"
 
-        print("\n================ LINK DE RECUPERAÇÃO VELORA ================")
-        print(reset_link)
-        print("============================================================\n")
+        msg = Message(
+            subject="Redefinição de senha - Velora",
+            recipients=[user["email"]]
+        )
+
+        msg.body = f"""
+Olá, {user["name"]}!
+
+Recebemos uma solicitação para redefinir sua senha na Velora.
+
+Seu código de recuperação é:
+
+{token}
+
+Ou utilize o link abaixo:
+
+{reset_link}
+
+Este link expira em 30 minutos.
+
+Se você não solicitou isso, apenas ignore este e-mail.
+
+Equipe Velora
+"""
+
+        mail.send(msg)
 
         return jsonify({
-            "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação.",
-            "dev_reset_link": reset_link
+            "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
         }), 200
 
     except Exception as e:
@@ -1185,7 +1246,8 @@ def forgot_password():
         return jsonify({"error": f"Erro ao solicitar recuperação: {str(e)}"}), 500
 
     finally:
-        cursor.close()
+        if cursor:
+            cursor.close()
         conn.close()
 
 
@@ -1318,69 +1380,6 @@ def upload_avatar():
         cursor.close()
         conn.close()
 
-
-
-@app.route('/api/reset-password', methods=['POST'])
-def reset_password():
-    data = request.get_json()
-
-    token = data.get('token')
-    new_password = data.get('new_password')
-
-    if not token or not new_password:
-        return jsonify({'success': False, 'message': 'Token e nova senha são obrigatórios.'}), 400
-
-    if len(new_password) < 8:
-        return jsonify({'success': False, 'message': 'A senha deve ter pelo menos 8 caracteres.'}), 400
-
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
-
-    cursor.execute("""
-        SELECT prt.id, prt.user_id, prt.expires_at, prt.used
-        FROM password_reset_tokens prt
-        WHERE prt.token = %s
-    """, (token,))
-
-    reset = cursor.fetchone()
-
-    if not reset:
-        cursor.close()
-        conn.close()
-        return jsonify({'success': False, 'message': 'Token inválido.'}), 400
-
-    if reset['used'] == 1:
-        cursor.close()
-        conn.close()
-        return jsonify({'success': False, 'message': 'Este token já foi usado.'}), 400
-
-    if datetime.now() > reset['expires_at']:
-        cursor.close()
-        conn.close()
-        return jsonify({'success': False, 'message': 'Token expirado.'}), 400
-
-    hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
-
-    cursor.execute("""
-        UPDATE users
-        SET password_hash = %s
-        WHERE id = %s
-    """, (hashed_password, reset['user_id']))
-
-    cursor.execute("""
-        UPDATE password_reset_tokens
-        SET used = 1
-        WHERE id = %s
-    """, (reset['id'],))
-
-    conn.commit()
-    cursor.close()
-    conn.close()
-
-    return jsonify({
-        'success': True,
-        'message': 'Senha redefinida com sucesso.'
-    })
 
 if __name__ == "__main__":
     app.run(debug=True)
