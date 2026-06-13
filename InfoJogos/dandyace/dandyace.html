@@ -202,13 +202,7 @@
                 <div class="age-badge">10</div>
                 <span>Violência Fantasiosa</span>
             </div>
-
-            <button class="btn-donate" id="btnDonate">
-                <i class="fas fa-hand-holding-heart"></i>
-                Apoiar este jogo
-            </button>
-            <p class="donate-note">Apoie diretamente o desenvolvedor</p>
-
+            
             <button type="button" class="btn-wishlist" id="btnWishlist">
             <i class="far fa-heart" id="wishlistIcon"></i>
             <span id="wishlistText">Adicionar aos Favoritos</span>
@@ -400,50 +394,11 @@
                     </table>
                 </div>
 
-                <!-- Card de doação -->
-                <div class="section-card aside-card donate-card">
-                    <div class="donate-icon"><i class="fas fa-seedling"></i></div>
-                    <h3>Apoie a Dandy Ace</h3>
-                    <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
-                    <div class="donate-amounts" id="donateAmountsAside">
-                        <button class="amount-btn" data-amount="5">R$ 5</button>
-                        <button class="amount-btn active" data-amount="10">R$ 10</button>
-                        <button class="amount-btn" data-amount="25">R$ 25</button>
-                        <button class="amount-btn" data-amount="50">R$ 50</button>
-                    </div>
-                    <button class="btn-donate-main" id="btnDonateAside">
-                        <i class="fas fa-hand-holding-heart"></i> Apoiar com R$ 10
-                    </button>
-                </div>
             </aside>
         </div>
     </main>
 
-    <!-- =================== MODAL DE DOAÇÃO =================== -->
-    <div class="modal-overlay" id="donateModal">
-        <div class="modal-box">
-            <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
-            <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
-            <h3>Apoiar Dandy Ace</h3>
-            <p>Sua contribuição vai diretamente para a <strong>Mad Mimic</strong> continuar criando jogos incríveis!</p>
-            <div class="modal-amounts" id="modalAmounts">
-                <button class="amount-btn" data-amount="5">R$ 5</button>
-                <button class="amount-btn active" data-amount="10">R$ 10</button>
-                <button class="amount-btn" data-amount="25">R$ 25</button>
-                <button class="amount-btn" data-amount="50">R$ 50</button>
-                <button class="amount-btn" data-amount="100">R$ 100</button>
-            </div>
-            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="0.10" max="5000000" step="0.01">
-            <button class="btn-confirm-donate" id="confirmDonate">
-                <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
-            </button>
-            <p class="modal-note"><i class="fas fa-lock"></i> Pagamento seguro — Você será redirecionado para o checkout</p>
-        </div>
-    </div>
-
-
     
-
     <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
