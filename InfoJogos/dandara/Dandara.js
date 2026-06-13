@@ -460,12 +460,6 @@ document.getElementById('btnDonateAside').addEventListener('click', () => {
     const ratingSection = document.querySelector('.ratings-overview');
     if (ratingSection) observer.observe(ratingSection);
 
-
-    // =================== ESC FECHA MODAL ===================
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') donateModal.classList.remove('active');
-    });
-
     // =================== DROPDOWN DO USUÁRIO ===================
     const userProfile = document.getElementById('userProfile');
     const userDropdown = document.getElementById('userDropdown');
