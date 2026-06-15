@@ -15,12 +15,13 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS player_profiles (
     user_id INT PRIMARY KEY,
     full_name VARCHAR(120) NOT NULL,
+    display_name VARCHAR(255),
     bio TEXT,
     avatar_url VARCHAR(255),
     country VARCHAR(80),
     favorite_genres VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    display_name VARCHAR(255),
+
     CONSTRAINT fk_player_user
         FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
@@ -29,16 +30,18 @@ CREATE TABLE IF NOT EXISTS player_profiles (
 CREATE TABLE IF NOT EXISTS developer_profiles (
     user_id INT PRIMARY KEY,
     dev_display_name VARCHAR(120) NOT NULL,
+    display_name VARCHAR(255),
     dev_type ENUM('solo', 'studio') NOT NULL,
     website VARCHAR(255),
     studio_description TEXT,
     bio TEXT,
+    avatar_url VARCHAR(255),
     city VARCHAR(100),
     state VARCHAR(100),
     foundation_year INT,
-    review_status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
-    display_name VARCHAR(255),
     favorite_genres VARCHAR(255),
+    review_status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+
     CONSTRAINT fk_developer_user
         FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
@@ -49,6 +52,7 @@ CREATE TABLE IF NOT EXISTS games (
     developer_id INT NOT NULL,
 
     title VARCHAR(150) NOT NULL,
+    developer_name VARCHAR(80),
     tagline VARCHAR(255),
     description TEXT,
     short_description VARCHAR(255),
