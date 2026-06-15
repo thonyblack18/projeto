@@ -8,45 +8,57 @@
     <link rel="stylesheet" href="Mullet.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../Logo Velora.png" type="image/png">
+    <link rel="icon" href="/projeto-main/logo-velora.png" type="image/png">
 
 </head>
 <body>
 
-    <!-- =================== HEADER PADRÃO VELORA / DANDARA =================== -->
+    <!-- =================== HEADER =================== -->
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
                 <a href="../../Catalogo.html" class="logo">
-                    <img src="../../Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <img src="/projeto-main/logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
                 </a>
-
+                
                 <nav class="main-nav">
-                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio"><i class="fas fa-home"></i> Início</a>
-                    <a href="../../Minigames/Minigames.html" class="nav-item"><i class="fas fa-gamepad"></i> Minigames</a>
-                    <a href="../../Ranking.html" class="nav-item"><i class="fas fa-fire"></i> Ranking</a>
-                    <a href="../../Noticias.html" class="nav-item"><i class="fas fa-newspaper"></i> Notícias</a>
-                    <a href="../../ListaDevs.html" class="nav-item"><i class="fas fa-users"></i> Desenvolvedores</a>
-                    <a href="../../SobreNos.html" class="nav-item"><i class="fas fa-crown"></i> Sobre nós</a>
+                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="../../Minigames/Minigames.html" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Minigames
+                    </a>
+                    <a href="../../Ranking.html" class="nav-item">
+                        <i class="fas fa-fire"></i> Ranking
+                    </a>
+                    <a href="../../Noticias.html" class="nav-item">
+                        <i class="fas fa-newspaper"></i> Notícias
+                    </a>
+                    <a href="../../ListaDevs.html" class="nav-item">
+                        <i class="fas fa-users"></i> Desenvolvedores
+                    </a>
+                    <a href="../../SobreNos.html" class="nav-item">
+                        <i class="fas fa-crown"></i> Sobre nós
+                    </a>
                 </nav>
             </div>
-
             <div class="header-right">
-                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
-                    <i class="fas fa-bars"></i>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                     <i class="fas fa-bars"></i>
                 </button>
 
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-
-                <button class="icon-btn" id="btnFavoritos" title="Favoritos" type="button">
+                
+                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
                     <i class="fas fa-heart"></i>
                 </button>
 
-                <button class="icon-btn" title="Notificações" type="button">
+                <button class="icon-btn" title="Notificações">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
@@ -57,6 +69,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
 
+                <!-- =================== DROPDOWN DO USUÁRIO =================== -->
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-item" id="dropMeuPerfil">
                         <i class="fas fa-user"></i>
@@ -105,7 +118,7 @@
                     <div class="slide-label">Screenshot 2</div>
                 </div>
                 <div class="gallery-slide" data-index="3">
-                    <img src="Foto 3" alt="Screenshot 3" class="slide-img">
+                    <img src="foto 3.jpg" alt="Screenshot 3" class="slide-img">
                     <div class="slide-label">Screenshot 3</div>
                 </div>
                 <div class="gallery-slide" data-index="4">
@@ -124,8 +137,8 @@
                     <img src="foto 7.jpg" alt="Screenshot 5" class="slide-img">
                     <div class="slide-label">Screenshot 7</div>
                 </div>
-                <div class="gallery-slide" data-index="5">
-                    <img src="Foto 8" alt="Screenshot 5" class="slide-img">
+                <div class="gallery-slide" data-index="8">
+                    <img src="foto 8.jpg" alt="Screenshot 5" class="slide-img">
                     <div class="slide-label">Screenshot 8</div>
                 </div>
             </div>
@@ -200,12 +213,6 @@
                 <span>Conteúdo violento moderado</span>
             </div>
 
-            <button class="btn-donate" id="btnDonate">
-                <i class="fas fa-hand-holding-heart"></i>
-                Apoiar este jogo
-            </button>
-            <p class="donate-note">Apoie diretamente o desenvolvedor</p>
-
             <button class="btn-wishlist" id="btnWishlist">
                 <i class="far fa-heart" id="wishlistIcon"></i>
                 <span id="wishlistText">Adicionar aos Favoritos</span>
@@ -243,9 +250,9 @@
             <section class="col-main">
 
                 <nav class="breadcrumb">
-                    <a href="../../Catalogo.html">Início</a>
+                    <a href="../../Catalogo.html" id="breadcrumbInicio">Início</a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="../../Catalogo.html">Catálogo</a>
+                    <a href="../../Catalogo.html" id="breadcrumbJogos">Catálogo</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Mullet Madjack</span>
                 </nav>
@@ -407,49 +414,10 @@
                     </table>
                 </div>
 
-                <!-- Card de doação -->
-                <div class="section-card aside-card donate-card">
-                    <div class="donate-icon"><i class="fas fa-seedling"></i></div>
-                    <h3>Apoie a Hammer95</h3>
-                    <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
-                    <div class="donate-amounts" id="donateAmountsAside">
-                        <button class="amount-btn" data-amount="5">R$ 5</button>
-                        <button class="amount-btn active" data-amount="10">R$ 10</button>
-                        <button class="amount-btn" data-amount="25">R$ 25</button>
-                        <button class="amount-btn" data-amount="50">R$ 50</button>
-                    </div>
-                    <button class="btn-donate-main" id="btnDonateAside">
-                        <i class="fas fa-hand-holding-heart"></i> Apoiar com R$ 10
-                    </button>
-                </div>
             </aside>
         </div>
     </main>
 
-    <!-- =================== MODAL DE DOAÇÃO =================== -->
-    <div class="modal-overlay" id="donateModal">
-        <div class="modal-box">
-            <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
-            <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
-            <h3>Apoiar Mullet Madjack</h3>
-            <p>Sua contribuição vai diretamente para a <strong>Hammer95</strong> continuar criando jogos incríveis!</p>
-            <div class="modal-amounts" id="modalAmounts">
-                <button class="amount-btn" data-amount="5">R$ 5</button>
-                <button class="amount-btn active" data-amount="10">R$ 10</button>
-                <button class="amount-btn" data-amount="25">R$ 25</button>
-                <button class="amount-btn" data-amount="50">R$ 50</button>
-                <button class="amount-btn" data-amount="100">R$ 100</button>
-            </div>
-            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="1">
-            <button class="btn-confirm-donate" id="confirmDonate">
-                <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
-            </button>
-            <p class="modal-note"><i class="fas fa-lock"></i> Pagamento seguro — Você será redirecionado para o checkout</p>
-        </div>
-    </div>
-
-
-    
 
     <!-- TOAST -->
     <div class="toast" id="toast"></div>
@@ -457,7 +425,7 @@
         <footer class="main-footer">
         <div class="footer-container">
             <a href="../../Catalogo.html" class="footer-logo">
-                <img src="../../Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
+                <img src="/projeto-main/logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
                 <span class="footer-logo-text">VELORA</span>
             </a>
             <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>

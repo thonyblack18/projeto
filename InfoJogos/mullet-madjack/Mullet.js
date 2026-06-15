@@ -245,68 +245,6 @@
         this.style.cursor  = 'default';
     });
 
-
-    // =================== MODAL DE DOAÇÃO ===================
-    const donateModal   = document.getElementById('donateModal');
-    const closeDonate   = document.getElementById('closeDonateModal');
-    const confirmDonate = document.getElementById('confirmDonate');
-    const customAmount  = document.getElementById('customAmount');
-
-    let selectedAmount = 10;
-
-    // Abre o modal (botões)
-    [document.getElementById('btnDonate'), document.getElementById('btnDonateAside')]
-        .forEach(btn => btn && btn.addEventListener('click', () => {
-            donateModal.classList.add('active');
-        }));
-
-    closeDonate.addEventListener('click', () => donateModal.classList.remove('active'));
-    donateModal.addEventListener('click', e => { if (e.target === donateModal) donateModal.classList.remove('active'); });
-
-    // Seleção de valor no modal
-    document.querySelectorAll('#modalAmounts .amount-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('#modalAmounts .amount-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            selectedAmount = parseInt(btn.dataset.amount, 10);
-            customAmount.value = '';
-            confirmDonate.innerHTML = `<i class="fas fa-heart"></i> Confirmar Doação de R$ ${selectedAmount}`;
-        });
-    });
-
-    // Input valor personalizado
-    customAmount.addEventListener('input', () => {
-        const val = parseInt(customAmount.value, 10);
-        if (val > 0) {
-            document.querySelectorAll('#modalAmounts .amount-btn').forEach(b => b.classList.remove('active'));
-            selectedAmount = val;
-            confirmDonate.innerHTML = `<i class="fas fa-heart"></i> Confirmar Doação de R$ ${val}`;
-        }
-    });
-
-    // Confirmar doação
-    confirmDonate.addEventListener('click', () => {
-        donateModal.classList.remove('active');
-        showToast(`<i class="fas fa-heart"></i> Obrigado pelo apoio de R$ ${selectedAmount}! ❤️`);
-    });
-
-    // Seleção de valor no card aside
-    document.querySelectorAll('#donateAmountsAside .amount-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('#donateAmountsAside .amount-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const val = btn.dataset.amount;
-            document.getElementById('btnDonateAside').innerHTML =
-                `<i class="fas fa-hand-holding-heart"></i> Apoiar com R$ ${val}`;
-            selectedAmount = parseInt(val, 10);
-        });
-    });
-
-    document.getElementById('btnDonateAside').addEventListener('click', () => {
-        donateModal.classList.add('active');
-    });
-
-
     // =================== TOAST ===================
     function showToast(html) {
         const toast = document.getElementById('toast');
@@ -346,11 +284,6 @@
     const ratingSection = document.querySelector('.ratings-overview');
     if (ratingSection) observer.observe(ratingSection);
 
-
-    // =================== ESC FECHA MODAL ===================
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') donateModal.classList.remove('active');
-    });
 
     // =================== DROPDOWN DO USUÁRIO ===================
     const userProfile = document.getElementById('userProfile');
@@ -399,25 +332,59 @@
     }
 
 
+    // =================== MENU MOBILE ===================
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mainNav = document.querySelector(".main-nav");
+
+    mobileMenuBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        mainNav?.classList.toggle("active");
+    });
+
+    document.addEventListener("click", () => {
+        mainNav?.classList.remove("active");
+    });
+
+    mainNav?.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+
+    // =================== FAVORITOS HEADER ===================
+    document.getElementById("btnFavoritos")?.addEventListener("click", () => {
+        window.location.href = "../../ListaFavoritos.html";
+    });
+
+    // =================== CATÁLOGO CORRETO PLAYER/DEV ===================
+    function getCatalogoCorreto() {
+        let user = null;
+
+        try {
+            user = JSON.parse(localStorage.getItem("velora_user"));
+        } catch (e) {}
+
+        if (user && user.account_type === "developer") {
+            return "../../CatalogoDev.html";
+        }
+
+        return "../../Catalogo.html";
+    }
+
+    const catalogoCorreto = getCatalogoCorreto();
+
+    document.getElementById("linkInicio")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = catalogoCorreto;
+    });
+
+    document.getElementById("breadcrumbInicio")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = catalogoCorreto;
+    });
+
+    document.getElementById("breadcrumbJogos")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = catalogoCorreto;
+    });
+
+
 })();
-
-// =================== MENU MOBILE PADRÃO DANDARA ===================
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const mainNav = document.querySelector(".main-nav");
-
-mobileMenuBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mainNav?.classList.toggle("active");
-});
-
-document.addEventListener("click", () => {
-    mainNav?.classList.remove("active");
-});
-
-mainNav?.addEventListener("click", (e) => {
-    e.stopPropagation();
-});
-
-document.getElementById("btnFavoritos")?.addEventListener("click", () => {
-    window.location.href = "../../ListaFavoritos.html";
-});
