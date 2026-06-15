@@ -1,6 +1,5 @@
 import mysql.connector
 
-
 def get_connection():
     try:
         conn = mysql.connector.connect(
@@ -11,7 +10,6 @@ def get_connection():
             database="defaultdb",
             ssl_disabled=False
         )
-
         return conn
 
     except mysql.connector.Error as err:
