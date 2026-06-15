@@ -103,33 +103,7 @@
         </div>
     </header>
 
-    <!-- =================== MODAL DE ARTIGO =================== -->
-    <div class="article-modal" id="articleModal">
-        <div class="article-modal-content">
-            <div class="article-modal-header">
-                <div class="article-modal-category" id="modal-category"></div>
-                <button class="article-modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="article-modal-img" id="modal-img">
-                <div class="modal-img-placeholder" id="modal-img-placeholder"></div>
-            </div>
-            <div class="article-modal-body">
-                <h2 class="article-modal-title" id="modal-title"></h2>
-                <div class="article-modal-meta" id="modal-meta"></div>
-                <div class="article-modal-text">
-                    <p>Este artigo está em construção. Em breve o conteúdo completo estará disponível aqui na Velora.</p>
-                    <p>Acompanhe a plataforma para ficar por dentro de tudo que acontece no universo dos jogos indie brasileiros.</p>
-                </div>
-                <div class="article-modal-footer">
-                    <span class="wip-badge"><i class="fas fa-clock"></i> Em breve</span>
-                    <a href="#" class="modal-share-btn"><i class="fas fa-share-alt"></i> Compartilhar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- =================== CONTEÚDO PRINCIPAL =================== -->
     <main class="main-content">
         <div class="content-container">
@@ -173,26 +147,48 @@
             <!-- DESTAQUE PRINCIPAL -->
             <section class="featured-section">
 
+                <!-- =========================================================
+                     NOTÍCIA DESTAQUE PRINCIPAL
+
+                     PREENCHA:
+                     data-category   = categoria: lancamentos, entrevistas, eventos, bastidores ou industria
+                     data-title      = título da notícia
+                     data-date       = data da notícia
+                     data-author     = fonte/autor
+                     data-source-url = link original da notícia
+
+                     Depois troque também os textos visíveis:
+                     .featured-title, .featured-excerpt, data e fonte em .news-meta
+                     ========================================================= -->
                 <div class="featured-main news-item"
                      data-category="lancamentos"
-                     data-title="Título em rascunho — notícia em destaque da semana"
-                     data-date="10 mar. 2026"
-                     data-author="Equipe Velora"
+                     data-title="Mullet Mad Jack celebra lançamento no Switch: 'Sensacional'"
+                     data-date="05 mai. 2026"
+                     data-author="Breno Deolindo"
                      data-icon="fas fa-gamepad"
+                         data-source-url="https://www.omelete.com.br/games/mullet-mad-jack-lancamento-switch"
                      onclick="openNews(this)">
                     <div class="featured-img">
-                        <div class="img-placeholder"><i class="fas fa-gamepad"></i></div>
+
+                        <!-- =====================================================
+                             COLE A FOTO DA NOTÍCIA DESTAQUE AQUI
+                             Exemplo:
+                             src="ImagensNoticias/mullet-switch.jpg"
+                             ===================================================== -->
+                        <img src="NoticiasCapa/Noticia1.jpg"
+                             alt="Imagem da notícia"
+                             class="featured-news-image">
                         <div class="featured-badge"><i class="fas fa-star"></i> Destaque</div>
                         <div class="featured-overlay"></div>
                     </div>
                     <div class="featured-body">
                         <div class="news-category-label">✦ Lançamentos</div>
-                        <h2 class="featured-title">Título em rascunho — notícia em destaque da semana</h2>
-                        <p class="featured-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <h2 class="featured-title">Mullet Mad Jack celebra lançamento no Switch: "Sensacional"</h2>
+                        <p class="featured-excerpt">Jogo brasileiro estava em destaque durante a gamescom latam 2026</p>
                         <div class="news-meta">
-                            <span><i class="fas fa-calendar-alt"></i> 10 mar. 2026</span>
-                            <span><i class="fas fa-user"></i> Equipe Velora</span>
-                            <span><i class="fas fa-clock"></i> 5 min</span>
+                            <span><i class="fas fa-calendar-alt"></i>05 mai. 2026</span>
+                            <span><i class="fas fa-user"></i>Breno Deolindo</span>
+                            <span><i class="fas fa-clock"></i> 3 min</span>
                             <span class="read-more">Ler mais <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </div>
@@ -200,48 +196,86 @@
 
                 <div class="featured-aside">
 
+                    <!-- =========================================================
+                         NOTÍCIA LATERAL 01
+
+                         PREENCHA:
+                         data-title, data-date, data-author e data-source-url.
+                         Troque também .aside-title e a data visível.
+                         Para imagem lateral, depois dá pra substituir o ícone por <img>.
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA LATERAL 02
+
+                         PREENCHA:
+                         data-title, data-date, data-author e data-source-url.
+                         Troque também .aside-title e a data visível.
+                         Para imagem lateral, depois dá pra substituir o ícone por <img>.
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA LATERAL 03
+
+                         PREENCHA:
+                         data-title, data-date, data-author e data-source-url.
+                         Troque também .aside-title e a data visível.
+                         Para imagem lateral, depois dá pra substituir o ícone por <img>.
+                         ========================================================= -->
                     <div class="aside-card news-item"
-                         data-category="entrevistas"
-                         data-title="Título em rascunho — entrevista com desenvolvedor indie"
-                         data-date="9 mar. 2026"
-                         data-author="Equipe Velora"
+                         data-category="indie"
+                         data-title="AILA é o Melhor Indie Brasileiro; gamescom latam BIG Festival Awards anuncia os vencedores"
+                         data-date=" 30 abr. 2026"
+                         data-author=" Drops de Jogos"
                          data-icon="fas fa-microphone"
+                         data-source-url="https://dropsdejogos.uai.com.br/noticias/indie/aila-e-o-melhor-indie-brasileiro-gamescom-latam-big-festival-awards-anuncia-os-vencedores/"
                          onclick="openNews(this)">
-                        <div class="aside-img"><i class="fas fa-microphone"></i></div>
+                        <div class="aside-img">
+                        <img
+                            src="NoticiasCapa/Noticia2.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div> 
+                            
                         <div class="aside-body">
-                            <div class="news-category-label small">✦ Entrevistas</div>
-                            <div class="aside-title">Título em rascunho — entrevista com desenvolvedor indie</div>
-                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 9 mar. 2026</div>
+                            <div class="news-category-label small">✦ Cena Brasileira de Jogos</div>
+                            <div class="aside-title">AILA é o Melhor Indie Brasileiro; gamescom latam BIG Festival Awards anuncia os vencedores</div>
+                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 30 abr. 2026</div>
                         </div>
                     </div>
 
                     <div class="aside-card news-item"
                          data-category="eventos"
-                         data-title="Título em rascunho — festival de jogos indie em São Paulo"
-                         data-date="8 mar. 2026"
-                         data-author="Equipe Velora"
+                         data-title="Mark of the Deep: produtor faz balanço sobre o game e revela novidades do estúdio"
+                         data-date="03 fev. 2026"
+                         data-author="Michel Santos"
                          data-icon="fas fa-trophy"
+                         data-source-url="https://www.itatiaia.com.br/games/mark-of-the-deep-produtor-faz-balanco-sobre-o-game-e-revela-novidades-do-estudio/"
                          onclick="openNews(this)">
-                        <div class="aside-img"><i class="fas fa-trophy"></i></div>
+                        <div class="aside-img"><img
+                            src="NoticiasCapa/Noticia3.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div> 
                         <div class="aside-body">
                             <div class="news-category-label small">✦ Eventos</div>
-                            <div class="aside-title">Título em rascunho — festival de jogos indie em São Paulo</div>
+                            <div class="aside-title">Mark of the Deep: produtor faz balanço sobre o game e revela novidades do estúdio</div>
                             <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 8 mar. 2026</div>
                         </div>
                     </div>
 
                     <div class="aside-card news-item"
                          data-category="industria"
-                         data-title="Título em rascunho — mercado indie brasileiro em 2026"
-                         data-date="7 mar. 2026"
-                         data-author="Equipe Velora"
+                         data-title="Dandara: Game brasileiro recebe novo DLC gratuito"
+                         data-date="05 mar. 2020"
+                         data-author="IGN"
                          data-icon="fas fa-chart-line"
+                         data-source-url="https://br.ign.com/dandara/80405/feature/dandara-game-brasileiro-recebe-novo-dlc-gratuito"
                          onclick="openNews(this)">
-                        <div class="aside-img"><i class="fas fa-chart-line"></i></div>
+                        <div class="aside-img"><img
+                            src="NoticiasCapa/Noticia4.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div> 
                         <div class="aside-body">
                             <div class="news-category-label small">✦ Indústria</div>
-                            <div class="aside-title">Título em rascunho — mercado indie brasileiro em 2026</div>
-                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 7 mar. 2026</div>
+                            <div class="aside-title">Dandara: Game brasileiro recebe novo DLC gratuito</div>
+                            <div class="aside-meta"><i class="fas fa-calendar-alt"></i> 05 mar. 2020</div>
                         </div>
                     </div>
 
@@ -260,162 +294,352 @@
 
                 <div class="news-grid" id="news-grid">
 
-                    <div class="news-card news-item" data-category="lancamentos"
-                         data-title="Título em rascunho — novo jogo de terror psicológico"
-                         data-date="10 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-gamepad"
+                    <!-- =========================================================
+                         NOTÍCIA 01
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 02
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 03
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 04
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 05
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 06
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 07
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 08
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 09
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <!-- =========================================================
+                         NOTÍCIA 10
+
+                         PREENCHA:
+                         data-category   = categoria
+                         data-title      = título da notícia
+                         data-date       = data da notícia
+                         data-author     = fonte/autor
+                         data-source-url = link original da notícia
+
+                         Troque também:
+                         .news-card-title, .news-card-excerpt, .news-card-meta e .news-tag.
+                         Para colocar foto, substitua o ícone dentro de .news-card-img por:
+                         <img src="COLOQUE_A_FOTO_AQUI.jpg" class="news-card-image" alt="Imagem da notícia">
+                         ========================================================= -->
+                    <div class="news-card news-item" data-category="Análises"
+                         data-title="Pipistrello and the Cursed Yoyo reforça o potencial dos estúdios brasileiros"
+                         data-date="21 jul 2025" data-author="Matheus Santana" data-icon="fas fa-gamepad"
+                         data-source-url="https://www.terra.com.br/gameon/analises/pipistrello-and-the-cursed-yoyo-reforca-o-potencial-dos-estudios-brasileiros,122760bbe0f8e91b336b046762c70c69yfsha75q.html"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-gamepad"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia5.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
-                            <div class="news-category-label small">✦ Lançamentos</div>
-                            <h3 class="news-card-title">Título em rascunho — novo jogo de terror psicológico</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-category-label small">✦ Análises</div>
+                            <h3 class="news-card-title">Pipistrello and the Cursed Yoyo reforça o potencial dos estúdios brasileiros</h3>
+                            <p class="news-card-excerpt">Com humor, referências locais e uma aventura inspirada nos clássicos, jogo da Pocket Trap traz carisma e jogabilidade clássica</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 10 mar. 2026</span>
-                                <span class="news-tag">Terror</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 21 jul 2025</span>
+                                <span class="news-tag">Análises</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="news-card news-item" data-category="bastidores"
-                         data-title="Título em rascunho — processo criativo de um RPG solo dev"
-                         data-date="9 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-tools"
+                         data-title="Como é o ‘GTA brasileiro’. E o que falta para ele sair"
+                         data-date="06 jan. 2026" data-author="Lucas Zacari" data-icon="fas fa-tools"
+                         data-source-url="https://www.nexojornal.com.br/expresso/2026/01/06/gta-jogo-brasil-quando-vai-lancar"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-tools"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia6.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
                             <div class="news-category-label small">✦ Bastidores</div>
-                            <h3 class="news-card-title">Título em rascunho — processo criativo de um RPG solo dev</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3 class="news-card-title">Como é o ‘GTA brasileiro’. E o que falta para ele sair</h3>
+                            <p class="news-card-excerpt">Trailer de “171” acumula mais de 1,6 milhão de visualizações no YouTube. Jogo está em desenvolvimento há mais de uma década, com campanha de arrecadação iniciada em 2018</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 9 mar. 2026</span>
-                                <span class="news-tag">RPG</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 06 jan. 2026</span>
+                                <span class="news-tag">bastidores</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="news-card news-item" data-category="eventos"
-                         data-title="Título em rascunho — premiação de jogos brasileiros indie"
-                         data-date="8 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-medal"
+                    <div class="news-card news-item" data-category="Notícia"
+                         data-title="Dragon Khan | Jogo brasileiro ganha demo gratuita e trailer"
+                         data-date="8 jan. 2026" data-author="Breno Deolindo" data-icon="fas fa-medal"
+                         data-source-url="https://www.omelete.com.br/games/dragon-khan-jogo-brasileiro-demo-gratuita-trailer"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-medal"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia7.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
-                            <div class="news-category-label small">✦ Eventos</div>
-                            <h3 class="news-card-title">Título em rascunho — premiação de jogos brasileiros indie</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-category-label small">✦ Notícia</div>
+                            <h3 class="news-card-title">Dragon Khan | Jogo brasileiro ganha demo gratuita e trailer</h3>
+                            <p class="news-card-excerpt">Com dragão humanoide como protagonista, jogo traz inspiração em Devil May Cry e Soul Reaver</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 8 mar. 2026</span>
-                                <span class="news-tag">Premiação</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 8 jan. 2026</span>
+                                <span class="news-tag">Notícia</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="news-card news-item" data-category="entrevistas"
-                         data-title="Título em rascunho — conversa com estúdio de Recife"
-                         data-date="7 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-microphone"
+                    <div class="news-card news-item" data-category="Notícias"
+                         data-title="Jogo brasileiro 99Vidas está de volta e de graça"
+                         data-date="7 mar. 2026" data-author="Drops de Jogos" data-icon="fas fa-microphone"
+                         data-source-url="https://dropsdejogos.uai.com.br/noticias/indie/jogo-brasileiro-99vidas-de-graca/"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-microphone"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia8.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
-                            <div class="news-category-label small">✦ Entrevistas</div>
-                            <h3 class="news-card-title">Título em rascunho — conversa com estúdio de Recife</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-category-label small">✦ Notícias</div>
+                            <h3 class="news-card-title">Jogo brasileiro 99Vidas está de volta e de graça</h3>
+                            <p class="news-card-excerpt">Drops de Jogos recebeu informações oficiais da QUByte. Jogo brasileiro 99Vidas está de volta e de graça. Confira detalhes abaixo.</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 7 mar. 2026</span>
-                                <span class="news-tag">Estúdio</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 7 nov. 2022</span>
+                                <span class="news-tag">Notícias</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="news-card news-item" data-category="industria"
-                         data-title="Título em rascunho — investimentos no setor de games em 2026"
-                         data-date="6 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-chart-bar"
+                         data-title="Gaúcho and The Grassland ganhará versão para mobile e também chegará para consoles"
+                         data-date="15 out. 2025" data-author="Mateus Mognon" data-icon="fas fa-chart-bar"
+                         data-source-url="https://www.tecmundo.com.br/voxel/502570-gaucho-and-the-grassland-ganhara-versao-para-mobile-e-tambem-chegara-para-consoles.htm"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-chart-bar"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia9.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
                             <div class="news-category-label small">✦ Indústria</div>
-                            <h3 class="news-card-title">Título em rascunho — investimentos no setor de games em 2026</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3 class="news-card-title">Gaúcho and The Grassland ganhará versão para mobile e também chegará para consoles</h3>
+                            <p class="news-card-excerpt">Graças a um incentivo do Google para jogos indies, Gaúcho and The Grassland, o "Stardew Valley do sul", será lançado para celular. Confira mais detalhes e entrevista com criador.</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 6 mar. 2026</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 15 out. 2025</span>
                                 <span class="news-tag">Mercado</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="news-card news-item" data-category="lancamentos"
-                         data-title="Título em rascunho — jogo de plataforma com folclore nordestino"
-                         data-date="5 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-leaf"
+                         data-title="Mombo Combo Legacy, a continuação de Super Mombo Quest, chega ainda em 2024"
+                         data-date="20 abr. 2024" data-author=" Pedro Zambarda " data-icon="fas fa-leaf"
+                         data-source-url="https://dropsdejogos.uai.com.br/noticias/indie/mombo-combo-legacy-2024/"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-leaf"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia10.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
                             <div class="news-category-label small">✦ Lançamentos</div>
-                            <h3 class="news-card-title">Título em rascunho — jogo de plataforma com folclore nordestino</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3 class="news-card-title">Mombo Combo Legacy, a continuação de Super Mombo Quest, chega ainda em 2024</h3>
+                            <p class="news-card-excerpt">VEM AÍ! O Mombo Combo Legacy tá mais perto do que vocês imaginam. É ESSE ANO! Pra começarmos o hype, mudamos o nosso visual!</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 5 mar. 2026</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 20 abr. 2024</span>
                                 <span class="news-tag">Plataforma</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="news-card news-item" data-category="bastidores"
-                         data-title="Título em rascunho — como uma dupla criou um puzzle em 48h"
-                         data-date="4 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-puzzle-piece"
+                         data-title="9Kings recebe o Rei do Tempo em sua maior e mais “imprudente” atualização "
+                         data-date="4 mar. 2026" data-author="Matheus Oliveira" data-icon="fas fa-puzzle-piece"
+                         data-source-url="https://www.gameblast.com.br/2025/10/9-kings-rei-do-tempo-maior-atualizacao-steam.html"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-puzzle-piece"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia11.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
                             <div class="news-category-label small">✦ Bastidores</div>
-                            <h3 class="news-card-title">Título em rascunho — como uma dupla criou um puzzle em 48h</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3 class="news-card-title">9Kingas recebe o Rei do Tempo em sua maior e mais “imprudente” atualização </h3>
+                            <p class="news-card-excerpt">O personagem é o 9º e último Rei a ser introduzido, entregando a promessa do título e adicionando novas formas de quebrar o jogo.</p>
                             <div class="news-card-footer">
                                 <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 4 mar. 2026</span>
-                                <span class="news-tag">Puzzle</span>
+                                <span class="news-tag">RPG</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="news-card news-item" data-category="eventos"
-                         data-title="Título em rascunho — Game Jam brasileira bate recorde de participantes"
-                         data-date="3 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-flag"
+                         data-title="Criadores de Chroma Squad apresentam novo jogo na BGS! Conheça Deep Dish Dungeon"
+                         data-date="9 out. 2025" data-author="Equipe Velora" data-icon="fas fa-flag"
+                         data-source-url="https://www.tecmundo.com.br/voxel/502520-criadores-de-chroma-squad-apresentam-novo-jogo-na-bgs-conheca-deep-dish-dungeon.htm"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-flag"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia12.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
                             <div class="news-category-label small">✦ Eventos</div>
-                            <h3 class="news-card-title">Título em rascunho — Game Jam brasileira bate recorde de participantes</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3 class="news-card-title">Criadores de Chroma Squad apresentam novo jogo na BGS! Conheça Deep Dish Dungeon</h3>
+                            <p class="news-card-excerpt">Dos mesmos criadores de Chroma Squad e Knights of Pen & Paper, Deep Dish Dungeon poderá ser testado em primeira mão na BGS 2025! Conheça o game brasileiro!.</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 3 mar. 2026</span>
-                                <span class="news-tag">Game Jam</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 9 out. 2025</span>
+                                <span class="news-tag">Eventos</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="news-card news-item" data-category="industria"
-                         data-title="Título em rascunho — políticas de incentivo para devs brasileiros"
-                         data-date="2 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-landmark"
+                         data-title="Jogo indie brasileiro No Heroes Here 2 já está disponível em acesso antecipado na Steam"
+                         data-date="29 out. 2024" data-author="Pedro Zambarda" data-icon="fas fa-landmark"
+                         data-source-url="https://dropsdejogos.uai.com.br/noticias/indie/jogo-indie-brasileiro-no-heroes-here-2-ja-esta-disponivel-em-acesso-antecipado-na-steam/"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-landmark"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia13.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
                             <div class="news-category-label small">✦ Indústria</div>
-                            <h3 class="news-card-title">Título em rascunho — políticas de incentivo para devs brasileiros</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <h3 class="news-card-title">Jogo indie brasileiro No Heroes Here 2 já está disponível em acesso antecipado na Steam</h3>
+                            <p class="news-card-excerpt">Sequência do aclamado jogo da Mad Mimic tem desconto especial por tempo limitado</p>
                             <div class="news-card-footer">
-                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 2 mar. 2026</span>
-                                <span class="news-tag">Política</span>
+                                <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 29 out. 2024</span>
+                                <span class="news-tag">Industria</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="news-card news-item" data-category="entrevistas"
-                         data-title="Título em rascunho — estúdio mineiro fala sobre exportar jogos para Europa"
-                         data-date="1 mar. 2026" data-author="Equipe Velora" data-icon="fas fa-globe"
+                    <div class="news-card news-item" data-category="indústria"
+                         data-title="Dandy Ace promete ser o mágico rogue-lite do estúdio brasileiro Mad Mimic"
+                         data-date="23 mar. 2021" data-author="IGN" data-icon="fas fa-globe"
+                         data-source-url="https://br.ign.com/dandy-ace/75496/dandy-ace-promete-ser-o-magico-rogue-lite-do-estudio-brasileiro-mad-mimic"
                          onclick="openNews(this)">
-                        <div class="news-card-img"><i class="fas fa-globe"></i></div>
+                        <div class="news-card-img"><img
+                            src="NoticiasCapa/Noticia14.jpg"
+                            alt="Imagem da notícia"
+                            class="aside-news-image"></div>
                         <div class="news-card-body">
-                            <div class="news-category-label small">✦ Entrevistas</div>
-                            <h3 class="news-card-title">Título em rascunho — estúdio mineiro fala sobre exportar jogos para Europa</h3>
-                            <p class="news-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                            <div class="news-category-label small">✦ Indústria</div>
+                            <h3 class="news-card-title">Dandy Ace promete ser o mágico rogue-lite do estúdio brasileiro Mad Mimic</h3>
+                            <p class="news-card-excerpt">Diferente dos dois precursores, o novo título foge do gênero tower defense, e adentra o universo do rogue-lite com algumas mecânicas bastante interessantes.</p>
                             <div class="news-card-footer">
                                 <span class="news-card-meta"><i class="fas fa-calendar-alt"></i> 1 mar. 2026</span>
-                                <span class="news-tag">Exportação</span>
+                                <span class="news-tag">Indústria</span>
                             </div>
                         </div>
                     </div>

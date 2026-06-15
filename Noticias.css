@@ -658,6 +658,8 @@ body::before {
     cursor: pointer;
     transition: all 0.3s;
     flex: 1;
+    align-items: stretch;
+    min-height: 120px;
 }
 
 .aside-card:hover {
@@ -667,7 +669,9 @@ body::before {
 }
 
 .aside-img {
-    width: 90px;
+    width: 150px;
+    height: auto;
+    overflow: hidden;
     flex-shrink: 0;
     background: linear-gradient(135deg, #1a1a2e, #0d1117);
     display: flex;
@@ -675,6 +679,15 @@ body::before {
     justify-content: center;
     font-size: 26px;
     color: rgba(212,175,55,0.2);
+    overflow: hidden;
+    border-radius: 14px 0 0 14px;
+}
+
+.aside-news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .aside-body {
@@ -1011,6 +1024,14 @@ body::before {
 }
 
 @media (max-width: 768px) {
+    .aside-card {
+        min-height: 120px;
+    }
+
+     .aside-img {
+        width: 95px;
+        min-height: 120px;
+    }
     .news-grid { grid-template-columns: repeat(2, 1fr); }
     .filters-section { flex-direction: column; align-items: flex-start; }
     .user-name { display: none; }
@@ -1262,4 +1283,19 @@ body::before {
     .chip { flex: 1 1 auto; text-align: center; }
     .sort-select { width: 100%; }
     .article-modal { padding: 12px; }
+}
+
+
+/* ============================================================
+   IMAGENS DAS NOTÍCIAS
+   Para trocar a imagem, edite o src no HTML:
+   src="COLOQUE_A_FOTO_AQUI.jpg"
+   ============================================================ */
+
+.featured-news-image,
+.news-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
