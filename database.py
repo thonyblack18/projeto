@@ -7,7 +7,7 @@ def get_connection():
             host="mysql-594d6c0-mini-tarefas.h.aivencloud.com",
             port=17669,
             user="avnadmin",
-            password="COLE_AQUI_A_SENHA_DO_AIVEN",
+            password="AVNS_eMyEIkC6qZdWka8-qL1",
             database="defaultdb",
             ssl_disabled=False
         )
