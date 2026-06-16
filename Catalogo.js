@@ -148,7 +148,7 @@ function applyCatalogState() {
 }
 
 // =================== CARREGAR JOGOS DO BACKEND ===================
-fetch("http://127.0.0.1:5000/api/games")
+fetch("https://projeto-w9ao.onrender.com/api/games")
     .then(res => res.json())
     .then(data => {
 
@@ -156,7 +156,7 @@ fetch("http://127.0.0.1:5000/api/games")
             ...game,
 
             image: game.cover_url
-                ? `http://127.0.0.1:5000/${game.cover_url}`
+                ? `https://projeto-w9ao.onrender.com/${game.cover_url}`
                 : "logo-velora.png",
 
             rating: game.rating || "5.0",
