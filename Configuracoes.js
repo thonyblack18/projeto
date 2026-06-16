@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:5000/api";
+const API_BASE = "https://projeto-w9ao.onrender.com";
 const params = new URLSearchParams(window.location.search);
 const profileType = params.get("type");
 
