@@ -438,7 +438,7 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Publicando...`;
 
-    const response = await fetch("http://127.0.0.1:5000/add-game", {
+    const response = await fetch("https://projeto-w9ao.onrender.com/add-game", {
         method: "POST",
         body: formData
     });
