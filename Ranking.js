@@ -8,7 +8,7 @@ const GAMES = [
         id: 1,
         nome: 'Dandara: Trials of Fear Edition',
         genero: 'Metroidvania',
-        img: './Logos/Dandara.jpg',
+        img: './Logos/Dandara Trials.jpg',
         acessos: { semana: 8200, mes: 47000, ano: 188000, todos: 312000 },
         avaliacao: { semana: 4.7, mes: 4.8, ano: 4.9, todos: 4.9 }
     },
