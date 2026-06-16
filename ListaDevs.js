@@ -1,3 +1,4 @@
+const API_BASE = "https://projeto-w9ao.onrender.com";
 // =================== CANVAS DE PARTÍCULAS ===================
 const canvas = document.getElementById('particles');
 if (canvas) {
