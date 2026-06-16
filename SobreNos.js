@@ -134,8 +134,8 @@ try {
     if (user?.profile_photo && headerUserAvatar && userAvatarInitial) {
         let foto = user.profile_photo;
 
-        if (!foto.startsWith("http")) {
-            foto = `http://127.0.0.1:5000/${foto}`;
+       if (!foto.startsWith("http")) {
+        foto = `https://projeto-w9ao.onrender.com/${foto}`;
         }
 
         headerUserAvatar.src = foto;
