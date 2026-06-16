@@ -4,6 +4,7 @@
    Não mexe no backend: os dados são carregados/salvos no localStorage.
    ============================================================ */
 
+const API_BASE = "https://projeto-w9ao.onrender.com";
 const EDIT_STORAGE_KEY = 'velora_jogo_em_edicao';
 
 const sampleGame = {
@@ -485,7 +486,7 @@ if (form) {
         const params = new URLSearchParams(window.location.search);
         const gameId = params.get("id");
 
-        fetch(`http://127.0.0.1:5000/api/games/${gameId}`, {
+        fetch(`${API_BASE}/api/games/${gameId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -523,7 +524,7 @@ function carregarJogoDoBackend() {
     const params = new URLSearchParams(window.location.search);
     const gameId = params.get("id");
 
-    fetch(`http://127.0.0.1:5000/api/games/${gameId}`)
+    fetch(`${API_BASE}/api/games/${gameId}`)
         .then(res => res.json())
         .then(data => {
             const game = data.game;
