@@ -592,42 +592,6 @@ body::after {
     transform: translateX(4px);
 }
 
-.quick-contact {
-    text-align: center;
-    padding: 38px 28px;
-    background: linear-gradient(135deg, rgba(212,175,55,0.07), rgba(19,19,26,0.94));
-    border: 1px solid rgba(212,175,55,0.18);
-    border-radius: 20px;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.32);
-}
-
-.quick-contact h3 {
-    font-family: var(--font-head);
-    font-size: 1.7rem;
-    margin-bottom: 8px;
-}
-
-.quick-contact p {
-    color: var(--gray-500);
-    margin-bottom: 24px;
-}
-
-.contact-button {
-    padding: 14px 34px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: #0a0a0f;
-    font-weight: 800;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.contact-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(212,175,55,0.25);
-}
-
 /* =================== FOOTER PADRÃO VELO​RA / DANDARA =================== */
 .main-footer {
     position: relative;
@@ -819,4 +783,5 @@ body::after {
     .main-footer {
         padding: 24px 16px;
     }
+} 
 }

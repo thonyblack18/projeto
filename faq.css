@@ -496,48 +496,6 @@ body::before {
     margin-bottom: 8px;
 }
 
-/* ==================== RODAPÉ DE AJUDA ==================== */
-.help-footer {
-    text-align: center;
-    margin-top: 80px;
-    padding: 50px 30px;
-    background: rgba(42, 42, 42, 0.4);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.15);
-}
-
-.help-footer h3 {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    color: var(--white);
-}
-
-.help-footer p {
-    color: var(--medium-gray);
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-}
-
-.contact-button {
-    padding: 16px 40px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-    color: var(--black);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: var(--transition);
-    letter-spacing: 0.02em;
-}
-
-.contact-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-}
-
 /* ==================== ESTADO DE BUSCA ==================== */
 .faq-item.hidden {
     display: none;

@@ -443,3 +443,44 @@ console.log('💡 Dica: Pressione Ctrl/Cmd + K para buscar');
 console.log('💡 Dica: Pressione ESC para fechar FAQs abertos');
 
 carregarAvatarHeader();
+
+const userProfile = document.getElementById("userProfile");
+const userDropdown = document.getElementById("userDropdown");
+
+if (userProfile && userDropdown) {
+    userProfile.addEventListener("click", (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle("active");
+        userProfile.classList.toggle("active");
+    });
+
+    userDropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+        userDropdown.classList.remove("active");
+        userProfile.classList.remove("active");
+    });
+}
+
+document.getElementById("dropMeuPerfil")?.addEventListener("click", () => {
+    let user = null;
+
+    try {
+        user = JSON.parse(localStorage.getItem("velora_user"));
+    } catch (e) {}
+
+    if (!user) {
+        window.location.href = "LoginCadastro.html";
+    } else if (user.account_type === "developer") {
+        window.location.href = "PerfilDev.html";
+    } else {
+        window.location.href = "PerfilUsuario.html";
+    }
+});
+
+document.getElementById("dropSair")?.addEventListener("click", () => {
+    localStorage.removeItem("velora_user");
+    window.location.href = "LoginCadastro.html";
+});
