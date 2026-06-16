@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://projeto-w9ao.onrender.com";
 
 // =================== ESTADO ===================
 let favoritosIds = JSON.parse(localStorage.getItem("velora_favoritos_ids") || "[]");
