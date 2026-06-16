@@ -1,3 +1,4 @@
+const API_BASE = "https://projeto-w9ao.onrender.com";
 /* ============================================================
    InfoJogo.js — Velora | Página de Detalhes do Jogo
    ============================================================ */
