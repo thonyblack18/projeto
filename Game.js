@@ -212,11 +212,10 @@ function renderizarGaleria(game) {
     galleryTrack.innerHTML += `
         <div class="gallery-slide ${mediaIndex === 0 ? "active" : ""}" data-index="${mediaIndex}">
             <img src="${
-                    game.banner_url
-                        ? `${API_BASE}/${game.banner_url}`
-                        : `${API_BASE}/${game.cover_url}`
-                }"
-class="slide-img" alt="${game.title}">
+    game.banner_url
+        ? (game.banner_url.startsWith("http") ? game.banner_url : `${API_BASE}/${game.banner_url}`)
+        : (game.cover_url.startsWith("http") ? game.cover_url : `${API_BASE}/${game.cover_url}`)
+}" class="slide-img" alt="${game.title}">
 
             <div class="slide-label">
                 <i class="fas fa-image"></i> Imagem principal
@@ -226,7 +225,7 @@ class="slide-img" alt="${game.title}">
 
     galleryThumbs.innerHTML += `
         <div class="thumb ${mediaIndex === 0 ? "active" : ""}" data-index="${mediaIndex}">
-            <img src="${API_BASE}/${game.cover_url}" alt="${game.title}">
+            <img src="${game.cover_url.startsWith("http") ? game.cover_url : `${API_BASE}/${game.cover_url}`}" alt="${game.title}">
         </div>
     `;
 
