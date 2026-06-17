@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velora — Adicionar Jogo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="AdicionarJogo.css">
     <link rel="icon" type="image/png" href="logo velora.png">
 </head>
@@ -28,7 +29,7 @@
         <div class="header-container">
             <div class="header-left">
                 <a href="Catalogo.html" class="logo">
-                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
+                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo" onerror="this.style.display='none'">
                     <span class="logo-text">VELORA</span>
                 </a>
 
@@ -58,7 +59,11 @@
             </div>
 
             <div class="header-right">
-                <button class="save-draft-btn" id="btn-rascunho">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <button class="save-draft-btn" id="btn-rascunho" type="button">
                     <i class="fas fa-save"></i>
                     <span>Salvar rascunho</span>
                 </button>
@@ -660,5 +665,6 @@
     </footer>
 
     <script src="AdicionarJogo.js"></script>
+
 </body>
 </html>

@@ -470,3 +470,43 @@ document.getElementById('game-form').addEventListener('submit', async (e) => {
     submitBtn.innerHTML = `<i class="fas fa-rocket"></i> Publicar jogo`;
 }
 });
+
+
+// =================== HEADER: MENU MOBILE + DROPDOWN ===================
+document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mainNav = document.querySelector(".main-nav");
+    const userProfile = document.getElementById("userProfile");
+    const userDropdown = document.getElementById("userDropdown");
+
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            mainNav.classList.toggle("active");
+            userDropdown?.classList.remove("active");
+        });
+
+        mainNav.addEventListener("click", (e) => e.stopPropagation());
+
+        mainNav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => mainNav.classList.remove("active"));
+        });
+    }
+
+    if (userProfile && userDropdown) {
+        userProfile.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            userDropdown.classList.toggle("active");
+            mainNav?.classList.remove("active");
+        });
+
+        userDropdown.addEventListener("click", (e) => e.stopPropagation());
+    }
+
+    document.addEventListener("click", () => {
+        mainNav?.classList.remove("active");
+        userDropdown?.classList.remove("active");
+    });
+});

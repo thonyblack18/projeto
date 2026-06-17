@@ -21,6 +21,7 @@
     --gray-700: #374151;
     --red: #ef4444;
     --green: #22c55e;
+    --font-velora: 'Rubik Glitch', cursive;
 }
 
 body {
@@ -1293,140 +1294,50 @@ body {
     }
 }
 
-/* ===== CORREÇÃO HEADER NOVO ===== */
+/* =========================================================
+   HEADER, FOOTER E RESPONSIVO — PADRÃO DANDARA LIMPO
+   Mexe apenas na barra de menu, footer e responsivo
+   ========================================================= */
 
-.user-dropdown {
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 40px;
-    background: #13131a;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 12px;
-    padding: 8px;
-    min-width: 220px;
-    z-index: 999;
+:root {
+    --bg-card2: #1a1a25;
+    --gold-dim: rgba(212,175,55,0.15);
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', 'Inter', sans-serif;
+    --radius: 14px;
+    --transition: 0.25s ease;
 }
 
-.user-dropdown.active {
-    display: block;
+body {
+    font-family: var(--font-body);
 }
 
-.dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    color: #d1d5db;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.dropdown-item:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: #f4d03f;
-}
-
-.dropdown-divider {
-    height: 1px;
-    background: rgba(255, 255, 255, 0.08);
-    margin: 6px 0;
-}
-
-.icon-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: #13131a;
-    color: #d1d5db;
-    cursor: pointer;
-    position: relative;
-}
-
-.icon-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-}
-
-.notification-badge {
-    position: absolute;
-    top: -7px;
-    right: -7px;
-    background: #ef4444;
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 999px;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: #13131a;
-    cursor: pointer;
-    font-weight: 700;
-}
-
-.user-profile img {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.user-name {
-    color: #fff;
-    font-size: 14px;
-}
-
-.save-draft-btn {
-    height: 42px;
-    min-width: 160px;
-    justify-content: center;
-}
-
-.header-right {
-    gap: 10px;
-}
-
-.logo-img {
-    display: block;
-}
-
-/* ===== HEADER IGUAL AO CATÁLOGO ===== */
-
+/* =================== HEADER PADRÃO DANDARA =================== */
 .main-header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(13, 13, 26, 0.95);
+    background: rgba(13,13,26,0.97);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212,175,55,0.12);
     padding: 0 40px;
 }
 
 .header-container {
     max-width: 1600px;
     margin: 0 auto;
-    height: 70px;
-    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 70px;
+    padding: 0;
 }
 
 .header-left {
     display: flex;
     align-items: center;
     gap: 48px;
+    min-width: 0;
 }
 
 .logo {
@@ -1434,67 +1345,524 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .logo-img {
     width: 36px;
     height: 36px;
     object-fit: contain;
+    display: block;
 }
 
 .logo-text {
-    font-family: 'Rubik Glitch', cursive;
+    font-family: 'Rubik Glitch', sans-serif;
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 400;
     letter-spacing: 2px;
     background: linear-gradient(135deg, var(--gold), var(--gold-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: 9px 14px;
     color: var(--gray-300);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     border-radius: 8px;
-    transition: all 0.3s;
+    transition: all var(--transition);
+    white-space: nowrap;
 }
 
 .nav-item:hover,
 .nav-item.active {
-    background: rgba(212, 175, 55, 0.15);
+    background: var(--gold-dim);
     color: var(--gold);
 }
 
+.nav-item i {
+    font-size: 15px;
+}
+
 .header-right {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.icon-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .save-draft-btn {
     height: 40px;
-    min-width: 160px;
-    padding: 0 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.45);
+    min-width: auto;
+    padding: 0 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px;
-    color: var(--gold-light);
+    color: var(--gray-300);
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    white-space: nowrap;
+}
+
+.mobile-menu-btn:hover,
+.icon-btn:hover,
+.save-draft-btn:hover,
+.user-profile:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-name {
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user-profile i {
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+/* Dropdown igual Dandara */
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    min-width: 220px;
+    background: rgba(19,19,26,0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    color: var(--gray-300);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.dropdown-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item.logout {
+    color: var(--red);
+}
+
+.dropdown-item.logout:hover {
+    background: rgba(239,68,68,0.1);
+    color: var(--red);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 8px 0;
+}
+
+/* =================== FOOTER PADRÃO DANDARA =================== */
+.main-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    padding: 28px 40px;
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.footer-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.footer-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--gold);
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-links .sep {
+    color: var(--gray-700);
+    font-size: 11px;
+}
+
+/* =================== RESPONSIVO PADRÃO DANDARA + FORM =================== */
+@media (max-width: 1180px) {
+    .save-draft-btn span {
+        display: none;
+    }
+
+    .save-draft-btn {
+        width: 40px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(13,13,26,.98);
+        border: 1px solid rgba(212,175,55,.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+        box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .nav-item {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .form-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .header-container {
+        height: 70px;
+    }
+
+    .header-left {
+        gap: 16px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .icon-btn,
+    .mobile-menu-btn,
+    .save-draft-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile {
+        padding: 4px;
+        border-radius: 50%;
+    }
+
+    .user-profile img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .user-profile > i {
+        display: none;
+    }
+
+    .user-dropdown {
+        right: 0;
+        width: 220px;
+    }
+
+    .page-wrapper {
+        padding: 24px 16px 60px;
+    }
+
+    .steps-bar {
+        display: none;
+    }
+
+    .input-row,
+    .genre-grid,
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .platform-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-section,
+    .checklist-card,
+    .submit-area {
+        padding: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        padding: 0 12px;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 6px;
+    }
+
+    .icon-btn,
+    .mobile-menu-btn,
+    .save-draft-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .main-nav {
+        left: 12px;
+        right: 12px;
+    }
+
+    .page-wrapper {
+        padding: 18px 14px 50px;
+    }
+
+    .page-header h1 {
+        font-size: 1.65rem;
+    }
+
+    .form-section,
+    .checklist-card,
+    .submit-area {
+        padding: 16px;
+    }
+
+    .platform-row,
+    .screenshots-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .roadmap-item {
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .roadmap-item input {
+        min-width: 100%;
+        order: 2;
+    }
+
+    .roadmap-status-sel {
+        flex: 1;
+        order: 3;
+    }
+
+    .roadmap-remove-btn {
+        order: 4;
+    }
+}
+
+@media (max-width: 390px) {
+    .icon-btn[title="Notificações"] {
+        display: none;
+    }
 }
