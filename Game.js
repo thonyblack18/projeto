@@ -166,7 +166,11 @@ function configurarDropdownUsuario() {
 }
 
 function renderizarGaleria(game) {
-    document.getElementById("game-cover").src = game.cover_url;
+
+    document.getElementById("game-cover").src =
+        game.cover_url?.startsWith("http")
+            ? game.cover_url
+            : `${API_BASE}/${game.cover_url}`;
 
     const galleryTrack = document.getElementById("galleryTrack");
     const galleryThumbs = document.getElementById("galleryThumbs");
@@ -207,7 +211,12 @@ function renderizarGaleria(game) {
 
     galleryTrack.innerHTML += `
         <div class="gallery-slide ${mediaIndex === 0 ? "active" : ""}" data-index="${mediaIndex}">
-            <img src="${game.banner_url || game.cover_url}" class="slide-img" alt="${game.title}">
+            <img src="${
+                    game.banner_url
+                        ? `${API_BASE}/${game.banner_url}`
+                        : `${API_BASE}/${game.cover_url}`
+                }"
+class="slide-img" alt="${game.title}">
 
             <div class="slide-label">
                 <i class="fas fa-image"></i> Imagem principal
@@ -217,7 +226,7 @@ function renderizarGaleria(game) {
 
     galleryThumbs.innerHTML += `
         <div class="thumb ${mediaIndex === 0 ? "active" : ""}" data-index="${mediaIndex}">
-            <img src="${game.cover_url}" alt="${game.title}">
+            <img src="${API_BASE}/${game.cover_url}" alt="${game.title}">
         </div>
     `;
 
