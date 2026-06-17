@@ -53,29 +53,31 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
-/* =================== MENU HAMBÚRGUER =================== */
-const menuToggle = document.getElementById('menuToggle');
-const mainNav = document.getElementById('mainNav') || document.querySelector('.main-nav');
+/* =================== MENU MOBILE — PADRÃO ADICIONARJOGO =================== */
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.getElementById("mainNav") || document.querySelector(".main-nav");
 
-if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-        const isOpen = mainNav.classList.toggle('mobile-open');
-        menuToggle.classList.toggle('active', isOpen);
-        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        menuToggle.innerHTML = isOpen
-            ? '<i class="fas fa-times"></i>'
-            : '<i class="fas fa-bars"></i>';
-    });
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+    mobileMenuBtn.classList.toggle("active", mainNav?.classList.contains("active"));
+});
 
-    mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mainNav.classList.remove('mobile-open');
-            menuToggle.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        });
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+    mobileMenuBtn?.classList.remove("active");
+});
+
+mainNav?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        mainNav.classList.remove("active");
+        mobileMenuBtn?.classList.remove("active");
     });
-}
+});
 
 /* =================== DROPDOWN DE USUÁRIO =================== */
 const userProfile = document.getElementById('userProfile');

@@ -32,10 +32,6 @@
                     <span class="logo-text">VELORA</span>
                 </a>
 
-                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                </button>
-
                 <nav class="main-nav" id="mainNav">
                     <a href="Catalogo.html" class="nav-item">
                         <i class="fas fa-home"></i> Início
@@ -47,7 +43,7 @@
                         <i class="fas fa-star"></i> Minigames
                     </a>
                     <a href="Ranking.html" class="nav-item">
-                        <i class="fas fa-fire"></i> Em alta
+                        <i class="fas fa-fire"></i> Ranking
                     </a>
                     <a href="Noticias.html" class="nav-item">
                         <i class="fas fa-newspaper"></i> Notícias
@@ -62,6 +58,10 @@
             </div>
 
             <div class="header-right">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <button class="save-draft-btn" id="btn-rascunho">
                     <i class="fas fa-save"></i>
                     <span>Salvar edição</span>
@@ -107,8 +107,7 @@
                 </div>
             </div>
         </div>
-            <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
-    </header>
+</header>
 
     <!-- =================== CONTEÚDO PRINCIPAL =================== -->
     <div class="page-wrapper">
@@ -670,57 +669,6 @@
             </div>
         </div>
     </footer>
-
-
-    <script>
-        // Menu hambúrguer responsivo — apenas front-end visual
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav') || document.querySelector('.main-nav');
-            const backdrop = document.getElementById('mobileMenuBackdrop');
-
-            if (!menuToggle || !mainNav) return;
-
-            const closeMenu = () => {
-                mainNav.classList.remove('mobile-open');
-                menuToggle.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                if (backdrop) backdrop.classList.remove('active');
-            };
-
-            const openMenu = () => {
-                mainNav.classList.add('mobile-open');
-                menuToggle.classList.add('active');
-                menuToggle.setAttribute('aria-expanded', 'true');
-                menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-                if (backdrop) backdrop.classList.add('active');
-            };
-
-            menuToggle.addEventListener('click', () => {
-                if (mainNav.classList.contains('mobile-open')) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
-            });
-
-            mainNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            if (backdrop) {
-                backdrop.addEventListener('click', closeMenu);
-            }
-
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 1024) {
-                    closeMenu();
-                }
-            });
-        });
-    </script>
-
     <script src="EditarJogo.js"></script>
 </body>
 </html>
