@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="Mullet.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
-    <link rel="icon" href="/projeto-main/logo-velora.png" type="image/png">
+    <link rel="icon" href="Logo Velora.png" type="image/png">
 
 </head>
 <body>
@@ -17,16 +17,16 @@
     <header class="main-header">
         <div class="header-container">
             <div class="header-left">
-                <a href="../../Catalogo.html" class="logo">
-                    <img src="/projeto-main/logo-velora.png" alt="Velora" class="logo-img" id="header-logo">
+                <div class="logo">
+                    <img src="Logo Velora.png" alt="Velora" class="logo-img" id="header-logo">
                     <span class="logo-text">VELORA</span>
-                </a>
+                </div>
                 
                 <nav class="main-nav">
-                    <a href="../../Catalogo.html" class="nav-item" id="linkInicio">
+                    <a href="../../Catalogo.html" class="nav-item">
                         <i class="fas fa-home"></i> Início
                     </a>
-                    <a href="../../Minigames/Minigames.html" class="nav-item">
+                    <a href="/Minigames/Minigames.html" class="nav-item active">
                         <i class="fas fa-gamepad"></i> Minigames
                     </a>
                     <a href="../../Ranking.html" class="nav-item">
@@ -44,42 +44,29 @@
                 </nav>
             </div>
             <div class="header-right">
-
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
-                     <i class="fas fa-bars"></i>
-                </button>
-
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar jogos...">
                 </div>
-                
-                <button class="icon-btn" id="btnFavoritos" title="Favoritos">
-                    <i class="fas fa-heart"></i>
-                </button>
+                <button class="icon-btn" title="Favoritos"><i class="fas fa-heart"></i></button>
 
-                <button class="icon-btn" title="Notificações">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </button>
 
                 <div class="user-profile" id="userProfile">
                     <img src="https://i.pravatar.cc/40?img=12" alt="Usuário">
                     <span class="user-name">Jogador</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-
-                <!-- =================== DROPDOWN DO USUÁRIO =================== -->
+<!-- =================== DROPDOWN DO USUÁRIO =================== -->
                 <div class="user-dropdown" id="userDropdown">
-                    <div class="dropdown-item" id="dropMeuPerfil">
+                    <a href="../../PerfilUsuario.html" class="dropdown-item" id="dropMeuPerfil">
                         <i class="fas fa-user"></i>
                         <span>Meu Perfil</span>
                     </div>
-                    <div class="dropdown-item" id="dropSuporte">
+                    <a href="../../SuporteUsuario.html" class="dropdown-item" id="dropSuporte">
                         <i class="fas fa-headset"></i>
                         <span>Suporte ao Usuário</span>
-                    </div>
-                    <a href="../../Configuracoes.html" class="dropdown-item">
+                    </a>
+                     <a href="../../Configuracoes.html" class="dropdown-item">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
@@ -87,7 +74,6 @@
                     <div class="dropdown-item logout" id="dropSair">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Sair</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -110,35 +96,35 @@
 
                 <!-- Slides de screenshot -->
                 <div class="gallery-slide" data-index="1">
-                    <img src="foto 1.jpg" alt="Imagem 1 Dandara" class="slide-img">
+                    <img src="MulletFoto1.jpg" alt="Screenshot 1" class="slide-img">
                     <div class="slide-label">Imagem 1</div>
                 </div>
                 <div class="gallery-slide" data-index="2">
-                    <img src="foto 2.jpg" alt="Screenshot 2" class="slide-img">
+                    <img src="MulletFoto2.jpg" alt="Screenshot 2" class="slide-img">
                     <div class="slide-label">Screenshot 2</div>
                 </div>
                 <div class="gallery-slide" data-index="3">
-                    <img src="foto 3.jpg" alt="Screenshot 3" class="slide-img">
+                    <img src="MulletFoto3.jpg" alt="Screenshot 3" class="slide-img">
                     <div class="slide-label">Screenshot 3</div>
                 </div>
                 <div class="gallery-slide" data-index="4">
-                    <img src="foto 4.jpg" alt="Screenshot 4" class="slide-img">
+                    <img src="MulletFoto4.jpg" alt="Screenshot 4" class="slide-img">
                     <div class="slide-label">Screenshot 4</div>
                 </div>
                 <div class="gallery-slide" data-index="5">
-                    <img src="foto 5.jpg" alt="Screenshot 5" class="slide-img">
+                    <img src="MulletFoto5.jpg" alt="Screenshot 5" class="slide-img">
                     <div class="slide-label">Screenshot 5</div>
                 </div>
                 <div class="gallery-slide" data-index="6">
-                    <img src="foto 6.jpg" alt="Screenshot 5" class="slide-img">
+                    <img src="MulletFoto6.jpg" alt="Screenshot 6" class="slide-img">
                     <div class="slide-label">Screenshot 6</div>
                 </div>
                 <div class="gallery-slide" data-index="7">
-                    <img src="foto 7.jpg" alt="Screenshot 5" class="slide-img">
+                    <img src="MulletFoto7.jpg" alt="Screenshot 7" class="slide-img">
                     <div class="slide-label">Screenshot 7</div>
                 </div>
-                <div class="gallery-slide" data-index="8">
-                    <img src="foto 8.jpg" alt="Screenshot 5" class="slide-img">
+                <div class="gallery-slide" data-index="5">
+                    <img src="MulletFoto8.jpg" alt="Screenshot 8" class="slide-img">
                     <div class="slide-label">Screenshot 8</div>
                 </div>
             </div>
@@ -158,28 +144,28 @@
                     <span>Trailer</span>
                 </div>
                 <div class="thumb" data-index="1">
-                    <img src="foto 1.jpg" alt="" >                
+                    <img src="MulletFoto1.jpg" alt="" >                
                 </div>
                 <div class="thumb" data-index="2">
-                    <img src="foto 2.jpg" alt="">
+                    <img src="MulletFoto2.jpg" alt="">
                 </div>
                 <div class="thumb" data-index="3">
-                    <img src="foto 3.jpg" alt="">
+                    <img src="MulletFoto3.jpg" alt="">
                 </div>
                 <div class="thumb" data-index="4">
-                    <img src="foto 4.jpg" alt="">
+                    <img src="MulletFoto4.jpg" alt="">
                 </div>
                 <div class="thumb" data-index="5">
-                    <img src="foto 5.jpg" alt="">
+                    <img src="MulletFoto5.jpg" alt="">
                 </div>
                 <div class="thumb" data-index="6">
-                    <img src="foto 6.jpg" alt="">
+                    <img src="MulletFoto6.jpg" alt="">
                 </div>
                 <div class="thumb" data-index="7">
-                    <img src="foto 7.jpg" alt="">
+                    <img src="MulletFoto7.jpg" alt="">
                 </div>
                 <div class="thumb" data-index="8">
-                    <img src="foto 8.jpg" alt="">
+                    <img src="MulletFoto8.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -188,7 +174,7 @@
         <aside class="game-sidebar">
 
             <div class="game-cover">
-                <img src="Capa.png" alt="Mullet Madjack">
+                <img src="MulletCapa.png" alt="Mullet Madjack">
             </div>
 
             <div class="curation-badge">
@@ -212,6 +198,12 @@
                 <div class="age-badge">14</div>
                 <span>Conteúdo violento moderado</span>
             </div>
+
+            <button class="btn-donate" id="btnDonate">
+                <i class="fas fa-hand-holding-heart"></i>
+                Apoiar este jogo
+            </button>
+            <p class="donate-note">Apoie diretamente o desenvolvedor</p>
 
             <button class="btn-wishlist" id="btnWishlist">
                 <i class="far fa-heart" id="wishlistIcon"></i>
@@ -250,9 +242,9 @@
             <section class="col-main">
 
                 <nav class="breadcrumb">
-                    <a href="../../Catalogo.html" id="breadcrumbInicio">Início</a>
+                    <a href="#">Início</a>
                     <i class="fas fa-chevron-right"></i>
-                    <a href="../../Catalogo.html" id="breadcrumbJogos">Catálogo</a>
+                    <a href="#">Jogos</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Mullet Madjack</span>
                 </nav>
@@ -414,28 +406,96 @@
                     </table>
                 </div>
 
+                <!-- Card de doação -->
+                <div class="section-card aside-card donate-card">
+                    <div class="donate-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Apoie a Hammer95</h3>
+                    <p>Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros incríveis.</p>
+                    <div class="donate-amounts" id="donateAmountsAside">
+                        <button class="amount-btn" data-amount="5">R$ 5</button>
+                        <button class="amount-btn active" data-amount="10">R$ 10</button>
+                        <button class="amount-btn" data-amount="25">R$ 25</button>
+                        <button class="amount-btn" data-amount="50">R$ 50</button>
+                    </div>
+                    <button class="btn-donate-main" id="btnDonateAside">
+                        <i class="fas fa-hand-holding-heart"></i> Apoiar com R$ 10
+                    </button>
+                </div>
+
+                <!-- Jogos similares -->
+                <!-- <div class="section-card aside-card">
+                    <h2 class="section-heading"><i class="fas fa-gamepad"></i> Jogos Similares</h2>
+                    <div class="similar-games">
+                        <div class="similar-game-card">
+                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1263620/header.jpg" alt="Momodora" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
+                            <div class="sg-info">
+                                <strong>Momodora: Reverie</strong>
+                                <span>Metroidvania</span>
+                                <div class="sg-stars"><i class="fas fa-star"></i> 4.6</div>
+                            </div>
+                        </div>
+                        <div class="similar-game-card">
+                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1082710/header.jpg" alt="Kambulin" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
+                            <div class="sg-info">
+                                <strong>Kambulin</strong>
+                                <span>Puzzle</span>
+                                <div class="sg-stars"><i class="fas fa-star"></i> 4.7</div>
+                            </div>
+                        </div>
+                        <div class="similar-game-card">
+                            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1545560/header.jpg" alt="Mullet Madjack" onerror="this.src='https://placehold.co/80x50/13131a/d4af37?text=Jogo'">
+                            <div class="sg-info">
+                                <strong>Mullet Madjack</strong>
+                                <span>Ação</span>
+                                <div class="sg-stars"><i class="fas fa-star"></i> 4.5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
             </aside>
         </div>
     </main>
 
+    <!-- =================== MODAL DE DOAÇÃO =================== -->
+    <div class="modal-overlay" id="donateModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeDonateModal"><i class="fas fa-times"></i></button>
+            <div class="modal-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+            <h3>Apoiar Mullet Madjack</h3>
+            <p>Sua contribuição vai diretamente para a <strong>Hammer95</strong> continuar criando jogos incríveis!</p>
+            <div class="modal-amounts" id="modalAmounts">
+                <button class="amount-btn" data-amount="5">R$ 5</button>
+                <button class="amount-btn active" data-amount="10">R$ 10</button>
+                <button class="amount-btn" data-amount="25">R$ 25</button>
+                <button class="amount-btn" data-amount="50">R$ 50</button>
+                <button class="amount-btn" data-amount="100">R$ 100</button>
+            </div>
+            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="1">
+            <button class="btn-confirm-donate" id="confirmDonate">
+                <i class="fas fa-heart"></i> Confirmar Doação de R$ 10
+            </button>
+            <p class="modal-note"><i class="fas fa-lock"></i> Pagamento seguro — Você será redirecionado para o checkout</p>
+        </div>
+    </div>
+
+
+    
 
     <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
         <footer class="main-footer">
-        <div class="footer-container">
-            <a href="../../Catalogo.html" class="footer-logo">
-                <img src="/projeto-main/logo-velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
-                <span class="footer-logo-text">VELORA</span>
-            </a>
-            <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
-            <div class="footer-links">
-                <a href="../../TermosDeUso.html">Termos de Uso</a>
-                <span class="sep">·</span>
-                <a href="../../TermosPriv.html">Privacidade</a>
-                <span class="sep">·</span>
-                <a href="../../SuporteUsuario.html">Suporte</a>
-            </div>
+        <div class="footer-logo-box">
+            <img src="logo-velora.png" alt="Velora" class="footer-logo-img">
+            <span class="footer-logo-text">VELORA</span>
+        </div>
+        <div class="footer-links">
+            <a href="#">Termos de Uso</a>
+            <span class="separator">•</span>
+            <a href="#">Privacidade</a>
+            <span class="separator">•</span>
+            <a href="#">Suporte</a>
         </div>
     </footer>
 
