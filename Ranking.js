@@ -8,7 +8,7 @@ const GAMES = [
         id: 1,
         nome: 'Dandara: Trials of Fear Edition',
         genero: 'Metroidvania',
-        img: './Logos/Dandara Trials.jpg',
+        img: './Logos/Dandara.jpg',
         acessos: { semana: 8200, mes: 47000, ano: 188000, todos: 312000 },
         avaliacao: { semana: 4.7, mes: 4.8, ano: 4.9, todos: 4.9 }
     },
@@ -88,7 +88,7 @@ const GAMES = [
         id: 11,
         nome: 'Momodora: Reverie Under The Moonlight',
         genero: 'Metroidvania',
-        img: './Logos/Momodora Logo.jpg',
+        img: './Logos/Momodora.jpg',
         acessos: { semana: 3600, mes: 18000, ano: 76000, todos: 120000 },
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.6, todos: 4.5 }
     },
