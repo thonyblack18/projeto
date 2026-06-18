@@ -1,4 +1,10 @@
 const API_BASE = "https://projeto-w9ao.onrender.com";
+function getImageUrl(path) {
+    if (!path) return "logo-velora.png";
+    if (path.startsWith("http")) return path;
+    return path;
+}
+
 const gamesGrid = document.querySelector(".games-grid");
 
 let allGames = [];
@@ -155,9 +161,7 @@ fetch("https://projeto-w9ao.onrender.com/api/games")
         allGames = data.games.map(game => ({
             ...game,
 
-            image: game.cover_url
-                ? `https://projeto-w9ao.onrender.com/${game.cover_url}`
-                : "logo-velora.png",
+            image: getImageUrl(game.cover_url),
 
             rating: game.rating || "5.0",
 
