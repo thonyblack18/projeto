@@ -20,6 +20,7 @@ try {
     user = JSON.parse(localStorage.getItem("velora_user"));
 } catch (e) {}
 
+
 if (!user) {
     window.location.href = "LoginCadastro.html";
 }
@@ -379,4 +380,22 @@ document.querySelectorAll(".nav-item").forEach(item => {
 
         item.classList.add("active");
     });
+});
+
+// =================== MENU HAMBÚRGUER ===================
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
 });
