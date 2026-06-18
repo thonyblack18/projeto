@@ -102,7 +102,7 @@
           <div class="avatar-section">
             <div class="avatar-preview">
               <div class="avatar-circle" id="avatarCircle">
-                <span id="avatarInitial">M</span>
+                <span id="avatarInitial"></span>
                 <img id="avatarImg" src="" alt="Avatar" />
               </div>
               <div class="avatar-change-btn" onclick="document.getElementById('avatarInput').click()">
@@ -125,14 +125,20 @@
           <div class="form-grid">
             <div class="form-group">
               <label>Nome de exibição</label>
-              <input type="text" id="displayName" placeholder="Marina Souza" value="Marina Souza" />
+              <input
+                type="text"
+                id="displayName"
+                placeholder="Nome de exibição" />
             </div>
 
             <div class="form-group">
               <label>Nome de usuário</label>
               <div class="input-with-icon">
                 <i class="fas fa-at"></i>
-                <input type="text" id="username" placeholder="marinasouza" value="marinasouza" />
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Nome de usuário" />
               </div>
             </div>
 
@@ -140,14 +146,19 @@
               <label>E-mail</label>
               <div class="input-with-icon">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="email" placeholder="marina@email.com" value="marina@email.com" />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Seu e-mail" />
               </div>
               <span class="input-hint success"><i class="fas fa-circle-check"></i> E-mail verificado</span>
             </div>
 
             <div class="form-group span-2">
               <label>Descrição <span class="label-optional">(opcional)</span></label>
-              <textarea id="bio" placeholder="Fale um pouco sobre você...">Entusiasta de jogos indies e pixel art. Apoiadora ativa da cena nacional. 🎮</textarea>
+              <textarea
+                id="bio"
+                placeholder="Fale um pouco sobre você..."></textarea>
               <span class="input-hint">Máximo de 300 caracteres.</span>
             </div>
           </div>
