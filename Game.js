@@ -486,7 +486,9 @@ fetch(`${API_BASE}/api/games/${gameId}`)
     .then(response => response.json())
     .then(data => {
         const game = data.game;
-
+        
+        console.log("TRAILER:", game.trailer_url);
+        
         if (!game) {
             document.body.innerHTML = `
                 <h1 style="color:white;text-align:center;margin-top:100px;font-family:Arial;">
