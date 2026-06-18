@@ -1229,7 +1229,7 @@ def forgot_password():
 
         conn.commit()
 
-        reset_link = f"http://127.0.0.1:5500/RedefinirSenha.html?token={token}"
+        reset_link = f"https://www.velora.ind.br/RedefinirSenha.html?token={token}"
 
         msg = Message(
             subject="Redefinição de senha - Velora",
@@ -1264,8 +1264,9 @@ Equipe Velora
 
     except Exception as e:
         conn.rollback()
+        print("ERRO FORGOT PASSWORD:", str(e))
         return jsonify({"error": f"Erro ao solicitar recuperação: {str(e)}"}), 500
-
+    
     finally:
         if cursor:
             cursor.close()
