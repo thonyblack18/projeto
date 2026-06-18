@@ -11,11 +11,25 @@ from datetime import datetime, timedelta
 from flask_mail import Mail, Message
 import uuid
 
+
 load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "velora_secret")
-CORS(app)
+from flask_cors import CORS
+
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "https://velora.ind.br",
+            "https://www.velora.ind.br",
+            "https://projeto-seven-blush.vercel.app",
+            "http://127.0.0.1:5500",
+            "http://localhost:5500"
+        ]
+    }
+})
+
 bcrypt = Bcrypt(app)
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
