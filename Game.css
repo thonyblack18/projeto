@@ -922,3 +922,57 @@ body::before {
     background: rgba(212, 175, 55, 0.12);
     border-color: #f4d03f;
 }
+
+/* =================== FOOTER =================== */
+
+.main-footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 80px;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(212,175,55,0.15);
+    background: rgba(13,13,22,0.95);
+    text-align: center;
+}
+
+.footer-logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.footer-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif;
+    font-size: 22px;
+    color: #d4af37;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #d4af37;
+}
+
+.separator {
+    color: #6b7280;
+}
