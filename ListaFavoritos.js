@@ -374,3 +374,25 @@ document.getElementById("btnExplorarCatalogo")?.addEventListener("click", (e) =>
 carregarAvatarHeader();
 
 init();
+
+// =================== MENU HAMBÚRGUER RESPONSIVO ===================
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+document.getElementById("footer-logo")?.addEventListener("error", function () {
+    this.style.display = "none";
+});
