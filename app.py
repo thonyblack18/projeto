@@ -1207,6 +1207,7 @@ def forgot_password():
         """, (email,))
 
         user = cursor.fetchone()
+        print("1 - busca de usuário feita")
 
         if not user:
             return jsonify({
@@ -1215,6 +1216,8 @@ def forgot_password():
 
         token = secrets.token_urlsafe(48)
         expires_at = datetime.now() + timedelta(minutes=30)
+
+        print("2 - token criado")
 
         cursor.execute("""
             UPDATE password_reset_tokens
@@ -1256,7 +1259,11 @@ Se você não solicitou isso, apenas ignore este e-mail.
 Equipe Velora
 """
 
+        print("3 - email preparado")
+
         mail.send(msg)
+
+        print("4 - email enviado")
 
         return jsonify({
             "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
@@ -1266,7 +1273,7 @@ Equipe Velora
         conn.rollback()
         print("ERRO FORGOT PASSWORD:", str(e))
         return jsonify({"error": f"Erro ao solicitar recuperação: {str(e)}"}), 500
-    
+
     finally:
         if cursor:
             cursor.close()
