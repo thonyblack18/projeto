@@ -1,5 +1,11 @@
 const API_BASE = "https://projeto-w9ao.onrender.com";
 
+function getImageUrl(path) {
+    if (!path) return "logo-velora.png";
+    if (path.startsWith("http")) return path;
+    return path;
+}
+
 const params = new URLSearchParams(window.location.search);
 const gameId = params.get("id");
 
@@ -167,10 +173,7 @@ function configurarDropdownUsuario() {
 
 function renderizarGaleria(game) {
 
-    document.getElementById("game-cover").src =
-        game.cover_url?.startsWith("http")
-            ? game.cover_url
-            : `${API_BASE}/${game.cover_url}`;
+    document.getElementById("game-cover").src = getImageUrl(game.cover_url);
 
     const galleryTrack = document.getElementById("galleryTrack");
     const galleryThumbs = document.getElementById("galleryThumbs");
@@ -209,13 +212,13 @@ function renderizarGaleria(game) {
         mediaIndex++;
     }
 
+    const mainImage = game.banner_url
+        ? getImageUrl(game.banner_url)
+        : getImageUrl(game.cover_url);
+
     galleryTrack.innerHTML += `
         <div class="gallery-slide ${mediaIndex === 0 ? "active" : ""}" data-index="${mediaIndex}">
-            <img src="${
-    game.banner_url
-        ? (game.banner_url.startsWith("http") ? game.banner_url : `${API_BASE}/${game.banner_url}`)
-        : (game.cover_url.startsWith("http") ? game.cover_url : `${API_BASE}/${game.cover_url}`)
-}" class="slide-img" alt="${game.title}">
+            <img src="${mainImage}" class="slide-img" alt="${game.title}">
 
             <div class="slide-label">
                 <i class="fas fa-image"></i> Imagem principal
@@ -225,7 +228,7 @@ function renderizarGaleria(game) {
 
     galleryThumbs.innerHTML += `
         <div class="thumb ${mediaIndex === 0 ? "active" : ""}" data-index="${mediaIndex}">
-            <img src="${game.cover_url.startsWith("http") ? game.cover_url : `${API_BASE}/${game.cover_url}`}" alt="${game.title}">
+            <img src="${getImageUrl(game.cover_url)}" alt="${game.title}">
         </div>
     `;
 
@@ -240,9 +243,11 @@ function renderizarGaleria(game) {
     }
 
     screenshots.forEach((shot) => {
+        const shotUrl = getImageUrl(shot);
+
         galleryTrack.innerHTML += `
             <div class="gallery-slide" data-index="${mediaIndex}">
-                <img src="${API_BASE}/${shot}" class="slide-img" alt="Screenshot">
+                <img src="${shotUrl}" class="slide-img" alt="Screenshot">
 
                 <div class="slide-label">
                     <i class="fas fa-camera"></i> Screenshot
@@ -252,7 +257,7 @@ function renderizarGaleria(game) {
 
         galleryThumbs.innerHTML += `
             <div class="thumb" data-index="${mediaIndex}">
-                <img src="${API_BASE}/${shot}" alt="Screenshot">
+                <img src="${shotUrl}" alt="Screenshot">
             </div>
         `;
 
