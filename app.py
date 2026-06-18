@@ -9,6 +9,7 @@ import json
 import secrets
 from datetime import datetime, timedelta
 from flask_mail import Mail, Message
+import uuid
 
 load_dotenv()
 
@@ -788,13 +789,19 @@ def add_game():
 
     if image:
         filename = secure_filename(image.filename)
-        image_path = f"uploads/{filename}"
+        ext = os.path.splitext(filename)[1]
+        unique_filename = f"{uuid.uuid4().hex}{ext}"
+    
+        image_path = f"uploads/{unique_filename}"
         image.save(image_path)
 
     for screenshot in screenshots:
         if screenshot and screenshot.filename:
             filename = secure_filename(screenshot.filename)
-            screenshot_path = f"uploads/{filename}"
+            ext = os.path.splitext(filename)[1]
+            unique_filename = f"{uuid.uuid4().hex}{ext}"
+            
+            screenshot_path = f"uploads/{unique_filename}"
             screenshot.save(screenshot_path)
             screenshots_paths.append(screenshot_path)
 
