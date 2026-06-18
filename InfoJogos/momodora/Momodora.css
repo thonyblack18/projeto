@@ -815,36 +815,122 @@ body::before {
     justify-content: center;
 }
 
-/* =================== RESPONSIVE =================== */
-/* =================== RESPONSIVE CORRIGIDO =================== */
+
+/* ============================================================
+   RESPONSIVO FINAL — MOMODORA
+   Corrige header, galeria, sidebar, conteúdo e footer
+   ============================================================ */
+
+@media (max-width: 1200px) {
+    .main-header {
+        padding: 0 24px;
+    }
+
+    .header-left {
+        gap: 28px;
+    }
+
+    .search-box input {
+        width: 210px;
+    }
+
+    .nav-item {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .hero-media-section {
+        height: 720px;
+    }
+
+    .game-sidebar {
+        width: 320px;
+        max-height: 720px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr 320px;
+        gap: 24px;
+    }
+}
 
 @media (max-width: 1024px) {
     .main-header {
         padding: 0 20px;
     }
 
-     .mobile-menu-btn{
-        display:flex;
+    .header-container {
+        height: 70px;
+        min-height: 70px;
+        padding: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 12px;
     }
 
-    .main-nav{
-        position:absolute;
-        top:70px;
-        left:20px;
-        right:20px;
-
-        display:none;
-        flex-direction:column;
-
-        background:rgba(13,13,26,.98);
-        border:1px solid rgba(212,175,55,.18);
-        border-radius:14px;
-        padding:12px;
-
-        z-index:2000;
+    .header-left {
+        width: auto;
+        flex: 1;
+        min-width: 0;
+        justify-content: flex-start;
+        gap: 14px;
     }
-    .main-nav.active{
-        display:flex;
+
+    .logo {
+        min-width: 0;
+        text-decoration: none;
+    }
+
+    .logo-img {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .header-right {
+        width: auto;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        background: rgba(13,13,26,.98);
+        border: 1px solid rgba(212,175,55,.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2000;
+        box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .nav-item {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 14px;
+        font-size: 14px;
     }
 
     .search-box {
@@ -855,6 +941,15 @@ body::before {
         display: none;
     }
 
+    .user-profile {
+        padding: 5px;
+    }
+
+    .user-dropdown {
+        right: 0;
+        width: 220px;
+    }
+
     .hero-media-section {
         flex-direction: column;
         height: auto;
@@ -863,11 +958,26 @@ body::before {
 
     .gallery-wrapper {
         width: 100%;
-        min-height: 360px;
+        min-height: 420px;
+        overflow: hidden;
     }
 
     .gallery-track {
-        height: 360px;
+        height: 420px;
+    }
+
+    .youtube-container,
+    .youtube-container iframe {
+        min-height: 420px;
+    }
+
+    .slide-img {
+        object-fit: cover;
+    }
+
+    .gallery-arrow {
+        opacity: 0.9 !important;
+        top: calc(50% - 48px);
     }
 
     .game-sidebar {
@@ -875,41 +985,70 @@ body::before {
         max-height: none;
         border-left: none;
         border-top: 1px solid rgba(212,175,55,0.1);
-        display: flex;
-        flex-direction: column;
         padding: 24px 20px;
         overflow: visible;
     }
 
     .game-cover {
-        width: 220px;
+        width: 240px;
         max-width: 100%;
     }
 
     .content-grid {
         grid-template-columns: 1fr;
-    }
-
-    .col-aside {
-        order: 0;
+        gap: 24px;
     }
 
     .main-content {
         padding: 24px 20px 60px;
     }
+
+    .col-aside {
+        order: 0;
+    }
 }
 
 @media (max-width: 768px) {
+    .main-header {
+        padding: 0 16px;
+    }
+
+    .header-container {
+        gap: 8px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+    }
+
+    .icon-btn,
+    .mobile-menu-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .user-profile img {
+        width: 30px;
+        height: 30px;
+    }
+
     .gallery-wrapper {
-        min-height: 300px;
+        min-height: 320px;
     }
 
     .gallery-track {
-        height: 300px;
+        height: 320px;
+    }
+
+    .youtube-container,
+    .youtube-container iframe {
+        min-height: 320px;
     }
 
     .gallery-thumbnails {
-        height: 82px;
+        height: 84px;
+        padding: 9px 12px;
     }
 
     .thumb {
@@ -933,8 +1072,13 @@ body::before {
         align-items: center;
     }
 
-    .btn-wishlist {
-        width: 100%;
+    .quick-info .qi-item {
+        align-items: flex-start;
+    }
+
+    .qi-value {
+        max-width: 55%;
+        word-break: break-word;
     }
 
     .section-card {
@@ -943,6 +1087,51 @@ body::before {
 
     .ratings-overview {
         flex-direction: column;
+        gap: 20px;
+    }
+
+    .rating-big {
+        align-items: flex-start;
+    }
+
+    .rating-bars {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .comment-header {
+        align-items: flex-start;
+    }
+
+    .comment-stars {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .details-table,
+    .details-table tbody,
+    .details-table tr,
+    .details-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .details-table tr {
+        padding: 10px 0;
+    }
+
+    .details-table td {
+        padding: 4px 0;
+    }
+
+    .details-table td:first-child {
+        width: 100%;
+        white-space: normal;
+        padding-right: 0;
+    }
+
+    .details-table td:last-child {
+        padding-left: 22px;
     }
 
     .footer-container {
@@ -950,29 +1139,160 @@ body::before {
         align-items: center;
         text-align: center;
     }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
+    .main-header {
+        padding: 0 12px;
+    }
+
+    .logo-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .icon-btn,
+    .mobile-menu-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .user-profile {
+        padding: 4px;
+    }
+
+    .user-profile img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .main-nav {
+        left: 12px;
+        right: 12px;
+    }
+
     .gallery-wrapper {
-        min-height: 240px;
+        min-height: 250px;
     }
 
     .gallery-track {
-        height: 240px;
+        height: 250px;
+    }
+
+    .youtube-container,
+    .youtube-container iframe {
+        min-height: 250px;
     }
 
     .gallery-arrow {
         width: 36px;
         height: 36px;
         font-size: 14px;
-        opacity: 0.9 !important;
+    }
+
+    .arrow-left {
+        left: 10px;
+    }
+
+    .arrow-right {
+        right: 10px;
+    }
+
+    .gallery-thumbnails {
+        height: 76px;
+        gap: 7px;
+    }
+
+    .thumb {
+        width: 84px;
+        height: 50px;
+    }
+
+    .slide-label {
+        font-size: 11px;
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .main-content {
+        padding: 18px 14px 50px;
+    }
+
+    .breadcrumb {
+        flex-wrap: wrap;
+        line-height: 1.6;
+    }
+
+    .section-card {
+        padding: 18px;
+        border-radius: 12px;
     }
 
     .game-title-hero {
         font-size: 18px;
     }
 
-    .main-content {
-        padding: 18px 14px 50px;
+    .game-description {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .tags-container {
+        gap: 8px;
+    }
+
+    .tag {
+        font-size: 12px;
+        padding: 7px 12px;
+    }
+
+    .bar-row {
+        gap: 8px;
+    }
+
+    .bar-row span:last-child {
+        width: 30px;
+    }
+
+    .star-picker i {
+        font-size: 24px;
+    }
+
+    .comment-header {
+        flex-wrap: wrap;
+    }
+
+    .comment-stars {
+        width: 100%;
+        margin-left: 50px;
+    }
+
+    .comment-actions {
+        flex-wrap: wrap;
+    }
+
+    .toast {
+        width: calc(100vw - 28px);
+        text-align: center;
+        white-space: normal;
+    }
+
+    .main-footer {
+        padding: 24px 14px;
     }
 }
