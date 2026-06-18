@@ -133,8 +133,8 @@ async function loadProfileData() {
     }
 
     const endpoint = isDev
-      ? `${API_BASE}/profile/dev/${userId}`
-      : `${API_BASE}/profile/user/${userId}`;
+      ? `${API_BASE}/api/profile/dev/${userId}`
+      : `${API_BASE}/api/profile/user/${userId}`;
 
     const response = await fetch(endpoint);
     const data = await response.json();
@@ -267,8 +267,8 @@ async function saveProfile() {
     }
 
     const endpoint = isDev
-      ? `${API_BASE}/profile/dev/${userId}`
-      : `${API_BASE}/profile/user/${userId}`;
+      ? `${API_BASE}/api/profile/dev/${userId}`
+      : `${API_BASE}/api/profile/user/${userId}`;
 
     const response = await fetch(endpoint, {
       method: "PUT",
@@ -324,7 +324,7 @@ async function savePassword() {
       return;
     }
 
-    const response = await fetch(`${API_BASE}/change-password/${userId}`, {
+    const response = await fetch(`${API_BASE}/api/change-password/${userId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
