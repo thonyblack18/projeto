@@ -457,3 +457,22 @@ setupEditButton();
 configurarUploadAvatar();
 carregarPerfil();
 carregarAvatarHeader();
+
+
+// =================== MENU HAMBÚRGUER RESPONSIVO ===================
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});

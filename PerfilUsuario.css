@@ -215,6 +215,14 @@ body {
     margin-bottom: 16px;
 }
 
+.user-country {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
 .user-tags {
     display: flex;
     flex-wrap: wrap;
@@ -285,6 +293,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 48px;
+
+    min-height: 400px;
+}
+
+.section {
+    min-height: 200px;
 }
 
 /* =================== SECTIONS =================== */
@@ -770,29 +784,86 @@ body {
 .dropdown-item.logout:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
 .dropdown-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 8px 0; }
 
-/* =================== FOOTER PADRÃO VELORA =================== */
+@media (max-width: 1024px) {
+    .main-header { padding: 0 20px; }
+    .main-nav { display: none; }
+    .search-box input { width: 200px; }
+}
+
+@media (max-width: 768px) {
+    .header-container { height: 66px; }
+    .search-box { display: none; }
+    .user-name { display: none; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .main-header { padding: 0 14px; }
+    .header-left { gap: 18px; }
+    .logo-text { font-size: 19px; }
+    .icon-btn { width: 36px; height: 36px; }
+}
+
+
+
+/* =================== CORREÇÕES FINAIS: FOOTER + RESPONSIVO =================== */
 .main-footer {
     position: relative;
     z-index: 10;
     border-top: 1px solid rgba(212,175,55,0.1);
-    padding: 32px 40px;
+    padding: 28px 40px;
     background: rgba(13,13,26,0.8);
     backdrop-filter: blur(10px);
+
+    margin-top: 120px; /* espaço normal */
+}
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: var(--gray-300);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
 }
 
-.footer-inner {
+.mobile-menu-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.main-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(212,175,55,0.1);
+    padding: 28px 40px;
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(10px);
+    margin-top: auto;
+}
+
+.footer-container {
     max-width: 1600px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
+    min-width: 190px;
 }
 
 .footer-logo-img {
@@ -816,20 +887,25 @@ body {
 
 .footer-logo-text {
     font-family: var(--font-velora);
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 15px;
     letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--gold);
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+    flex: 1;
 }
 
 .footer-links {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 13px;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 260px;
+    font-size: 12px;
     color: var(--gray-500);
 }
 
@@ -844,20 +920,90 @@ body {
 
 @media (max-width: 1024px) {
     .main-header { padding: 0 20px; }
-    .main-nav { display: none; }
-    .search-box input { width: 200px; }
+
+    .header-container {
+        height: 70px;
+        min-height: 70px;
+        flex-wrap: nowrap;
+        gap: 12px;
+    }
+
+    .header-left {
+        flex: 1;
+        min-width: 0;
+        gap: 16px;
+    }
+
+    .header-right {
+        flex-shrink: 0;
+        gap: 10px;
+    }
+
+    .mobile-menu-btn { display: flex; }
+
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        background: rgba(13,13,26,.98);
+        border: 1px solid rgba(212,175,55,.18);
+        border-radius: 14px;
+        padding: 12px;
+        z-index: 2500;
+        box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    }
+
+    .main-nav.active { display: flex; }
+
+    .nav-item {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .search-box { display: none; }
 }
 
 @media (max-width: 768px) {
-    .header-container { height: 66px; }
-    .search-box { display: none; }
-    .user-name { display: none; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .profile-hero { padding: 36px 20px 24px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; margin-bottom: 26px; }
+    .main-content { gap: 28px; padding-bottom: 42px; }
+
+    .footer-container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .footer-logo,
+    .footer-links {
+        min-width: 0;
+        justify-content: center;
+    }
+
+    .footer-links { flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {
     .main-header { padding: 0 14px; }
-    .header-left { gap: 18px; }
-    .logo-text { font-size: 19px; }
-    .icon-btn { width: 36px; height: 36px; }
+    .logo-text { font-size: 18px; }
+
+    .icon-btn,
+    .mobile-menu-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .main-nav {
+        left: 14px;
+        right: 14px;
+    }
+
+    .stats-bar { grid-template-columns: 1fr; }
 }

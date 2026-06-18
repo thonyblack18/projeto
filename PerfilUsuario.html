@@ -53,6 +53,7 @@
       </div>
 
       <div class="header-right">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
         <div class="search-box">
           <i class="fas fa-search"></i>
           <input type="text" placeholder="Buscar jogos...">
@@ -129,8 +130,7 @@
         <h1 class="username" id="fullname">Carregando...</h1>
         <p class="user-handle" id="username">@usuario</p>
         <p class="user-bio" id="bio">Carregando bio...</p>
-        <p class="user-country" id="country">País não informado</p>
-
+        
         <div class="user-tags" id="favorite-genres">
           <span class="tag">Sem gêneros</span>
         </div>
@@ -145,11 +145,6 @@
     </div>
 
     <div class="stat">
-      <span class="stat-value" id="stat-apoiados" data-target="0">0</span>
-      <span class="stat-label">Jogos Apoiados</span>
-    </div>
-
-    <div class="stat">
       <span class="stat-value" id="stat-comentarios" data-target="0">0</span>
       <span class="stat-label">Comentários</span>
     </div>
@@ -161,21 +156,7 @@
   </section>
 
   <main class="main-content">
-
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Jogos Apoiados</h2>
-        <a href="#" class="section-link">Ver todos →</a>
-      </div>
-
-      <div class="games-grid" id="supported-games">
-        <div class="empty-card">
-          <p>Nenhum jogo apoiado ainda.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
+<section class="section">
       <div class="section-header">
         <h2 class="section-title">Avaliações Recentes</h2>
         <a href="#" class="section-link">Ver todas →</a>
@@ -190,25 +171,27 @@
 
   </main>
 
-
   <!-- =================== FOOTER PADRÃO VELORA =================== -->
   <footer class="main-footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
+    <div class="footer-container">
+      <a href="Catalogo.html" class="footer-logo">
         <img src="Logo Velora.png" alt="Velora" class="footer-logo-img" id="footer-logo">
         <div class="footer-logo-placeholder" id="footer-logo-placeholder">V</div>
         <span class="footer-logo-text">VELORA</span>
-      </div>
+      </a>
+
+      <p class="footer-copy">© 2026 Velora — Valorizando os games indies do Brasil</p>
 
       <div class="footer-links">
         <a href="TermosDeUso.html">Termos de Uso</a>
         <span class="footer-sep">•</span>
-        <a href="TermosPrivacidade.html">Privacidade</a>
+        <a href="TermosPriv.html">Privacidade</a>
         <span class="footer-sep">•</span>
         <a href="SuporteUsuario.html">Suporte</a>
       </div>
     </div>
   </footer>
+
 
   <script src="PerfilUsuario.js"></script>
 </body>
