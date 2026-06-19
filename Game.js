@@ -6,6 +6,19 @@ function getImageUrl(path) {
     return path;
 }
 
+function getAvatarUrl(path) {
+    if (!path) return "https://i.pravatar.cc/80";
+
+    if (
+        path.startsWith("http") ||
+        path.startsWith("data:")
+    ) {
+        return path;
+    }
+
+    return `${API_BASE}/${path}`;
+}
+
 const params = new URLSearchParams(window.location.search);
 const gameId = params.get("id");
 
@@ -314,7 +327,8 @@ function renderizarComentarios(reviews) {
                 <div class="comment-header">
                     <img
                         class="comment-avatar"
-                        src="${review.avatar_url || "https://i.pravatar.cc/80"}">
+                        src="${getAvatarUrl(review.avatar_url)}"
+                        onerror="this.src='https://i.pravatar.cc/80'">
 
                     <div class="comment-meta">
                         <strong>${review.user_name}</strong>
