@@ -1,4 +1,18 @@
 const API_BASE = "https://projeto-w9ao.onrender.com";
+
+function getAvatarUrl(path) {
+    if (!path) return "";
+
+    if (path.startsWith("http") || path.startsWith("data:")) {
+        return path;
+    }
+
+    if (path.startsWith("uploads/")) {
+        return `${API_BASE}/${path}`;
+    }
+
+    return path;
+}
 // =================== CANVAS DE PARTÍCULAS ===================
 const canvas = document.getElementById('particles');
 if (canvas) {
@@ -96,7 +110,7 @@ async function carregarDevsAPI() {
                 handle: `@${dev.username || "dev"}`,
                 bio: dev.studio_description || "Desenvolvedor da plataforma Velora.",
             
-                avatar_url: dev.avatar_url,
+                avatar_url: getAvatarUrl(dev.avatar_url),
             
                 avatarColor: ["#d4af37", "#f4d03f"],
             
@@ -187,7 +201,13 @@ function renderDevs() {
 
         card.innerHTML = `
             <div class="dev-card-top">
-                <div class="dev-avatar" style="background: linear-gradient(135deg, ${dev.avatarColor[0]}, ${dev.avatarColor[1]})">${dev.initial}</div>
+                <div class="dev-avatar" style="background: linear-gradient(135deg, ${dev.avatarColor[0]}, ${dev.avatarColor[1]})">
+                    ${
+                        dev.avatar_url
+                            ? `<img src="${dev.avatar_url}" alt="${dev.name}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" onerror="this.style.display='none'; this.parentElement.textContent='${dev.initial}'">`
+                            : dev.initial
+                    }
+                </div>
                 <div class="dev-info">
                     <div class="dev-name">${dev.name}</div>
                     <div class="dev-handle">${dev.handle}</div>
