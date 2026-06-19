@@ -1441,5 +1441,51 @@ def get_dev_profile_stats(user_id):
         cursor.close()
         conn.close()
 
+@app.route("/api/developers", methods=["GET"])
+def get_developers():
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Erro de conexão com o banco."}), 500
+
+    try:
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT
+                u.id,
+                u.name,
+                u.username,
+                d.dev_display_name,
+                d.display_name,
+                d.dev_type,
+                d.studio_description,
+                d.city,
+                d.state,
+                d.foundation_year,
+                d.review_status,
+                d.avatar_url,
+                COUNT(g.id) AS games_count
+            FROM users u
+            LEFT JOIN developer_profiles d ON d.user_id = u.id
+            LEFT JOIN games g ON g.developer_id = u.id
+            WHERE u.account_type = 'developer'
+            GROUP BY u.id
+            ORDER BY u.id DESC
+        """)
+
+        developers = cursor.fetchall()
+
+        return jsonify({
+            "total": len(developers),
+            "developers": developers
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Erro ao buscar desenvolvedores: {str(e)}"}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
 if __name__ == "__main__":
     app.run(debug=True)
