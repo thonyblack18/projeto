@@ -166,6 +166,11 @@ function renderDevs() {
         const card = document.createElement('div');
         card.className = 'dev-card';
         card.style.animationDelay = `${idx * 45}ms`;
+        card.style.cursor = "pointer";
+        
+        card.addEventListener("click", () => {
+            window.location.href = `PerfilDev.html?id=${dev.id}`;
+        });
 
         const badgeHTML = dev.badges.map(b => {
             if (b === 'verified') return `<span class="badge badge-verified"><i class="fas fa-check-circle"></i> Verificado</span>`;
