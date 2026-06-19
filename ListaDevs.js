@@ -131,7 +131,17 @@ async function carregarDevsAPI() {
                 }
             };
         });
-
+                const totalDevsEl = document.querySelector(".page-stat:nth-child(1) .page-stat-val");
+                const totalJogosEl = document.querySelector(".page-stat:nth-child(2) .page-stat-val");
+                
+                if (totalDevsEl) {
+                    totalDevsEl.textContent = data.total || DEVS.length;
+                }
+                
+                if (totalJogosEl) {
+                    const totalJogos = DEVS.reduce((soma, dev) => soma + Number(dev.games || 0), 0);
+                    totalJogosEl.textContent = totalJogos;
+                }
         renderDevs();
 
     } catch (err) {
