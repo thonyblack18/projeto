@@ -76,168 +76,45 @@ setupLogoFallback('footer-logo', 'footer-logo-placeholder');
 // BACKEND: GET /api/developers?page=1&limit=20&filter=all
 // Campos: id, name, handle, bio, avatar_color, badges[], games, followers, since
 
-const DEVS = [
-    {
-        id: 1,  name: 'Dev1',  handle: '@dev1',
-        bio: 'Desenvolvedor indie apaixonado por jogos de ação e aventura. Criando experiências únicas para jogadores brasileiros.',
-        avatarColor: ['#d4af37','#f4d03f'], initial: 'D1',
-        badges: ['verified','indie'],
-        games: 3, followers: 142, since: '2024',
-        social: { itch: true, github: true, twitter: false },
-    },
-    {
-        id: 2,  name: 'Dev2',  handle: '@dev2',
-        bio: 'Especialista em jogos de plataforma 2D. Fã de pixel art e trilhas sonoras chiptune.',
-        avatarColor: ['#7c3aed','#a78bfa'], initial: 'D2',
-        badges: ['indie'],
-        games: 1, followers: 58, since: '2025',
-        social: { itch: true, github: false, twitter: true },
-    },
-    {
-        id: 3,  name: 'Dev3',  handle: '@dev3',
-        bio: 'Game designer focado em narrativas interativas e RPGs brasileiros. Contando histórias do nosso povo.',
-        avatarColor: ['#0f766e','#2dd4bf'], initial: 'D3',
-        badges: ['verified','new'],
-        games: 2, followers: 203, since: '2025',
-        social: { itch: true, github: true, twitter: true },
-    },
-    {
-        id: 4,  name: 'Dev4',  handle: '@dev4',
-        bio: 'Programador full-stack que virou indie dev. Criando jogos de puzzle e lógica nas horas vagas.',
-        avatarColor: ['#b45309','#fbbf24'], initial: 'D4',
-        badges: ['indie'],
-        games: 4, followers: 317, since: '2024',
-        social: { itch: true, github: true, twitter: false },
-    },
-    {
-        id: 5,  name: 'Dev5',  handle: '@dev5',
-        bio: 'Artista e desenvolvedor. Minha especialidade é criar atmosferas visuais marcantes em jogos de horror.',
-        avatarColor: ['#9f1239','#f43f5e'], initial: 'D5',
-        badges: ['verified'],
-        games: 2, followers: 489, since: '2023',
-        social: { itch: true, github: false, twitter: true },
-    },
-    {
-        id: 6,  name: 'Dev6',  handle: '@dev6',
-        bio: 'Desenvolvendo jogos mobile com foco na acessibilidade. Todo brasileiro merece jogar.',
-        avatarColor: ['#155e75','#22d3ee'], initial: 'D6',
-        badges: ['new'],
-        games: 1, followers: 24, since: '2026',
-        social: { itch: true, github: true, twitter: false },
-    },
-    {
-        id: 7,  name: 'Dev7',  handle: '@dev7',
-        bio: 'Três anos criando jogos de estratégia e tower defense. Inspirado nos clássicos dos anos 2000.',
-        avatarColor: ['#064e3b','#34d399'], initial: 'D7',
-        badges: ['verified','indie'],
-        games: 5, followers: 621, since: '2023',
-        social: { itch: true, github: true, twitter: true },
-    },
-    {
-        id: 8,  name: 'Dev8',  handle: '@dev8',
-        bio: 'Compositor e dev. Faço a música e o código dos meus jogos. Ritmo e gameplay em harmonia.',
-        avatarColor: ['#4c1d95','#8b5cf6'], initial: 'D8',
-        badges: ['indie'],
-        games: 2, followers: 178, since: '2024',
-        social: { itch: false, github: true, twitter: true },
-    },
-    {
-        id: 9,  name: 'Dev9',  handle: '@dev9',
-        bio: 'Estudante de ciências da computação fazendo seu primeiro jogo. Aprendendo e criando ao mesmo tempo.',
-        avatarColor: ['#1e3a5f','#60a5fa'], initial: 'D9',
-        badges: ['new'],
-        games: 1, followers: 11, since: '2026',
-        social: { itch: true, github: true, twitter: false },
-    },
-    {
-        id: 10, name: 'Dev10', handle: '@dev10',
-        bio: 'Veterano da cena indie brasileira. Já lançou mais de meia dúzia de jogos e não vai parar.',
-        avatarColor: ['#92400e','#d97706'], initial: 'DX',
-        badges: ['verified','indie'],
-        games: 7, followers: 1204, since: '2022',
-        social: { itch: true, github: true, twitter: true },
-    },
-    {
-        id: 11, name: 'Dev11', handle: '@dev11',
-        bio: 'Apaixonado por roguelikes e dungeon crawlers. Cada run deve ser uma experiência nova.',
-        avatarColor: ['#1a1a2e','#e94560'], initial: 'D1',
-        badges: ['indie'],
-        games: 2, followers: 267, since: '2024',
-        social: { itch: true, github: false, twitter: true },
-    },
-    {
-        id: 12, name: 'Dev12', handle: '@dev12',
-        bio: 'Designer UI/UX que decidiu criar seus próprios jogos. Interface bonita é metade da experiência.',
-        avatarColor: ['#134e4a','#5eead4'], initial: 'D2',
-        badges: ['new','indie'],
-        games: 1, followers: 89, since: '2025',
-        social: { itch: true, github: true, twitter: false },
-    },
-    {
-        id: 13, name: 'Dev13', handle: '@dev13',
-        bio: 'Criador de jogos educativos com temática brasileira. Games que ensinam e divertem.',
-        avatarColor: ['#14532d','#86efac'], initial: 'D3',
-        badges: ['verified'],
-        games: 3, followers: 433, since: '2023',
-        social: { itch: true, github: false, twitter: true },
-    },
-    {
-        id: 14, name: 'Dev14', handle: '@dev14',
-        bio: 'Faz jogos de corrida e velocidade. Cada pixel conta quando você está na linha de chegada.',
-        avatarColor: ['#7f1d1d','#fca5a5'], initial: 'D4',
-        badges: ['indie'],
-        games: 2, followers: 154, since: '2024',
-        social: { itch: false, github: true, twitter: true },
-    },
-    {
-        id: 15, name: 'Dev15', handle: '@dev15',
-        bio: 'Dev que migrou do mobile para PC. Explorando mecânicas de física e simulação em jogos indie.',
-        avatarColor: ['#312e81','#818cf8'], initial: 'D5',
-        badges: ['new'],
-        games: 1, followers: 37, since: '2026',
-        social: { itch: true, github: true, twitter: false },
-    },
-    {
-        id: 16, name: 'Dev16', handle: '@dev16',
-        bio: 'Especialista em jogos de esportes brasileiros. Futebol, vôlei, capoeira — tudo em pixel art.',
-        avatarColor: ['#065f46','#6ee7b7'], initial: 'D6',
-        badges: ['verified','indie'],
-        games: 4, followers: 782, since: '2023',
-        social: { itch: true, github: true, twitter: true },
-    },
-    {
-        id: 17, name: 'Dev17', handle: '@dev17',
-        bio: 'Narrativa e lore são o coração dos meus jogos. Construindo universos ficcionais brasileiros.',
-        avatarColor: ['#4a044e','#e879f9'], initial: 'D7',
-        badges: ['indie'],
-        games: 2, followers: 341, since: '2024',
-        social: { itch: true, github: false, twitter: true },
-    },
-    {
-        id: 18, name: 'Dev18', handle: '@dev18',
-        bio: 'Hackathon enthusiast. Já criou 5 protótipos em game jams e está transformando um em produto.',
-        avatarColor: ['#1e3a5f','#38bdf8'], initial: 'D8',
-        badges: ['new'],
-        games: 1, followers: 62, since: '2025',
-        social: { itch: true, github: true, twitter: true },
-    },
-    {
-        id: 19, name: 'Dev19', handle: '@dev19',
-        bio: 'Focado em horror psicológico e suspense. Jogos que ficam na cabeça depois que você fecha o PC.',
-        avatarColor: ['#1c1917','#a8a29e'], initial: 'D9',
-        badges: ['verified'],
-        games: 3, followers: 918, since: '2023',
-        social: { itch: true, github: false, twitter: true },
-    },
-    {
-        id: 20, name: 'Dev20', handle: '@dev20',
-        bio: 'O mais novo da lista, mas não menos talentoso. Primeiro jogo em desenvolvimento — fique de olho!',
-        avatarColor: ['#713f12','#fde68a'], initial: 'D0',
-        badges: ['new'],
-        games: 0, followers: 8, since: '2026',
-        social: { itch: false, github: true, twitter: false },
-    },
-];
+let DEVS = [];
+
+async function carregarDevsAPI() {
+    try {
+        const res = await fetch(`${API_BASE}/api/developers`);
+        const data = await res.json();
+
+        DEVS = (data.developers || []).map(dev => {
+            const nome =
+                dev.dev_display_name ||
+                dev.display_name ||
+                dev.name ||
+                "Desenvolvedor";
+
+            return {
+                id: dev.id,
+                name: nome,
+                handle: `@${dev.username || "dev"}`,
+                bio: dev.studio_description || "Desenvolvedor da plataforma Velora.",
+                avatar_url: dev.avatar_url,
+                initial: nome.charAt(0).toUpperCase(),
+                badges: dev.review_status === "approved"
+                    ? ["verified", "indie"]
+                    : ["indie"],
+                games: dev.games_count || 0,
+                followers: 0,
+                since: dev.foundation_year || "2026",
+                social: { itch: false, github: false, twitter: false }
+            };
+        });
+
+        renderDevs();
+
+    } catch (err) {
+        console.error("Erro ao carregar devs:", err);
+        DEVS = [];
+        renderDevs();
+    }
+}
 
 // ===== ESTADO =====
 let currentFilter = 'all';
@@ -398,7 +275,7 @@ document.getElementById('filterTabs').addEventListener('click', e => {
 })();
 
 // ===== INIT =====
-renderDevs();
+carregarDevsAPI();
 console.log('👨‍💻 Lista de Devs — Velora carregada!');
 
 // =================== MENU MOBILE PADRÃO DANDARA ===================
