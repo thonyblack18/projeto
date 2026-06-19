@@ -95,15 +95,26 @@ async function carregarDevsAPI() {
                 name: nome,
                 handle: `@${dev.username || "dev"}`,
                 bio: dev.studio_description || "Desenvolvedor da plataforma Velora.",
+            
                 avatar_url: dev.avatar_url,
+            
+                avatarColor: ["#d4af37", "#f4d03f"],
+            
                 initial: nome.charAt(0).toUpperCase(),
+            
                 badges: dev.review_status === "approved"
                     ? ["verified", "indie"]
                     : ["indie"],
+            
                 games: dev.games_count || 0,
                 followers: 0,
                 since: dev.foundation_year || "2026",
-                social: { itch: false, github: false, twitter: false }
+            
+                social: {
+                    itch: false,
+                    github: false,
+                    twitter: false
+                }
             };
         });
 
