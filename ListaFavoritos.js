@@ -1,5 +1,21 @@
 const API_BASE = "https://projeto-w9ao.onrender.com";
 
+function getCoverUrl(path) {
+    if (!path) return "";
+
+    if (
+        path.startsWith("http") ||
+        path.startsWith("data:")
+    ) {
+        return path;
+    }
+
+    if (path.startsWith("uploads/")) {
+        return `${API_BASE}/${path}`;
+    }
+
+    return path;
+}
 // =================== ESTADO ===================
 let favoritosIds = JSON.parse(localStorage.getItem("velora_favoritos_ids") || "[]");
 let jogosAPI = [];
@@ -28,7 +44,7 @@ async function carregarJogosAPI() {
             status: game.status === "released" || game.status === "published"
                 ? "lancado"
                 : "desenvolvimento",
-            logo: game.cover_url ? `${API_BASE}/${game.cover_url}` : "",
+            logo: getCoverUrl(game.cover_url),
             rota: `Game.html?id=${game.id}`,
             source: "api"
         }));
