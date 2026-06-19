@@ -176,12 +176,20 @@ function fillProfileFields(profile) {
 
   const emailValue = profile.email || currentUser?.email || "";
   const bioValue = profile.bio || profile.description || profile.descricao || profile.studio_description || "";
-  const avatarValue =
-    profile.avatar ||
-    profile.avatar_url ||
-    profile.foto_perfil ||
-    getVeloraUser().profile_photo ||
-    "";
+  let avatarValue =
+  profile.avatar ||
+  profile.avatar_url ||
+  profile.foto_perfil ||
+  getVeloraUser().profile_photo ||
+  "";
+
+if (
+  avatarValue &&
+  !avatarValue.startsWith("http") &&
+  !avatarValue.startsWith("data:")
+) {
+  avatarValue = `${API_BASE}/${avatarValue}`;
+}
 
   if (displayName) displayName.value = nameValue;
   if (username) username.value = usernameValue;
@@ -355,7 +363,7 @@ async function savePreferences() {
   try {
     const userId = currentUser.id || currentUser.user_id;
 
-    const response = await fetch(`${API_BASE}/profile/preferences/${userId}`, {
+    const response = await fetch(`${API_BASE}/api/profile/preferences/${userId}`,{
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
