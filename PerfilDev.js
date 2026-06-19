@@ -1,6 +1,19 @@
 // =================== CONFIGURAÇÃO DA API ===================
 const API_BASE = "https://projeto-w9ao.onrender.com";
 
+function getGameImageUrl(path) {
+    if (!path) return "logo-velora.png";
+
+    if (path.startsWith("http") || path.startsWith("data:")) {
+        return path;
+    }
+
+    if (path.startsWith("uploads/")) {
+        return `${API_BASE}/${path}`;
+    }
+
+    return path;
+}
 // =================== CANVAS DE PARTÍCULAS ===================
 const canvas = document.getElementById("particles");
 const ctx = canvas?.getContext("2d");
@@ -242,6 +255,53 @@ function setupEditButton() {
     });
 }
 
+async function carregarJogosPublicados(userId) {
+    const container = document.getElementById("published-games");
+    if (!container) return;
+
+    try {
+        const data = await fetchJson(`${API_BASE}/api/games`);
+
+        const jogosDoDev = (data.games || []).filter(game =>
+            Number(game.developer_id) === Number(userId)
+        );
+
+        if (!jogosDoDev.length) {
+            container.innerHTML = `
+                <div class="empty-card">
+                    <p>Nenhum jogo publicado ainda.</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = jogosDoDev.map(game => {
+            const capa = game.cover_url
+                ? getGameImageUrl(game.cover_url)
+                : "logo-velora.png";
+
+            return `
+                <div class="portfolio-card" onclick="window.location.href='Game.html?id=${game.id}'">
+                    <div class="portfolio-cover">
+                        <img src="${capa}" alt="${game.title}">
+                    </div>
+
+                    <div class="portfolio-info">
+                        <h3>${game.title}</h3>
+                        <p>${game.genre || "Indie"}</p>
+                        <span class="portfolio-rating">
+                            <i class="fas fa-star"></i> ${game.rating || "0.0"}
+                        </span>
+                    </div>
+                </div>
+            `;
+        }).join("");
+
+    } catch (err) {
+        console.error("Erro ao carregar jogos publicados:", err);
+    }
+}
+
 // =================== CARREGAR PERFIL DEV ===================
 async function carregarPerfilDev() {
     const user = getStoredUser();
@@ -327,6 +387,7 @@ async function carregarPerfilDev() {
 
         setTechTags();
         await setStats(profile, user.id);
+        await carregarJogosPublicados(user.id);
         animateCounters();
 
     } catch (err) {
