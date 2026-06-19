@@ -311,8 +311,11 @@ async function carregarPerfilDev() {
         return;
     }
 
+    const params = new URLSearchParams(window.location.search);
+    const devId = params.get("id") || user.id;
+
     try {
-        const data = await fetchJson(`${API_BASE}/api/profile/dev/${user.id}`);
+        const data = await fetchJson(`${API_BASE}/api/profile/dev/${devId}`);
         const profile = data.profile;
 
         // =================== FOTO DO PERFIL ===================
@@ -386,8 +389,8 @@ async function carregarPerfilDev() {
         );
 
         setTechTags();
-        await setStats(profile, user.id);
-        await carregarJogosPublicados(user.id);
+        await setStats(profile, devId);
+        await carregarJogosPublicados(devId);
         animateCounters();
 
     } catch (err) {
