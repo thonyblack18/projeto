@@ -10,7 +10,7 @@ function getImageUrl(path) {
         return path;
     }
 
-    return `${API_BASE}/${path}`;
+    return `${API_BASE}/uploads/${path}`;
 }
 
 function getAvatarUrl(path) {
