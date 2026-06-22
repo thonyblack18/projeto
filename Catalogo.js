@@ -9,7 +9,7 @@ function getImageUrl(path) {
         return path;
     }
 
-    return `${API_BASE}/uploads/${path}`;
+    return `${API_BASE}/${path}`;
 }
 
 const gamesGrid = document.querySelector(".games-grid");
