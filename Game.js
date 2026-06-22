@@ -2,8 +2,15 @@ const API_BASE = "https://projeto-w9ao.onrender.com";
 
 function getImageUrl(path) {
     if (!path) return "logo-velora.png";
-    if (path.startsWith("http")) return path;
-    return path;
+
+    if (
+        path.startsWith("http") ||
+        path.startsWith("data:")
+    ) {
+        return path;
+    }
+
+    return `${API_BASE}/${path}`;
 }
 
 function getAvatarUrl(path) {
