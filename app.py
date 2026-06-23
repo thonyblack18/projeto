@@ -1316,26 +1316,41 @@ Equipe Velora
         print("3 - email preparado")
 
         try:
-
-            mail.send(msg)
+            response = requests.post(
+                "https://api.resend.com/emails",
+                headers={
+                    "Authorization": f"Bearer {os.getenv('RESEND_API_KEY')}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "from": "Velora <onboarding@resend.dev>",
+                    "to": [user["email"]],
+                    "subject": "Redefinição de senha - Velora",
+                    "html": f"""
+                        <h2>Redefinição de senha - Velora</h2>
+                        <p>Olá, {user["name"]}!</p>
+                        <p>Recebemos uma solicitação para redefinir sua senha.</p>
+                        <p><strong>Seu código de recuperação:</strong></p>
+                        <p>{token}</p>
+                        <p>Ou clique no link abaixo:</p>
+                        <a href="{reset_link}">{reset_link}</a>
+                        <p>Este link expira em 30 minutos.</p>
+                    """
+                }
+            )
+        
+            print("RESEND STATUS:", response.status_code)
+            print("RESEND RESPONSE:", response.text)
+        
+            if response.status_code >= 400:
+                raise Exception(response.text)
         
             print("4 - email enviado")
         
         except Exception as mail_error:
-        
             print("ERRO AO ENVIAR EMAIL:", repr(mail_error))
-        
             raise
-
-        return jsonify({
-            "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
-        }), 200
-
-    except Exception as e:
-        conn.rollback()
-        print("ERRO FORGOT PASSWORD:", str(e))
-        return jsonify({"error": f"Erro ao solicitar recuperação: {str(e)}"}), 500
-
+    
     finally:
         if cursor:
             cursor.close()
