@@ -1312,9 +1312,17 @@ Equipe Velora
 
         print("3 - email preparado")
 
-        mail.send(msg)
+        try:
 
-        print("4 - email enviado")
+            mail.send(msg)
+        
+            print("4 - email enviado")
+        
+        except Exception as mail_error:
+        
+            print("ERRO AO ENVIAR EMAIL:", repr(mail_error))
+        
+            raise
 
         return jsonify({
             "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
