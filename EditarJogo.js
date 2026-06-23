@@ -488,32 +488,52 @@ if (form) {
         const params = new URLSearchParams(window.location.search);
         const gameId = params.get("id");
 
-        fetch(`${API_BASE}/api/games/${gameId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                title: data.title,
-                description: data.description,
-                genre: data.genres.join(", "),
-                platform: data.platforms.join(", "),
-                status: data.status,
-                trailer_url: data.trailerUrl,
-                release_date: normalizarDataParaMySQL(data.releaseDate),
-                age_rating: document.getElementById("age-rating")?.value || "",
-                player_mode: data.players,
-                tags: JSON.stringify(data.tags)
-            })
-        })
-        .then(res => res.json())
-        .then(result => {
-            showToast("Alterações do jogo salvas com sucesso!");
+        const formData = new FormData();
 
-            setTimeout(() => {
-                window.location.href = `Game.html?id=${gameId}`;
-            }, 1000);
-        })
+formData.append("title", data.title);
+formData.append("description", data.description);
+formData.append("genre", data.genres.join(", "));
+formData.append("platform", data.platforms.join(", "));
+formData.append("status", data.status);
+formData.append("trailer_url", data.trailerUrl);
+formData.append("release_date", normalizarDataParaMySQL(data.releaseDate));
+formData.append("age_rating", document.getElementById("age-rating")?.value || "");
+formData.append("player_mode", data.players);
+formData.append("tags", JSON.stringify(data.tags));
+
+const coverFile = document.getElementById("cover-input")?.files?.[0];
+
+if (coverFile) {
+    formData.append("image", coverFile);
+}
+
+const screenshotFiles = document.getElementById("screenshots-input")?.files || [];
+
+Array.from(screenshotFiles).forEach(file => {
+    formData.append("screenshots", file);
+});
+
+fetch(`${API_BASE}/api/games/${gameId}`, {
+    method: "PUT",
+    body: formData
+})
+.then(res => res.json())
+.then(result => {
+    if (result.error) {
+        showToast(result.error, "error");
+        return;
+    }
+
+    showToast("Alterações do jogo salvas com sucesso!");
+
+    setTimeout(() => {
+        window.location.href = `Game.html?id=${gameId}`;
+    }, 1000);
+})
+.catch(err => {
+    console.error(err);
+    showToast("Erro ao salvar alterações.", "error");
+});
         .catch(err => {
             console.error(err);
             showToast("Erro ao salvar alterações.", "error");
