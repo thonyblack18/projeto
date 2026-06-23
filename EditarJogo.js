@@ -534,12 +534,8 @@ fetch(`${API_BASE}/api/games/${gameId}`, {
     console.error(err);
     showToast("Erro ao salvar alterações.", "error");
 });
-        .catch(err => {
-            console.error(err);
-            showToast("Erro ao salvar alterações.", "error");
-        });
-            });
-        }
+    });
+}
 
 /* =================== INICIAR =================== */
 function carregarJogoDoBackend() {
