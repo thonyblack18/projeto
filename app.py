@@ -974,28 +974,35 @@ def update_game(game_id):
     cursor = None
 
     try:
-        data = request.get_json()
-
         conn = get_connection()
         cursor = conn.cursor()
 
+        if request.content_type and request.content_type.startswith("multipart/form-data"):
+            data = request.form
+            image = request.files.get("image")
+            screenshots = request.files.getlist("screenshots")
+        else:
+            data = request.get_json()
+            image = None
+            screenshots = []
+
         description = data.get("description") or ""
 
-        cursor.execute("""
-            UPDATE games
-            SET title=%s,
-                description=%s,
-                short_description=%s,
-                genre=%s,
-                platform=%s,
-                status=%s,
-                trailer_url=%s,
-                release_date=%s,
-                age_rating=%s,
-                player_mode=%s,
-                tags=%s
-            WHERE id=%s
-        """, (
+        campos = """
+            title=%s,
+            description=%s,
+            short_description=%s,
+            genre=%s,
+            platform=%s,
+            status=%s,
+            trailer_url=%s,
+            release_date=%s,
+            age_rating=%s,
+            player_mode=%s,
+            tags=%s
+        """
+
+        valores = [
             data.get("title"),
             description,
             description[:120],
@@ -1006,9 +1013,33 @@ def update_game(game_id):
             data.get("release_date"),
             data.get("age_rating"),
             data.get("player_mode"),
-            data.get("tags"),
-            game_id
-        ))
+            data.get("tags")
+        ]
+
+        if image and image.filename:
+            image_url = upload_to_supabase(image, "games/covers")
+            campos += ", cover_url=%s, banner_url=%s"
+            valores.extend([image_url, image_url])
+
+        if screenshots:
+            screenshots_paths = []
+
+            for screenshot in screenshots:
+                if screenshot and screenshot.filename:
+                    screenshot_url = upload_to_supabase(screenshot, "games/screenshots")
+                    screenshots_paths.append(screenshot_url)
+
+            if screenshots_paths:
+                campos += ", screenshots=%s"
+                valores.append(json.dumps(screenshots_paths))
+
+        valores.append(game_id)
+
+        cursor.execute(f"""
+            UPDATE games
+            SET {campos}
+            WHERE id=%s
+        """, valores)
 
         conn.commit()
         return jsonify({"message": "Jogo atualizado com sucesso."}), 200
@@ -1017,7 +1048,7 @@ def update_game(game_id):
         if conn:
             conn.rollback()
         print("ERRO AO ATUALIZAR JOGO:", e)
-        return jsonify({"message": str(e)}), 500
+        return jsonify({"error": str(e)}), 500
 
     finally:
         if cursor:
