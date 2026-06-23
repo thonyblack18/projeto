@@ -324,33 +324,19 @@ async function carregarPerfilDev() {
 
         let avatarUrl = profile.avatar_url || "";
 
-        if (avatarUrl && !avatarUrl.startsWith("http")) {
-            avatarUrl = `${API_BASE}/${avatarUrl}`;
-        }
-
-        if (avatarUrl && avatarImg && avatarInitial) {
-
-            avatarImg.src = avatarUrl;
-            avatarImg.style.display = "block";
-            avatarInitial.style.display = "none";
-
-            const userLocal = getStoredUser() || {};
-            userLocal.profile_photo = avatarUrl;
-            localStorage.setItem(
-                "velora_user",
-                JSON.stringify(userLocal)
-            );
-
-        } else {
-
-            const localUser = getStoredUser();
-
-            if (localUser?.profile_photo && avatarImg && avatarInitial) {
-                avatarImg.src = localUser.profile_photo;
+            if (avatarUrl && !avatarUrl.startsWith("http")) {
+                avatarUrl = `${API_BASE}/${avatarUrl}`;
+            }
+            
+            if (avatarUrl && avatarImg && avatarInitial) {
+                avatarImg.src = avatarUrl;
                 avatarImg.style.display = "block";
                 avatarInitial.style.display = "none";
-            }
-        }
+            } else if (avatarImg && avatarInitial) {
+                avatarImg.src = "";
+                avatarImg.style.display = "none";
+                avatarInitial.style.display = "flex";
+            } 
 
         setText(
             "studio-name",
@@ -440,7 +426,9 @@ async function uploadAvatar() {
         return;
     }
 
-    const avatarUrl = `${API_BASE}/${data.avatar_url}`;
+    const avatarUrl = data.avatar_url.startsWith("http")
+    ? data.avatar_url
+    : `${API_BASE}/${data.avatar_url}`;
 
     const updatedUser = {
         ...user,
