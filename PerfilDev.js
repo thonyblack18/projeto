@@ -494,7 +494,17 @@ function carregarAvatarHeader() {
 function configurarDropdownUsuario() {
     const userProfile = document.getElementById("userProfile");
     const userDropdown = document.getElementById("userDropdown");
-
+    const loggedUser = getStoredUser();
+    const dropAdicionarJogo = document.getElementById("dropAdicionarJogo");
+    const editDevBtn = document.getElementById("edit-dev-btn");
+    
+    if (dropAdicionarJogo && loggedUser?.account_type !== "developer") {
+        dropAdicionarJogo.style.display = "none";
+    }
+    
+    if (editDevBtn && loggedUser?.account_type !== "developer") {
+        editDevBtn.style.display = "none";
+    }
     if (!userProfile || !userDropdown) return;
 
     userProfile.addEventListener("click", (e) => {
