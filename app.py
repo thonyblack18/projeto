@@ -60,12 +60,16 @@ CORS(app, resources={
 
 bcrypt = Bcrypt(app)
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'anthonysantos180108@gmail.com'
-app.config['MAIL_PASSWORD'] = 'urqh lwfs romg ngsa'
-app.config['MAIL_DEFAULT_SENDER'] = ('Velora', 'anthonysantos180108@gmail.com')
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True').lower() == 'true'
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = (
+    'Velora',
+    os.getenv('MAIL_DEFAULT_SENDER', os.getenv('MAIL_USERNAME'))
+)
 
 mail = Mail(app)
 
