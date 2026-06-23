@@ -138,6 +138,10 @@ function configurarFavorito() {
 
 function configurarNavegacao() {
     const catalogoCorreto = "Catalogo.html";
+    document.querySelector(".logo")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = catalogoCorreto;
+});
 
     document.getElementById("linkInicio")?.addEventListener("click", (e) => {
         e.preventDefault();
@@ -184,10 +188,38 @@ function configurarDropdownUsuario() {
     userProfile.addEventListener("click", (e) => {
         e.stopPropagation();
         userDropdown.classList.toggle("active");
+        userProfile.classList.toggle("active");
+    });
+
+    userDropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
     });
 
     document.addEventListener("click", () => {
         userDropdown.classList.remove("active");
+        userProfile.classList.remove("active");
+    });
+
+    document.getElementById("dropMeuPerfil")?.addEventListener("click", () => {
+        const user = JSON.parse(localStorage.getItem("velora_user") || "null");
+
+        if (!user) {
+            window.location.href = "LoginCadastro.html";
+        } else if (user.account_type === "developer") {
+            window.location.href = "PerfilDev.html";
+        } else {
+            window.location.href = "PerfilUsuario.html";
+        }
+    });
+
+    document.getElementById("dropSuporte")?.addEventListener("click", () => {
+        window.location.href = "SuporteUsuario.html";
+    });
+
+    document.getElementById("dropSair")?.addEventListener("click", () => {
+        localStorage.removeItem("velora_user");
+        localStorage.removeItem("velora_favoritos_ids");
+        window.location.href = "LoginCadastro.html";
     });
 }
 
