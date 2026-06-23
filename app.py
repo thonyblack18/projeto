@@ -1373,14 +1373,7 @@ def upload_avatar():
     if not avatar:
         return jsonify({"error": "Nenhuma imagem enviada."}), 400
 
-    os.makedirs("uploads/avatars", exist_ok=True)
-
-    extensao = avatar.filename.split(".")[-1].lower()
-    nome_arquivo = f"avatar_{user_id}_{int(datetime.now().timestamp())}.{extensao}"
-
-    caminho = f"uploads/avatars/{nome_arquivo}"
-
-    avatar.save(caminho)
+    caminho = upload_to_supabase(avatar, "avatars")
 
     conn = get_connection()
 
