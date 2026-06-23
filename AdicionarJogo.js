@@ -478,6 +478,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainNav = document.querySelector(".main-nav");
     const userProfile = document.getElementById("userProfile");
     const userDropdown = document.getElementById("userDropdown");
+    const user = JSON.parse(localStorage.getItem("velora_user"));
+
+    const avatarImg = document.getElementById("headerUserAvatar");
+    
+    const initialEl = document.getElementById("userAvatarInitial");
+    
+    if (user) {
+    
+        const avatar = user.profile_photo || user.avatar_url || "";
+    
+        if (avatarImg && avatar) {
+    
+            avatarImg.src = avatar;
+    
+            avatarImg.style.display = "block";
+    
+        }
+    
+        if (initialEl) {
+    
+            initialEl.textContent = (user.name || user.username || "U").charAt(0).toUpperCase();
+    
+            if (avatar) {
+    
+                initialEl.style.display = "none";
+    
+            }
+    
+        }
+
+    }
 
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener("click", (e) => {
