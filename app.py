@@ -10,9 +10,37 @@ import secrets
 from datetime import datetime, timedelta
 from flask_mail import Mail, Message
 import uuid
-
+import requests
 
 load_dotenv()
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET", "velora-images")
+
+def upload_to_supabase(file, folder):
+    if not file or not file.filename:
+        return ""
+
+    filename = secure_filename(file.filename)
+    ext = os.path.splitext(filename)[1]
+    unique_filename = f"{uuid.uuid4().hex}{ext}"
+
+    path = f"{folder}/{unique_filename}"
+
+    url = f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{path}"
+
+    headers = {
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "apikey": SUPABASE_KEY,
+        "Content-Type": file.content_type
+    }
+
+    response = requests.post(url, headers=headers, data=file.read())
+
+    if response.status_code not in [200, 201]:
+        raise Exception(f"Erro Supabase: {response.text}")
+
+    return f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/{path}"
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "velora_secret")
@@ -798,25 +826,13 @@ def add_game():
 
     image_path = ""
     screenshots_paths = []
-
-    os.makedirs("uploads", exist_ok=True)
-
-    if image:
-        filename = secure_filename(image.filename)
-        ext = os.path.splitext(filename)[1]
-        unique_filename = f"{uuid.uuid4().hex}{ext}"
     
-        image_path = f"uploads/{unique_filename}"
-        image.save(image_path)
-
+    if image:
+        image_path = upload_to_supabase(image, "games/covers")
+    
     for screenshot in screenshots:
         if screenshot and screenshot.filename:
-            filename = secure_filename(screenshot.filename)
-            ext = os.path.splitext(filename)[1]
-            unique_filename = f"{uuid.uuid4().hex}{ext}"
-            
-            screenshot_path = f"uploads/{unique_filename}"
-            screenshot.save(screenshot_path)
+            screenshot_path = upload_to_supabase(screenshot, "games/screenshots")
             screenshots_paths.append(screenshot_path)
 
     conn = get_connection()
