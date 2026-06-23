@@ -72,6 +72,9 @@ app.config['MAIL_DEFAULT_SENDER'] = (
 )
 
 mail = Mail(app)
+print("MAIL_USERNAME:", app.config["MAIL_USERNAME"])
+print("MAIL_SERVER:", app.config["MAIL_SERVER"])
+print("MAIL_PORT:", app.config["MAIL_PORT"])
 
 def row_to_user(user_row):
 
