@@ -1347,6 +1347,10 @@ Equipe Velora
         
             print("4 - email enviado")
         
+                return jsonify({
+            "message": "Se este e-mail estiver cadastrado, você receberá um link de recuperação."
+        }), 200
+        
         except Exception as mail_error:
             print("ERRO AO ENVIAR EMAIL:", repr(mail_error))
             raise
