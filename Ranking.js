@@ -5,7 +5,7 @@
 
 const GAMES = [
     {
-        id: 1,
+        id: 20,
         nome: 'Dandara: Trials of Fear Edition',
         genero: 'Metroidvania',
         img: './Logos/Dandara.jpg',
@@ -13,7 +13,7 @@ const GAMES = [
         avaliacao: { semana: 4.7, mes: 4.8, ano: 4.9, todos: 4.9 }
     },
     {
-        id: 2,
+        id: 5,
         nome: 'Mullet Madjack',
         genero: 'Ação',
         img: './Logos/Mullet Madjack Logo.jpg',
@@ -21,7 +21,7 @@ const GAMES = [
         avaliacao: { semana: 4.9, mes: 4.8, ano: 4.7, todos: 4.7 }
     },
     {
-        id: 3,
+        id: 11,
         nome: 'Horizon Chase Turbo',
         genero: 'Corrida',
         img: './Logos/Horizon Chase Turbo Logo.jpg',
@@ -29,7 +29,7 @@ const GAMES = [
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.5, todos: 4.5 }
     },
     {
-        id: 4,
+        id: 2,
         nome: 'Sina',
         genero: 'Aventura',
         img: './Logos/Sina Logo.jpeg',
@@ -37,7 +37,7 @@ const GAMES = [
         avaliacao: { semana: 4.8, mes: 4.9, ano: 4.8, todos: 4.8 }
     },
     {
-        id: 5,
+        id: 8,
         nome: 'Mark of the Deep',
         genero: 'Aventura',
         img: './Logos/Mark of the Deep Logo.jpg',
@@ -45,7 +45,7 @@ const GAMES = [
         avaliacao: { semana: 4.9, mes: 4.9, ano: 4.8, todos: 4.9 }
     },
     {
-        id: 6,
+        id: 19,
         nome: 'Chroma Squad',
         genero: 'Estratégia',
         img: './Logos/Chroma Squad Logo.jpg',
@@ -53,7 +53,7 @@ const GAMES = [
         avaliacao: { semana: 4.5, mes: 4.6, ano: 4.7, todos: 4.6 }
     },
     {
-        id: 7,
+        id: 12,
         nome: 'Gaucho and the Grassland',
         genero: 'Casual',
         img: './Logos/Gaucho Logo.jpg',
@@ -61,7 +61,7 @@ const GAMES = [
         avaliacao: { semana: 4.3, mes: 4.5, ano: 4.4, todos: 4.4 }
     },
     {
-        id: 8,
+        id: 10,
         nome: 'Kambulin',
         genero: 'Aventura',
         img: './Logos/Kambulin Logo.jpeg',
@@ -69,7 +69,7 @@ const GAMES = [
         avaliacao: { semana: 4.7, mes: 4.8, ano: 4.7, todos: 4.7 }
     },
     {
-        id: 9,
+        id: 16,
         nome: 'AILA',
         genero: 'Terror',
         img: './Logos/AILA Logo.jpeg',
@@ -77,7 +77,7 @@ const GAMES = [
         avaliacao: { semana: 4.6, mes: 4.5, ano: 4.5, todos: 4.5 }
     },
     {
-        id: 10,
+        id: 1,
         nome: 'Tupi: The Legend of Arariboia',
         genero: 'Roguelite',
         img: './Logos/Tupi Logo.jpg',
@@ -85,7 +85,7 @@ const GAMES = [
         avaliacao: { semana: 4.6, mes: 4.7, ano: 4.6, todos: 4.6 }
     },
     {
-        id: 11,
+        id: 6,
         nome: 'Momodora: Reverie Under The Moonlight',
         genero: 'Metroidvania',
         img: './Logos/Momodora.jpg',
@@ -93,7 +93,7 @@ const GAMES = [
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.6, todos: 4.5 }
     },
     {
-        id: 12,
+        id: 9,
         nome: 'Knights of Pen and Paper 2',
         genero: 'RPG',
         img: './Logos/Knights Logo.jpeg',
@@ -101,7 +101,7 @@ const GAMES = [
         avaliacao: { semana: 4.3, mes: 4.4, ano: 4.4, todos: 4.4 }
     },
     {
-        id: 13,
+        id: 18,
         nome: '9 Kings',
         genero: 'Estratégia',
         img: './Logos/9kings Logo.jpg',
@@ -109,7 +109,7 @@ const GAMES = [
         avaliacao: { semana: 4.5, mes: 4.4, ano: 4.3, todos: 4.3 }
     },
     {
-        id: 14,
+        id: 4,
         nome: 'No Heroes Here',
         genero: 'Estratégia',
         img: './Logos/No Heroes Here.jpg',
@@ -125,7 +125,7 @@ const GAMES = [
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.5, todos: 4.5 }
     },
     {
-        id: 16,
+        id: 17,
         nome: 'Dandy Ace',
         genero: 'Roguelite',
         img: './Logos/Dandy Ace Logo.jpeg',
@@ -133,7 +133,7 @@ const GAMES = [
         avaliacao: { semana: 4.5, mes: 4.4, ano: 4.4, todos: 4.4 }
     },
     {
-        id: 17,
+        id: 14,
         nome: '171',
         genero: 'Ação',
         img: './Logos/171 Logo.jpg',
@@ -141,7 +141,7 @@ const GAMES = [
         avaliacao: { semana: 4.2, mes: 4.3, ano: 4.3, todos: 4.3 }
     },
     {
-        id: 18,
+        id: 7,
         nome: 'Mombo Combo Legacy',
         genero: 'Aventura',
         img: './Logos/Mombo Logo.jpeg',
@@ -149,7 +149,7 @@ const GAMES = [
         avaliacao: { semana: 4.1, mes: 4.2, ano: 4.2, todos: 4.2 }
     },
     {
-        id: 19,
+        id: 3,
         nome: 'Pipistrello and the Cursed Yoyo',
         genero: 'Retro',
         img: './Logos/Pipi Logo.jpg',
@@ -157,7 +157,7 @@ const GAMES = [
         avaliacao: { semana: 4.8, mes: 4.6, ano: 4.5, todos: 4.4 }
     },
     {
-        id: 30,
+        id: 13,
         nome: 'Dragon Khan',
         genero: 'RPG de Ação',
         img: './Logos/Dragon Khan Logo.jpg',
