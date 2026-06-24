@@ -65,7 +65,7 @@
       <span>Configurações</span>
     </div>
     <h1>Configurações</h1>
-    <p>Gerencie suas informações pessoais, segurança e preferências.</p>
+    <p>Gerencie suas informações pessoais e preferências.</p>
   </div>
 
   <!-- LAYOUT PRINCIPAL -->
@@ -77,10 +77,6 @@
         <li><a href="#perfil" class="active"><i class="fas fa-user"></i> Perfil</a></li>
         <li><a href="#senha"><i class="fas fa-lock"></i> Senha</a></li>
         <li><a href="#preferencias"><i class="fas fa-gamepad"></i> Preferências</a></li>
-        <div class="sidebar-divider"></div>
-        <li><a href="#seguranca"><i class="fas fa-shield-halved"></i> Segurança</a></li>
-        <li><a href="#privacidade"><i class="fas fa-eye-slash"></i> Privacidade</a></li>
-        <li><a href="#pagamento"><i class="fas fa-credit-card"></i> Pagamento</a></li>
         <div class="sidebar-divider"></div>
         <li><a href="#conta" class="danger"><i class="fas fa-triangle-exclamation"></i> Conta</a></li>
       </ul>
@@ -258,117 +254,6 @@
           <span class="footer-meta" id="genreCount">4 gêneros selecionados</span>
           <div class="panel-footer-right">
             <button class="btn-primary" id="btnSalvarPreferencias">Salvar preferências</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== SEGURANÇA ===== -->
-      <div class="settings-panel" id="seguranca">
-        <div class="panel-header">
-          <div class="panel-header-icon"><i class="fas fa-shield-halved"></i></div>
-          <div>
-            <h2>Segurança</h2>
-            <p>Autenticação e acesso à conta.</p>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>Autenticação de dois fatores (2FA)</h3>
-              <p>Adicione uma camada extra de proteção via aplicativo autenticador ou SMS.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" checked />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>Alertas de login</h3>
-              <p>Receba um e-mail quando um novo dispositivo acessar sua conta.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" checked />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>Sessões simultâneas</h3>
-              <p>Permita que sua conta fique conectada em múltiplos dispositivos ao mesmo tempo.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-        </div>
-        <div class="panel-footer">
-          <span></span>
-          <div class="panel-footer-right">
-            <button class="btn-secondary" id="btnEncerrarSessoes">Encerrar todas as sessões</button>
-            <button class="btn-primary" id="btnSalvarSeguranca">Salvar</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== PRIVACIDADE ===== -->
-      <div class="settings-panel" id="privacidade">
-        <div class="panel-header">
-          <div class="panel-header-icon"><i class="fas fa-eye-slash"></i></div>
-          <div>
-            <h2>Privacidade e Dados</h2>
-            <p>Controle o que é visível e como seus dados são usados.</p>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>Perfil público</h3>
-              <p>Seu perfil, avaliações e jogos apoiados ficam visíveis para todos os usuários.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" checked />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>Mostrar jogos apoiados</h3>
-              <p>Exibir a seção de jogos que você apoiou financeiramente em seu perfil público.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" checked />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>Cookies de análise</h3>
-              <p>Permite que a Velora use dados de navegação para melhorar recomendações e a plataforma.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="toggle-row">
-            <div class="toggle-info">
-              <h3>E-mails de novidades</h3>
-              <p>Receba atualizações sobre novos jogos, destaques e eventos da plataforma.</p>
-            </div>
-            <label class="toggle">
-              <input type="checkbox" checked />
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-        </div>
-        <div class="panel-footer">
-          <button class="btn-secondary" id="btnExportarDados">
-            <i class="fas fa-download"></i> Exportar meus dados
-          </button>
-          <div class="panel-footer-right">
-            <button class="btn-primary" id="btnSalvarPrivacidade">Salvar</button>
           </div>
         </div>
       </div>
