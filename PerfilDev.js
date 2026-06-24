@@ -141,8 +141,16 @@ function setStudioType(devType) {
 }
 
 function setLocation(city, state) {
+    const el = document.getElementById("studio-location");
+    if (!el) return;
+
     const parts = [city, state].filter(Boolean);
-    setText("studio-location", parts.length ? parts.join(", ") : "Local não informado");
+
+    if (parts.length) {
+        el.textContent = parts.join(", ");
+    } else {
+        el.style.display = "none";
+    }
 }
 
 function setTagline(devType, foundationYear) {
@@ -530,6 +538,22 @@ dropSair?.addEventListener("click", () => {
     window.location.href = "LoginCadastro.html";
 });
 }
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
 
 // =================== INICIAR ===================
 setupEditButton();
