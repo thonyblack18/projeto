@@ -289,16 +289,14 @@ body {
     z-index: 10;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 40px 60px;
+    padding: 0 40px 40px;
     display: flex;
     flex-direction: column;
-    gap: 48px;
-
-    min-height: 400px;
+    gap: 24px;
 }
 
 .section {
-    min-height: 200px;
+    min-height: auto;
 }
 
 /* =================== SECTIONS =================== */
