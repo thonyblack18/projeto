@@ -5,7 +5,7 @@
 
 const GAMES = [
     {
-        id: 20,
+        id: 21,
         nome: 'Dandara: Trials of Fear Edition',
         genero: 'Metroidvania',
         img: './Logos/Dandara.jpg',
@@ -21,7 +21,7 @@ const GAMES = [
         avaliacao: { semana: 4.9, mes: 4.8, ano: 4.7, todos: 4.7 }
     },
     {
-        id: 11,
+        id: 12,
         nome: 'Horizon Chase Turbo',
         genero: 'Corrida',
         img: './Logos/Horizon Chase Turbo Logo.jpg',
@@ -45,7 +45,7 @@ const GAMES = [
         avaliacao: { semana: 4.9, mes: 4.9, ano: 4.8, todos: 4.9 }
     },
     {
-        id: 19,
+        id: 20,
         nome: 'Chroma Squad',
         genero: 'Estratégia',
         img: './Logos/Chroma Squad Logo.jpg',
@@ -53,7 +53,7 @@ const GAMES = [
         avaliacao: { semana: 4.5, mes: 4.6, ano: 4.7, todos: 4.6 }
     },
     {
-        id: 12,
+        id: 13,
         nome: 'Gaucho and the Grassland',
         genero: 'Casual',
         img: './Logos/Gaucho Logo.jpg',
@@ -61,7 +61,7 @@ const GAMES = [
         avaliacao: { semana: 4.3, mes: 4.5, ano: 4.4, todos: 4.4 }
     },
     {
-        id: 10,
+        id: 11,
         nome: 'Kambulin',
         genero: 'Aventura',
         img: './Logos/Kambulin Logo.jpeg',
@@ -69,7 +69,7 @@ const GAMES = [
         avaliacao: { semana: 4.7, mes: 4.8, ano: 4.7, todos: 4.7 }
     },
     {
-        id: 16,
+        id: 17,
         nome: 'AILA',
         genero: 'Terror',
         img: './Logos/AILA Logo.jpeg',
@@ -93,7 +93,7 @@ const GAMES = [
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.6, todos: 4.5 }
     },
     {
-        id: 9,
+        id: 10,
         nome: 'Knights of Pen and Paper 2',
         genero: 'RPG',
         img: './Logos/Knights Logo.jpeg',
@@ -101,7 +101,7 @@ const GAMES = [
         avaliacao: { semana: 4.3, mes: 4.4, ano: 4.4, todos: 4.4 }
     },
     {
-        id: 18,
+        id: 19,
         nome: '9 Kings',
         genero: 'Estratégia',
         img: './Logos/9kings Logo.jpg',
@@ -117,7 +117,7 @@ const GAMES = [
         avaliacao: { semana: 4.5, mes: 4.6, ano: 4.6, todos: 4.6 }
     },
     {
-        id: 15,
+        id: 16,
         nome: '99Vidas',
         genero: 'Beat em Up',
         img: './Logos/99 Vidas Logo.jpeg',
@@ -125,7 +125,7 @@ const GAMES = [
         avaliacao: { semana: 4.4, mes: 4.5, ano: 4.5, todos: 4.5 }
     },
     {
-        id: 17,
+        id: 18,
         nome: 'Dandy Ace',
         genero: 'Roguelite',
         img: './Logos/Dandy Ace Logo.jpeg',
@@ -133,7 +133,7 @@ const GAMES = [
         avaliacao: { semana: 4.5, mes: 4.4, ano: 4.4, todos: 4.4 }
     },
     {
-        id: 14,
+        id: 15,
         nome: '171',
         genero: 'Ação',
         img: './Logos/171 Logo.jpg',
@@ -157,7 +157,7 @@ const GAMES = [
         avaliacao: { semana: 4.8, mes: 4.6, ano: 4.5, todos: 4.4 }
     },
     {
-        id: 13,
+        id: 14,
         nome: 'Dragon Khan',
         genero: 'RPG de Ação',
         img: './Logos/Dragon Khan Logo.jpg',
