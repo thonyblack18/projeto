@@ -142,7 +142,8 @@ typeOptions.forEach(option => {
             developerFields?.classList.remove("hidden");
 
             playerFields.querySelectorAll("input").forEach(i => i.required = false);
-            developerFields.querySelectorAll("input").forEach(i => i.required = true);
+            developerFields.querySelectorAll("input").forEach(i => {    i.required = i.name !== "website";
+            });
         }
     });
 });
