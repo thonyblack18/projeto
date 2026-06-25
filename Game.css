@@ -823,6 +823,21 @@ body::before {
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast i { margin-right: 8px; }
 
+/* =================== MENU HAMBURGUER PRA CELULAR =================== */
+
+.mobile-menu-btn{
+    display:none;
+    width:40px;
+    height:40px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:8px;
+    color:var(--gray-300);
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+}
+
 /* =================== RESPONSIVE =================== */
 @media (max-width: 1280px) {
     .content-grid { grid-template-columns: 1fr 320px; }
@@ -830,16 +845,53 @@ body::before {
 }
 
 @media (max-width: 1024px) {
-    .main-header { padding: 0 20px; }
-    .main-nav    { display: none; }
-    .main-content { padding: 24px 20px 60px; }
+    .main-header { 
+        padding: 0 20px;
+     }
+     
+    .mobile-menu-btn{
+        display:flex;
+    }
 
-    .hero-media-section { flex-direction: column; }
+    .main-nav    { 
+        position:absolute;
+        top:70px;
+        left:20px;
+        right:20px;
+        display:none;
+        flex-direction:column;
+        background:rgba(13,13,26,.98);
+        border:1px solid rgba(212,175,55,.18);
+        border-radius:14px;
+        padding:12px;
+        z-index:2000;
+    }
+
+    .main-nav.active{
+        display:flex;
+    }
+
+    .main-content { 
+        padding: 24px 20px 60px; 
+    }
+
+    .hero-media-section { 
+        flex-direction: column; 
+    }
+
     .game-sidebar {
-        width: 100%; max-height: none;
-        border-left: none; border-top: 1px solid rgba(212,175,55,0.1);
-        flex-direction: row; flex-wrap: wrap; gap: 16px; padding: 20px;
+        width: 100%; 
+        max-height: none;
+        border-left: none; 
+        border-top: 1px solid rgba(212,175,55,0.1);
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        gap: 16px; 
+        padding: 20px;
         align-items: flex-start;
+
+        
+
     }
 
     /* =================== CAPA NO RESPONSIVE — tamanho controlado =================== */

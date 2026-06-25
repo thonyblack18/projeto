@@ -662,6 +662,23 @@ fetch(`${API_BASE}/api/games/${gameId}`)
         `;
     });
 
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.querySelector(".main-nav");
+
+mobileMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mainNav?.classList.toggle("active");
+});
+
+mainNav?.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+    mainNav?.classList.remove("active");
+});
+
+
 configurarNavegacao();
 configurarFavorito();
 configurarAvaliacoes();
