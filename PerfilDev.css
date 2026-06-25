@@ -1051,6 +1051,27 @@ body {
     text-decoration: none;
 }
 
+.footer-logo-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.footer-logo-placeholder {
+    display: none;
+}
+
+.footer-logo-text {
+    font-family: 'Rubik Glitch', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .logo-img-placeholder.small {
     width: 24px;
     height: 24px;
