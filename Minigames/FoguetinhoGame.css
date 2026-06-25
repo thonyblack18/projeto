@@ -1030,6 +1030,19 @@ kbd {
     .right-panel {
         order: 3;
     }
+
+    .panel-title {
+        justify-content: center;
+    }
+
+    .ranking-list {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .rank-item {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
