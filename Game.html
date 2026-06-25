@@ -45,11 +45,6 @@
             </div>
 
             <div class="header-right">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar jogos...">
-                </div>
-
                 <button class="icon-btn" id="btnFavoritos" title="Favoritos">
                     <i class="fas fa-heart"></i>
                 </button>
@@ -155,13 +150,6 @@
                 <div class="age-badge">L</div>
                 <span id="game-age">Classificação não informada</span>
             </div>
-
-            <button class="btn-donate" id="btnDonate">
-                <i class="fas fa-hand-holding-heart"></i>
-                Apoiar este jogo
-            </button>
-
-            <p class="donate-note">Apoie diretamente o desenvolvedor</p>
 
             <button type="button" class="btn-wishlist" id="btnWishlist">
                 <i class="far fa-heart" id="wishlistIcon"></i>
@@ -378,71 +366,9 @@
                     </table>
                 </div>
 
-                <div class="section-card aside-card donate-card">
-                    <div class="donate-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-
-                    <h3 id="donate-title">Apoie este desenvolvedor</h3>
-
-                    <p>
-                        Cada doação ajuda diretamente o estúdio a continuar desenvolvendo jogos independentes brasileiros.
-                    </p>
-
-                    <div class="donate-amounts" id="donateAmountsAside">
-                        <button class="amount-btn" data-amount="5">R$ 5</button>
-                        <button class="amount-btn active" data-amount="10">R$ 10</button>
-                        <button class="amount-btn" data-amount="25">R$ 25</button>
-                        <button class="amount-btn" data-amount="50">R$ 50</button>
-                    </div>
-
-                    <button class="btn-donate-main" id="btnDonateAside">
-                        <i class="fas fa-hand-holding-heart"></i>
-                        Apoiar com R$ 10
-                    </button>
-                </div>
-
             </aside>
         </div>
     </main>
-
-    <div class="modal-overlay" id="donateModal">
-        <div class="modal-box">
-            <button class="modal-close" id="closeDonateModal">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <div class="modal-icon-wrap">
-                <i class="fas fa-hand-holding-heart"></i>
-            </div>
-
-            <h3 id="modal-donate-title">Apoiar jogo</h3>
-
-            <p>
-                Sua contribuição ajuda diretamente o desenvolvedor a continuar criando jogos incríveis.
-            </p>
-
-            <div class="modal-amounts" id="modalAmounts">
-                <button class="amount-btn" data-amount="5">R$ 5</button>
-                <button class="amount-btn active" data-amount="10">R$ 10</button>
-                <button class="amount-btn" data-amount="25">R$ 25</button>
-                <button class="amount-btn" data-amount="50">R$ 50</button>
-                <button class="amount-btn" data-amount="100">R$ 100</button>
-            </div>
-
-            <input type="number" class="custom-amount-input" id="customAmount" placeholder="Outro valor (R$)" min="1">
-
-            <button class="btn-confirm-donate" id="confirmDonate">
-                <i class="fas fa-heart"></i>
-                Confirmar Doação de R$ 10
-            </button>
-
-            <p class="modal-note">
-                <i class="fas fa-lock"></i>
-                Pagamento seguro — Você será redirecionado para o checkout
-            </p>
-        </div>
-    </div>
 
     <div class="toast" id="toast"></div>
 
@@ -453,11 +379,11 @@
         </div>
 
         <div class="footer-links">
-            <a href="#">Termos de Uso</a>
+            <a href="TermosDeUso.html">Termos de Uso</a>
             <span class="separator">•</span>
-            <a href="#">Privacidade</a>
+            <a href="TermosPriv.html">Privacidade</a>
             <span class="separator">•</span>
-            <a href="#">Suporte</a>
+            <a href="SuporteUsuario.html">Suporte</a>
         </div>
     </footer>
 
