@@ -109,7 +109,7 @@ function setText(id, value, fallback = "") {
     if (el) el.textContent = value || fallback;
 }
 
-function setHref(id, href, fallbackText = "Não informado") {
+function setHref(id, href) {
     const el = document.getElementById(id);
     if (!el) return;
 
@@ -118,11 +118,9 @@ function setHref(id, href, fallbackText = "Não informado") {
         el.textContent = "Site oficial ↗";
         el.style.pointerEvents = "auto";
         el.style.opacity = "1";
+        el.style.display = "";
     } else {
-        el.href = "#";
-        el.textContent = fallbackText;
-        el.style.pointerEvents = "none";
-        el.style.opacity = "0.7";
+        el.style.display = "none";
     }
 }
 
@@ -169,14 +167,7 @@ function setTechTags() {
     const container = document.getElementById("tech-tags");
     if (!container) return;
 
-    container.innerHTML = "";
-
-    ["Unity", "C#", "Aseprite", "Figma"].forEach(tag => {
-        const span = document.createElement("span");
-        span.className = "tech-tag";
-        span.textContent = tag;
-        container.appendChild(span);
-    });
+    container.remove();
 }
 
 async function setStats(profile, userId) {
@@ -363,18 +354,6 @@ async function carregarPerfilDev() {
         setStudioType(profile.dev_type);
         setLocation(profile.city, profile.state);
         setTagline(profile.dev_type, profile.foundation_year);
-
-        setHref(
-            "studio-site",
-            profile.website,
-            "Sem site oficial"
-        );
-
-        setHref(
-            "link-website",
-            profile.website,
-            "Sem site oficial"
-        );
 
         setStudioInitial(
             profile.dev_display_name ||

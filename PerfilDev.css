@@ -29,6 +29,9 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
 }
 
 /* =================== CANVAS DE PARTÍCULAS =================== */
@@ -376,6 +379,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 48px;
+
+    flex: 1;
 }
 
 /* =================== SECTIONS =================== */
