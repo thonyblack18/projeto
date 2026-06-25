@@ -282,6 +282,9 @@ function draw() {
     }
 
     // =================== CORPO DO FOGUETE (trilha/propulsores) ===================
+    ctx.shadowColor = "#ff7b00";
+    ctx.shadowBlur = 20;
+
     state.rocket.forEach((seg, i) => {
         if (i === 0) return;
         const t   = 1 - i / state.rocket.length;
@@ -291,16 +294,16 @@ function draw() {
 
         if (i < 3) {
             // Segmentos mais próximos: chama quente branca/amarela no núcleo
-            const outerSz = sz * 1.1;
+            const outerSz = sz * 1.7;
             ctx.beginPath();
-            ctx.arc(cx, cy, outerSz * 0.65, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 180, 0, ${t * 0.5})`;
+            ctx.arc(cx, cy, outerSz * 0.85, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,120,0,${t})`;
             ctx.fill();
 
             // Núcleo branco-azulado bem visível
             ctx.beginPath();
-            ctx.arc(cx, cy, sz * 0.38, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(200, 230, 255, ${t * 0.95})`;
+            ctx.arc(cx, cy, sz * 0.55, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffffff";
             ctx.fill();
 
             // Anel laranja vivo
@@ -311,13 +314,13 @@ function draw() {
         } else if (i < 7) {
             // Segmentos intermediários: chama laranja/amarela
             ctx.beginPath();
-            ctx.arc(cx, cy, sz * 0.55, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 90, 0, ${t * 0.7})`;
+            ctx.arc(cx, cy, sz * 0.9, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,80,0,${t})`;
             ctx.fill();
 
             ctx.beginPath();
-            ctx.arc(cx, cy, sz * 0.3, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 200, 50, ${t * 0.6})`;
+            ctx.arc(cx, cy, sz * 0.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,180,${t})`;
             ctx.fill();
         } else {
             // Cauda mais longa: tons amarelo-dourado apagando
@@ -326,10 +329,12 @@ function draw() {
                 seg.y * CELL + (CELL - sz) / 2,
                 sz, sz, sz * 0.5
             );
-            ctx.fillStyle = `rgba(212, 175, 55, ${t * 0.45})`;
+            ctx.fillStyle = `rgba(255,180,0,${t * 0.9})`;
             ctx.fill();
         }
     });
+
+    ctx.shadowBlur = 0;
 
     // =================== CABEÇA — FOGUETE ===================
     if (state.rocket.length > 0) {
@@ -550,6 +555,30 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
         btn.classList.add('active');
         state.baseSpeed = parseInt(btn.dataset.speed);
         state.speed     = state.baseSpeed;
+    });
+});
+
+function setDirection(next) {
+    if (
+        state.running &&
+        (next.x !== -state.dir.x || next.y !== -state.dir.y)
+    ) {
+        state.nextDir = next;
+    }
+}
+
+document.querySelectorAll(".mobile-control-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const dir = btn.dataset.dir;
+
+        const map = {
+            up: { x: 0, y: -1 },
+            down: { x: 0, y: 1 },
+            left: { x: -1, y: 0 },
+            right: { x: 1, y: 0 }
+        };
+
+        setDirection(map[dir]);
     });
 });
 
