@@ -447,6 +447,26 @@ body::before {
     50%      { transform: translateY(-14px) rotate(5deg); }
 }
 
+.art-planet {
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(212,175,55,.8)) brightness(1.4);
+
+    position: relative;
+    z-index: 2;
+
+    animation: planetFloat 3s ease-in-out infinite;
+}
+
+@keyframes planetFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
 .art-star {
     position: absolute;
     font-size: 1.8rem;
