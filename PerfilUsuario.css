@@ -251,7 +251,7 @@ body {
     margin: 0 auto 40px;
     padding: 0 40px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     background: var(--bg-card);
     border: 1px solid var(--border-gold);
     border-radius: var(--radius);
