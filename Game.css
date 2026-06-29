@@ -1028,3 +1028,25 @@ body::before {
 .separator {
     color: #6b7280;
 }
+
+.comment-avatar,
+.comment-avatar-initial {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.comment-avatar {
+    object-fit: cover;
+}
+
+.comment-avatar-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffd700, #ff9f1c);
+    color: #111;
+    font-weight: 800;
+    font-size: 1rem;
+}
