@@ -14,8 +14,17 @@ function getImageUrl(path) {
 }
 
 function getAvatarUrl(path) {
-    if (!path) return "https://i.pravatar.cc/80";
+    if (!path) return "";
 
+    if (
+        path.startsWith("http") ||
+        path.startsWith("data:")
+    ) {
+        return path;
+    }
+
+    return `${API_BASE}/${path}`;
+}
     if (
         path.startsWith("http") ||
         path.startsWith("data:")
@@ -364,11 +373,20 @@ function renderizarComentarios(reviews) {
         commentsList.innerHTML += `
             <div class="comment-card">
                 <div class="comment-header">
-                    <img
-                        class="comment-avatar"
-                        src="${getAvatarUrl(review.avatar_url)}"
-                        onerror="this.src='https://i.pravatar.cc/80'">
-
+                    ${review.avatar_url ? `
+                        <img
+                            class="comment-avatar"
+                            src="${getAvatarUrl(review.avatar_url)}"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    
+                        <div class="comment-avatar-initial" style="display:none;">
+                            ${(review.user_name || "U").charAt(0).toUpperCase()}
+                        </div>
+                    ` : `
+                        <div class="comment-avatar-initial">
+                            ${(review.user_name || "U").charAt(0).toUpperCase()}
+                        </div>
+                    `}
                     <div class="comment-meta">
                         <strong>${review.user_name}</strong>
                         <span class="comment-date">
