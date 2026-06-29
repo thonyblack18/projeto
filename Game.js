@@ -25,16 +25,7 @@ function getAvatarUrl(path) {
 
     return `${API_BASE}/${path}`;
 }
-    if (
-        path.startsWith("http") ||
-        path.startsWith("data:")
-    ) {
-        return path;
-    }
-
-    return `${API_BASE}/${path}`;
-}
-
+    
 const params = new URLSearchParams(window.location.search);
 const gameId = params.get("id");
 
